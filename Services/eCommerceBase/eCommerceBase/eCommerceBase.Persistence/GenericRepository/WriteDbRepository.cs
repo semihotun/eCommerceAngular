@@ -15,14 +15,23 @@ namespace eCommerceBase.Persistence.GenericRepository
         }
         public void AddRange(List<TEntity> entity)
         {
+            foreach (var data in entity)
+            {
+                data.CreatedOnUtc = DateTime.Now;
+            }
             _writeContext.Set<TEntity>().AddRange(entity);
         }
         public async Task AddRangeAsync(IEnumerable<TEntity> entity)
         {
+            foreach (var data in entity)
+            {
+                data.CreatedOnUtc = DateTime.Now;
+            }
             await _writeContext.Set<TEntity>().AddRangeAsync(entity);
         }
         public TEntity Update(TEntity entity)
         {
+            entity.UpdatedOnUtc = DateTime.Now;
             _writeContext.Set<TEntity>().Update(entity);
             return entity;
         }
@@ -33,6 +42,7 @@ namespace eCommerceBase.Persistence.GenericRepository
         }
         public async Task<TEntity> AddAsync(TEntity entity)
         {
+            entity.CreatedOnUtc = DateTime.Now;
             return (await _writeContext.Set<TEntity>().AddAsync(entity)).Entity;
         }
         public void RemoveRange(List<TEntity> entity)

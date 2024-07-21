@@ -28,11 +28,29 @@ namespace eCommerceBase.Persistence.Extensions
                         var method = item.GetMethod("GetSeedData");
                         var obj = Activator.CreateInstance(item);
                         var dataObjects = (IEnumerable<object>)method?.Invoke(obj, null)!;
-                        context.AddRange(dataObjects);
+                        var data = AddCreatedOnUtc(dataObjects);
+                        context.AddRange(data);
                     }
                     await context.SaveChangesAsync();
                 }
             });
+        }
+        /// <summary>
+        /// AddCreatedOnUtc
+        /// </summary>
+        /// <param name="dataObjects"></param>
+        /// <returns></returns>
+        private static IEnumerable<object> AddCreatedOnUtc(IEnumerable<object> dataObjects)
+        {
+            foreach (var data in dataObjects)
+            {
+                var createdOnUtcProperty = data.GetType().GetProperty("CreatedOnUtc");
+                if (createdOnUtcProperty != null && createdOnUtcProperty.PropertyType == typeof(DateTime))
+                {
+                    createdOnUtcProperty.SetValue(data, DateTime.Now);
+                }
+            }
+            return dataObjects;
         }
         /// <summary>
         /// Polly Retry Mechanism

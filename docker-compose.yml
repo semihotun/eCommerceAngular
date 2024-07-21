@@ -2,7 +2,190 @@ version: '3.4'
 
 services:
   ecommercebase.api:
-    image: ${DOCKER_REGISTRY-}ecommercebaseapi
+    image: ${DOCKER_REGISTRY-}ecommercebase.api
     build:
       context: .
       dockerfile: Services/eCommerceBase/eCommerceBase/eCommerceBase.Api/Dockerfile
+    container_name: ecommercebase.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${Stage}
+      - ASPNETCORE_URLS=http://+:${eCommerceBase_Port}
+    ports:
+      - "${eCommerceBase_Port}:${eCommerceBase_Port}"
+    networks:
+      - net_backendservices
+    env_file:
+      - ./.env
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+        max_attempts: 5
+        window: 60s
+    depends_on:
+      - s_redis
+      - s_sqlserver
+      - s_rabbitmq
+      # - s_elasticsearch
+      # - s_mongo
+      # - s_zookeeper
+      # - s_kafka
+      # - s_debeziumconnect
+      # - s_zipkin
+  s_rabbitmq:
+    container_name: c_rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "${RabbitMq_TCP_Port}:${RabbitMq_TCP_Port}"
+      - "${RabbitMq_UI_Port}:${RabbitMq_UI_Port}"
+    volumes:
+      - rabbitmq:/var/lib/rabbitmq
+    networks:
+      - net_backendservices
+    env_file:
+      - ./.env
+
+  s_redis:
+    container_name: c_redis
+    image: redis:7.2.4
+    ports:
+      - "${Redis__Port}:${Redis__Port}"
+    networks:
+      - net_backendservices
+    env_file:
+      - ./.env
+    volumes:
+      - /path/to/local/data:/root/redis
+    command: redis-server --requirepass ${Redis__Password}
+    environment:
+      - REDIS_PASSWORD=${Redis__Password}
+      - REDIS_PORT=${Redis__Port}
+      - REDIS_REPLICATION_MODE=master
+
+  s_sqlserver:
+    container_name: c_sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    user: root
+    ports:
+      - "${SQL_Host_Port}:${SQL_TCP_Port}"
+    env_file:
+      - ./.env
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=${SQL_Password}
+      - MSSQL_PID=Standard
+      - MSSQL_AGENT_ENABLED=true
+    volumes:
+      - sqlserver_data:/var/opt/mssql/data
+      - sqlserver_log:/var/opt/mssql/log
+    networks:
+      - net_backendservices
+
+  # s_elasticsearch:
+  #   container_name: c_elasticsearch
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+  #   env_file:
+  #     - ./.env
+  #   environment:
+  #     - http.host=0.0.0.0
+  #     - transport.host=localhost
+  #     - network.host=0.0.0.0
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #     - xpack.monitoring.enabled=false
+  #     - xpack.monitoring.collection.enabled=false
+  #     - ELASTIC_PASSWORD=${ElasticSearch_Password}
+  #     - ELASTICSEARCH_USERNAME=${ElasticSearch_UserName}
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   mem_limit: 1g
+  #   ports:
+  #     - "${Elastic_TCP_Port}:9200"
+  #     - "${Elastic_UDP_Port}:9300"
+  #   networks:
+  #     - net_backendservices
+
+  # s_mongo:
+  #   container_name: c_mongo
+  #   image: mongo:7.0.7-rc0
+  #   ports:
+  #     - "${Mongo_Port}:${Mongo_Port}"
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=${Mongo_UserName}
+  #     - MONGO_INITDB_ROOT_PASSWORD=${Mongo_Password}
+  #   networks:
+  #     - net_backendservices
+  #   env_file:
+  #     - ./.env
+
+  # s_zookeeper:
+  #   container_name: c_zookeeper
+  #   image: debezium/zookeeper:2.5.2.Final
+  #   ports:
+  #     - "${Zookeeper_Port}:${Zookeeper_Port}"
+  #     - "2888:2888"
+  #     - "3888:3888"
+  #   networks:
+  #     - net_backendservices
+  #   env_file:
+  #     - ./.env
+
+  # s_kafka:
+  #   container_name: c_kafka
+  #   image: debezium/kafka:2.5.2.Final
+  #   ports:
+  #     - "${Kafka_TCP_Port}:${Kafka_TCP_Port}"
+  #     - "${Kafka_External_Tcp}:${Kafka_External_Tcp}"
+  #   depends_on:
+  #     - s_zookeeper
+  #   environment:
+  #     - ZOOKEEPER_CONNECT=s_zookeeper:${Zookeeper_Port}
+  #     - KAFKA_ADVERTISED_LISTENERS=LISTENER_EXT://s_kafka:${Kafka_External_Tcp},LISTENER_INT://s_kafka:${Kafka_TCP_Port}
+  #     - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LISTENER_INT:PLAINTEXT,LISTENER_EXT:PLAINTEXT
+  #     - KAFKA_LISTENERS=LISTENER_INT://s_kafka:${Kafka_TCP_Port},LISTENER_EXT://s_kafka:${Kafka_External_Tcp}
+  #     - KAFKA_INTER_BROKER_LISTENER_NAME=LISTENER_INT
+  #   networks:
+  #     - net_backendservices
+  #   env_file:
+  #     - ./.env
+
+  # s_debeziumconnect:
+  #   container_name: c_debeziumconnect
+  #   image: debezium/connect:2.5.2.Final
+  #   ports:
+  #     - "${Debeziumconnect_Port}:${Debeziumconnect_Port}"
+  #   environment:
+  #     - BOOTSTRAP_SERVERS=s_kafka:${Kafka_TCP_Port}
+  #     - GROUP_ID=1
+  #     - CONFIG_STORAGE_TOPIC=my_connect_configs
+  #     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+  #     - STATUS_STORAGE_TOPIC=my_connect_statuses
+  #   depends_on:
+  #     - s_zookeeper
+  #     - s_kafka
+  #   networks:
+  #     - net_backendservices
+  #   env_file:
+  #     - ./.env  
+
+  # s_zipkin:
+  #   container_name: c_zipkin
+  #   image: openzipkin/zipkin:3
+  #   ports:
+  #     - "9411:9411"
+  #   networks:
+  #     - net_backendservices
+
+networks:
+  net_frontend:
+    driver: bridge
+    external: true
+  net_backendservices:
+    driver: bridge
+    external: true
+
+volumes:
+  rabbitmq:
+  sqlserver_data:
+  sqlserver_log:

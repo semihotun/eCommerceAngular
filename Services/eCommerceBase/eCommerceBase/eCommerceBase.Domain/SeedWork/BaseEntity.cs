@@ -9,7 +9,8 @@ namespace eCommerceBase.Domain.SeedWork
     {
         public virtual Guid Id { get; protected set; }
         public bool Deleted { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime CreatedOnUtc { get; set; }
+        public DateTime UpdatedOnUtc { get; set; }
         int? _requestedHashCode;
         private readonly List<IObjectNotification> _domainEvents = [];
         [JsonIgnore]
