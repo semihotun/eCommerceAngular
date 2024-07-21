@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  ecommercebase.api:
+    image: ${DOCKER_REGISTRY-}ecommercebaseapi
+    build:
+      context: .
+      dockerfile: Services/eCommerceBase/eCommerceBase/eCommerceBase.Api/Dockerfile
