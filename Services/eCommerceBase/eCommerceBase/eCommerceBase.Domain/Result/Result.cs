@@ -15,7 +15,7 @@ namespace eCommerceBase.Domain.Result
         {
             Data = data;
             Success = success;
-            Message = LanguageException.GetKey(message);
+            Message = message;
         }
         public Result(T? data, bool success)
         {
@@ -29,7 +29,7 @@ namespace eCommerceBase.Domain.Result
         public Result(bool success, string message)
         {
             Success = success;
-            Message = LanguageException.GetKey(message);
+            Message = message;
         }
         protected Result()
         {

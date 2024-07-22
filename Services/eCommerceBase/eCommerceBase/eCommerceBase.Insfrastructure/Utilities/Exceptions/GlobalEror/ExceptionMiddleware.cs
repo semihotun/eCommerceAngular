@@ -22,6 +22,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Exceptions.GlobalEror
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 await HandleExceptionAsync(httpContext, e);
             }
         }
