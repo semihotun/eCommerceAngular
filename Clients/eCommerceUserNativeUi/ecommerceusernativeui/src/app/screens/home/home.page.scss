@@ -1,0 +1,11 @@
+@import '../../../theme/styles.scss';
+
+#home-page {
+    min-height: 70%;
+
+    @media screen and (max-width:$tablet-size) {
+        min-height: 100%;
+        margin-top: 9%;
+        padding-bottom: 65px;
+    }
+}

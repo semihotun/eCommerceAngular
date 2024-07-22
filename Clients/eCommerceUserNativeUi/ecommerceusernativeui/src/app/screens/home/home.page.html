@@ -1,0 +1,13 @@
+<ion-content fullscreen="true">
+    <app-header></app-header>
+    <div id="home-page">
+        <app-slider></app-slider>
+        <app-showcase></app-showcase>
+    </div>
+    @if (!glb.isMobil.value) {
+    <app-footer></app-footer>
+    }
+    @else {
+    <app-mobile-footer></app-mobile-footer>
+    }
+</ion-content>
