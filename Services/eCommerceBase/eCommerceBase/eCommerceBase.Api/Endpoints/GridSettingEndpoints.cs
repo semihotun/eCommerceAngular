@@ -1,6 +1,6 @@
 ﻿using Carter;
-using eCommerceBase.Application.Handlers.Brands.Commands;
-using eCommerceBase.Application.Handlers.Brands.Queries;
+using eCommerceBase.Application.Handlers.GridSettings.Commands;
+using eCommerceBase.Application.Handlers.GridSettings.Queries;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using MediatR;
@@ -8,30 +8,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerceBase.Api.Endpoints
 {
-    public class BrandEndpoints : ICarterModule
+    public class GridSettingEndpoints : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/brand");
+            var group = app.MapGroup("api/GridSetting");
 
-            group.MapPost("/createbrand", CreateBrand)
+            group.MapPost("/creategridsetting", CreateGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .DisableAntiforgery()
                 .AllowAnonymous();
-            group.MapPost("/updatebrand", UpdateBrand)
+            group.MapPost("/updategridsetting", UpdateGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/deletebrand", DeleteBrand)
+            group.MapPost("/deletegridsetting", DeleteGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapGet("/getbrandbyid", GetBrandById)
-               .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
+            group.MapGet("/getgridsettingbyid", GetGridSettingById)
+               .Produces(StatusCodes.Status200OK, typeof(Result<GridSetting>))
                .AllowAnonymous();
-            group.MapGet("/getallbrand", GetAllBrand)
-            .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
+            group.MapGet("/getallgridsetting", GetAllGridSetting)
+            .Produces(StatusCodes.Status200OK, typeof(Result<GridSetting>))
             .AllowAnonymous();
         }
-        public static async Task<IResult> CreateBrand([FromBody] CreateBrandCommand data, ISender sender)
+        public static async Task<IResult> CreateGridSetting([FromBody] CreateGridSettingCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -40,7 +40,7 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> UpdateBrand([FromBody] UpdateBrandCommand data, ISender sender)
+        public static async Task<IResult> UpdateGridSetting([FromBody] UpdateGridSettingCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -49,7 +49,7 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> DeleteBrand([FromBody] DeleteBrandCommand data, ISender sender)
+        public static async Task<IResult> DeleteGridSetting([FromBody] DeleteGridSettingCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -58,18 +58,18 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetBrandById([FromQuery] Guid id, ISender sender)
+        public static async Task<IResult> GetGridSettingById([FromQuery] Guid id, ISender sender)
         {
-            var result = await sender.Send(new GetBrandByIdQuery(id));
+            var result = await sender.Send(new GetGridSettingByIdQuery(id));
             if (result.Success)
             {
                 return Results.Ok(result);
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetAllBrand(ISender sender)
+        public static async Task<IResult> GetAllGridSetting(ISender sender)
         {
-            var result = await sender.Send(new GetAllBrand());
+            var result = await sender.Send(new GetAllGridSetting());
             if (result.Success)
             {
                 return Results.Ok(result);
