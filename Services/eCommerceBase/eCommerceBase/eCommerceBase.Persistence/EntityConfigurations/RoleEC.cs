@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eCommerceBase.Persistence.EntityConfigurations
 {
-    public class RoleEntityConfiguration : IEntityTypeConfiguration<Role>
+    public class RoleEC : IEntityTypeConfiguration<Role>
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {

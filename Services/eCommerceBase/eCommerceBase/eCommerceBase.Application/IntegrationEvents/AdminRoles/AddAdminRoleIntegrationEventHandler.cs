@@ -1,15 +1,15 @@
-﻿using eCommerceBase.Application.Handlers.User.Commands;
+﻿using eCommerceBase.Application.Handlers.Roles.Commands;
 using eCommerceBase.Insfrastructure.Utilities.AdminRole;
 using MassTransit;
 using MediatR;
 namespace eCommerceBase.Application.IntegrationEvents.AdminRoles
 {
-    public class AddAdminRoleIntegrationEventHandler(IMediator mediator) : IConsumer<AddAdminRoleIntegrationEvent>
+    public class AddUserRoleIntegrationEventHandler(IMediator mediator) : IConsumer<AddUserRoleIntegrationEvent>
     {
         private readonly IMediator _mediator = mediator;
-        public async Task Consume(ConsumeContext<AddAdminRoleIntegrationEvent> context)
+        public async Task Consume(ConsumeContext<AddUserRoleIntegrationEvent> context)
         {
-            await _mediator.Send(new UserRoleCommand(context.Message.RoleName));
+            await _mediator.Send(new RoleCommand(context.Message.RoleName));
         }
     }
 }

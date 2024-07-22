@@ -13,7 +13,7 @@ namespace eCommerceBase.Persistence.UnitOfWork
         private readonly ICoreDbContext _ctx = ctx;
         private readonly IMediator _mediator = mediator;
         public async Task<T> BeginTransaction<T>(Func<Task<T>> action)
-        where T : Result
+        where T : IResult
         {
             var result = default(T);
             await _ctx.Database.CreateExecutionStrategy().ExecuteAsync(async () =>

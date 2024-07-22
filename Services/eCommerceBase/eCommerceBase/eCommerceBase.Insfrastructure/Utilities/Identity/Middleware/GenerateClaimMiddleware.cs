@@ -24,7 +24,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Identity.Middleware
                 var _bus = app.Services.GetRequiredService<IBus>();
                 if (endpoints.Length != 0)
                 {
-                    await _bus.Publish<AddAdminRoleIntegrationEvent>(new AddAdminRoleIntegrationEvent(endpoints!));
+                    await _bus.Publish<AddUserRoleIntegrationEvent>(new AddUserRoleIntegrationEvent(endpoints!));
                 }
             });
         }

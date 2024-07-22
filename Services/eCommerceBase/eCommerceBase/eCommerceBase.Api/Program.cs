@@ -18,8 +18,8 @@ app.MapCarter();
 if (!app.Environment.IsDevelopment())
 {
     //Metrics
-    app.UseHttpMetrics();
-    app.MapMetrics();
+    //app.UseHttpMetrics();
+    //app.MapMetrics();
     app.UseHttpsRedirection();
 }
 //WebUI
@@ -35,7 +35,7 @@ ServiceTool.ServiceProvider = app.Services;
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseMiddleware<ClaimMiddleware>();
 var task = app.RunAsync();
-await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly());
+//await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly());
 _ = app.GenerateDbRole();
 HangFireJobs.AddAllStartupJobs();
 await task;

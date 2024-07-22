@@ -1,12 +1,12 @@
-﻿using eCommerceBase.Insfrastructure.Utilities.Outboxes;
+﻿using eCommerceBase.Domain.AggregateModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eCommerceBase.Persistence.EntityConfigurations
 {
-    public class OutboxEntityConfiguration : IEntityTypeConfiguration<Outbox>
+    public class CustomerUserEC : IEntityTypeConfiguration<CustomerUser>
     {
-        public void Configure(EntityTypeBuilder<Outbox> builder)
+        public void Configure(EntityTypeBuilder<CustomerUser> builder)
         {
             builder.HasKey(x => x.Id);
         }

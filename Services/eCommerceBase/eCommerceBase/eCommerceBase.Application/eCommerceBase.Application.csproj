@@ -15,7 +15,10 @@
   <ItemGroup>
     <Folder Include="DomainEventHandlers\" />
     <Folder Include="Features\" />
-    <Folder Include="Handlers\User\Queries\" />
+    <Folder Include="Handlers\AdminUsers\Queries\" />
+    <Folder Include="Handlers\CustomerUsers\Commands\" />
+    <Folder Include="Handlers\CustomerUsers\Queries\" />
+    <Folder Include="Handlers\Roles\Queries\" />
     <Folder Include="Helpers\" />
 	<Folder Include="Jobs\" />
   </ItemGroup>

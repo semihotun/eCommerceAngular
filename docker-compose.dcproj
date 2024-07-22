@@ -4,7 +4,7 @@
 		<ProjectVersion>2.1</ProjectVersion>
 		<DockerTargetOS>Linux</DockerTargetOS>
 		<DockerPublishLocally>False</DockerPublishLocally>
-		<ProjectGuid>a4f9067c-342d-489c-b008-b49b7e6f9ffb</ProjectGuid>
+		<ProjectGuid>b2f53c79-1cde-4a3b-8474-dfd6c0fddf72</ProjectGuid>
 		<DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
 		<DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
 		<DockerServiceName>ecommercebase</DockerServiceName>
