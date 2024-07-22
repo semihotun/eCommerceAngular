@@ -1,0 +1,55 @@
+ @import '../../../theme/styles.scss';
+
+
+ .col-md-4 {
+     width: (100% / 12)*4;
+
+ }
+
+ .footer {
+     font-size: 14px;
+     padding-top: 50px;
+     padding-bottom: 40px;
+     background-color: $footer-bg-color;
+     width: 100%;
+     display: flex;
+     min-height: 40%;
+     justify-content: space-between;
+
+     .description {
+         color: white;
+         display: flex;
+         flex-direction: column;
+
+         .social {
+             color: white;
+             padding-top: 15px;
+
+             .fa-brands {
+                 color: white;
+                 font-size: 20px;
+                 padding-right: 7px;
+             }
+         }
+     }
+
+     .links {
+         display: flex;
+         flex-direction: column;
+
+         a {
+             color: white;
+             padding: 5px;
+             text-decoration: none;
+         }
+     }
+
+
+ }
+
+ .copyright {
+     border-top: 1px solid #ccc;
+     padding-top: 5px;
+     text-align: center;
+     background-color: white;
+ }
