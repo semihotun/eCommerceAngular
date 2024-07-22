@@ -27,6 +27,9 @@ namespace eCommerceBase.Api.Endpoints
             group.MapGet("/getsliderbyid", GetSliderById)
                .Produces(StatusCodes.Status200OK, typeof(Result<Slider>))
                .AllowAnonymous();
+            group.MapGet("/getallslider", GetAllSlider)
+            .Produces(StatusCodes.Status200OK, typeof(Result<Slider>))
+            .AllowAnonymous();
         }
         public static async Task<IResult> CreateSlider([FromForm] CreateSliderCommand data, ISender sender)
         {
@@ -58,6 +61,15 @@ namespace eCommerceBase.Api.Endpoints
         public static async Task<IResult> GetSliderById([FromQuery] Guid id, ISender sender)
         {
             var result = await sender.Send(new GetSliderByIdQuery(id));
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> GetAllSlider(ISender sender)
+        {
+            var result = await sender.Send(new GetAllSlider());
             if (result.Success)
             {
                 return Results.Ok(result);
