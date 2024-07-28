@@ -93,16 +93,40 @@ namespace eCommerceBase.Insfrastructure.Utilities.Caching.Redis
         }
         private static string? BuildKey(object arg)
         {
-            if (arg != null)
+            if (arg is null)
             {
-                var sb = new StringBuilder();
-                var paramValues = arg.GetType()
-                    .GetProperties()
-                    .Select(p => p.GetValue(arg)?.ToString() ?? string.Empty);
-                sb.AppendJoin('_', paramValues);
-                return sb.ToString();
+                return null;
             }
-            return null;
+
+            var sb = new StringBuilder();
+            if (arg is IEnumerable<object> enumerable)
+            {
+                foreach (var item in enumerable)
+                {
+                    sb.Append(BuildKey(item));
+                }
+            }
+            else
+            {
+                var properties = arg.GetType().GetProperties();
+                foreach (var property in properties)
+                {
+                    var value = property.GetValue(arg);
+                    if (value is IEnumerable<object> collection)
+                    {
+                        foreach (var item in collection)
+                        {
+                            sb.Append(BuildKey(item));
+                        }
+                    }
+                    else
+                    {
+                        sb.Append(value?.ToString() ?? string.Empty);
+                        sb.Append('_');
+                    }
+                }
+            }
+            return sb.ToString().TrimEnd('_');
         }
         private static DistributedCacheEntryOptions GetDistributedCacheEntryOptions(int ttlSecond = 60)
         {
