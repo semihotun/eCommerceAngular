@@ -5,6 +5,7 @@ using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace eCommerceBase.Api.Endpoints
 {
@@ -12,7 +13,7 @@ namespace eCommerceBase.Api.Endpoints
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/GridSetting");
+            var group = app.MapGroup("api/gridsetting");
 
             group.MapPost("/creategridsetting", CreateGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
@@ -24,7 +25,7 @@ namespace eCommerceBase.Api.Endpoints
             group.MapPost("/deletegridsetting", DeleteGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapGet("/getgridsettingbyid", GetGridSettingById)
+            group.MapGet("/getgridsettingbypath", GetGridSettingByPath)
                .Produces(StatusCodes.Status200OK, typeof(Result<GridSetting>))
                .AllowAnonymous();
             group.MapGet("/getallgridsetting", GetAllGridSetting)
@@ -58,9 +59,9 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetGridSettingById([FromQuery] Guid id, ISender sender)
+        public static async Task<IResult> GetGridSettingByPath([FromQuery] string path, ISender sender)
         {
-            var result = await sender.Send(new GetGridSettingByIdQuery(id));
+            var result = await sender.Send(new GetGridSettingByPathQuery(path));
             if (result.Success)
             {
                 return Results.Ok(result);
