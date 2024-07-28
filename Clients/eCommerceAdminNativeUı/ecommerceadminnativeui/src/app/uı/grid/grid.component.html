@@ -1,4 +1,6 @@
 <div class="main-content">
+
+
   <!-- Seçili Filter Başla -->
   <div class="d-flex flex-wrap">
     <ng-container *ngFor="let filterModel of filterList">
@@ -14,32 +16,18 @@
   <!-- Seçili Filter Bitiş -->
   <!-- Filter Başla -->
   <form class="d-flex flex-wrap mt-2" id="filterContainer" [formGroup]="filterForm">
-    <select class="browser-default custom-select col-md-1 pl-3 rounded" formControlName="andOrOperation"
-      standolone="true" *ngIf="filterList.length > 0" placeholder>
-      <option value="" selected disabled>{{ "And|Or" | translate }}</option>
-      <option value="And">{{ "And" | translate }}</option>
-      <option value="Or">{{ "Or" | translate }}</option>
-    </select>
-    <select class="browser-default custom-select col-md-4 pl-3 rounded" (change)="changeFilter($event)"
-      formControlName="propertyName">
-      <option class="dropdown-item" disabled selected value="">
-        {{ "Select Filter Column" | translate }}
-      </option>
-      <option *ngFor="let item of keys" [value]="item.propertyName">
-        {{ item.propertyName }}
-      </option>
-    </select>
-    <select class="browser-default custom-select col-md-2 pl-3 rounded" formControlName="filterType">
-      <option class="dropdown-item" disabled selected value="">
-        {{ "Select Operation" | translate }}
-      </option>
-      <option *ngFor="let item of filters" [value]="item.value">
-        {{ item.text }}
-      </option>
-    </select>
-    <input type="text" class="col-md-2 pl-3 rounded" formControlName="filterValue"
-      placeholder="{{ 'Filter Value' | translate }}" />
-    <!-- <button class="btn btn-outline-dark col-md-1 rounded" (click)="addFilter()">{{'Add' | translate}}</button> -->
+    <app-selectbox placeholder="{{ 'And|Or' | translate }}" label="{{ 'And|Or' | translate }}"
+      [data]="['And' | translate ,'Or' | translate ]" formControlName="andOrOperation" class="col-md-1"
+      *ngIf="filterList.length > 0" (change)="changeFilter()"></app-selectbox>
+    <app-selectbox placeholder="{{ 'Select Filter Column' | translate }}"
+      label="{{ 'Select Filter Column' | translate }}" [data]="keys" textProperty="propertyName"
+      valueProperty="propertyName" formControlName="propertyName" class="col-md-3"
+      (change)="changeFilter()"></app-selectbox>
+    <app-selectbox placeholder="{{ 'Select Filter Column' | translate }}"
+      label="{{ 'Select Filter Column' | translate }}" [data]="filters" textProperty="text" valueProperty="value"
+      formControlName="filterType" class="col-md-3"></app-selectbox>
+    <app-input class="col-md-3" formControlName="filterValue" placeholder="{{ 'Filter Value' | translate }}"
+      label="{{ 'Filter Value' | translate }}"></app-input>
     <app-btn-submit (click)="addFilter()" [text]="'Add' | translate" class="col-md-1"></app-btn-submit>
   </form>
   <!-- Filter Bitiş -->

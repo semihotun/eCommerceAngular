@@ -98,12 +98,9 @@ $grid-mobile-width: 600px;
             }
         }
 
-        select,
-        input {
+        app-input,
+        app-selectbox {
             margin-right: 5px;
-            padding: 5px;
-            background-color: white;
-            border: 1px solid $theme-color-blue;
 
             @media only screen and (max-width: $grid-mobile-width) {
                 margin-top: 5px;

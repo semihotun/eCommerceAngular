@@ -29,6 +29,8 @@ import { GridPropertyModalComponent } from './components/grid-property-modal/gri
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { BtnSubmitComponent } from '../btn-submit/btn-submit.component';
 import { takeUntil, Subject } from 'rxjs';
+import { SelectboxComponent } from '../selectbox/selectbox.component';
+import { InputComponent } from '../input/input.component';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -41,6 +43,8 @@ import { takeUntil, Subject } from 'rxjs';
     FormsModule,
     CheckboxComponent,
     BtnSubmitComponent,
+    SelectboxComponent,
+    InputComponent,
   ],
 })
 export class GridComponent implements OnInit, OnDestroy {
@@ -193,12 +197,15 @@ export class GridComponent implements OnInit, OnDestroy {
     return data.charAt(0).toUpperCase() + data.slice(1);
   }
 
-  changeFilter(event: any) {
-    const target = event.target as HTMLSelectElement;
-    let propertyName = event.target.value;
+  changeFilter() {
+    let propertyName = this.filterForm.get('propertyName')?.value;
     let propertyType = this.keys.find(
       (x) => x.propertyName == propertyName
     )?.propertyType;
+    this.filterForm.patchValue({
+      filterType: '',
+      filterValue: '',
+    });
     let filter: ValueText[] = [];
     switch (propertyType) {
       case 'Int32':
@@ -233,6 +240,7 @@ export class GridComponent implements OnInit, OnDestroy {
   }
 
   addFilter() {
+    console.log(this.filterForm.value);
     this.filterList.push(this.filterForm.value);
     this.gridPostData.filterModelList = this.filterList;
     this.getAllList();
