@@ -9,6 +9,7 @@ import {
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from '../../u\u0131/header/header.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { GridComponent } from 'src/app/uı/grid/grid.component';
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.page.html',
@@ -23,6 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     HeaderComponent,
     TranslateModule,
+    GridComponent,
   ],
 })
 export class BrandPage implements OnInit {

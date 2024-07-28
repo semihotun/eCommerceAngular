@@ -1,6 +1,7 @@
 <app-header [title]="'Brand'" [backButton]="true"></app-header>
 
-
 <div id="page">
-    <a class="add-btn">+</a>
+    <app-grid [url]="'brand/getbrandgriddto'" [btnColumnOn]="true" [editBtnUrl]="'#'"
+        [deleteBtnUrl]="'brand/deletebrand'">
+    </app-grid>
 </div>
