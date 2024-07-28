@@ -1,8 +1,10 @@
 ﻿using Carter;
 using eCommerceBase.Application.Handlers.Brands.Commands;
 using eCommerceBase.Application.Handlers.Brands.Queries;
+using eCommerceBase.Application.Handlers.Brands.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
+using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,8 +30,11 @@ namespace eCommerceBase.Api.Endpoints
                .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
                .AllowAnonymous();
             group.MapGet("/getallbrand", GetAllBrand)
-            .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
-            .AllowAnonymous();
+                .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
+                .AllowAnonymous();
+            group.MapPost("/getbrandgriddto", GetBrandGrid)
+                .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<BrandGridDTO>>))
+                .AllowAnonymous();
         }
         public static async Task<IResult> CreateBrand([FromBody] CreateBrandCommand data, ISender sender)
         {
@@ -70,6 +75,15 @@ namespace eCommerceBase.Api.Endpoints
         public static async Task<IResult> GetAllBrand(ISender sender)
         {
             var result = await sender.Send(new GetAllBrand());
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> GetBrandGrid([FromBody] GetBrandGridDTOQuery data, ISender sender)
+        {
+            var result = await sender.Send(data);
             if (result.Success)
             {
                 return Results.Ok(result);

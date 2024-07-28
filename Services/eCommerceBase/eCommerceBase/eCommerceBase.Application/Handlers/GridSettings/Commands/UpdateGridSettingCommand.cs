@@ -10,7 +10,7 @@ using eCommerceBase.Application.Handlers.Mapper;
 namespace eCommerceBase.Application.Handlers.GridSettings.Commands;
 public record UpdateGridSettingCommand(string Path,
 		string PropertyInfo,
-		System.Guid Id) : IRequest<Result>;
+		System.Guid? Id) : IRequest<Result>;
 public class UpdateGridSettingCommandHandler(IWriteDbRepository<GridSetting> gridSettingRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<UpdateGridSettingCommand,
@@ -25,16 +25,19 @@ public class UpdateGridSettingCommandHandler(IWriteDbRepository<GridSetting> gri
         return await _unitOfWork.BeginTransaction(async () =>
         {
             var data = await _gridSettingRepository.GetAsync(u => u.Id == request.Id);
+            await _cacheService.RemovePatternAsync("eCommerceBase:GridSettings");
             if (data is not null)
             {
-                GridSettingMapper.UpdateGridSettingCommandToGridSetting(request,
-		data);
+                GridSettingMapper.UpdateGridSettingCommandToGridSetting(request,data);
                 _gridSettingRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:GridSettings");
                 return Result.SuccessResult(Messages.Updated);
             }
-
-            return Result.ErrorResult(Messages.UpdatedError);
+            else
+            {
+                var gridSetting=GridSettingMapper.UpdateGridSettingCommandToNewGridSetting(request);
+                await _gridSettingRepository.AddAsync(gridSetting);
+                return Result.SuccessResult(Messages.Added);
+            }
         });
     }
 }
