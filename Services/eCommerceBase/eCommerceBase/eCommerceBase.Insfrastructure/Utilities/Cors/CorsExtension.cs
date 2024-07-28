@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace eCommerceBase.Insfrastructure.Utilities.Cors
 {
@@ -12,11 +13,9 @@ namespace eCommerceBase.Insfrastructure.Utilities.Cors
         {
             builder.Services.AddCors(options =>
               options.AddDefaultPolicy(policy => policy
-                .WithOrigins($"https://{builder.Configuration["HostAdress"]}:4000",
-                $"http://{builder.Configuration["HostAdress"]}:4000")
+                .AllowAnyOrigin()
                 .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials()));
+                .AllowAnyMethod()));
             return builder;
         }
     }
