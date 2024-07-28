@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()"><ion-icon name="close-outline"
+          style="font-size: 24px; color: black;"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>{{ label }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <input type="text" class="search-input" placeholder="{{'Search in List' | translate}}"
+    (input)="changeSearchBox($event)">
+  <div *ngFor="let item of filterData" class="mr-2">
+    <ion-item (click)="selectedItem(item)">{{ item[textProperty] || item }}</ion-item>
+  </div>
+</ion-content>

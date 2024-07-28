@@ -1,0 +1,19 @@
+@import '../../../../../theme/variables.scss';
+
+ion-title {
+    text-align: center;
+}
+
+ion-content {
+    --background: white;
+}
+
+.search-input {
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid $theme-color-blue;
+    font-size: 13px;
+    padding: 8px;
+    width: 100%;
+    margin: 1px 0px;
+}
