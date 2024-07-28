@@ -1,110 +1,138 @@
-import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
-  Injector,
+  inject,
   Input,
+  OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import {
   FilterModel,
+  FilterOperators,
   GridPostData,
   GridPropertyInfo,
-  GridSettingsDTO,
   ValueText,
 } from 'src/app/models/core/grid';
-
+import { GridService } from 'src/app/services/grid.service';
+import { GridStore } from 'src/app/stores/grid.store';
+import { ModalController } from '@ionic/angular/standalone';
+import { GridPropertyModalComponent } from './components/grid-property-modal/grid-property-modal.component';
+import { CheckboxComponent } from '../checkbox/checkbox.component';
+import { BtnSubmitComponent } from '../btn-submit/btn-submit.component';
+import { takeUntil, Subject } from 'rxjs';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
   standalone: true,
+  imports: [
+    TranslateModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    CheckboxComponent,
+    BtnSubmitComponent,
+  ],
 })
-export class GridComponent implements OnInit {
+export class GridComponent implements OnInit, OnDestroy {
   @Input() url!: string;
   @Input() btnColumnOn: Boolean = false;
   @Input() editBtnUrl!: string;
   @Input() deleteBtnUrl!: string;
   @ViewChild('prevBtn') prevBtn!: ElementRef<HTMLElement>;
   @ViewChild('nextBtn') nextBtn!: ElementRef<HTMLElement>;
-  datas!: object[];
-  totalPages!: number;
-  goToPageIndex: number = 1;
-  gridSettingsDTO: GridSettingsDTO = new GridSettingsDTO();
+  datas!: any[];
+  goToPageIndex!: number;
   keys!: GridPropertyInfo[];
+  filter: FilterModel = new FilterModel();
   filters!: ValueText[];
-  propertyName!: string;
-  filterType!: string;
-  filter!: string;
-  filterPostJson!: string;
-  filterModelList: FilterModel[] = [];
-  andOrSelected!: string;
-
+  filterList: FilterModel[] = [];
   gridPostData: GridPostData = new GridPostData(1, 10);
-
+  gridStore = inject(GridStore);
+  gridService = inject(GridService);
+  filterForm!: FormGroup;
+  onDestroy: Subject<void> = new Subject<void>();
   constructor(
-    private httpClient: HttpClient,
-    private elementRef: ElementRef,
-    private injector: Injector
+    private modalController: ModalController,
+    private builder: FormBuilder
   ) {}
+  ngOnDestroy(): void {
+    this.onDestroy.unsubscribe();
+  }
 
   ngAfterViewInit() {}
-  ngOnInit(): void {
-    this.getSettingsGrid();
-  }
 
-  deleteBtn(id: number) {
-    let deleteData = this.httpClient
-      .request('delete', environment.getApiUrl + this.deleteBtnUrl, {
-        body: { id: id },
-      })
-      .subscribe((data) => {
-        // this.alertifyService.success(data.toString());
-        this.getAllList();
-      });
-  }
-
-  propertyList(data: GridPropertyInfo[]) {
-    let splitData =
-      this.gridSettingsDTO.propertyInfo.split(',') ?? new Array(0);
-
-    this.keys = data.filter(function (propertInfo) {
-      let IsContain = splitData.filter((x) => x == propertInfo.propertyName);
-      if (IsContain.length > 0) {
-        propertInfo.checked = true;
-        return propertInfo;
-      } else {
-        propertInfo.checked = false;
-        return propertInfo;
-      }
+  initForm() {
+    this.filterForm = this.builder.group({
+      propertyName: ['', []],
+      filterType: ['', []],
+      filterValue: ['', []],
+      jsonOrXml: [false, []],
+      andOrOperation: ['', []],
     });
   }
-  getAllList() {
-    this.httpClient
-      .post<PagedList<object>>(
-        environment.getApiUrl + this.url,
-        this.gridPostData
-      )
-      .subscribe((data) => {
-        this.datas = data.data;
-        this.propertyList(data.propertyInfos);
-        this.totalPages = data.totalPages;
-        this.gridPostData.pageIndex = data.pageIndex;
-        this.gridPostData.pageSize = data.pageSize;
-        this.prevDisabled();
-        this.nextDisabled();
-      });
+
+  async ngOnInit() {
+    this.initForm();
+    await this.gridService.getSettingsGrid(this.url);
+    await this.getAllList();
   }
-  getSettingsGrid() {
-    // this.httpClient
-    //   .get<GridSettingsDTO>(
-    //     environment.getApiUrl + '/GridSettingses/getbyid' + '?path=' + this.url
-    //   )
-    //   .subscribe((data) => {
-    //     this.gridSettingsDTO = data;
-    //     this.getAllList();
-    //   });
+
+  async getAllList() {
+    await this.gridService.getAllData(this.url, this.gridPostData);
+    this.gridStore.data$.pipe(takeUntil(this.onDestroy)).subscribe((x) => {
+      this.datas = x.data;
+      this.propertyList();
+      this.gridPostData.pageIndex = x.pageIndex;
+      this.gridPostData.pageSize = x.pageSize;
+      this.prevDisabled();
+      this.nextDisabled();
+    });
+  }
+
+  changeFilterName(value: FilterModel) {
+    return (
+      value.propertyName +
+      ' ' +
+      FilterOperators[+value.filterType] +
+      ' ' +
+      value.filterValue
+    );
+  }
+
+  deleteData(id: number) {
+    this.gridService.deleteUrl(this.deleteBtnUrl, id);
+    this.getAllList();
+  }
+
+  propertyList() {
+    if (this.gridStore.gridSettings$() != null) {
+      const splitData =
+        this.gridStore.gridSettings$().propertyInfo.split(',') ?? [];
+
+      this.keys = this.gridStore
+        .dataSignal$()
+        .propertyInfos.map((propertyInfo) => {
+          propertyInfo.checked = splitData.includes(propertyInfo.propertyName);
+          return propertyInfo;
+        });
+    } else {
+      this.keys = this.gridStore
+        .dataSignal$()
+        .propertyInfos.map((propertyInfo) => {
+          propertyInfo.checked = true;
+          return propertyInfo;
+        });
+    }
   }
 
   prevClick() {
@@ -113,12 +141,16 @@ export class GridComponent implements OnInit {
       this.getAllList();
     }
   }
+
   nextClick() {
-    if (this.gridPostData.pageIndex <= this.totalPages) {
+    if (
+      this.gridPostData.pageIndex <= this.gridStore.dataSignal$().totalPages
+    ) {
       this.gridPostData.pageIndex = this.gridPostData.pageIndex + 1;
       this.getAllList();
     }
   }
+
   prevDisabled() {
     if (this.gridPostData.pageIndex <= 1) {
       this.prevBtn.nativeElement.className = 'prevNextDisabled prev-btn';
@@ -126,81 +158,57 @@ export class GridComponent implements OnInit {
       this.prevBtn.nativeElement.className = 'prev-btn';
     }
   }
+
   nextDisabled() {
-    if (this.gridPostData.pageIndex <= this.totalPages) {
-      this.nextBtn.nativeElement.className = 'next-btn';
-    } else {
+    if (
+      this.gridPostData.pageIndex >= this.gridStore.dataSignal$().totalPages
+    ) {
       this.nextBtn.nativeElement.className = 'prevNextDisabled next-btn';
+    } else {
+      this.nextBtn.nativeElement.className = 'next-btn';
     }
   }
+
   pageSizeChange(event: any) {
     this.gridPostData.pageSize = event.target.value;
     this.getAllList();
   }
+
   changePageIndex() {
     this.gridPostData.pageIndex = this.goToPageIndex;
     this.getAllList();
   }
+
   changeOrderBy(orderBy: string) {
-    // if (
-    //   this.gridPostData.orderByColumnName != undefined &&
-    //   this.gridPostData.orderByColumnName.indexOf('desc') != -1
-    // ) {
-    //   this.gridPostData.orderByColumnName = undefined;
-    // } else {
-    //   let orderByPropertyName =
-    //     orderBy.charAt(0).toUpperCase() + orderBy.slice(1);
-    //   this.gridPostData.orderByColumnName = orderByPropertyName + ',desc';
-    // }
-    // this.getAllList();
-  }
-
-  changeCheckBoxProperty(data: string) {
-    if (this.gridSettingsDTO.propertyInfo) {
-      let splitData = this.gridSettingsDTO.propertyInfo.split(',');
-      let isContain = splitData.indexOf(data);
-      if (isContain == -1) {
-        this.gridSettingsDTO.propertyInfo =
-          this.gridSettingsDTO.propertyInfo + ',' + data;
-      } else {
-        splitData = splitData.filter((x) => x != data);
-        let joinData = splitData.join(',');
-        if (splitData.length > 0) this.gridSettingsDTO.propertyInfo = joinData;
-        else
-          this.gridSettingsDTO.propertyInfo = joinData.substring(
-            0,
-            data.length - 1
-          );
-      }
+    let orderByPropertyName = this.toFirstUpperString(orderBy);
+    if (this.gridPostData.orderByColumnName.includes('desc') == true) {
+      this.gridPostData.orderByColumnName = orderByPropertyName;
     } else {
-      this.gridSettingsDTO.propertyInfo = data;
+      this.gridPostData.orderByColumnName = orderByPropertyName + ',desc';
     }
-    this.updateGridSettings();
+    this.getAllList();
   }
 
-  updateGridSettings() {
-    // this.httpClient
-    //   .put(environment.getApiUrl + '/GridSettingses/', this.gridSettingsDTO, {
-    //     responseType: 'text',
-    //   })
-    //   .subscribe((data) => {
-    //     this.propertyList(this.keys);
-    //   });
+  toFirstUpperString(data: string) {
+    return data.charAt(0).toUpperCase() + data.slice(1);
   }
 
   changeFilter(event: any) {
     const target = event.target as HTMLSelectElement;
-    this.propertyName = target.options[target.selectedIndex].text.trim();
-
-    let propertyType = event.target.value;
+    let propertyName = event.target.value;
+    let propertyType = this.keys.find(
+      (x) => x.propertyName == propertyName
+    )?.propertyType;
     let filter: ValueText[] = [];
-
     switch (propertyType) {
       case 'Int32':
         filter.push({ value: '1', text: 'Eşit' });
         filter.push({ value: '2', text: 'Eşit Değil' });
         filter.push({ value: '5', text: 'Büyüktür' });
         filter.push({ value: '6', text: 'Küçüktür' });
+        break;
+      case 'Guid':
+        filter.push({ value: '1', text: 'Eşit' });
         break;
       case 'String':
         filter.push({ value: '1', text: 'Eşit' });
@@ -210,7 +218,7 @@ export class GridComponent implements OnInit {
       case 'DateTime':
         filter.push({ value: '1', text: 'Eşit' });
         break;
-      case 'String':
+      case 'Boolean':
         filter.push({ value: 'true', text: 'Evet' });
         filter.push({ value: 'false', text: 'Hayır' });
         break;
@@ -221,37 +229,35 @@ export class GridComponent implements OnInit {
         filter.push({ value: '3', text: 'İçerir' });
         break;
     }
-
     this.filters = filter;
   }
 
   addFilter() {
-    let IsContainName = this.keys.filter(
-      (x) => x.propertyName == this.propertyName
-    )[0].attrFilterName;
-    let filterName = IsContainName ?? this.propertyName;
-
-    let filterModel: FilterModel = new FilterModel();
-    filterModel.filter = this.filter;
-    filterModel.filterType = this.filterType;
-    filterModel.propertyName = filterName;
-    filterModel.jsonOrXml = IsContainName ? true : false;
-    filterModel.andOrOperation = this.andOrSelected;
-
-    this.filterModelList.push(filterModel);
-    this.gridPostData.filterModelList = this.filterModelList;
+    this.filterList.push(this.filterForm.value);
+    this.gridPostData.filterModelList = this.filterList;
     this.getAllList();
   }
 
   deleteFilter(deleteFilter: FilterModel) {
-    this.filterModelList = this.filterModelList.filter(
-      (x) => x != deleteFilter
-    );
-    this.gridPostData.filterModelList = this.filterModelList;
-
-    if (this.filterModelList.length >= 1)
-      this.filterModelList[0].andOrOperation = '';
-
+    this.filterList = this.filterList.filter((x) => x != deleteFilter);
+    this.gridPostData.filterModelList = this.filterList;
+    if (this.filterList.length >= 1) this.filterList[0].andOrOperation = '';
     this.getAllList();
+  }
+
+  async propertyModal() {
+    const modal = await this.modalController.create({
+      component: GridPropertyModalComponent,
+      componentProps: {
+        keys: this.keys,
+        path: this.url,
+      },
+    });
+    modal.onDidDismiss().then((result) => {
+      if (result) {
+        this.propertyList();
+      }
+    });
+    modal.present();
   }
 }

@@ -27,7 +27,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   onTouched: any = () => {};
   @Input() text: string = '';
   @Output() change: EventEmitter<any> = new EventEmitter<any>();
-  val: boolean = false;
+  @Input() val: boolean = false;
   disabled: boolean = false;
   ngOnInit() {}
   writeValue(obj: any): void {

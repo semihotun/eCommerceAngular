@@ -1,49 +1,47 @@
 <div class="main-content">
   <!-- Seçili Filter Başla -->
   <div class="d-flex flex-wrap">
-    <ng-container *ngFor="let filterModel of filterModelList">
-      <span class="badge badge-danger" style="font-size: 14px">{{
+    <ng-container *ngFor="let filterModel of filterList">
+      <span class="badge-danger" style="font-size: 14px">{{
         filterModel.andOrOperation
         }}</span>
-      <span class="badge badge-dark" style="font-size: 14px" (click)="deleteFilter(filterModel)">
-        {{ filterModel | changeFilterName }}
+      <span class="badge-dark" style="font-size: 14px" (click)="deleteFilter(filterModel)">
+        {{ changeFilterName(filterModel)}}
         <span aria-hidden="true" style="color: red">&times;</span>
       </span>
     </ng-container>
   </div>
   <!-- Seçili Filter Bitiş -->
   <!-- Filter Başla -->
-  <div class="d-flex flex-wrap mt-2" id="filterContainer">
-    <select class="browser-default custom-select form-control col-md-1 pl-3 rounded" [(ngModel)]="andOrSelected"
-      style="border: 1px solid #e0e0e0" *ngIf="filterModelList.length > 0">
-      <option class="dropdown-item" disabled selected value="undefined">
-        {{ "And/Or" | translate }}
-      </option>
+  <form class="d-flex flex-wrap mt-2" id="filterContainer" [formGroup]="filterForm">
+    <select class="browser-default custom-select col-md-1 pl-3 rounded" formControlName="andOrOperation"
+      standolone="true" *ngIf="filterList.length > 0" placeholder>
+      <option value="" selected disabled>{{ "And|Or" | translate }}</option>
       <option value="And">{{ "And" | translate }}</option>
       <option value="Or">{{ "Or" | translate }}</option>
     </select>
-    <select class="browser-default custom-select form-control col-md-4 pl-3 rounded" (change)="changeFilter($event)"
-      style="border: 1px solid #e0e0e0">
-      <option class="dropdown-item" disabled selected value="undefined">
-        {{ "Filitrelenecek alanı seçiniz" | translate }}
+    <select class="browser-default custom-select col-md-4 pl-3 rounded" (change)="changeFilter($event)"
+      formControlName="propertyName">
+      <option class="dropdown-item" disabled selected value="">
+        {{ "Select Filter Column" | translate }}
       </option>
-      <option *ngFor="let item of keys" [value]="item.propertyType">
+      <option *ngFor="let item of keys" [value]="item.propertyName">
         {{ item.propertyName }}
       </option>
     </select>
-    <select class="browser-default custom-select form-control col-md-2 pl-3 rounded" [(ngModel)]="filterType"
-      style="border: 1px solid #e0e0e0">
-      <option class="dropdown-item" disabled selected value="undefined">
-        {{ "Operasyon seçiniz" | translate }}
+    <select class="browser-default custom-select col-md-2 pl-3 rounded" formControlName="filterType">
+      <option class="dropdown-item" disabled selected value="">
+        {{ "Select Operation" | translate }}
       </option>
       <option *ngFor="let item of filters" [value]="item.value">
         {{ item.text }}
       </option>
     </select>
-    <input type="text" class="form-control col-md-2 pl-3 rounded" [(ngModel)]="filter" style="border: 1px solid #e0e0e0"
-      placeholder="{{ 'Yazı giriniz' | translate }}" />
-    <input type="submit" class="btn btn-outline-dark col-md-1 form-control rounded" (click)="addFilter()" />
-  </div>
+    <input type="text" class="col-md-2 pl-3 rounded" formControlName="filterValue"
+      placeholder="{{ 'Filter Value' | translate }}" />
+    <!-- <button class="btn btn-outline-dark col-md-1 rounded" (click)="addFilter()">{{'Add' | translate}}</button> -->
+    <app-btn-submit (click)="addFilter()" [text]="'Add' | translate" class="col-md-1"></app-btn-submit>
+  </form>
   <!-- Filter Bitiş -->
   <div class="table-responsive">
     <!-- Table Başla -->
@@ -51,29 +49,16 @@
       <thead>
         <tr>
           <ng-container *ngFor="let key of keys">
-
-            <ng-container *ngIf="key.attrFilterName == null">
-              <th *ngIf="key.checked == true" (click)="changeOrderBy(key.propertyName)">
-                <div class="d-flex justify-content-between">
-                  <span>{{ key.propertyName | titlecase }}</span>
-                </div>
-              </th>
-            </ng-container>
-
-            <ng-container *ngIf="key.attrFilterName != null">
-              <th *ngIf="key.checked == true">
-                <div class="d-flex justify-content-between">
-                  <div class="noneCursor noneSelected">{{ key.propertyName | titlecase }}</div>
-                </div>
-              </th>
-            </ng-container>
+            <th *ngIf="key.checked == true" (click)="changeOrderBy(key.propertyName)">
+              <div class="d-flex justify-content-between">
+                <span>{{ key.propertyName | titlecase }}</span>
+              </div>
+            </th>
           </ng-container>
-
           <ng-container *ngIf="btnColumnOn==true">
             <th></th>
             <th></th>
           </ng-container>
-
         </tr>
       </thead>
       <tbody>
@@ -85,7 +70,6 @@
               </td>
             </ng-container>
           </ng-container>
-
           <ng-container *ngIf="btnColumnOn==true">
             <ng-container *ngFor="let datakey of keys">
               <td *ngIf="datakey.checked == true">
@@ -96,7 +80,7 @@
               <a [href]="editBtnUrl+ data['id']" style="color: #ff5722;"><i class="far fa-edit"></i></a>
             </td>
             <td style="width: 25px; ">
-              <a (click)="deleteBtn(data['id'])" style="color: #d9534e;"><i class="fas fa-trash-alt"></i></a>
+              <a (click)="deleteData(data['id'])" style="color: #d9534e;"><i class="fas fa-trash-alt"></i></a>
             </td>
           </ng-container>
 
@@ -113,8 +97,7 @@
           <option value="50">50</option>
           <option value="100">100</option>
         </select>
-        <div type="button" data-toggle="collapse" id="collapseBtn" data-target="#collapseExample" aria-expanded="false"
-          aria-controls="collapseExample">
+        <div type="button" (click)="propertyModal()" id="modalBtn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-columns"
             viewBox="0 0 16 16">
             <path
@@ -124,8 +107,8 @@
       </div>
 
       <div class="goPage">
-        <span class="mr-2">Şuanki Sayfa {{ gridPostData.pageIndex }}/{{ totalPages }}</span>
-        <input type="text" [(ngModel)]="goToPageIndex" class="gridBottom goToPageTextBox" />
+        <span class="mr-15">{{ gridPostData.pageIndex }}/{{ this.gridStore.dataSignal$().totalPages }}</span>
+        <input type="text" [(ngModel)]="goToPageIndex" class="gridBottom goToPageTextBox" standolone="true" />
         <button type="button" class="gridBottom goToPageBtn" (click)="changePageIndex()">
           Go
         </button>
@@ -150,18 +133,4 @@
     </div>
     <!-- Table Footer Bitiş -->
   </div>
-
-  <!-- Seçili Sütunlar Başla -->
-  <div class="collapse" id="collapseExample">
-    <div class="card card-body">
-      <div class="d-flex flex-wrap">
-        <div *ngFor="let checkBoxKey of keys" class="mr-2">
-          <input type="checkbox" [checked]="checkBoxKey.checked == true"
-            (change)="changeCheckBoxProperty(checkBoxKey.propertyName)" />
-          {{ checkBoxKey.propertyName }}
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Seçili Sütunlar Bitiş -->
 </div>

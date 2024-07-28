@@ -9,19 +9,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eCommerceBase", "eCommerceBase", "{B330DE9F-CE92-485D-9E2E-0E566EFFC052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerceBase.Api", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Api\eCommerceBase.Api.csproj", "{5E7AB51A-D9AD-4FE9-BE01-59789198BC06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerceBase.Api", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Api\eCommerceBase.Api.csproj", "{5E7AB51A-D9AD-4FE9-BE01-59789198BC06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerceBase.Application", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Application\eCommerceBase.Application.csproj", "{418D9488-65BD-41A7-AB41-C800596AD3D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerceBase.Application", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Application\eCommerceBase.Application.csproj", "{418D9488-65BD-41A7-AB41-C800596AD3D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerceBase.Domain", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Domain\eCommerceBase.Domain.csproj", "{10514039-B3DB-4693-8BD7-6A2D9E192371}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerceBase.Domain", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Domain\eCommerceBase.Domain.csproj", "{10514039-B3DB-4693-8BD7-6A2D9E192371}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerceBase.Insfrastructure", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Insfrastructure\eCommerceBase.Insfrastructure.csproj", "{98E03546-D74D-4990-AFBA-63C6DDFEE869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerceBase.Insfrastructure", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Insfrastructure\eCommerceBase.Insfrastructure.csproj", "{98E03546-D74D-4990-AFBA-63C6DDFEE869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerceBase.Persistence", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Persistence\eCommerceBase.Persistence.csproj", "{976FF6B9-5E52-4689-B6F4-0666697B7748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerceBase.Persistence", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Persistence\eCommerceBase.Persistence.csproj", "{976FF6B9-5E52-4689-B6F4-0666697B7748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerceBase.Test", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Test\eCommerceBase.Test.csproj", "{27B4C049-9D21-42A3-8F2D-7DA6778691F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerceBase.Test", "Services\eCommerceBase\eCommerceBase\eCommerceBase.Test\eCommerceBase.Test.csproj", "{27B4C049-9D21-42A3-8F2D-7DA6778691F6}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2C985594-84FD-4F4B-934C-90DF468B51E3}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B2F53C79-1CDE-4A3B-8474-DFD6C0FDDF72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{94C83FB7-43A3-4C52-BD5B-FB873781DB04}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +58,10 @@ Global
 		{27B4C049-9D21-42A3-8F2D-7DA6778691F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27B4C049-9D21-42A3-8F2D-7DA6778691F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27B4C049-9D21-42A3-8F2D-7DA6778691F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C985594-84FD-4F4B-934C-90DF468B51E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C985594-84FD-4F4B-934C-90DF468B51E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C985594-84FD-4F4B-934C-90DF468B51E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C985594-84FD-4F4B-934C-90DF468B51E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2F53C79-1CDE-4A3B-8474-DFD6C0FDDF72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F53C79-1CDE-4A3B-8474-DFD6C0FDDF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F53C79-1CDE-4A3B-8474-DFD6C0FDDF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F53C79-1CDE-4A3B-8474-DFD6C0FDDF72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

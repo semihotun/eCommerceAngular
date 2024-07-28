@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()"><ion-icon name="close-outline"
+          style="font-size: 24px; color: black;"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>{{'Property List' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true"><ion-icon name="checkmark-outline"
+          style="font-size: 24px; color: black;"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div *ngFor="let checkBoxKey of keys" class="mr-2">
+    <app-checkbox [text]="checkBoxKey.propertyName" [val]="checkBoxKey.checked == true"
+      (change)="changeCheckBoxProperty(checkBoxKey.propertyName)"></app-checkbox>
+  </div>
+</ion-content>

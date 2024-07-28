@@ -36,14 +36,14 @@
         }
 
         .checkmark {
-            border: 1px solid $header-bottom-bg;
+            border: 1px solid $theme-color-blue;
 
             &:after {
                 left: 5px;
                 top: 1px;
-                width: 3px;
-                height: 8px;
-                border: solid $header-bottom-bg;
+                width: 6px;
+                height: 9px;
+                border: solid #001f3f;
                 border-width: 0 3px 3px 0;
                 transform: rotate(45deg);
             }
@@ -58,7 +58,7 @@
     height: 16px;
     width: 17px;
     background-color: white;
-    border: 1px solid $header-bottom-bg;
+    border: 1px solid $theme-color-blue;
     border-radius: 3px;
 
     &:after {

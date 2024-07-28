@@ -1,11 +1,17 @@
 @import '../../../theme/variables.scss';
 
-input {
+.btn-custom-dark {
+    font-size: 11px;
+    font-family: Poppins;
+    color: #fff;
+    background-color: $theme-color-blue;
+    border: 1px solid $theme-color-blue;
+    padding: 6px;
+    height: 100%;
     width: 100%;
-    margin-top: 10px;
-    background-color: $header-bottom-bg;
-    height: 38px;
-    font-size: 14px;
-    color: white;
-    border-radius: 6px;
+
+    &:hover {
+        background-color: lighten($color: $theme-color-blue, $amount: 10);
+        border-color: $theme-color-blue;
+    }
 }

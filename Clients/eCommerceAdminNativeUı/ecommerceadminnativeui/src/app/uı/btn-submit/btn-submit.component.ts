@@ -8,9 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class BtnSubmitComponent implements OnInit {
   constructor() {}
-
+  @Input() class: string = '';
   @Input() text: string = '';
-  @Output() click: EventEmitter<any> = new EventEmitter<any>();
   ngOnInit() {}
-  btnClick() {}
 }

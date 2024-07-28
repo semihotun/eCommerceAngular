@@ -1,129 +1,135 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800");
+@import "../../../theme/styles.scss";
 
-table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-}
+$grid-mobile-width: 600px;
 
-.form-control {
-    background-image: none !important;
-}
+.main-content {
+    .goPage {
+        display: flex;
+        align-items: center;
+    }
 
-table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
-}
+    .form-control {
+        background-image: none !important;
+    }
 
-#myCustomTable {
-    border: 1px solid #e0e0e0 !important;
-    font-family: Poppins;
-    background-color: white;
-}
+    #myCustomTable {
+        border: 1px solid $theme-color-blue !important;
+        font-family: Poppins;
+        background-color: white;
+        font-size: 14px;
 
-#myCustomTable th {
-    font-size: 15px;
-    font-family: Poppins;
-    padding: 15px;
-}
+        th {
+            font-size: 15px;
+            font-family: Poppins;
+            padding: 15px;
+        }
 
-#myCustomTable tbody tr:hover {
-    background-color: #fafafa;
-}
+        tbody tr:hover {
+            background-color: $theme-color-blue;
+        }
 
-#myCustomTable thead {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
+        thead {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
 
-#myCustomTable td {
-    padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
+        td {
+            padding: 15px;
+            background-color: 1px solid rgba(0, 31, 63, 0.12);
+        }
+    }
 
-.prev-btn {
-    font-size: 32px;
-    border: 1px solid #e0e0e0;
-    padding: 5px;
-}
+    .prev-btn,
+    .next-btn {
+        font-size: 18px;
+        border: 1px solid $theme-color-blue;
+        color: $theme-color-blue;
+        padding: 5px;
+        font-weight: bold;
 
-.next-btn {
-    border-bottom-right-radius: 15px;
-    font-size: 32px;
-    border: 1px solid #e0e0e0;
-    padding: 5px;
-}
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
-.tablefooter {
-    margin-top: 10px;
-}
+    .tablefooter {
+        margin-top: 10px;
+        height: 40px;
+    }
 
-.next-btn:hover,
-.prev-btn:hover {
-    cursor: pointer;
-}
+    .prevNextDisabled {
+        pointer-events: none;
+        opacity: 0.4;
+    }
 
-.prevNextDisabled {
-    pointer-events: none;
-    opacity: 0.4;
-}
+    .gridBottom {
+        border: 1px solid $theme-color-blue;
+        padding: 0px 8px;
+    }
 
-.gridBottom {
-    border: 1px solid #e0e0e0;
-    padding: 0px 8px;
-}
+    .goToPageBtn {
+        background-color: white;
+        border: 1px solid $theme-color-blue;
+    }
 
-.goToPageBtn {
-    background-color: white;
-    border: 1px solid #e0e0e0;
-}
+    .goToPageTextBox {
+        width: 40px;
+    }
 
-.goToPageTextBox {
-    width: 40px;
-}
+    .pageSize select {
+        border-bottom-left-radius: 15px;
+    }
 
-.pageSize select {
-    border-bottom-left-radius: 15px;
-}
+    #modalBtn {
+        border: 1px solid $theme-color-blue;
+        padding: 8px 6px;
+        display: flex;
+        align-items: center;
+    }
 
-.btn-outline-dark {
-    font-size: 11px;
-    font-family: Poppins;
-    margin-top: 0px;
-    color: #343a40;
-    background-color: transparent;
-    background-image: none;
-    border: 1px solid #e0e0e0;
-}
+    #filterContainer {
+        font-size: 14px;
 
-.btn-outline-dark:hover {
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
-}
+        app-btn-submit {
+            @media only screen and (max-width: $grid-mobile-width) {
+                margin-top: 5px;
+                width: 100%;
+            }
+        }
 
-.table {
-    display: table;
-}
+        select,
+        input {
+            margin-right: 5px;
+            padding: 5px;
+            background-color: white;
+            border: 1px solid $theme-color-blue;
 
-#collapseBtn {
-    border: 1px solid #e0e0e0;
-    padding: 8px 6px;
-}
+            @media only screen and (max-width: $grid-mobile-width) {
+                margin-top: 5px;
+                margin-right: 0px;
+                width: 100%;
+            }
+        }
+    }
 
-#filterContainer select,
-#filterContainer input,
-#filterContainer button {
-    margin-right: 5px;
-}
-
-@media only screen and (max-width: 600px) {
-
-    #filterContainer select,
-    #filterContainer input,
-    #filterContainer button {
-        margin-top: 5px;
-        margin-right: 0px;
+    .noneCursor:hover {
+        cursor: not-allowed;
     }
 }
 
-.noneCursor:hover {
-    cursor: not-allowed;
+.badge-danger {
+    font-size: 12px;
+    color: white;
+    background-color: red;
+    padding: 5px;
+}
+
+.badge-dark {
+    background-color: #e2e2e2;
+    padding: 5px;
+}
+
+.mr-15 {
+    margin-right: 15px;
 }
