@@ -12,7 +12,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Grid.PagedList
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source,
+        public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source,
             int pageIndex,
             int pageSize)
         {
@@ -51,7 +51,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Grid.PagedList
         /// <param name="source"></param>
         /// <param name="selector"></param>
         /// <returns></returns>
-        public static IPagedList<TResult> Select<TSource, TResult>(this IPagedList<TSource> source,
+        public static PagedList<TResult> Select<TSource, TResult>(this PagedList<TSource> source,
             Func<TSource, TResult> selector)
         {
             var subset = source.Data.Select(selector);

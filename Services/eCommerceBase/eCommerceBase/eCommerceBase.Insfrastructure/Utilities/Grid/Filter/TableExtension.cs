@@ -7,7 +7,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Grid.Filter
     /// </summary>
     public static class TableExtension
     {
-        public static async Task<IPagedList<T>> ToTableSettings<T>(this IQueryable<T> query,
+        public static async Task<PagedList<T>> ToTableSettings<T>(this IQueryable<T> query,
             PagedListFilterModel pagedListFilterModel)
         {
             return await query.ApplyTableFilter(pagedListFilterModel)

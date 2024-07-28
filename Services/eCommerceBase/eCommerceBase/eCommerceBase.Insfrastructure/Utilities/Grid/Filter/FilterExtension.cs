@@ -26,7 +26,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Grid.Filter
                     Expression expression = null;
                     var propertyInfo = contex.GetType().GetGenericArguments()[0].GetProperty(item.PropertyName);
                     var member = Expression.Property(parameter, item.PropertyName);
-                    object value = TypeDescriptor.GetConverter(member.Type).ConvertFromString(item.Filter) ?? new object();
+                    object value = TypeDescriptor.GetConverter(member.Type).ConvertFromString(item.FilterValue) ?? new object();
                     var constant = Expression.Constant(value, member.Type);
                     switch (Int32.Parse(item.FilterType))
                     {
