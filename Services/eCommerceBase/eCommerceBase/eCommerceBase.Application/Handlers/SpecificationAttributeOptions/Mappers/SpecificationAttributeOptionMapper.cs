@@ -9,6 +9,6 @@ namespace eCommerceBase.Application.Handlers.Mapper
     public static partial class SpecificationAttributeOptionMapper
     {
         public static partial SpecificationAttributeOption CreateSpecificationAttributeOptionCommandToSpecificationAttributeOption(CreateSpecificationAttributeOptionCommand specificationAttributeOption);
-        public static partial void UpdateSpecificationAttributeOptionCommandToSpecificationAttributeOption(UpdateSpecificationAttributeOptionCommand updateSpecificationAttributeOptionCommand, SpecificationAttributeOption specificationAttributeOption);
+        public static partial SpecificationAttributeOption UpdateSpecificationAttributeOptionCommandToSpecificationAttributeOption(UpdateSpecificationAttributeOptionCommand specificationAttributeOption);
     }
 }

@@ -10,8 +10,6 @@ using eCommerceBase.Application.Handlers.Mapper;
 namespace eCommerceBase.Application.Handlers.SpecificationAttributeOptions.Commands;
 public record UpdateSpecificationAttributeOptionCommand(Guid SpecificationAttributeId,
 		string Name,
-		int DisplayOrder,
-		SpecificationAttribute? SpecificationAttribute,
 		System.Guid Id) : IRequest<Result>;
 public class UpdateSpecificationAttributeOptionCommandHandler(IWriteDbRepository<SpecificationAttributeOption> specificationAttributeOptionRepository,
 		IUnitOfWork unitOfWork,
@@ -29,8 +27,7 @@ public class UpdateSpecificationAttributeOptionCommandHandler(IWriteDbRepository
             var data = await _specificationAttributeOptionRepository.GetAsync(u => u.Id == request.Id);
             if (data is not null)
             {
-                SpecificationAttributeOptionMapper.UpdateSpecificationAttributeOptionCommandToSpecificationAttributeOption(request,
-		data);
+                data = SpecificationAttributeOptionMapper.UpdateSpecificationAttributeOptionCommandToSpecificationAttributeOption(request);
                 _specificationAttributeOptionRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttributeOptions");
                 return Result.SuccessResult(Messages.Updated);

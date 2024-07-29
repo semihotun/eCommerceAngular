@@ -26,8 +26,7 @@ public class UpdateBrandCommandHandler(IWriteDbRepository<Brand> brandRepository
             var data = await _brandRepository.GetAsync(u => u.Id == request.Id);
             if (data is not null)
             {
-                BrandMapper.UpdateBrandCommandToBrand(request,
-		data);
+                data = BrandMapper.UpdateBrandCommandToBrand(request);
                 _brandRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:Brands");
                 return Result.SuccessResult(Messages.Updated);

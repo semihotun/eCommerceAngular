@@ -5,10 +5,10 @@ using eCommerceBase.Application.Handlers.Mapper;
 
 namespace eCommerceBase.Application.Handlers.Mapper
 {
-    [Mapper]
+    [Mapper()]
     public static partial class SpecificationAttributeMapper
     {
         public static partial SpecificationAttribute CreateSpecificationAttributeCommandToSpecificationAttribute(CreateSpecificationAttributeCommand specificationAttribute);
-        public static partial void UpdateSpecificationAttributeCommandToSpecificationAttribute(UpdateSpecificationAttributeCommand updateSpecificationAttributeCommand, SpecificationAttribute specificationAttribute);
+        public static partial SpecificationAttribute UpdateSpecificationAttributeCommandToSpecificationAttribute(UpdateSpecificationAttributeCommand specificationAttribute);
     }
 }

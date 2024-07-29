@@ -9,8 +9,6 @@ using eCommerceBase.Application.Handlers.Mapper;
 
 namespace eCommerceBase.Application.Handlers.SpecificationAttributes.Commands;
 public record UpdateSpecificationAttributeCommand(string Name,
-		int DisplayOrder,
-		ICollection<SpecificationAttributeOption> SpecificationAttributeOption,
 		System.Guid Id) : IRequest<Result>;
 public class UpdateSpecificationAttributeCommandHandler(IWriteDbRepository<SpecificationAttribute> specificationAttributeRepository,
 		IUnitOfWork unitOfWork,
@@ -28,8 +26,7 @@ public class UpdateSpecificationAttributeCommandHandler(IWriteDbRepository<Speci
             var data = await _specificationAttributeRepository.GetAsync(u => u.Id == request.Id);
             if (data is not null)
             {
-                SpecificationAttributeMapper.UpdateSpecificationAttributeCommandToSpecificationAttribute(request,
-		data);
+                data = SpecificationAttributeMapper.UpdateSpecificationAttributeCommandToSpecificationAttribute(request);
                 _specificationAttributeRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttributes");
                 return Result.SuccessResult(Messages.Updated);

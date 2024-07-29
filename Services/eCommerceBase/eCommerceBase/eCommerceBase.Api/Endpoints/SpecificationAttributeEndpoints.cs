@@ -1,8 +1,12 @@
 ﻿using Carter;
+using eCommerceBase.Application.Handlers.Brands.Queries;
+using eCommerceBase.Application.Handlers.Brands.Queries.Dtos;
 using eCommerceBase.Application.Handlers.SpecificationAttributes.Commands;
 using eCommerceBase.Application.Handlers.SpecificationAttributes.Queries;
+using eCommerceBase.Application.Handlers.SpecificationAttributes.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
+using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,24 +18,26 @@ namespace eCommerceBase.Api.Endpoints
         {
             var group = app.MapGroup("api/specificationAttribute");
 
-            group.MapPost("/createspecificationAttribute", CreateSpecificationAttribute)
+            group.MapPost("/createspecificationattribute", CreateSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .DisableAntiforgery()
                 .AllowAnonymous();
-            group.MapPost("/updatespecificationAttribute", UpdateSpecificationAttribute)
+            group.MapPost("/updatespecificationattribute", UpdateSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/deletespecificationAttribute", DeleteSpecificationAttribute)
+            group.MapPost("/deletespecificationattribute", DeleteSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapGet("/getspecificationAttributebyid", GetSpecificationAttributeById)
+            group.MapGet("/getspecificationattributebyid", GetSpecificationAttributeById)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttribute>))
                 .AllowAnonymous();
-            group.MapGet("/getallspecificationAttribute", GetAllSpecificationAttribute)
+            group.MapGet("/getallspecificationattribute", GetAllSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttribute>))
+                .AllowAnonymous();
+            group.MapPost("/getspecificationattributegriddto", GetSpecificationAttributeGrid)
+                .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<SpecificationAttributeGridDTO>>))
                 .AllowAnonymous();
         }
-
         public static async Task<IResult> CreateSpecificationAttribute([FromBody] CreateSpecificationAttributeCommand data, ISender sender)
         {
             var result = await sender.Send(data);
@@ -81,6 +87,14 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
+        public static async Task<IResult> GetSpecificationAttributeGrid([FromBody] GetSpecificationAttributeGridDTOQuery data, ISender sender)
+        {
+            var result = await sender.Send(data);
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
     }
-
 }

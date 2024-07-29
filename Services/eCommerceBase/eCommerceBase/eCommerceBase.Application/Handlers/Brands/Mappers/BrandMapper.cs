@@ -9,6 +9,6 @@ namespace eCommerceBase.Application.Handlers.Mapper
     public static partial class BrandMapper
     {
         public static partial Brand CreateBrandCommandToBrand(CreateBrandCommand brand);
-        public static partial void UpdateBrandCommandToBrand(UpdateBrandCommand updateBrandCommand, Brand brand);
+        public static partial Brand UpdateBrandCommandToBrand(UpdateBrandCommand brand);
     }
 }

@@ -5,12 +5,9 @@ namespace eCommerceBase.Domain.AggregateModels
     public class SpecificationAttribute : BaseEntity
     {
         public string Name { get; private set; }
-        public int DisplayOrder { get; private set; }
-
-        public SpecificationAttribute(string name, int displayOrder)
+        public SpecificationAttribute(string name)
         {
             Name = name;
-            DisplayOrder = displayOrder;
         }
         public ICollection<SpecificationAttributeOption> SpecificationAttributeOption { get; private set; } = [];
 
