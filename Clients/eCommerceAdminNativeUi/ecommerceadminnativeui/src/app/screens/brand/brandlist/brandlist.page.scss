@@ -1,0 +1,28 @@
+@import '../../../../theme/variables.scss';
+
+.btn-list {
+    display: flex;
+    justify-content: flex-end;
+    margin: 3px;
+
+    a {
+        margin-left: 2px;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border: 1px solid $theme-color-blue;
+        color: $theme-color-blue;
+        padding: 10px;
+        font-size: 23px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        @media screen and (max-width:$tablet-size) {
+            padding: 4px;
+            font-size: 23px;
+            border: 1px solid $theme-color-blue;
+        }
+    }
+}

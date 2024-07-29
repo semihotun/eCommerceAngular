@@ -23,7 +23,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   }
   onChange: any = () => {};
   onTouched: any = () => {};
-  val!: any;
+  val: any = null;
   inputType: any = 'text';
   public disabled: boolean = false;
 

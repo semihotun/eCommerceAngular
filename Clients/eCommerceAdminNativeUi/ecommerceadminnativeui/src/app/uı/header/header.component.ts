@@ -11,7 +11,7 @@ import {
   IonMenuButton,
   NavController,
 } from '@ionic/angular/standalone';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -36,7 +36,6 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
   navCtrl = inject(NavController);
-  router = inject(Router);
   initRoute: string = '';
   @Input() title: string = '';
   @Input() backButton: boolean = false;

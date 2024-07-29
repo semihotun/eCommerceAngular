@@ -82,3 +82,24 @@ select,
 input {
     background-color: white;
 }
+
+#form-70-center {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (max-width:$tablet-size) {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+.success-toast {
+    --background: #85C78F;
+    color: white;
+}
+
+.danger-toast {
+    --background: #E57373;
+    color: white;
+}
