@@ -65,7 +65,7 @@
               </td>
             </ng-container>
             <td style="width: 25px;">
-              <a [href]="editBtnUrl+ data['id']" style="color: #ff5722;"><i class="far fa-edit"></i></a>
+              <a [href]="'/'+editBtnUrl+data['id']" style="color: #ff5722;"><i class="far fa-edit"></i></a>
             </td>
             <td style="width: 25px; ">
               <a (click)="deleteData(data['id'])" style="color: #d9534e;"><i class="fas fa-trash-alt"></i></a>
