@@ -33,4 +33,25 @@ export const routes: Routes = [
         './screens/brand/createorupdatebrand/createorupdatebrand.page'
       ).then((m) => m.CreateorupdatebrandPage),
   },
+  {
+    path: 'createorupdatespecificationattribute',
+    loadComponent: () =>
+      import(
+        './screens/specificationattribute/createorupdatespecificationattribute/createorupdatespecificationattribute.page'
+      ).then((m) => m.CreateorupdatespecificationattributePage),
+  },
+  {
+    path: 'createorupdatespecificationattribute/:id',
+    loadComponent: () =>
+      import(
+        './screens/specificationattribute/createorupdatespecificationattribute/createorupdatespecificationattribute.page'
+      ).then((m) => m.CreateorupdatespecificationattributePage),
+  },
+  {
+    path: 'specificationattributelist',
+    loadComponent: () =>
+      import(
+        './screens/specificationattribute/specificationattributelist/specificationattributelist.page'
+      ).then((m) => m.SpecificationattributelistPage),
+  },
 ];

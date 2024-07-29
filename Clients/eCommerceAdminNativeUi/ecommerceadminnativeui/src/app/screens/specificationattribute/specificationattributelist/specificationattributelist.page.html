@@ -1,0 +1,10 @@
+<app-header [title]="'Specification Attribute'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/createorupdatespecificationattribute"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'specificationAttribute/getspecificationattributegriddto'" [btnColumnOn]="true"
+    [editBtnUrl]="'createorupdatespecificationattribute/'"
+    [deleteBtnUrl]="'specificationAttribute/deletespecificationattribute'">
+  </app-grid>
+</div>
