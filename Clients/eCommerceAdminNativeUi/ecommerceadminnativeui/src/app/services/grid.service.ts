@@ -15,10 +15,22 @@ export class GridService extends Destroyable {
   }
   http = inject(HttpService);
   gridStore = inject(GridStore);
-  deleteUrl(url: string, id: number) {
-    const path = environment.baseUrl + url;
-    let data = { id: id };
-    this.http.post<Result<any>>(path, data, this.onDestroy, (response) => {});
+  deleteUrl(url: string, id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const path = environment.baseUrl + url;
+      let data = { id: id };
+      this.http.post<Result<any>>(
+        path,
+        data,
+        this.onDestroy,
+        (response) => {
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
   }
   getAllData(url: string, data: GridPostData): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -57,7 +69,6 @@ export class GridService extends Destroyable {
   }
   updateGridSettings() {
     const path = environment.baseUrl + 'gridsetting/updategridsetting';
-    console.log('updatasad', this.gridStore.gridSettings$());
     let data = this.gridStore.gridSettings$();
     this.http.post<Result<GridSettingsDTO>>(
       path,

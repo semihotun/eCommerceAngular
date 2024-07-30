@@ -2,10 +2,12 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
+  EventEmitter,
   inject,
   Input,
   OnDestroy,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import {
@@ -47,13 +49,15 @@ import { InputComponent } from '../input/input.component';
     InputComponent,
   ],
 })
-export class GridComponent implements OnInit, OnDestroy {
+export class GridComponent implements OnInit {
   @Input() url!: string;
   @Input() btnColumnOn: Boolean = false;
   @Input() editBtnUrl!: string;
   @Input() deleteBtnUrl!: string;
   @ViewChild('prevBtn') prevBtn!: ElementRef<HTMLElement>;
   @ViewChild('nextBtn') nextBtn!: ElementRef<HTMLElement>;
+  @Output() getAllDataVoid: EventEmitter<void> = new EventEmitter<void>();
+
   datas!: any[];
   goToPageIndex!: number;
   keys!: GridPropertyInfo[];
@@ -64,14 +68,11 @@ export class GridComponent implements OnInit, OnDestroy {
   gridStore = inject(GridStore);
   gridService = inject(GridService);
   filterForm!: FormGroup;
-  onDestroy: Subject<void> = new Subject<void>();
+
   constructor(
     private modalController: ModalController,
     private builder: FormBuilder
   ) {}
-  ngOnDestroy(): void {
-    this.onDestroy.unsubscribe();
-  }
 
   ngAfterViewInit() {}
 
@@ -92,15 +93,17 @@ export class GridComponent implements OnInit, OnDestroy {
   }
 
   async getAllList() {
-    await this.gridService.getAllData(this.url, this.gridPostData);
-    this.gridStore.data$.pipe(takeUntil(this.onDestroy)).subscribe((x) => {
-      this.datas = x.data;
-      this.propertyList();
-      this.gridPostData.pageIndex = x.pageIndex;
-      this.gridPostData.pageSize = x.pageSize;
-      this.prevDisabled();
-      this.nextDisabled();
-    });
+    if (!this.getAllDataVoid.observed) {
+      await this.gridService.getAllData(this.url, this.gridPostData);
+    } else {
+      this.getAllDataVoid.emit();
+    }
+    this.datas = this.gridStore.dataSignal$().data;
+    this.propertyList();
+    this.gridPostData.pageIndex = this.gridStore.dataSignal$().pageIndex;
+    this.gridPostData.pageSize = this.gridStore.dataSignal$().pageSize;
+    this.prevDisabled();
+    this.nextDisabled();
   }
 
   changeFilterName(value: FilterModel) {
@@ -113,9 +116,9 @@ export class GridComponent implements OnInit, OnDestroy {
     );
   }
 
-  deleteData(id: number) {
-    this.gridService.deleteUrl(this.deleteBtnUrl, id);
-    this.getAllList();
+  async deleteData(id: number) {
+    await this.gridService.deleteUrl(this.deleteBtnUrl, id);
+    await this.getAllList();
   }
 
   propertyList() {
@@ -240,7 +243,6 @@ export class GridComponent implements OnInit, OnDestroy {
   }
 
   addFilter() {
-    console.log(this.filterForm.value);
     this.filterList.push(this.filterForm.value);
     this.gridPostData.filterModelList = this.filterList;
     this.getAllList();
