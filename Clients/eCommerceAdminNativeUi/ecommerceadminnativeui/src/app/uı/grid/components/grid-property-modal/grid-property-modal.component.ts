@@ -14,7 +14,7 @@ import {
 } from '@ionic/angular/standalone';
 import { TranslateModule } from '@ngx-translate/core';
 import { GridPropertyInfo, GridSettingsDTO } from 'src/app/models/core/grid';
-import { GridService } from 'src/app/services/grid.service';
+import { GridService } from 'src/app/services/core/grid.service';
 import { GridStore } from 'src/app/stores/grid.store';
 import { CheckboxComponent } from '../../../checkbox/checkbox.component';
 

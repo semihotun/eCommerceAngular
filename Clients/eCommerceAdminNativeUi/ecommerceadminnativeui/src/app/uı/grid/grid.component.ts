@@ -24,7 +24,7 @@ import {
   GridPropertyInfo,
   ValueText,
 } from 'src/app/models/core/grid';
-import { GridService } from 'src/app/services/grid.service';
+import { GridService } from 'src/app/services/core/grid.service';
 import { GridStore } from 'src/app/stores/grid.store';
 import { ModalController } from '@ionic/angular/standalone';
 import { GridPropertyModalComponent } from './components/grid-property-modal/grid-property-modal.component';

@@ -1,0 +1,9 @@
+<app-header [title]="'Brand'" [backButton]="true"></app-header>
+<div id="page">
+    <div class="btn-list">
+        <a href="/create-or-update-brand"><ion-icon name="add-outline"></ion-icon></a>
+    </div>
+    <app-grid [url]="'brand/getbrandgriddto'" [btnColumnOn]="true" [editBtnUrl]="'create-or-update-brand/'"
+        [deleteBtnUrl]="'brand/deletebrand'">
+    </app-grid>
+</div>

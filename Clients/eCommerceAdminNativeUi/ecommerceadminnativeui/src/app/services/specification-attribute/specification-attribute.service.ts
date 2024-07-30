@@ -1,13 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpService } from './http.service';
-import { Brand } from '../models/responseModel/brand';
-import { Result } from '../models/core/result';
-import { Destroyable } from '../shared/destroyable.service';
-import { CreateBrand } from '../models/requestModel/createbrand';
-import { ToastService } from './toast.service';
-import { SpecificationAttributeStore } from '../stores/specificationattribute.store';
-import { SpecificationAttribute } from '../models/responseModel/specificationattribute';
+import { HttpService } from '../core/http.service';
+import { Brand } from '../../models/responseModel/brand';
+import { Result } from '../../models/core/result';
+import { Destroyable } from '../../shared/destroyable.service';
+import { ToastService } from '../core/toast.service';
+import { SpecificationAttribute } from '../../models/responseModel/specificationattribute';
+import { SpecificationAttributeStore } from 'src/app/stores/specificationattribute.store';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +37,7 @@ export class SpecificationAttributeService extends Destroyable {
       );
     });
   }
-  createSpecificationAttribute(data: CreateBrand): Promise<void> {
+  createSpecificationAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<SpecificationAttribute>>(
         environment.baseUrl +
@@ -46,6 +45,9 @@ export class SpecificationAttributeService extends Destroyable {
         data,
         this.onDestroy,
         (response) => {
+          this.specificationAttributeStore.setSpecificationAttribute(
+            response.data
+          );
           this.toast.presentSuccessToast();
           resolve();
         },
@@ -56,7 +58,7 @@ export class SpecificationAttributeService extends Destroyable {
       );
     });
   }
-  updateSpecificationAttribute(data: CreateBrand): Promise<void> {
+  updateSpecificationAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<Brand>>(
         environment.baseUrl +

@@ -1,12 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpService } from './http.service';
+import { HttpService } from './core/http.service';
 import { Brand } from '../models/responseModel/brand';
 import { Result } from '../models/core/result';
 import { Destroyable } from '../shared/destroyable.service';
-import { CreateBrand } from '../models/requestModel/createbrand';
 import { BrandStore } from '../stores/brand.store';
-import { ToastService } from './toast.service';
+import { ToastService } from './core/toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +33,7 @@ export class BrandService extends Destroyable {
       );
     });
   }
-  createbrand(data: CreateBrand): Promise<void> {
+  createbrand(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<Brand>>(
         environment.baseUrl + 'brand/createbrand',
@@ -51,7 +50,7 @@ export class BrandService extends Destroyable {
       );
     });
   }
-  updateBrand(data: CreateBrand): Promise<void> {
+  updateBrand(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<Brand>>(
         environment.baseUrl + 'brand/updatebrand',

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { Observable } from 'rxjs';
 import { GridSettingsDTO, PagedList } from '../models/core/grid';
 
 export type GridState = {
@@ -17,7 +16,6 @@ export const gridInitialState: GridState = {
   providedIn: 'root',
 })
 export class GridStore extends ComponentStore<GridState> {
-  readonly data$ = this.select((x) => x.data);
   readonly dataSignal$ = this.selectSignal((x) => x.data);
   readonly gridSettings$ = this.selectSignal((x) => x.gridSettings);
 

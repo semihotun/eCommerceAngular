@@ -24,9 +24,9 @@ import { BrandService } from 'src/app/services/brand.service';
 import { BrandStore } from 'src/app/stores/brand.store';
 
 @Component({
-  selector: 'app-createorupdatebrand',
-  templateUrl: './createorupdatebrand.page.html',
-  styleUrls: ['./createorupdatebrand.page.scss'],
+  selector: 'app-create-or-update-brand',
+  templateUrl: './create-or-update-brand.page.html',
+  styleUrls: ['./create-or-update-brand.page.scss'],
   standalone: true,
   imports: [
     IonIcon,
@@ -43,7 +43,7 @@ import { BrandStore } from 'src/app/stores/brand.store';
     BtnSubmitComponent,
   ],
 })
-export class CreateorupdatebrandPage implements OnInit {
+export class CreateOrUpdateBrandPage implements OnInit {
   title: string = 'CreateBrand';
   form!: FormGroup;
   submitted: boolean = false;
@@ -86,7 +86,7 @@ export class CreateorupdatebrandPage implements OnInit {
       } else {
         await this.brandService.updateBrand(this.form.value);
       }
-      this.navCtrl.navigateForward('/brandlist');
+      this.navCtrl.navigateForward('/brand-list');
     }
   }
 }

@@ -14,7 +14,9 @@ export const specificationAttributeInitialState: SpecificationAttributeState = {
   providedIn: 'root',
 })
 export class SpecificationAttributeStore extends ComponentStore<SpecificationAttributeState> {
-  readonly brand$ = this.selectSignal((x) => x.specificationAttribute);
+  readonly specificationAttribute$ = this.selectSignal(
+    (x) => x.specificationAttribute
+  );
 
   constructor() {
     super(specificationAttributeInitialState);

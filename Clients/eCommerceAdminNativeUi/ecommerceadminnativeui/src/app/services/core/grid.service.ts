@@ -1,10 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Result } from '../models/core/result';
+import { Result } from '../../models/core/result';
 import { HttpService } from './http.service';
-import { Destroyable } from '../shared/destroyable.service';
-import { GridPostData, GridSettingsDTO, PagedList } from '../models/core/grid';
-import { GridStore } from '../stores/grid.store';
+import { Destroyable } from '../../shared/destroyable.service';
+import {
+  GridPostData,
+  GridSettingsDTO,
+  PagedList,
+} from '../../models/core/grid';
+import { GridStore } from '../../stores/grid.store';
 
 @Injectable({
   providedIn: 'root',

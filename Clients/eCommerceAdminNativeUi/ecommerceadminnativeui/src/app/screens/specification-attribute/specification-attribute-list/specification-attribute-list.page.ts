@@ -8,13 +8,13 @@ import {
   IonToolbar,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { TranslateModule } from '@ngx-translate/core';
-import { GridComponent } from 'src/app/uı/grid/grid.component';
 import { HeaderComponent } from 'src/app/uı/header/header.component';
+import { GridComponent } from 'src/app/uı/grid/grid.component';
+
 @Component({
-  selector: 'app-brandlist',
-  templateUrl: './brandlist.page.html',
-  styleUrls: ['./brandlist.page.scss'],
+  selector: 'app-specification-attribute-list',
+  templateUrl: './specification-attribute-list.page.html',
+  styleUrls: ['./specification-attribute-list.page.scss'],
   standalone: true,
   imports: [
     IonIcon,
@@ -25,11 +25,10 @@ import { HeaderComponent } from 'src/app/uı/header/header.component';
     CommonModule,
     FormsModule,
     HeaderComponent,
-    TranslateModule,
     GridComponent,
   ],
 })
-export class BrandPage implements OnInit {
+export class SpecificationAttributeListPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}

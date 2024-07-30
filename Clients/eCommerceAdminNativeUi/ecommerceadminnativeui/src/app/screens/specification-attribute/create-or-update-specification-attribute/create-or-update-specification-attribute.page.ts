@@ -18,14 +18,15 @@ import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
-import { SpecificationAttributeService } from 'src/app/services/specificationattribute.service';
-import { SpecificationAttributeStore } from 'src/app/stores/specificationattribute.store';
 import { InputComponent } from 'src/app/uı/input/input.component';
+import { CreateOrUpdateSpecificationAttributeOptionComponent } from '../create-or-update-specification-attribute-option/create-or-update-specification-attribute-option.component';
+import { SpecificationAttributeService } from 'src/app/services/specification-attribute/specification-attribute.service';
+import { SpecificationAttributeStore } from '../../../stores/specificationattribute.store';
 
 @Component({
-  selector: 'app-createorupdatespecificationattribute',
-  templateUrl: './createorupdatespecificationattribute.page.html',
-  styleUrls: ['./createorupdatespecificationattribute.page.scss'],
+  selector: 'app-create-or-update-specification-attribute.page',
+  templateUrl: './create-or-update-specification-attribute.page.html',
+  styleUrls: ['./create-or-update-specification-attribute.page.scss'],
   standalone: true,
   imports: [
     IonContent,
@@ -39,13 +40,16 @@ import { InputComponent } from 'src/app/uı/input/input.component';
     TranslateModule,
     ReactiveFormsModule,
     InputComponent,
+    CreateOrUpdateSpecificationAttributeOptionComponent,
   ],
 })
-export class CreateorupdatespecificationattributePage implements OnInit {
+export class CreateOrUpdatSpecificationAttributePage implements OnInit {
   title: string = 'CreateSpecificationAttribute';
-  form!: FormGroup;
+  speficationAttributeForm!: FormGroup;
+  speficationAttributeOptionForm!: FormGroup;
   submitted: boolean = false;
   isCreate: boolean = true;
+  specificationAttributeId!: string;
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -54,7 +58,7 @@ export class CreateorupdatespecificationattributePage implements OnInit {
     private navCtrl: NavController
   ) {}
   initForm() {
-    this.form = this.formBuilder.group({
+    this.speficationAttributeForm = this.formBuilder.group({
       id: [''],
       name: ['', [Validators.required]],
     });
@@ -63,10 +67,13 @@ export class CreateorupdatespecificationattributePage implements OnInit {
     this.initForm();
     this.activatedRoute.paramMap.subscribe(async (params) => {
       if (params.get('id')) {
+        this.specificationAttributeId = params.get('id')!;
         await this.specificationAttributeService.getSpecificationAttributeById(
           params.get('id')!
         );
-        this.form.patchValue(this.specificationAttributeStore.brand$());
+        this.speficationAttributeForm.patchValue(
+          this.specificationAttributeStore.specificationAttribute$()
+        );
         this.isCreate = false;
         this.title = 'UpdateSpecificationAttribute';
       } else {
@@ -74,23 +81,28 @@ export class CreateorupdatespecificationattributePage implements OnInit {
       }
     });
   }
-  hasError(controlName: string, errorName: string) {
-    const control = this.form.get(controlName);
+  hasErrorSpeficationAttributeForm(controlName: string, errorName: string) {
+    const control = this.speficationAttributeForm.get(controlName);
     return this.submitted && control?.hasError(errorName);
   }
-  async submitForm() {
+
+  async saveSpecificationAttribute() {
     this.submitted = true;
-    if (this.form.valid) {
+    if (this.speficationAttributeForm.valid) {
       if (this.isCreate) {
         await this.specificationAttributeService.createSpecificationAttribute(
-          this.form.value
+          this.speficationAttributeForm.value
+        );
+        this.navCtrl.navigateForward(
+          '/create-or-update-specification-attribute/' +
+            this.specificationAttributeStore.specificationAttribute$().id
         );
       } else {
         await this.specificationAttributeService.updateSpecificationAttribute(
-          this.form.value
+          this.speficationAttributeForm.value
         );
+        this.navCtrl.navigateForward('/specification-attribute-list');
       }
-      this.navCtrl.navigateForward('/specificationattributelist');
     }
   }
 }

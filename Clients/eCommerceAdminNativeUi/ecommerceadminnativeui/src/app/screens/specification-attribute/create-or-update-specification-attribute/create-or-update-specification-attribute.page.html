@@ -1,0 +1,13 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <form [formGroup]="speficationAttributeForm" id="form-70-center">
+    <app-input [label]="'Name' |translate" [placeholder]="'Name' |translate" formControlName="name"></app-input>
+    <div class="label-error" *ngIf="hasErrorSpeficationAttributeForm('name','required')">{{'Required' |translate}}</div>
+    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="saveSpecificationAttribute()"></app-btn-submit>
+  </form>
+
+  @if(specificationAttributeId){
+  <app-create-or-update-specification-attribute-option
+    [specificationAttributeId]="specificationAttributeId"></app-create-or-update-specification-attribute-option>
+  }
+</div>

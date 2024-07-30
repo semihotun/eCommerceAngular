@@ -8,16 +8,16 @@ using eCommerceBase.Application.Constants;
 using eCommerceBase.Application.Handlers.Mapper;
 
 namespace eCommerceBase.Application.Handlers.SpecificationAttributes.Commands;
-public record CreateSpecificationAttributeCommand(string Name) : IRequest<Result>;
+public record CreateSpecificationAttributeCommand(string Name) : IRequest<Result<SpecificationAttribute>>;
 public class CreateSpecificationAttributeCommandHandler(IWriteDbRepository<SpecificationAttribute> specificationAttributeRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<CreateSpecificationAttributeCommand,
-		Result>
+		Result<SpecificationAttribute>>
 {
     private readonly IWriteDbRepository<SpecificationAttribute> _specificationAttributeRepository = specificationAttributeRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICacheService _cacheService = cacheService;
-    public async Task<Result> Handle(CreateSpecificationAttributeCommand request,
+    public async Task<Result<SpecificationAttribute>> Handle(CreateSpecificationAttributeCommand request,
 		CancellationToken cancellationToken)
     {
         return await _unitOfWork.BeginTransaction(async () =>
@@ -25,7 +25,7 @@ public class CreateSpecificationAttributeCommandHandler(IWriteDbRepository<Speci
             var data = SpecificationAttributeMapper.CreateSpecificationAttributeCommandToSpecificationAttribute(request);
             await _specificationAttributeRepository.AddAsync(data);
             await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttributes");
-            return Result.SuccessResult(Messages.Added);
+            return Result.SuccessDataResult(data,Messages.Added);
         });
     }
 }

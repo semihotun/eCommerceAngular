@@ -6,7 +6,7 @@ import {
   IonContent,
   IonRouterOutlet,
 } from '@ionic/angular/standalone';
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from 'src/app/services/core/global.service';
 import { HeaderComponent } from 'src/app/uı/header/header.component';
 
 @Component({

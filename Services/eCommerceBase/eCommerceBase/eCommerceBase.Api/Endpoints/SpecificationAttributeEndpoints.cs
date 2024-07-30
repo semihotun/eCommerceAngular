@@ -1,6 +1,4 @@
 ﻿using Carter;
-using eCommerceBase.Application.Handlers.Brands.Queries;
-using eCommerceBase.Application.Handlers.Brands.Queries.Dtos;
 using eCommerceBase.Application.Handlers.SpecificationAttributes.Commands;
 using eCommerceBase.Application.Handlers.SpecificationAttributes.Queries;
 using eCommerceBase.Application.Handlers.SpecificationAttributes.Queries.Dtos;
@@ -19,7 +17,7 @@ namespace eCommerceBase.Api.Endpoints
             var group = app.MapGroup("api/specificationAttribute");
 
             group.MapPost("/createspecificationattribute", CreateSpecificationAttribute)
-                .Produces(StatusCodes.Status200OK, typeof(Result))
+                .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttribute>))
                 .DisableAntiforgery()
                 .AllowAnonymous();
             group.MapPost("/updatespecificationattribute", UpdateSpecificationAttribute)

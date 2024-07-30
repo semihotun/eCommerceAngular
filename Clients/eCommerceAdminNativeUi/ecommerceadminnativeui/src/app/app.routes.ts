@@ -13,45 +13,45 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'brandlist',
+    path: 'brand-list',
     loadComponent: () =>
-      import('./screens/brand/brandlist/brandlist.page').then(
-        (m) => m.BrandPage
+      import('./screens/brand/brand-list/brand-list.page').then(
+        (m) => m.BrandListPage
       ),
   },
   {
-    path: 'createorupdatebrand/:id',
+    path: 'create-or-update-brand/:id',
     loadComponent: () =>
       import(
-        './screens/brand/createorupdatebrand/createorupdatebrand.page'
-      ).then((m) => m.CreateorupdatebrandPage),
+        './screens/brand/create-or-update-brand/create-or-update-brand.page'
+      ).then((m) => m.CreateOrUpdateBrandPage),
   },
   {
-    path: 'createorupdatebrand',
+    path: 'create-or-update-brand',
     loadComponent: () =>
       import(
-        './screens/brand/createorupdatebrand/createorupdatebrand.page'
-      ).then((m) => m.CreateorupdatebrandPage),
+        './screens/brand/create-or-update-brand/create-or-update-brand.page'
+      ).then((m) => m.CreateOrUpdateBrandPage),
   },
   {
-    path: 'createorupdatespecificationattribute',
+    path: 'create-or-update-specification-attribute',
     loadComponent: () =>
       import(
-        './screens/specificationattribute/createorupdatespecificationattribute/createorupdatespecificationattribute.page'
-      ).then((m) => m.CreateorupdatespecificationattributePage),
+        './screens/specification-attribute/create-or-update-specification-attribute/create-or-update-specification-attribute.page'
+      ).then((m) => m.CreateOrUpdatSpecificationAttributePage),
   },
   {
-    path: 'createorupdatespecificationattribute/:id',
+    path: 'create-or-update-specification-attribute/:id',
     loadComponent: () =>
       import(
-        './screens/specificationattribute/createorupdatespecificationattribute/createorupdatespecificationattribute.page'
-      ).then((m) => m.CreateorupdatespecificationattributePage),
+        './screens/specification-attribute/create-or-update-specification-attribute/create-or-update-specification-attribute.page'
+      ).then((m) => m.CreateOrUpdatSpecificationAttributePage),
   },
   {
-    path: 'specificationattributelist',
+    path: 'specification-attribute-list',
     loadComponent: () =>
       import(
-        './screens/specificationattribute/specificationattributelist/specificationattributelist.page'
-      ).then((m) => m.SpecificationattributelistPage),
+        './screens/specification-attribute/specification-attribute-list/specification-attribute-list.page'
+      ).then((m) => m.SpecificationAttributeListPage),
   },
 ];
