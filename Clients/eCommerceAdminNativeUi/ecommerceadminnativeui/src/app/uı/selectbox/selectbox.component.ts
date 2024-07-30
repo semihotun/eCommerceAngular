@@ -8,7 +8,7 @@ import {
   Output,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ModalController } from '@ionic/angular/standalone';
+import { ModalController, IonIcon } from '@ionic/angular/standalone';
 import { SelectboxModalComponent } from './components/selectbox-modal/selectbox-modal.component';
 
 @Component({
@@ -23,6 +23,7 @@ import { SelectboxModalComponent } from './components/selectbox-modal/selectbox-
       multi: true,
     },
   ],
+  imports: [IonIcon],
 })
 export class SelectboxComponent implements ControlValueAccessor {
   @Input() data!: any[];

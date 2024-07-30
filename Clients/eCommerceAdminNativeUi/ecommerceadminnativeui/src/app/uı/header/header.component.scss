@@ -46,16 +46,28 @@
              display: flex;
              flex-direction: column;
 
-             a {
-                 padding: 3px;
-                 width: 100%;
+             .link {
+                 margin-top: 10px;
 
-                 &:hover {}
+                 ::before {
+                     content: '>';
+                     color: white;
+                     margin-right: 5px;
+                 }
 
-                 &:active {}
+                 a {
+                     font-size: 14px;
+                     padding: 3px;
+                     width: 100%;
 
-                 &:focus {}
+                     &:hover {}
+
+                     &:active {}
+
+                     &:focus {}
+                 }
              }
+
          }
      }
 

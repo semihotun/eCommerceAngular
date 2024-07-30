@@ -30,4 +30,14 @@
         color: black;
         position: absolute;
     }
+
+    .mark {
+        transform: rotate(180deg);
+        display: flex;
+        align-items: center;
+        height: 100%;
+        right: 5px;
+        background-color: transparent;
+        position: absolute;
+    }
 }
