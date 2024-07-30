@@ -13,7 +13,7 @@ namespace eCommerceBase.Api.Endpoints
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/specificationAttributeOption");
+            var group = app.MapGroup("api/specificationattributeoption");
 
             group.MapPost("/create", CreateSpecificationAttributeOption)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
@@ -31,9 +31,9 @@ namespace eCommerceBase.Api.Endpoints
             group.MapGet("/getall", GetAllSpecificationAttributeOption)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttributeOption>))
                 .AllowAnonymous();
-            group.MapGet("/getgrid", GetSpecificationAttributeOptionGrid)
-           .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttributeOption>))
-           .AllowAnonymous();
+            group.MapPost("/getgrid", GetSpecificationAttributeOptionGrid)
+               .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttributeOption>))
+               .AllowAnonymous();
         }
 
         public static async Task<IResult> CreateSpecificationAttributeOption([FromBody] CreateSpecificationAttributeOptionCommand data, ISender sender)

@@ -50,7 +50,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of datas">
+        <tr *ngFor="let data of localData">
           <ng-container *ngIf="btnColumnOn==false">
             <ng-container *ngFor="let datakey of keys">
               <td *ngIf="datakey.checked == true">
@@ -65,11 +65,19 @@
               </td>
             </ng-container>
             <td style="width: 25px;">
-              <a [href]="'/'+editBtnUrl+data['id']" style="color: #ff5722;"><i class="far fa-edit"></i></a>
+              @if(this.editBtnUrl){
+              <a [href]="'/'+editBtnUrl+data['id']" style="color: #ff5722;" class="cursor-pointer"><i
+                  class="far fa-edit"></i></a>
+              }
             </td>
             <td style="width: 25px; ">
-              <a (click)="deleteData(data['id'])" style="color: #d9534e;"><i class="fas fa-trash-alt"></i></a>
+              @if(this.deleteBtnUrl){
+              <a (click)="deleteData(data['id'])" style="color: #d9534e;" class="cursor-pointer"><i
+                  class="fas fa-trash-alt"></i></a>
+              }
             </td>
+
+
           </ng-container>
 
         </tr>
@@ -95,7 +103,7 @@
       </div>
 
       <div class="goPage">
-        <span class="mr-15">{{ gridPostData.pageIndex }}/{{ this.gridStore.dataSignal$().totalPages }}</span>
+        <span class="mr-15">{{ gridPostData.pageIndex }}/{{ this.totalPages }}</span>
         <input type="text" [(ngModel)]="goToPageIndex" class="gridBottom goToPageTextBox" standolone="true" />
         <button type="button" class="gridBottom goToPageBtn" (click)="changePageIndex()">
           Go

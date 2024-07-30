@@ -6,6 +6,8 @@ import { Destroyable } from '../../shared/destroyable.service';
 import { ToastService } from '../core/toast.service';
 import { SpecificationAttributeStore } from '../../stores/specificationattribute.store';
 import { SpecificationAttributeOption } from '../../models/responseModel/specificationattribute';
+import { GridStore } from './../../stores/grid.store';
+import { GridPostData, PagedList } from './../../models/core/grid';
 
 @Injectable({
   providedIn: 'root',
@@ -17,13 +19,18 @@ export class SpecificationAttributeOptionService extends Destroyable {
   http = inject(HttpService);
   specificationAttributeStore = inject(SpecificationAttributeStore);
   toast = inject(ToastService);
-  createSpecificationAttribute(data: any): Promise<void> {
+  gridStore = inject(GridStore);
+  createSpecificationOptionAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<SpecificationAttributeOption>>(
-        environment.baseUrl + 'specificationAttribute/create',
+        environment.baseUrl + 'specificationattributeoption/create',
         data,
         this.onDestroy,
-        (response) => {
+        async (response) => {
+          await this.getSpecificationOptionAttributeGrid({
+            ...new GridPostData(1, 10),
+            specificationAttributeId: data.specificationAttributeId,
+          });
           this.toast.presentSuccessToast();
           resolve();
         },
@@ -34,14 +41,16 @@ export class SpecificationAttributeOptionService extends Destroyable {
       );
     });
   }
-  updateSpecificationAttribute(data: any): Promise<void> {
+  getSpecificationOptionAttributeGrid(data?: any): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.post<Result<SpecificationAttributeOption>>(
-        environment.baseUrl + 'specificationAttribute/update',
+      this.http.post<Result<PagedList<any>>>(
+        environment.baseUrl + 'specificationattributeoption/getgrid',
         data,
         this.onDestroy,
         (response) => {
-          this.toast.presentSuccessToast();
+          this.specificationAttributeStore.setSpecificationAttributeOptionGrid(
+            response.data
+          );
           resolve();
         },
         (err) => {

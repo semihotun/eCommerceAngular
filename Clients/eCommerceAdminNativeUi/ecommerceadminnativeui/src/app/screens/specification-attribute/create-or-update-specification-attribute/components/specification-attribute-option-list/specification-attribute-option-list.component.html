@@ -1,4 +1,3 @@
-<app-grid [url]="'specificationAttribute/getspecificationattributegriddto'" [btnColumnOn]="true"
-  [editBtnUrl]="'create-or-update-specification-attribute/'"
-  [deleteBtnUrl]="'specificationAttribute/deletespecificationattribute'">
+<app-grid [url]="'specificationAttribute/getgrid'" [btnColumnOn]="true"
+  [deleteBtnUrl]="'specificationAttributeOption/delete'" (getAllDataVoid)="getAllData($event)" [datas]="data">
 </app-grid>

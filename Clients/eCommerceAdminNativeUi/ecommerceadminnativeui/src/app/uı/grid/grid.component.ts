@@ -22,6 +22,7 @@ import {
   FilterOperators,
   GridPostData,
   GridPropertyInfo,
+  PagedList,
   ValueText,
 } from 'src/app/models/core/grid';
 import { GridService } from 'src/app/services/core/grid.service';
@@ -30,14 +31,15 @@ import { ModalController } from '@ionic/angular/standalone';
 import { GridPropertyModalComponent } from './components/grid-property-modal/grid-property-modal.component';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { BtnSubmitComponent } from '../btn-submit/btn-submit.component';
-import { takeUntil, Subject } from 'rxjs';
 import { SelectboxComponent } from '../selectbox/selectbox.component';
 import { InputComponent } from '../input/input.component';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.scss'],
   standalone: true,
+  providers: [GridStore, GridService],
   imports: [
     TranslateModule,
     CommonModule,
@@ -49,16 +51,20 @@ import { InputComponent } from '../input/input.component';
     InputComponent,
   ],
 })
-export class GridComponent implements OnInit {
+export class GridComponent implements OnInit, OnDestroy {
   @Input() url!: string;
   @Input() btnColumnOn: Boolean = false;
   @Input() editBtnUrl!: string;
   @Input() deleteBtnUrl!: string;
   @ViewChild('prevBtn') prevBtn!: ElementRef<HTMLElement>;
   @ViewChild('nextBtn') nextBtn!: ElementRef<HTMLElement>;
-  @Output() getAllDataVoid: EventEmitter<void> = new EventEmitter<void>();
+  @Output() getAllDataVoid: EventEmitter<GridPostData> =
+    new EventEmitter<GridPostData>();
 
-  datas!: any[];
+  @Input() datas: BehaviorSubject<PagedList<any[]> | null> =
+    new BehaviorSubject<PagedList<any[]> | null>(null);
+  localData: any[] = [];
+  onDestroy = new Subject<void>();
   goToPageIndex!: number;
   keys!: GridPropertyInfo[];
   filter: FilterModel = new FilterModel();
@@ -68,11 +74,16 @@ export class GridComponent implements OnInit {
   gridStore = inject(GridStore);
   gridService = inject(GridService);
   filterForm!: FormGroup;
-
+  totalPages: number = 1;
   constructor(
     private modalController: ModalController,
     private builder: FormBuilder
   ) {}
+  ngOnDestroy(): void {
+    this.onDestroy.next();
+    this.onDestroy.complete();
+    this.onDestroy.unsubscribe();
+  }
 
   ngAfterViewInit() {}
 
@@ -90,20 +101,26 @@ export class GridComponent implements OnInit {
     this.initForm();
     await this.gridService.getSettingsGrid(this.url);
     await this.getAllList();
+    this.datas.pipe(takeUntil(this.onDestroy)).subscribe((x) => {
+      if (x) {
+        this.totalPages = x.totalPages;
+        this.localData = x.data;
+        this.propertyList();
+        this.gridPostData.pageIndex = x.pageIndex;
+        this.gridPostData.pageSize = x.pageSize;
+        this.prevDisabled();
+        this.nextDisabled();
+      }
+    });
   }
 
   async getAllList() {
     if (!this.getAllDataVoid.observed) {
       await this.gridService.getAllData(this.url, this.gridPostData);
+      this.datas.next(this.gridStore.dataSignal$());
     } else {
-      this.getAllDataVoid.emit();
+      this.getAllDataVoid.emit(this.gridPostData);
     }
-    this.datas = this.gridStore.dataSignal$().data;
-    this.propertyList();
-    this.gridPostData.pageIndex = this.gridStore.dataSignal$().pageIndex;
-    this.gridPostData.pageSize = this.gridStore.dataSignal$().pageSize;
-    this.prevDisabled();
-    this.nextDisabled();
   }
 
   changeFilterName(value: FilterModel) {
@@ -126,19 +143,25 @@ export class GridComponent implements OnInit {
       const splitData =
         this.gridStore.gridSettings$().propertyInfo.split(',') ?? [];
 
-      this.keys = this.gridStore
-        .dataSignal$()
-        .propertyInfos.map((propertyInfo) => {
-          propertyInfo.checked = splitData.includes(propertyInfo.propertyName);
-          return propertyInfo;
-        });
+      this.datas.pipe(takeUntil(this.onDestroy)).subscribe((x) => {
+        if (x!.propertyInfos.length > 0) {
+          this.keys = x!.propertyInfos.map((propertyInfo) => {
+            propertyInfo.checked = splitData.includes(
+              propertyInfo.propertyName
+            );
+            return propertyInfo;
+          });
+        }
+      });
     } else {
-      this.keys = this.gridStore
-        .dataSignal$()
-        .propertyInfos.map((propertyInfo) => {
-          propertyInfo.checked = true;
-          return propertyInfo;
-        });
+      this.datas.pipe(takeUntil(this.onDestroy)).subscribe((x) => {
+        if (x) {
+          this.keys = x!.propertyInfos.map((propertyInfo) => {
+            propertyInfo.checked = true;
+            return propertyInfo;
+          });
+        }
+      });
     }
   }
 
@@ -150,9 +173,7 @@ export class GridComponent implements OnInit {
   }
 
   nextClick() {
-    if (
-      this.gridPostData.pageIndex <= this.gridStore.dataSignal$().totalPages
-    ) {
+    if (this.gridPostData.pageIndex <= this.totalPages) {
       this.gridPostData.pageIndex = this.gridPostData.pageIndex + 1;
       this.getAllList();
     }
@@ -167,9 +188,7 @@ export class GridComponent implements OnInit {
   }
 
   nextDisabled() {
-    if (
-      this.gridPostData.pageIndex >= this.gridStore.dataSignal$().totalPages
-    ) {
+    if (this.gridPostData.pageIndex >= this.totalPages) {
       this.nextBtn.nativeElement.className = 'prevNextDisabled next-btn';
     } else {
       this.nextBtn.nativeElement.className = 'next-btn';
@@ -261,6 +280,9 @@ export class GridComponent implements OnInit {
       componentProps: {
         keys: this.keys,
         path: this.url,
+        datas: this.datas,
+        gridStore: this.gridStore,
+        gridService: this.gridService,
       },
     });
     modal.onDidDismiss().then((result) => {

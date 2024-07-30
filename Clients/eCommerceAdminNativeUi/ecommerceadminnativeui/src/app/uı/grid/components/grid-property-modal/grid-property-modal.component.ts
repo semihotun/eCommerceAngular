@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -13,10 +13,15 @@ import {
   ModalController,
 } from '@ionic/angular/standalone';
 import { TranslateModule } from '@ngx-translate/core';
-import { GridPropertyInfo, GridSettingsDTO } from 'src/app/models/core/grid';
+import {
+  GridPropertyInfo,
+  GridSettingsDTO,
+  PagedList,
+} from 'src/app/models/core/grid';
 import { GridService } from 'src/app/services/core/grid.service';
 import { GridStore } from 'src/app/stores/grid.store';
 import { CheckboxComponent } from '../../../checkbox/checkbox.component';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-grid-property-modal',
@@ -38,23 +43,31 @@ import { CheckboxComponent } from '../../../checkbox/checkbox.component';
     CheckboxComponent,
   ],
 })
-export class GridPropertyModalComponent implements OnInit {
+export class GridPropertyModalComponent implements OnInit, OnDestroy {
   @Input() keys!: GridPropertyInfo[];
   @Input() path!: string;
   modalController = inject(ModalController);
-  gridStore = inject(GridStore);
-  gridService = inject(GridService);
+  @Input() gridStore!: GridStore;
+  @Input() gridService!: GridService;
+  @Input() datas: BehaviorSubject<PagedList<any[]> | null> =
+    new BehaviorSubject<PagedList<any[]> | null>(null);
   constructor() {}
+  onDestroy = new Subject<void>();
+  ngOnDestroy(): void {
+    this.onDestroy.unsubscribe();
+  }
 
   ngOnInit() {
     if (this.gridStore.gridSettings$() == null) {
       let gridSettings = new GridSettingsDTO();
-      gridSettings.propertyInfo = this.gridStore
-        .dataSignal$()
-        .propertyInfos.map((x) => x.propertyName)
-        .join(',');
-      gridSettings.path = this.path;
-      this.gridStore.setGridSettings(gridSettings);
+
+      this.datas.pipe(takeUntil(this.onDestroy)).subscribe((x) => {
+        gridSettings.propertyInfo = x!.propertyInfos
+          .map((x) => x.propertyName)
+          .join(',');
+        gridSettings.path = this.path;
+        this.gridStore.setGridSettings(gridSettings);
+      });
     }
   }
   cancel() {

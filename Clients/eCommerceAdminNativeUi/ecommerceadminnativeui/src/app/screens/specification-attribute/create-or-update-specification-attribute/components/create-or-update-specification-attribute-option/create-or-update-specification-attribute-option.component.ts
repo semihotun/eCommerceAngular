@@ -17,6 +17,7 @@ import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputComponent } from 'src/app/uı/input/input.component';
+import { SpecificationAttributeOptionService } from './../../../../../services/specification-attribute/specification-attribute-option.service';
 @Component({
   selector: 'app-create-or-update-specification-attribute-option',
   templateUrl:
@@ -45,7 +46,10 @@ export class CreateOrUpdateSpecificationAttributeOptionComponent
   submitted: boolean = false;
   speficationAttributeOptionForm!: FormGroup;
   @Input() specificationAttributeId!: string;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private specificationAttributeOptionService: SpecificationAttributeOptionService
+  ) {}
   initForm() {
     this.speficationAttributeOptionForm = this.formBuilder.group({
       id: [''],
@@ -57,12 +61,17 @@ export class CreateOrUpdateSpecificationAttributeOptionComponent
     this.initForm();
   }
   async addSpecificationAttribute() {
+    this.submitted = true;
     if (this.speficationAttributeOptionForm.valid) {
       let data = {
         ...this.speficationAttributeOptionForm.value,
         specificationAttributeId: this.specificationAttributeId,
       };
-      console.log(data);
+      this.specificationAttributeOptionService.createSpecificationOptionAttribute(
+        data
+      );
+      this.speficationAttributeOptionForm.reset();
+      this.submitted = false;
     }
   }
   hasErrorSpeficationAttributeOptionForm(

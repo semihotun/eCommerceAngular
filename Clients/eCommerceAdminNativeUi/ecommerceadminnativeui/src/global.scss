@@ -73,6 +73,12 @@ a {
     }
 }
 
+.cursor-pointer {
+    :hover {
+        cursor: pointer;
+    }
+}
+
 .label-error {
     font-size: 12px;
     color: red;

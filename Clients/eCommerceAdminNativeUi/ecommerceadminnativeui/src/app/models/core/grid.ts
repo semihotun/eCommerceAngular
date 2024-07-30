@@ -42,5 +42,5 @@ export class PagedList<T> {
   pageSize!: number;
   totalCount!: number;
   totalPages!: number;
-  propertyInfos!: GridPropertyInfo[];
+  propertyInfos: GridPropertyInfo[] = [];
 }

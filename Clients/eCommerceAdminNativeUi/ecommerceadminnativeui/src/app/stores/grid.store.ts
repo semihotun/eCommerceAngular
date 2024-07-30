@@ -16,6 +16,7 @@ export const gridInitialState: GridState = {
   providedIn: 'root',
 })
 export class GridStore extends ComponentStore<GridState> {
+  readonly dataS$ = this.select((x) => x.data);
   readonly dataSignal$ = this.selectSignal((x) => x.data);
   readonly gridSettings$ = this.selectSignal((x) => x.gridSettings);
 
