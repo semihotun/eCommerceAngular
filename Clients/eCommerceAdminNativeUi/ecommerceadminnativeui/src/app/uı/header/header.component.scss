@@ -5,7 +5,15 @@
 
      ion-title {
          text-align: center;
-         font-size: 14px;
+         font-size: 17px;
+
+         @media screen and (max-width:$tablet-size) {
+             font-size: 14px;
+         }
+     }
+
+     @media screen and (max-width:$tablet-size) {
+         padding: 0px 1%;
      }
  }
 

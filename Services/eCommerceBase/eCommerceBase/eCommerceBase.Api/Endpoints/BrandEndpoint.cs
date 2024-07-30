@@ -16,23 +16,23 @@ namespace eCommerceBase.Api.Endpoints
         {
             var group = app.MapGroup("api/brand");
 
-            group.MapPost("/createbrand", CreateBrand)
+            group.MapPost("/create", CreateBrand)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .DisableAntiforgery()
                 .AllowAnonymous();
-            group.MapPost("/updatebrand", UpdateBrand)
+            group.MapPost("/update", UpdateBrand)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/deletebrand", DeleteBrand)
+            group.MapPost("/delete", DeleteBrand)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapGet("/getbrandbyid", GetBrandById)
+            group.MapGet("/getbyid", GetBrandById)
                .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
                .AllowAnonymous();
-            group.MapGet("/getallbrand", GetAllBrand)
+            group.MapGet("/getall", GetAllBrand)
                 .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
                 .AllowAnonymous();
-            group.MapPost("/getbrandgriddto", GetBrandGrid)
+            group.MapPost("/getgrid", GetBrandGrid)
                 .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<BrandGridDTO>>))
                 .AllowAnonymous();
         }

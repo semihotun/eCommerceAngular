@@ -14,20 +14,20 @@ namespace eCommerceBase.Api.Endpoints
         {
             var group = app.MapGroup("api/slider");
 
-            group.MapPost("/createslider", CreateSlider)
+            group.MapPost("/create", CreateSlider)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .DisableAntiforgery()
                 .AllowAnonymous();
-            group.MapPost("/updateslider", UpdateSlider)
+            group.MapPost("/update", UpdateSlider)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/deleteslider", DeleteSlider)
+            group.MapPost("/delete", DeleteSlider)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapGet("/getsliderbyid", GetSliderById)
+            group.MapGet("/getbyid", GetSliderById)
                .Produces(StatusCodes.Status200OK, typeof(Result<Slider>))
                .AllowAnonymous();
-            group.MapGet("/getallslider", GetAllSlider)
+            group.MapGet("/getall", GetAllSlider)
             .Produces(StatusCodes.Status200OK, typeof(Result<Slider>))
             .AllowAnonymous();
         }

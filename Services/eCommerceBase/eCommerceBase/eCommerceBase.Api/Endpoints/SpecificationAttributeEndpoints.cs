@@ -16,23 +16,23 @@ namespace eCommerceBase.Api.Endpoints
         {
             var group = app.MapGroup("api/specificationAttribute");
 
-            group.MapPost("/createspecificationattribute", CreateSpecificationAttribute)
+            group.MapPost("/create", CreateSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttribute>))
                 .DisableAntiforgery()
                 .AllowAnonymous();
-            group.MapPost("/updatespecificationattribute", UpdateSpecificationAttribute)
+            group.MapPost("/update", UpdateSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/deletespecificationattribute", DeleteSpecificationAttribute)
+            group.MapPost("/delete", DeleteSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapGet("/getspecificationattributebyid", GetSpecificationAttributeById)
+            group.MapGet("/getbyid", GetSpecificationAttributeById)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttribute>))
                 .AllowAnonymous();
-            group.MapGet("/getallspecificationattribute", GetAllSpecificationAttribute)
+            group.MapGet("/getall", GetAllSpecificationAttribute)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttribute>))
                 .AllowAnonymous();
-            group.MapPost("/getspecificationattributegriddto", GetSpecificationAttributeGrid)
+            group.MapPost("/getgrid", GetSpecificationAttributeGrid)
                 .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<SpecificationAttributeGridDTO>>))
                 .AllowAnonymous();
         }

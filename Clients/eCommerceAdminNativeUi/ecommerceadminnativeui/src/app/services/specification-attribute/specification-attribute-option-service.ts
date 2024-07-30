@@ -20,8 +20,7 @@ export class SpecificationAttributeOptionService extends Destroyable {
   createSpecificationAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<SpecificationAttributeOption>>(
-        environment.baseUrl +
-          'specificationAttribute/createspecificationattribute',
+        environment.baseUrl + 'specificationAttribute/create',
         data,
         this.onDestroy,
         (response) => {
@@ -38,8 +37,7 @@ export class SpecificationAttributeOptionService extends Destroyable {
   updateSpecificationAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<SpecificationAttributeOption>>(
-        environment.baseUrl +
-          'specificationAttribute/updatespecificationattribute',
+        environment.baseUrl + 'specificationAttribute/update',
         data,
         this.onDestroy,
         (response) => {

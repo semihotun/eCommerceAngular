@@ -15,20 +15,20 @@ namespace eCommerceBase.Api.Endpoints
         {
             var group = app.MapGroup("api/gridsetting");
 
-            group.MapPost("/creategridsetting", CreateGridSetting)
+            group.MapPost("/create", CreateGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .DisableAntiforgery()
                 .AllowAnonymous();
-            group.MapPost("/updategridsetting", UpdateGridSetting)
+            group.MapPost("/update", UpdateGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/deletegridsetting", DeleteGridSetting)
+            group.MapPost("/delete", DeleteGridSetting)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapGet("/getgridsettingbypath", GetGridSettingByPath)
+            group.MapGet("/getbypath", GetGridSettingByPath)
                .Produces(StatusCodes.Status200OK, typeof(Result<GridSetting>))
                .AllowAnonymous();
-            group.MapGet("/getallgridsetting", GetAllGridSetting)
+            group.MapGet("/getgrid", GetAllGridSetting)
             .Produces(StatusCodes.Status200OK, typeof(Result<GridSetting>))
             .AllowAnonymous();
         }

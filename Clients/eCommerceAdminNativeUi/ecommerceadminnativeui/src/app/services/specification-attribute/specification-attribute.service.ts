@@ -21,8 +21,7 @@ export class SpecificationAttributeService extends Destroyable {
   getSpecificationAttributeById(id: string): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.get<Result<SpecificationAttribute>>(
-        environment.baseUrl +
-          'specificationAttribute/getspecificationattributebyid',
+        environment.baseUrl + 'specificationAttribute/getbyid',
         { id: id },
         this.onDestroy,
         (response) => {
@@ -40,8 +39,7 @@ export class SpecificationAttributeService extends Destroyable {
   createSpecificationAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<SpecificationAttribute>>(
-        environment.baseUrl +
-          'specificationattribute/createspecificationattribute',
+        environment.baseUrl + 'specificationattribute/create',
         data,
         this.onDestroy,
         (response) => {
@@ -61,8 +59,7 @@ export class SpecificationAttributeService extends Destroyable {
   updateSpecificationAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<Brand>>(
-        environment.baseUrl +
-          'specificationattribute/updatespecificationattribute',
+        environment.baseUrl + 'specificationattribute/update',
         data,
         this.onDestroy,
         (response) => {

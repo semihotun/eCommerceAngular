@@ -55,8 +55,7 @@ export class GridService extends Destroyable {
   }
   getSettingsGrid(url: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      const path =
-        environment.baseUrl + 'gridsetting/getgridsettingbypath?path=' + url;
+      const path = environment.baseUrl + 'gridsetting/getbypath?path=' + url;
       this.http.get<Result<GridSettingsDTO>>(
         path,
         {},
@@ -72,7 +71,7 @@ export class GridService extends Destroyable {
     });
   }
   updateGridSettings() {
-    const path = environment.baseUrl + 'gridsetting/updategridsetting';
+    const path = environment.baseUrl + 'gridsetting/update';
     let data = this.gridStore.gridSettings$();
     this.http.post<Result<GridSettingsDTO>>(
       path,

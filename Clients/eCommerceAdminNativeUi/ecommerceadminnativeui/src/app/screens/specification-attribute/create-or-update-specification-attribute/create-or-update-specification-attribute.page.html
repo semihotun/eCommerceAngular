@@ -7,7 +7,13 @@
   </form>
 
   @if(specificationAttributeId){
-  <app-create-or-update-specification-attribute-option
-    [specificationAttributeId]="specificationAttributeId"></app-create-or-update-specification-attribute-option>
+  <div id="form-70-center">
+    <div class="title">{{'Specification Attribute Option Add' |translate}}</div>
+    <app-create-or-update-specification-attribute-option [specificationAttributeId]="specificationAttributeId"
+      [specificationAttributeId]="specificationAttributeId"></app-create-or-update-specification-attribute-option>
+    <div class="mt-5">
+      <app-specification-attribute-option-list></app-specification-attribute-option-list>
+    </div>
+  </div>
   }
 </div>

@@ -20,7 +20,7 @@ export class BrandService extends Destroyable {
   getBrandById(id: string): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.get<Result<Brand>>(
-        environment.baseUrl + 'brand/getbrandbyid',
+        environment.baseUrl + 'brand/getbyid',
         { id: id },
         this.onDestroy,
         (response) => {
@@ -36,7 +36,7 @@ export class BrandService extends Destroyable {
   createbrand(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<Brand>>(
-        environment.baseUrl + 'brand/createbrand',
+        environment.baseUrl + 'brand/create',
         data,
         this.onDestroy,
         (response) => {
@@ -53,7 +53,7 @@ export class BrandService extends Destroyable {
   updateBrand(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<Brand>>(
-        environment.baseUrl + 'brand/updatebrand',
+        environment.baseUrl + 'brand/update',
         data,
         this.onDestroy,
         (response) => {

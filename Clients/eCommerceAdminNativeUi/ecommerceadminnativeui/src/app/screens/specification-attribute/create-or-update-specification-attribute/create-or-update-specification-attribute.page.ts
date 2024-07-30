@@ -19,9 +19,10 @@ import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { InputComponent } from 'src/app/uı/input/input.component';
-import { CreateOrUpdateSpecificationAttributeOptionComponent } from '../create-or-update-specification-attribute-option/create-or-update-specification-attribute-option.component';
+import { CreateOrUpdateSpecificationAttributeOptionComponent } from './components/create-or-update-specification-attribute-option/create-or-update-specification-attribute-option.component';
 import { SpecificationAttributeService } from 'src/app/services/specification-attribute/specification-attribute.service';
 import { SpecificationAttributeStore } from '../../../stores/specificationattribute.store';
+import { SpecificationAttributeOptionListComponent } from './components/specification-attribute-option-list/specification-attribute-option-list.component';
 
 @Component({
   selector: 'app-create-or-update-specification-attribute.page',
@@ -41,6 +42,7 @@ import { SpecificationAttributeStore } from '../../../stores/specificationattrib
     ReactiveFormsModule,
     InputComponent,
     CreateOrUpdateSpecificationAttributeOptionComponent,
+    SpecificationAttributeOptionListComponent,
   ],
 })
 export class CreateOrUpdatSpecificationAttributePage implements OnInit {
