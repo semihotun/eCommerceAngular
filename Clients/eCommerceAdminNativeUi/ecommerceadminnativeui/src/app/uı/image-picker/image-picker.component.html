@@ -1,0 +1,7 @@
+<div class="image-picker">
+  <label class="label">{{label}}</label>
+  <input type="text" (click)="selectImageFromGallery()" [placeholder]="placeholder" [value]="value"
+    [disabled]="disabled" readonly>
+  <input type="file" id="fileInput" (change)="onFileChange($event)" hidden #fileInput />
+  <img *ngIf="selectedImage" [src]="selectedImage" />
+</div>

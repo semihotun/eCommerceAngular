@@ -1,0 +1,50 @@
+@import '../../../theme/variables.scss';
+
+.image-picker {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: black;
+    height: 38px;
+    width: 100%;
+
+    input {
+        color: black;
+        position: absolute;
+        height: 100%;
+        width: 94%;
+        background-color: white;
+        border-radius: 4px;
+        border: 1px solid $theme-color-darkgray;
+        font-size: 12px;
+        padding-left: 8px;
+        padding-top: 12px;
+
+        @media screen and (max-width:$tablet-size) {
+            width: 88%;
+        }
+    }
+
+    img {
+        top: 0px;
+        right: 0px;
+        position: absolute;
+        width: 5%;
+        height: 100%;
+
+        @media screen and (max-width:$tablet-size) {
+            width: 11%;
+        }
+    }
+
+    .label {
+        font-weight: bold;
+        padding-top: 3px;
+        padding-left: 8px;
+        font-size: 9px;
+        z-index: 1;
+        color: black;
+        position: absolute;
+    }
+
+}
