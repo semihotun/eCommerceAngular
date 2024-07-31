@@ -1,0 +1,9 @@
+<app-header [title]="'Slider'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/create-or-update-slider"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'slider/getgrid'" [btnColumnOn]="true" [editBtnUrl]="'create-or-update-slider/'"
+    [deleteBtnUrl]="'slider/delete'">
+  </app-grid>
+</div>

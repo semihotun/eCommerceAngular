@@ -34,6 +34,7 @@ import { BtnSubmitComponent } from '../btn-submit/btn-submit.component';
 import { SelectboxComponent } from '../selectbox/selectbox.component';
 import { InputComponent } from '../input/input.component';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { LazyImgDirective } from './../../directives/lazy-img.directive';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -49,6 +50,7 @@ import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
     BtnSubmitComponent,
     SelectboxComponent,
     InputComponent,
+    LazyImgDirective,
   ],
 })
 export class GridComponent implements OnInit, OnDestroy {

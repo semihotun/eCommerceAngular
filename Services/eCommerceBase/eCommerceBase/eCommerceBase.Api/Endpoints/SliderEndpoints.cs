@@ -1,8 +1,10 @@
 ﻿using Carter;
 using eCommerceBase.Application.Handlers.Sliders.Commands;
 using eCommerceBase.Application.Handlers.Sliders.Queries;
+using eCommerceBase.Application.Handlers.Sliders.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
+using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,10 +30,13 @@ namespace eCommerceBase.Api.Endpoints
                .Produces(StatusCodes.Status200OK, typeof(Result<Slider>))
                .AllowAnonymous();
             group.MapGet("/getall", GetAllSlider)
-            .Produces(StatusCodes.Status200OK, typeof(Result<Slider>))
+                .Produces(StatusCodes.Status200OK, typeof(Result<Slider>))
+                .AllowAnonymous();
+            group.MapPost("/getgrid", GetGrid)
+            .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<SliderGridDTO>>))
             .AllowAnonymous();
         }
-        public static async Task<IResult> CreateSlider([FromForm] CreateSliderCommand data, ISender sender)
+        public static async Task<IResult> CreateSlider([FromBody] CreateSliderCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -40,7 +45,7 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> UpdateSlider([FromForm] UpdateSliderCommand data, ISender sender)
+        public static async Task<IResult> UpdateSlider([FromBody] UpdateSliderCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -70,6 +75,15 @@ namespace eCommerceBase.Api.Endpoints
         public static async Task<IResult> GetAllSlider(ISender sender)
         {
             var result = await sender.Send(new GetAllSlider());
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> GetGrid([FromBody] GetSliderGridDTOQuery data, ISender sender)
+        {
+            var result = await sender.Send(data);
             if (result.Success)
             {
                 return Results.Ok(result);

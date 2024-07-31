@@ -54,4 +54,25 @@ export const routes: Routes = [
         './screens/specification-attribute/specification-attribute-list/specification-attribute-list.page'
       ).then((m) => m.SpecificationAttributeListPage),
   },
+  {
+    path: 'slider-list',
+    loadComponent: () =>
+      import('./screens/slider/slider-list/slider-list.page').then(
+        (m) => m.SliderListPage
+      ),
+  },
+  {
+    path: 'create-or-update-slider',
+    loadComponent: () =>
+      import(
+        './screens/slider/create-or-update-slider/create-or-update-slider.page'
+      ).then((m) => m.CreateOrUpdateSliderPage),
+  },
+  {
+    path: 'create-or-update-slider/:id',
+    loadComponent: () =>
+      import(
+        './screens/slider/create-or-update-slider/create-or-update-slider.page'
+      ).then((m) => m.CreateOrUpdateSliderPage),
+  },
 ];

@@ -44,7 +44,7 @@ import { BrandStore } from 'src/app/stores/brand.store';
   ],
 })
 export class CreateOrUpdateBrandPage implements OnInit {
-  title: string = 'CreateBrand';
+  title: 'Update Brand' | 'Create Brand' = 'Create Brand';
   form!: FormGroup;
   submitted: boolean = false;
   isCreate: boolean = true;
@@ -68,9 +68,9 @@ export class CreateOrUpdateBrandPage implements OnInit {
         await this.brandService.getBrandById(params.get('id')!);
         this.form.patchValue(this.brandStore.brand$());
         this.isCreate = false;
-        this.title = 'UpdateBrand';
+        this.title = 'Update Brand';
       } else {
-        this.title = 'CreateBrand';
+        this.title = 'Create Brand';
       }
     });
   }

@@ -51,19 +51,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of localData">
-          <ng-container *ngIf="btnColumnOn==false">
-            <ng-container *ngFor="let datakey of keys">
-              <td *ngIf="datakey.checked == true">
-                {{ data[datakey.propertyName] }}
-              </td>
-            </ng-container>
+          <ng-container *ngFor="let datakey of keys">
+            <td *ngIf="datakey.checked == true ">
+              @if(data[datakey.propertyName]?.startsWith('data:image/jpeg;base64')){
+              <img [src]="data[datakey.propertyName]">
+              }
+              @else{
+              {{ data[datakey.propertyName] }}
+              }
+            </td>
           </ng-container>
           <ng-container *ngIf="btnColumnOn==true">
-            <ng-container *ngFor="let datakey of keys">
-              <td *ngIf="datakey.checked == true">
-                {{ data[datakey.propertyName] }}
-              </td>
-            </ng-container>
             <td style="width: 25px;">
               @if(this.editBtnUrl){
               <a [href]="'/'+editBtnUrl+data['id']" style="color: #ff5722;" class="cursor-pointer"><i
@@ -76,8 +74,6 @@
                   class="fas fa-trash-alt"></i></a>
               }
             </td>
-
-
           </ng-container>
 
         </tr>

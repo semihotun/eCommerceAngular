@@ -1,0 +1,24 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <form [formGroup]="form" id="form-70-center">
+
+
+    <app-image-picker [label]="'Slider Image' |translate" [placeholder]="'Slider Image' |translate"
+      formControlName="sliderImage" class="mt-2"> </app-image-picker>
+    <div class="label-error" *ngIf="hasError('sliderImage','required')">{{'Required' |translate}}</div>
+
+    <app-input [label]="'Slider Heading' |translate" [placeholder]="'Slider Heading' |translate"
+      formControlName="sliderHeading" class="mt-2"> </app-input>
+    <div class="label-error" *ngIf="hasError('sliderHeading','required')">{{'Required' |translate}}</div>
+
+    <app-input [label]="'Slider Text' |translate" [placeholder]="'Slider Text' |translate" formControlName="sliderText"
+      class="mt-2"></app-input>
+    <div class="label-error" *ngIf="hasError('sliderText','required')">{{'Required' |translate}}</div>
+
+    <app-input [label]="'Slider Link' |translate" [placeholder]="'Slider Link' |translate" formControlName="sliderLink"
+      class="mt-2"></app-input>
+    <div class="label-error" *ngIf="hasError('sliderLink','required')">{{'Required' |translate}}</div>
+
+    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+  </form>
+</div>
