@@ -13,6 +13,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.ApiDoc.Swagger
         {
             builder.Services.AddSwaggerGen(c =>
             {
+                c.SchemaFilter<SwaggerExcludeFilter>();
                 c.CustomSchemaIds(type => type.ToString());
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {

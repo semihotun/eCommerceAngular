@@ -9,6 +9,7 @@ namespace eCommerceBase.Domain.AggregateModels
         {
             RoleName = roleName;
         }
+        [SwaggerIgnore]
         public ICollection<UserGroup> UserGroupList { get; private set; } = []; 
     }
 }

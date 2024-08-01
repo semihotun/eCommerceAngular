@@ -13,7 +13,7 @@ namespace eCommerceBase.Domain.SeedWork
         public DateTime UpdatedOnUtc { get; set; }
         int? _requestedHashCode;
         private readonly List<IObjectNotification> _domainEvents = [];
-        [JsonIgnore]
+        [SwaggerIgnore]
         public IReadOnlyCollection<IObjectNotification>? DomainEvents => _domainEvents?.AsReadOnly();
         public void AddDomainEvent(IObjectNotification eventItem)
         {

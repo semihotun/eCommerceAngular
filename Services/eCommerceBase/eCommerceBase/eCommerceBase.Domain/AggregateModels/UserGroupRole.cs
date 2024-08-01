@@ -6,7 +6,9 @@ namespace eCommerceBase.Domain.AggregateModels
     {
         public Guid UserGrupId { get; private set; }
         public Guid RoleId { get; private set; }
+        [SwaggerIgnore]
         public UserGroup? UserGroup { get; private set; }
+        [SwaggerIgnore]
         public Role? Role { get; private set; }
 
         public UserGroupRole(Guid userGrupId, Guid roleId)

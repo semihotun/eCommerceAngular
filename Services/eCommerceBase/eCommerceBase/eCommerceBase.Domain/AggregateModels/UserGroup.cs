@@ -10,9 +10,11 @@ namespace eCommerceBase.Domain.AggregateModels
         {
             Name = name;
         }
-
+        [SwaggerIgnore]
         public ICollection<AdminUser> AdminUserList { get; private set; } = [];
+        [SwaggerIgnore]
         public ICollection<CustomerUser> CustomerUserList { get; private set; } = [];
+        [SwaggerIgnore]
         public ICollection<UserGroupRole> UserGroupRoleList { get; private set; } = [];
 
         public void SetId(Guid id)

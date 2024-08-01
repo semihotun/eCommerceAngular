@@ -13,6 +13,7 @@ namespace eCommerceBase.Domain.AggregateModels
             Name = name;
         }
 
+        [SwaggerIgnore]
         public SpecificationAttribute? SpecificationAttribute { get; private set; }
 
         public void SetSpecificationAttribute(SpecificationAttribute? specificationAttribute)
