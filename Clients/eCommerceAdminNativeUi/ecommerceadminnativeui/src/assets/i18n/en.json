@@ -1,3 +1,26 @@
 {
-
+	"Search in List": "Search in List",
+	"Home": "Home",
+	"Brand": "Brand",
+	"Specification Attribute": "Specification Attribute",
+	"Slider": "Slider",
+	"Category": "Category",
+	"And|Or": "And|Or",
+	"And": "And",
+	"Or": "Or",
+	"Select Filter Column": "Select Filter Column",
+	"Filter Value": "Filter Value",
+	"Add": "Add",
+	"Property List": "Property List",
+	"Name": "Name",
+	"Required": "Required",
+	"Save": "Save",
+	"Specification Attribute Option Add": "Specification Attribute Option Add",
+	"Add Specification Attribute Option": "Add Specification Attribute Option",
+	"Slider Image": "Slider Image",
+	"Slider Heading": "Slider Heading",
+	"Slider Text": "Slider Text",
+	"Slider Link": "Slider Link",
+	"Category Name": "Category Name",
+	"Brand Name": "Brand Name"
 }
