@@ -21,7 +21,6 @@
     <Folder Include="Handlers\Roles\Queries\" />
     <Folder Include="Handlers\Sliders\Commands\" />
     <Folder Include="Handlers\Sliders\Mappers\" />
-    <Folder Include="Helpers\" />
 	<Folder Include="Jobs\" />
   </ItemGroup>
   <ItemGroup>

@@ -12,8 +12,7 @@ namespace eCommerceBase.Persistence.EntityConfigurations
 
             builder.HasMany(c => c.SubCategoryList)
              .WithOne(c => c.ParentCategory)
-             .HasForeignKey(c => c.ParentCategoryId)
-             .OnDelete(DeleteBehavior.Cascade);
+             .HasForeignKey(c => c.ParentCategoryId);
         }
     }
 }
