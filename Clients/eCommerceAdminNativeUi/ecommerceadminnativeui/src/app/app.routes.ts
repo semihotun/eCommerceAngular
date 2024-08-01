@@ -74,5 +74,13 @@ export const routes: Routes = [
       import(
         './screens/slider/create-or-update-slider/create-or-update-slider.page'
       ).then((m) => m.CreateOrUpdateSliderPage),
+  },  {
+    path: 'category-list',
+    loadComponent: () => import('./screens/category/category-list/category-list.page').then( m => m.CategoryListPage)
   },
+  {
+    path: 'create-or-update-category',
+    loadComponent: () => import('./screens/category/create-or-update-category/create-or-update-category.page').then( m => m.CreateOrUpdateCategoryPage)
+  },
+
 ];

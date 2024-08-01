@@ -1,0 +1,47 @@
+@import '../../../../../../theme/variables.scss';
+
+.category-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 15px;
+
+    .category-text {
+        margin-right: 10px;
+
+        &::before {
+            content: '>';
+            color: $theme-color-blue;
+            margin-right: 5px;
+        }
+    }
+
+    .btn-list {
+        display: flex;
+        justify-content: flex-end;
+
+        #delete-btn {
+
+            border: 1px solid red;
+
+            ion-icon {
+                color: red;
+            }
+        }
+
+        a {
+            padding: 5px;
+            border-radius: 25%;
+            margin-right: 5px;
+            color: $theme-color-blue;
+            display: flex;
+            align-items: center;
+            vertical-align: middle;
+            border: 1px solid $theme-color-blue;
+
+            :hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -1,6 +1,7 @@
 export class Slider {
-  SliderHeading!: string;
-  SliderText!: string;
-  SliderLink!: string;
-  SliderImage!: string;
+  id!: string;
+  sliderHeading!: string;
+  sliderText!: string;
+  sliderLink!: string;
+  sliderImage!: string;
 }

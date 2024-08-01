@@ -1,0 +1,17 @@
+<div>
+  <div *ngFor="let category of categories">
+    <div [ngStyle]="{'margin-left.px': level * 30}" class="category-wrapper">
+      <div class="category-text">{{ category.categoryName }}</div>
+      <div class="btn-list">
+        @if (this.level < maxLevel) { <a (click)="openUpdateModal(category.id)"><ion-icon
+            name="add-outline"></ion-icon></a>}
+          <a (click)="removeCategory(category.id)" id="delete-btn"><ion-icon name="close-outline"></ion-icon></a>
+          <a (click)="editCategory(category.id)"><ion-icon name="create-outline"></ion-icon></a>
+
+      </div>
+    </div>
+    <app-category-tree *ngIf="category.subCategories && category.subCategories.length > 0"
+      [categories]="category.subCategories" [level]="level + 1">
+    </app-category-tree>
+  </div>
+</div>

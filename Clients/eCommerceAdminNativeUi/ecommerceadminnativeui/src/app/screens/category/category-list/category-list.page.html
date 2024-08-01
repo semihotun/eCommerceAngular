@@ -1,0 +1,9 @@
+<app-header [title]="'Category'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a (click)="openCreateModal()"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <div class="category-tree">
+    <app-category-tree [categories]="categoryStore.categoryTree$()"></app-category-tree>
+  </div>
+</div>
