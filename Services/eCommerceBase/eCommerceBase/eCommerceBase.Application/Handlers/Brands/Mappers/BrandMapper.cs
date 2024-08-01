@@ -1,7 +1,7 @@
-using Riok.Mapperly.Abstractions;
 using eCommerceBase.Application.Handlers.Brands.Commands;
+using eCommerceBase.Application.Handlers.Brands.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Application.Handlers.Mapper;
+using Riok.Mapperly.Abstractions;
 
 namespace eCommerceBase.Application.Handlers.Mapper
 {
@@ -10,5 +10,6 @@ namespace eCommerceBase.Application.Handlers.Mapper
     {
         public static partial Brand CreateBrandCommandToBrand(CreateBrandCommand brand);
         public static partial Brand UpdateBrandCommandToBrand(UpdateBrandCommand brand);
+        public static partial GetBrandByIdDTO BrandToGetBrandByIdDTO(Brand brand);
     }
 }

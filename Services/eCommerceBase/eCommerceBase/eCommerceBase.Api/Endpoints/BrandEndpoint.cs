@@ -27,7 +27,7 @@ namespace eCommerceBase.Api.Endpoints
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
             group.MapGet("/getbyid", GetBrandById)
-               .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
+               .Produces(StatusCodes.Status200OK, typeof(Result<GetBrandByIdDTO>))
                .AllowAnonymous();
             group.MapGet("/getall", GetAllBrand)
                 .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))

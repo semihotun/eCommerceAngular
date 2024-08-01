@@ -25,7 +25,7 @@ public class CreateSpecificationAttributeOptionCommandHandler(IWriteDbRepository
         {
             var data = SpecificationAttributeOptionMapper.CreateSpecificationAttributeOptionCommandToSpecificationAttributeOption(request);
             await _specificationAttributeOptionRepository.AddAsync(data);
-            await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttributeOptions");
+            await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttribute");
             return Result.SuccessResult(Messages.Added);
         });
     }

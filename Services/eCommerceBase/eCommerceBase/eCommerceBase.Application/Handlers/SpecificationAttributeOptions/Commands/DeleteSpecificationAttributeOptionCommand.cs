@@ -26,7 +26,7 @@ public class DeleteSpecificationAttributeOptionCommandHandler(IWriteDbRepository
             {
                 data.Deleted = true;
                 _specificationAttributeOptionRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttributeOptions");
+                await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttribute");
                 return Result.SuccessResult(Messages.Deleted);
             }
             else
