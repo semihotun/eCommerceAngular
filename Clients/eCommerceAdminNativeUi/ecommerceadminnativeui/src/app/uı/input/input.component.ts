@@ -25,7 +25,9 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   onTouched: any = () => {};
   val: any = null;
   inputType: any = 'text';
-  public disabled: boolean = false;
+  // public disabled: boolean = false;
+
+  @Input() disabled: boolean = false;
 
   @Input() placeholder: string = '';
   @Input() label: string = '';
@@ -51,7 +53,7 @@ export class InputComponent implements ControlValueAccessor, OnInit {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    // this.disabled = isDisabled;
   }
 
   onInputChange(event: any): void {

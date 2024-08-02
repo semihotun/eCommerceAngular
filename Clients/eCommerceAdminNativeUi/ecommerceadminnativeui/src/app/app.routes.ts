@@ -74,13 +74,40 @@ export const routes: Routes = [
       import(
         './screens/slider/create-or-update-slider/create-or-update-slider.page'
       ).then((m) => m.CreateOrUpdateSliderPage),
-  },  {
+  },
+  {
     path: 'category-list',
-    loadComponent: () => import('./screens/category/category-list/category-list.page').then( m => m.CategoryListPage)
+    loadComponent: () =>
+      import('./screens/category/category-list/category-list.page').then(
+        (m) => m.CategoryListPage
+      ),
   },
   {
     path: 'create-or-update-category',
-    loadComponent: () => import('./screens/category/create-or-update-category/create-or-update-category.page').then( m => m.CreateOrUpdateCategoryPage)
+    loadComponent: () =>
+      import(
+        './screens/category/create-or-update-category/create-or-update-category.page'
+      ).then((m) => m.CreateOrUpdateCategoryPage),
   },
-
+  {
+    path: 'create-or-update-page',
+    loadComponent: () =>
+      import(
+        './screens/page/create-or-update-page/create-or-update-page.page'
+      ).then((m) => m.CreateOrUpdatePagePage),
+  },
+  {
+    path: 'create-or-update-page/:id',
+    loadComponent: () =>
+      import(
+        './screens/page/create-or-update-page/create-or-update-page.page'
+      ).then((m) => m.CreateOrUpdatePagePage),
+  },
+  {
+    path: 'page-list',
+    loadComponent: () =>
+      import('./screens/page/page-list/page-list.page').then(
+        (m) => m.PageListPage
+      ),
+  },
 ];

@@ -1,0 +1,25 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <form [formGroup]="form" id="form-70-center">
+
+    <div class="row">
+      <app-input [label]="'Page Title' |translate" [placeholder]="'Page Title' |translate"
+        formControlName="pageTitle"></app-input>
+      <div class="label-error" *ngIf="hasError('pageTitle','required')">{{'Required' |translate}}</div>
+    </div>
+    @if (!this.isCreate) {
+    <div class="row">
+      <app-input [label]="'Slug' |translate" [placeholder]="'Slug' |translate" formControlName="slug" [disabled]="true"
+        formControlName="slug"></app-input>
+    </div>
+    }
+
+
+    <div class="row">
+      <app-text-editor [label]="'Page Content' |translate" formControlName="pageContent"></app-text-editor>
+      <div class="label-error" *ngIf="hasError('pageContent','required')">{{'Required' |translate}}</div>
+    </div>
+
+    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+  </form>
+</div>

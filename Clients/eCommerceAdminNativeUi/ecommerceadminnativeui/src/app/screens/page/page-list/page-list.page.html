@@ -1,0 +1,9 @@
+<app-header [title]="'Page'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/create-or-update-page"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'page/getgrid'" [btnColumnOn]="true" [editBtnUrl]="'create-or-update-page/'"
+    [deleteBtnUrl]="'page/delete'">
+  </app-grid>
+</div>

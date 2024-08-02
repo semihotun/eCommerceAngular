@@ -19,6 +19,12 @@
         font-size: 12px;
         padding-left: 8px;
         padding-top: 12px;
+
+        &:disabled {
+            background-color: $theme-color-disabled-color;
+            color: $theme-color-darkgray;
+            cursor: not-allowed;
+        }
     }
 
     .label {
