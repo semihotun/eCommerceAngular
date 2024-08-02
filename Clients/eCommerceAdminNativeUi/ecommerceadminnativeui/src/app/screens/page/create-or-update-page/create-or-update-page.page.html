@@ -13,8 +13,6 @@
         formControlName="slug"></app-input>
     </div>
     }
-
-
     <div class="row">
       <app-text-editor [label]="'Page Content' |translate" formControlName="pageContent"></app-text-editor>
       <div class="label-error" *ngIf="hasError('pageContent','required')">{{'Required' |translate}}</div>
