@@ -1,0 +1,24 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <form [formGroup]="form" id="form-70-center">
+    <div class="row">
+      <app-input [label]="'Template Header' |translate" [placeholder]="'Template Header' |translate"
+        formControlName="templateHeader"></app-input>
+    </div>
+    <div class="row">
+      <app-text-editor [label]="'Template Content' |translate" formControlName="templateContent"></app-text-editor>
+      <div class="label-error" *ngIf="hasError('templateContent','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="label-error" *ngIf="hasError('templateHeader','required')">{{'Required' |translate}}</div>
+    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+    @if(mailTempalteStore.mailTemplate$().mailTemplateKeywordList.length >0){
+    <div class="keyword-list">
+      @for (item of mailTempalteStore.mailTemplate$().mailTemplateKeywordList; track $index) {
+      <div class="keyword" (click)="copyClipBoard(item.keyword)">
+        {{"#{{"+item.keyword+"}}"}}
+      </div>
+      }
+    </div>
+    }
+  </form>
+</div>

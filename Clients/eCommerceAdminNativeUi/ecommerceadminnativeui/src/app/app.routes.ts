@@ -110,4 +110,25 @@ export const routes: Routes = [
         (m) => m.PageListPage
       ),
   },
+  {
+    path: 'mail-template-list',
+    loadComponent: () =>
+      import(
+        './screens/mail-template/mail-template-list/mail-template-list.page'
+      ).then((m) => m.MailTemplateListPage),
+  },
+  {
+    path: 'create-or-update-mail-template',
+    loadComponent: () =>
+      import(
+        './screens/mail-template/create-or-update-mail-template/create-or-update-mail-template.page'
+      ).then((m) => m.CreateOrUpdateMailTemplatePage),
+  },
+  {
+    path: 'create-or-update-mail-template/:id',
+    loadComponent: () =>
+      import(
+        './screens/mail-template/create-or-update-mail-template/create-or-update-mail-template.page'
+      ).then((m) => m.CreateOrUpdateMailTemplatePage),
+  },
 ];

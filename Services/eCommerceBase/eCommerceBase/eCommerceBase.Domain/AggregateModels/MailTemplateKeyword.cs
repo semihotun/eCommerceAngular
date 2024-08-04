@@ -14,5 +14,10 @@ namespace eCommerceBase.Domain.AggregateModels
             Keyword = keyword;
             Description = description;
         }
+        public void SetMailTemplate(MailTemplate mailTemplate)
+        {
+            MailTemplate = mailTemplate;
+            MailTemplateId = mailTemplate.Id;
+        }
     }
 }

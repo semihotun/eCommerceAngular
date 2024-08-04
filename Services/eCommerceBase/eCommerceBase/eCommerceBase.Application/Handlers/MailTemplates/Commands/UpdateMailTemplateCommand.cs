@@ -10,7 +10,6 @@ using eCommerceBase.Application.Handlers.Mapper;
 namespace eCommerceBase.Application.Handlers.MailTemplates.Commands;
 public record UpdateMailTemplateCommand(string TemplateHeader,
 		string TemplateContent,
-		ICollection<MailTemplateKeyword> MailTemplateKeywordList,
 		System.Guid Id) : IRequest<Result>;
 public class UpdateMailTemplateCommandHandler(IWriteDbRepository<MailTemplate> mailTemplateRepository,
 		IUnitOfWork unitOfWork,

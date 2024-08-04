@@ -7,6 +7,6 @@ namespace eCommerceBase.Application.Handlers.Mapper
     [Mapper]
     public static partial class MailTemplateMapper
     {
-        public static partial void UpdateMailTemplateCommandToMailTemplate(UpdateMailTemplateCommand mailTemplate, MailTemplate mailTemplate);
+        public static partial MailTemplate UpdateMailTemplateCommandToMailTemplate(UpdateMailTemplateCommand mailTemplate);
     }
 }

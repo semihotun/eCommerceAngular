@@ -1,0 +1,26 @@
+@import '../../../../theme/variables.scss';
+
+.row {
+    margin-top: 10px;
+}
+
+.keyword-list {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    // background-color: $theme-color-disabled-color;
+
+    .keyword {
+        font-size: 14px;
+        color: white;
+        margin: 5px;
+        padding: 5px;
+        background-color: #ccc;
+        border-radius: 8px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
