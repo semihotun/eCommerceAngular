@@ -36,7 +36,7 @@
 
  a {
      text-decoration: none;
-     color: white;
+     color: white !important;
      font-size: 14px;
  }
 
@@ -49,13 +49,45 @@
              .link {
                  margin-top: 10px;
 
-                 ::before {
-                     content: '>';
+
+                 .sub-category-open {
                      color: white;
-                     margin-right: 5px;
+                     box-sizing: border-box;
+                     padding: 0px 20px;
+                     position: relative;
+                     display: flex;
+                     flex-direction: column;
+                     height: auto;
+                     flex-wrap: wrap;
+                     overflow: hidden;
+                 }
+
+                 .sub-category-close {
+                     display: none;
+                 }
+
+                 .sub-category {
+                     margin-top: 10px;
+                     font-size: 14px;
+                     color: white;
+
+                     a {
+                         font-size: 14px;
+                         color: white;
+
+                         &:hover {
+                             cursor: pointer;
+                         }
+                     }
                  }
 
                  a {
+                     &::before {
+                         content: '>';
+                         color: white;
+                         margin-right: 5px;
+                     }
+
                      font-size: 14px;
                      padding: 3px;
                      width: 100%;
