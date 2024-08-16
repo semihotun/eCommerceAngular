@@ -1,0 +1,17 @@
+@import '../../../theme/variables.scss';
+
+ion-segment {
+    margin-bottom: 20px;
+}
+
+ion-segment-button {
+    --indicator-color: #{$theme-color-blue};
+    height: 28px;
+    font-size: 14px;
+
+    &.segment-button-checked {
+        ion-label {
+            color: white;
+        }
+    }
+}
