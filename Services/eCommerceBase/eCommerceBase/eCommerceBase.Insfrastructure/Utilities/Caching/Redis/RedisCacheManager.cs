@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MassTransit.Futures.Contracts;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Caching.Distributed;
@@ -12,11 +13,13 @@ namespace eCommerceBase.Insfrastructure.Utilities.Caching.Redis
     /// <summary>
     /// use redis for cache
     /// </summary>
-    public class RedisCacheManager(IDistributedCache distributedCache, IConfiguration configuration) : ICacheService
+    public class RedisCacheManager(IDistributedCache distributedCache, IConfiguration configuration,
+        IHttpContextAccessor? httpContextAccessor) : ICacheService
     {
         private static readonly ConcurrentDictionary<string, bool> CacheKeys = new();
         private readonly IDistributedCache _distributedCache = distributedCache;
         private readonly IConfiguration _configuration = configuration;
+        private readonly IHttpContextAccessor? _httpContextAccessor = httpContextAccessor;
 
         public string GetKey(string region, string methodName, object arg)
         {
@@ -62,7 +65,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Caching.Redis
         {
             var region = _configuration["RegionName"];
             var methodName = arg.GetType().FullName?.Replace(region + ".Application.Handlers.", "");
-            var key = $"{region}:{methodName}({BuildKey(arg)})";
+            var key = $"{region}:{methodName}:{GetLanguageCode()}({BuildKey(arg)})";
             T? cachedValue = await GetAsync<T>(key, cancellation);
             if (cachedValue is not null)
             {
@@ -134,6 +137,14 @@ namespace eCommerceBase.Insfrastructure.Utilities.Caching.Redis
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(ttlSecond)
             };
+        }
+        private string GetLanguageCode (){
+            var languageCode = "tr";
+            if (!String.IsNullOrEmpty(_httpContextAccessor?.HttpContext?.Request.Headers["LanguageCode"].ToString()))
+            {
+                languageCode = _httpContextAccessor?.HttpContext?.Request.Headers["LanguageCode"].ToString();
+            }
+            return languageCode!;
         }
     }
 }
