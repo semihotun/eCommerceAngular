@@ -32,6 +32,12 @@ register();
 })
 export class AppComponent {
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('tr');
+    this.translate.use(
+      localStorage.getItem('languageCode')?.toString()! ?? 'tr'
+    );
+    localStorage.setItem(
+      'languageCode',
+      localStorage.getItem('languageCode')?.toString()! ?? 'tr'
+    );
   }
 }

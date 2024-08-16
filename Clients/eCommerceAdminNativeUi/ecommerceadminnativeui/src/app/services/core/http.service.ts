@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +24,11 @@ export class HttpService {
       console.log('HTTP request completed', url);
     }
   ): void {
-    this.http.post<T>(url, data).subscribe({
+    let headers = new HttpHeaders({
+      LanguageCode:
+        data?.languageCode || localStorage.getItem('languageCode')?.toString()!,
+    });
+    this.http.post<T>(url, data, { headers: headers }).subscribe({
       next: onNext,
       error: onError,
       complete: onComplete,
@@ -39,7 +46,10 @@ export class HttpService {
       console.log('HTTP request completed', url);
     }
   ): void {
-    this.http.get<T>(url, { params }).subscribe({
+    let headers = new HttpHeaders({
+      LanguageCode: localStorage.getItem('languageCode')?.toString()!,
+    });
+    this.http.get<T>(url, { params, headers: headers }).subscribe({
       next: onNext,
       error: onError,
       complete: onComplete,
