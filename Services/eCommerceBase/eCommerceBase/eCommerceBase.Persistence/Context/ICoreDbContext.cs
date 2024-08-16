@@ -9,6 +9,7 @@ namespace eCommerceBase.Persistence.Context
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         IQueryable<TEntity> Query<TEntity>() where TEntity : BaseEntity;
+        IQueryable<TEntity> WriteQuery<TEntity>() where TEntity : BaseEntity;
         DatabaseFacade Database { get; }
         ChangeTracker ChangeTracker { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

@@ -13,42 +13,13 @@ namespace eCommerceBase.Persistence.GenericRepository
         {
             _writeContext = writeContext;
         }
-        public void AddRange(List<TEntity> entity)
-        {
-            _writeContext.Set<TEntity>().AddRange(entity);
-        }
-        public async Task AddRangeAsync(IEnumerable<TEntity> entity)
-        {
-            await _writeContext.Set<TEntity>().AddRangeAsync(entity);
-        }
-        public TEntity Update(TEntity entity)
-        {
-            _writeContext.Set<TEntity>().Update(entity);
-            return entity;
-        }
-        public void Remove(TEntity entity)
-        {
-            entity.Deleted = true;
-            _writeContext.Set<TEntity>().Update(entity);
-        }
-        public async Task<TEntity> AddAsync(TEntity entity)
-        {
-            return (await _writeContext.Set<TEntity>().AddAsync(entity)).Entity;
-        }
-        public void RemoveRange(List<TEntity> entity)
-        {
-            foreach (var item in entity)
-            {
-                Remove(item);
-            }
-        }
         public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> expression)
         {
             return await _writeContext.Query<TEntity>().AnyAsync(expression);
         }
         public async Task<TEntity?> GetByIdAsync(Guid Id)
         {
-            var entity = await _writeContext.Set<TEntity>().FindAsync(Id);
+            var entity = await _writeContext.Query<TEntity>().FirstOrDefaultAsync(x=>x.Id == Id);
             if (entity?.Deleted == false)
             {
                 return entity;

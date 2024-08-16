@@ -42,7 +42,7 @@ namespace eCommerceBase.Persistence.Extensions
             }, ServiceLifetime.Transient);
             var optionBuilder = new DbContextOptionsBuilder<CoreDbContext>()
                 .UseSqlServer(connectionString);
-            await using (var ctx = new CoreDbContext(optionBuilder.Options))
+            await using (var ctx = new CoreDbContext(optionBuilder.Options,null))
             {
                 if (ctx.Database.EnsureCreated())
                 {

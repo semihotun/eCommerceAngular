@@ -7,10 +7,11 @@ namespace eCommerceBase.Domain.SeedWork
     /// </summary>
     public abstract class BaseEntity : IEntity
     {
-        public Guid Id { get;  set; }
+        public Guid Id { get; set; }
         public bool Deleted { get; set; }
         public DateTime CreatedOnUtc { get; set; }
         public DateTime UpdatedOnUtc { get; set; }
+        public string? LanguageCode { get; set; } = "tr";
         int? _requestedHashCode;
         private readonly List<IObjectNotification> _domainEvents = [];
         [SwaggerIgnore]
