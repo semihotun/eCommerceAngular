@@ -63,6 +63,7 @@ export class CreateOrUpdatSpecificationAttributePage implements OnInit {
     this.speficationAttributeForm = this.formBuilder.group({
       id: [''],
       name: ['', [Validators.required]],
+      languageCode: [''],
     });
   }
   async ngOnInit() {

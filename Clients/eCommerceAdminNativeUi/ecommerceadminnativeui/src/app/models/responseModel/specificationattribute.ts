@@ -1,10 +1,10 @@
-export class SpecificationAttribute {
-  id!: string;
+import { BaseEntity } from '../core/baseEntity';
+
+export class SpecificationAttribute extends BaseEntity {
   name!: string;
   specificationAttributeOption!: SpecificationAttributeOption[];
 }
-export class SpecificationAttributeOption {
-  id!: string;
+export class SpecificationAttributeOption extends BaseEntity {
   specificationAttributeId!: string;
   name!: string;
 }

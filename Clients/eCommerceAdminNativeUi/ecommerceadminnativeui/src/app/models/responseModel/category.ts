@@ -1,5 +1,6 @@
-export class Category {
-  id!: string;
+import { BaseEntity } from '../core/baseEntity';
+
+export class Category extends BaseEntity {
   categoryName!: string;
   parentCategoryId!: string | null;
 }

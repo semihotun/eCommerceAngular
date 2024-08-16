@@ -24,6 +24,7 @@ import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputComponent } from 'src/app/uı/input/input.component';
+import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
 
 @Component({
   selector: 'app-create-or-update-category',
@@ -46,6 +47,7 @@ import { InputComponent } from 'src/app/uı/input/input.component';
     IonButton,
     IonButtons,
     IonIcon,
+    SegmentLanguageComponent,
   ],
 })
 export class CreateOrUpdateCategoryPage implements OnInit {
@@ -66,6 +68,7 @@ export class CreateOrUpdateCategoryPage implements OnInit {
       id: [''],
       categoryName: ['', [Validators.required]],
       parentCategoryId: [null],
+      languageCode: [''],
     });
   }
   async ngOnInit() {
@@ -84,6 +87,7 @@ export class CreateOrUpdateCategoryPage implements OnInit {
     return this.submitted && control?.hasError(errorName);
   }
   async submitForm() {
+    console.log(this.form.value);
     this.submitted = true;
     if (this.form.valid) {
       let data = {

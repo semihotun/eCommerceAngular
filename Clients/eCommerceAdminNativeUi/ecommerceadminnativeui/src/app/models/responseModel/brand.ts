@@ -1,4 +1,5 @@
-export class Brand {
-  id!: string;
+import { BaseEntity } from '../core/baseEntity';
+
+export class Brand extends BaseEntity {
   brandName!: string;
 }

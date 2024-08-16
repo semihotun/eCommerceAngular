@@ -10,6 +10,5 @@ namespace eCommerceBase.Application.Handlers.Mapper
     {
         public static partial Brand CreateBrandCommandToBrand(CreateBrandCommand brand);
         public static partial Brand UpdateBrandCommandToBrand(UpdateBrandCommand brand);
-        public static partial GetBrandByIdDTO BrandToGetBrandByIdDTO(Brand brand);
     }
 }

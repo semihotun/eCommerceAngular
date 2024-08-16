@@ -14,6 +14,7 @@ import { CategoryService } from 'src/app/services/category/category.service';
 import { CategoryStore } from 'src/app/stores/category.store';
 import { CategoryTreeComponent } from './components/category-tree/category-tree.component';
 import { CreateOrUpdateCategoryPage } from '../create-or-update-category/create-or-update-category.page';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-category-list',
@@ -33,6 +34,7 @@ import { CreateOrUpdateCategoryPage } from '../create-or-update-category/create-
   ],
 })
 export class CategoryListPage implements OnInit {
+  translateService = inject(TranslateService);
   constructor(private modalController: ModalController) {}
 
   async ngOnInit() {

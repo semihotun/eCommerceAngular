@@ -55,6 +55,7 @@ export class CreateOrUpdateSpecificationAttributeOptionComponent
       id: [''],
       name: ['', [Validators.required]],
       specificationAttributeId: [''],
+      languageCode: [''],
     });
   }
   async ngOnInit() {

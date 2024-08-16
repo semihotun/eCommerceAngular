@@ -24,6 +24,7 @@ export class BrandService extends Destroyable {
         { id: id },
         this.onDestroy,
         (response) => {
+          console.log(response.data);
           this.brandStore.setBrand(response.data);
           resolve();
         },

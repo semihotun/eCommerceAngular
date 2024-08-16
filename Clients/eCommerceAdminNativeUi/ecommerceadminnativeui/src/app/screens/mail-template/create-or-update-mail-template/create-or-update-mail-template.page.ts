@@ -62,6 +62,7 @@ export class CreateOrUpdateMailTemplatePage implements OnInit {
       id: [''],
       templateHeader: [''],
       templateContent: ['', [Validators.required]],
+      languageCode: [''],
     });
   }
   async ngOnInit() {

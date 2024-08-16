@@ -63,6 +63,7 @@ export class CreateOrUpdatePagePage implements OnInit {
       pageTitle: ['', [Validators.required]],
       pageContent: ['', [Validators.required]],
       slug: [''],
+      languageCode: [''],
     });
   }
   async ngOnInit() {

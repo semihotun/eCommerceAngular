@@ -76,6 +76,7 @@ export class CreateOrUpdateSliderPage implements OnInit {
       sliderHeading: ['', [Validators.required]],
       sliderText: ['', [Validators.required]],
       sliderLink: ['', [Validators.required]],
+      languageCode: [''],
     });
   }
   async submitForm() {
