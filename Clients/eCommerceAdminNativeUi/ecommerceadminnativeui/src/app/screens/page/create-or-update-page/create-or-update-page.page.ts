@@ -23,6 +23,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PageStore } from 'src/app/stores/page.store';
 import { PageService } from 'src/app/services/page.service';
 import { TextEditorComponent } from '../../../u\u0131/text-editor/text-editor.component';
+import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
 
 @Component({
   selector: 'app-create-or-update-page',
@@ -43,6 +44,7 @@ import { TextEditorComponent } from '../../../u\u0131/text-editor/text-editor.co
     InputComponent,
     BtnSubmitComponent,
     TextEditorComponent,
+    SegmentLanguageComponent,
   ],
 })
 export class CreateOrUpdatePagePage implements OnInit {
