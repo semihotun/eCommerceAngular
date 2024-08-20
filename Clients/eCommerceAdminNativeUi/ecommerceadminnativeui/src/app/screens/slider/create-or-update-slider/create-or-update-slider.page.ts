@@ -22,6 +22,7 @@ import { InputComponent } from 'src/app/uı/input/input.component';
 import { SliderService } from 'src/app/services/slider.service';
 import { SliderStore } from 'src/app/stores/slider.store';
 import { ImagePickerComponent } from '../../../u\u0131/image-picker/image-picker.component';
+import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
 
 @Component({
   selector: 'app-create-or-update-slider',
@@ -41,6 +42,7 @@ import { ImagePickerComponent } from '../../../u\u0131/image-picker/image-picker
     InputComponent,
     ReactiveFormsModule,
     ImagePickerComponent,
+    SegmentLanguageComponent,
   ],
 })
 export class CreateOrUpdateSliderPage implements OnInit {

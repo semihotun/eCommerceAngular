@@ -1,7 +1,7 @@
 <app-header [title]="title |translate" [backButton]="true"></app-header>
 <div id="page">
   <form [formGroup]="form" id="form-70-center">
-
+    <app-segment-language formControlName="languageCode"></app-segment-language>
 
     <app-image-picker [label]="'Slider Image' |translate" [placeholder]="'Slider Image' |translate"
       formControlName="sliderImage" class="mt-2"> </app-image-picker>
