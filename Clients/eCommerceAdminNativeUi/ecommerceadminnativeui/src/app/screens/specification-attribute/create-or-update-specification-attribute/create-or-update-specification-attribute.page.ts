@@ -23,6 +23,7 @@ import { CreateOrUpdateSpecificationAttributeOptionComponent } from './component
 import { SpecificationAttributeService } from 'src/app/services/specification-attribute/specification-attribute.service';
 import { SpecificationAttributeStore } from '../../../stores/specificationattribute.store';
 import { SpecificationAttributeOptionListComponent } from './components/specification-attribute-option-list/specification-attribute-option-list.component';
+import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
 
 @Component({
   selector: 'app-create-or-update-specification-attribute.page',
@@ -43,6 +44,7 @@ import { SpecificationAttributeOptionListComponent } from './components/specific
     InputComponent,
     CreateOrUpdateSpecificationAttributeOptionComponent,
     SpecificationAttributeOptionListComponent,
+    SegmentLanguageComponent,
   ],
 })
 export class CreateOrUpdatSpecificationAttributePage implements OnInit {
