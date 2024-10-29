@@ -131,4 +131,25 @@ export const routes: Routes = [
         './screens/mail-template/create-or-update-mail-template/create-or-update-mail-template.page'
       ).then((m) => m.CreateOrUpdateMailTemplatePage),
   },
+  {
+    path: 'product-list',
+    loadComponent: () =>
+      import('./screens/product/product-list/product-list.page').then(
+        (m) => m.ProductListPage
+      ),
+  },
+  {
+    path: 'create-or-update-product',
+    loadComponent: () =>
+      import(
+        './screens/product/create-or-update-product/create-or-update-product.page'
+      ).then((m) => m.CreateOrUpdateProductPage),
+  },
+  {
+    path: 'create-or-update-product/:id',
+    loadComponent: () =>
+      import(
+        './screens/product/create-or-update-product/create-or-update-product.page'
+      ).then((m) => m.CreateOrUpdateProductPage),
+  },
 ];

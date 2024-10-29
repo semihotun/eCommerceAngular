@@ -6,7 +6,9 @@
   </ion-header>
   <ion-content class="ion-padding">
     <div class="right-menu">
+
       <span class="link"><a routerLink="/home">{{'Home' | translate}}</a></span>
+      <span class="link"><a routerLink="/product-list">{{'Product' | translate}}</a></span>
       <span class="link"><a routerLink="/brand-list">{{'Brand' | translate}}</a></span>
       <span class="link"><a routerLink="/specification-attribute-list">{{'Specification Attribute' |
           translate}}</a></span>
@@ -18,6 +20,7 @@
           translate}}</a></span>
       <span class="link"><a routerLink="/mail-template-list">{{'Mail Template' |
           translate}}</a></span>
+
       <span class="link">
         <a (click)="showSubNodeCategory($event.currentTarget!)">{{(translateService.currentLang ||
           translateService.defaultLang).toUpperCase()}}</a>

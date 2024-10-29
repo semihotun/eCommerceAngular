@@ -43,9 +43,14 @@ export class SelectboxComponent implements ControlValueAccessor {
 
   writeValue(obj: any): void {
     if (obj !== undefined && this.val !== obj) {
-      //daha sonra değişicek
-      this.val = obj;
-      this.onChange(this.val);
+      const foundItem =
+        this.textProperty && this.valueProperty
+          ? this.data.find((item) => item[this.valueProperty] === obj)
+          : null;
+
+      this.val = foundItem ? foundItem[this.textProperty] : obj;
+
+      this.onChange(obj);
       this.onTouched();
     }
   }

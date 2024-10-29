@@ -1,7 +1,7 @@
 ﻿using Carter;
-using eCommerceBase.Application.Handlers.Brands.Commands;
-using eCommerceBase.Application.Handlers.Brands.Queries;
-using eCommerceBase.Application.Handlers.Brands.Queries.Dtos;
+using eCommerceBase.Application.Handlers.Products.Commands;
+using eCommerceBase.Application.Handlers.Products.Queries;
+using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
@@ -10,32 +10,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerceBase.Api.Endpoints
 {
-    public class BrandEndpoints : ICarterModule
+    public class ProductEndpoints : ICarterModule
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("api/brand");
+            var group = app.MapGroup("api/product");
 
-            group.MapPost("/create", CreateBrand)
+            group.MapPost("/create", CreateProduct)
+                .Produces(StatusCodes.Status200OK, typeof(Result))
+                .DisableAntiforgery()
+                .AllowAnonymous();
+            group.MapPost("/update", UpdateProduct)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/update", UpdateBrand)
+            group.MapPost("/delete", DeleteProduct)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();
-            group.MapPost("/delete", DeleteBrand)
-                .Produces(StatusCodes.Status200OK, typeof(Result))
-                .AllowAnonymous();
-            group.MapGet("/getbyid", GetBrandById)
-               .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
+            group.MapGet("/getbyid", GetProductById)
+               .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
                .AllowAnonymous();
-            group.MapGet("/getall", GetAllBrand)
-                .Produces(StatusCodes.Status200OK, typeof(Result<Brand>))
+            group.MapGet("/getall", GetAllProduct)
+                .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
                 .AllowAnonymous();
-            group.MapPost("/getgrid", GetBrandGrid)
-                .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<BrandGridDTO>>))
+            group.MapPost("/getgrid", GetProductGrid)
+                .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<ProductGridDTO>>))
                 .AllowAnonymous();
         }
-        public static async Task<IResult> CreateBrand([FromBody] CreateBrandCommand data, ISender sender)
+        public static async Task<IResult> CreateProduct([FromBody] CreateProductCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -44,7 +45,7 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> UpdateBrand([FromBody] UpdateBrandCommand data, ISender sender)
+        public static async Task<IResult> UpdateProduct([FromBody] UpdateProductCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -53,7 +54,7 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> DeleteBrand([FromBody] DeleteBrandCommand data, ISender sender)
+        public static async Task<IResult> DeleteProduct([FromBody] DeleteProductCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
@@ -62,25 +63,25 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetBrandById([FromQuery] Guid id, ISender sender)
+        public static async Task<IResult> GetProductById([FromQuery] Guid id, ISender sender)
         {
-            var result = await sender.Send(new GetBrandByIdQuery(id));
+            var result = await sender.Send(new GetProductByIdQuery(id));
             if (result.Success)
             {
                 return Results.Ok(result);
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetAllBrand(ISender sender)
+        public static async Task<IResult> GetAllProduct(ISender sender)
         {
-            var result = await sender.Send(new GetAllBrand());
+            var result = await sender.Send(new GetAllProduct());
             if (result.Success)
             {
                 return Results.Ok(result);
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetBrandGrid([FromBody] GetBrandGridDTOQuery data, ISender sender)
+        public static async Task<IResult> GetProductGrid([FromBody] GetProductGridDTOQuery data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)

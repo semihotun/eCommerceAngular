@@ -10,5 +10,7 @@ namespace eCommerceBase.Domain.AggregateModels
         {
             BrandName = brandName;
         }
+        [SwaggerIgnore]
+        public ICollection<Product> ProductList { get; private set; } = [];
     }
 }

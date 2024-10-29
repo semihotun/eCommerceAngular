@@ -20,7 +20,6 @@ export class CategoryService extends Destroyable {
   http = inject(HttpService);
   toast = inject(ToastService);
   categoryStore = inject(CategoryStore);
-
   createcategory(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<Category>>(

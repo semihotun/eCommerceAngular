@@ -1,6 +1,4 @@
 ﻿using eCommerceBase.Domain.SeedWork;
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
 
 namespace eCommerceBase.Domain.AggregateModels
 {
@@ -20,5 +18,7 @@ namespace eCommerceBase.Domain.AggregateModels
         public ICollection<Category> SubCategoryList { get; private set; } = new List<Category>();
         [SwaggerIgnore]
         public ICollection<CategorySpecification> CategorySpecificationList { get; private set; } = [];
+        [SwaggerIgnore]
+        public ICollection<Product> ProductList { get; private set; } = [];
     }
 }

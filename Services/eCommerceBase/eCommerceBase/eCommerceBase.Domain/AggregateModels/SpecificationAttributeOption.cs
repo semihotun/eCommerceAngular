@@ -12,13 +12,14 @@ namespace eCommerceBase.Domain.AggregateModels
             SpecificationAttributeId = specificationAttributeId;
             Name = name;
         }
-
-        [SwaggerIgnore]
-        public SpecificationAttribute? SpecificationAttribute { get; private set; }
-
         public void SetSpecificationAttribute(SpecificationAttribute? specificationAttribute)
         {
             SpecificationAttribute = specificationAttribute;
         }
+        [SwaggerIgnore]
+        public SpecificationAttribute? SpecificationAttribute { get; private set; }
+
+        [SwaggerIgnore]
+        public ICollection<ProductSpecification> ProductSpecificationList { get; private set; } = [];
     }
 }

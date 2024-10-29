@@ -17,6 +17,23 @@ export class BrandService extends Destroyable {
   http = inject(HttpService);
   brandStore = inject(BrandStore);
   toast = inject(ToastService);
+  getAllBrand(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<Brand[]>>(
+        environment.baseUrl + 'brand/getall',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.brandStore.setBrandList(response.data);
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
+  }
+
   getBrandById(id: string): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.get<Result<Brand>>(
