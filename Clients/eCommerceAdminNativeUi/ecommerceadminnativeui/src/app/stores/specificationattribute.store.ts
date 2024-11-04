@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { SpecificationAttribute } from '../models/responseModel/specificationattribute';
+import {
+  SpecificationAttribute,
+  SpecificationAttributeOption,
+} from '../models/responseModel/specificationattribute';
 import { PagedList } from '../models/core/grid';
 
 export type SpecificationAttributeState = {
   specificationAttribute: SpecificationAttribute;
+  specificationAttributeList: SpecificationAttribute[];
+  specificationAttributeOptionList: SpecificationAttributeOption[];
   specificationAttributeOptionGrid: PagedList<any>;
 };
 
 export const specificationAttributeInitialState: SpecificationAttributeState = {
   specificationAttribute: new SpecificationAttribute(),
   specificationAttributeOptionGrid: new PagedList<any>(),
+  specificationAttributeList: [],
+  specificationAttributeOptionList: [],
 };
 
 @Injectable({
@@ -23,6 +30,12 @@ export class SpecificationAttributeStore extends ComponentStore<SpecificationAtt
   readonly specificationAttributeOptionGridObservable$ = this.select(
     (x) => x.specificationAttributeOptionGrid
   );
+  specificationAttributeList = this.selectSignal(
+    (x) => x.specificationAttributeList
+  );
+  specificationAttributeOptionList = this.selectSignal(
+    (x) => x.specificationAttributeOptionList
+  );
 
   constructor() {
     super(specificationAttributeInitialState);
@@ -32,6 +45,21 @@ export class SpecificationAttributeStore extends ComponentStore<SpecificationAtt
     (state, specificationAttribute: SpecificationAttribute) => ({
       ...state,
       specificationAttribute,
+    })
+  );
+  readonly setSpecificationAttributeList = this.updater(
+    (state, specificationAttributeList: SpecificationAttribute[]) => ({
+      ...state,
+      specificationAttributeList,
+    })
+  );
+  readonly setSpecificationAttributeOptionList = this.updater(
+    (
+      state,
+      specificationAttributeOptionList: SpecificationAttributeOption[]
+    ) => ({
+      ...state,
+      specificationAttributeOptionList,
     })
   );
   readonly setSpecificationAttributeOptionGrid = this.updater(

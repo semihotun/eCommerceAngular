@@ -36,6 +36,24 @@ export class SpecificationAttributeService extends Destroyable {
       );
     });
   }
+  getAllSpecificationAttribute(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<SpecificationAttribute[]>>(
+        environment.baseUrl + 'specificationAttribute/getall',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.specificationAttributeStore.setSpecificationAttributeList(
+            response.data
+          );
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
+  }
   createSpecificationAttribute(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<SpecificationAttribute>>(

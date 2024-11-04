@@ -60,4 +60,22 @@ export class SpecificationAttributeOptionService extends Destroyable {
       );
     });
   }
+  getAllSpecificationAttributeOptionBySpecId(specId: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<SpecificationAttributeOption[]>>(
+        environment.baseUrl + 'specificationattributeoption/getallbyspecid',
+        { id: specId },
+        this.onDestroy,
+        (response) => {
+          this.specificationAttributeStore.setSpecificationAttributeOptionList(
+            response.data
+          );
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
+  }
 }

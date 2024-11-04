@@ -15,6 +15,7 @@ export const productInitialState: ProductState = {
 })
 export class ProductStore extends ComponentStore<ProductState> {
   readonly product$ = this.selectSignal((x) => x.product);
+  readonly productObservable = this.select((x) => x.product);
 
   constructor() {
     super(productInitialState);

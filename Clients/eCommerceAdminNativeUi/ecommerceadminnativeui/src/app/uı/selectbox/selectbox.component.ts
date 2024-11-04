@@ -45,7 +45,7 @@ export class SelectboxComponent implements ControlValueAccessor {
     if (obj !== undefined && this.val !== obj) {
       const foundItem =
         this.textProperty && this.valueProperty
-          ? this.data.find((item) => item[this.valueProperty] === obj)
+          ? this.data?.find((item) => item[this.valueProperty] === obj)
           : null;
 
       this.val = foundItem ? foundItem[this.textProperty] : obj;
@@ -83,7 +83,7 @@ export class SelectboxComponent implements ControlValueAccessor {
         this.val = result.data.text;
         this.onChange(result.data.value);
         this.onTouched();
-        this.change.emit();
+        this.change.emit(result.data.value);
       }
     });
   }

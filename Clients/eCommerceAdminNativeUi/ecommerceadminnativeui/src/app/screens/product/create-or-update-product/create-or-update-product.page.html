@@ -1,35 +1,61 @@
 <app-header [title]="title |translate" [backButton]="true"></app-header>
 <div id="page">
-  <form [formGroup]="form" id="form-70-center">
-    <app-segment-language formControlName="languageCode"></app-segment-language>
-    <div class="row">
-      <app-input [label]="'Product Name' |translate" [placeholder]="'Product Name' |translate"
-        formControlName="productName"></app-input>
-      <div class="label-error" *ngIf="hasError('productName','required')">{{'Required' |translate}}</div>
-    </div>
-    <div class="row">
-      <app-selectbox placeholder="{{ 'Brand Name' | translate }}" label="{{ 'Brand Name' | translate }}"
-        formControlName="brandId" [data]="brandStore.brandList$()" [valueProperty]="'id'"
-        [textProperty]="'brandName'"></app-selectbox>
-    </div>
-    <div class="row">
-      <app-selectbox placeholder="{{ 'Category Name' | translate }}" label="{{ 'Category Name' | translate }}"
-        [data]="categoryStore.categoryTree$()" formControlName="categoryId" [valueProperty]="'id'"
-        [textProperty]="'categoryName'"></app-selectbox>
-    </div>
+  <ion-accordion-group value="first">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>{{ 'Product Info' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <form [formGroup]="form" id="form-70-center">
+          <app-segment-language formControlName="languageCode"></app-segment-language>
+          <div class="row">
+            <app-input [label]="'Product Name' |translate" [placeholder]="'Product Name' |translate"
+              formControlName="productName"></app-input>
+            <div class="label-error" *ngIf="hasError('productName','required')">{{'Required' |translate}}</div>
+          </div>
+          <div class="row">
+            <app-selectbox placeholder="{{ 'Brand Name' | translate }}" label="{{ 'Brand Name' | translate }}"
+              formControlName="brandId" [data]="brandStore.brandList$()" [valueProperty]="'id'"
+              [textProperty]="'brandName'"></app-selectbox>
+          </div>
+          <div class="row">
+            <app-selectbox placeholder="{{ 'Category Name' | translate }}" label="{{ 'Category Name' | translate }}"
+              [data]="categoryStore.categoryTree$()" formControlName="categoryId" [valueProperty]="'id'"
+              [textProperty]="'categoryName'"></app-selectbox>
+          </div>
 
-    <div class="row">
-      <app-input [label]="'GTIN' |translate" [placeholder]="'GTIN' |translate" formControlName="gtin"></app-input>
-      <div class="label-error" *ngIf="hasError('gtin','required')">{{'Required' |translate}}</div>
-    </div>
-    <div class="row">
-      <app-input [label]="'SKU' |translate" [placeholder]="'SKU' |translate" formControlName="sku"></app-input>
-      <div class="label-error" *ngIf="hasError('sku','required')">{{'Required' |translate}}</div>
-    </div>
-    <div class="row">
-      <app-text-editor [label]="'Prodcut Content' |translate" formControlName="productContent"></app-text-editor>
-      <div class="label-error" *ngIf="hasError('productName','required')">{{'Required' |translate}}</div>
-    </div>
-    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
-  </form>
+          <div class="row">
+            <app-input [label]="'GTIN' |translate" [placeholder]="'GTIN' |translate" formControlName="gtin"></app-input>
+            <div class="label-error" *ngIf="hasError('gtin','required')">{{'Required' |translate}}</div>
+          </div>
+          <div class="row">
+            <app-input [label]="'SKU' |translate" [placeholder]="'SKU' |translate" formControlName="sku"></app-input>
+            <div class="label-error" *ngIf="hasError('sku','required')">{{'Required' |translate}}</div>
+          </div>
+          <div class="row">
+            <app-text-editor [label]="'Prodcut Content' |translate" formControlName="productContent"></app-text-editor>
+            <div class="label-error" *ngIf="hasError('productName','required')">{{'Required' |translate}}</div>
+          </div>
+          <app-btn-submit [text]="'Save and Continiue' | translate" class="mt-3"
+            (click)="submitForm()"></app-btn-submit>
+        </form>
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="second" [disabled]="isCreate">
+      <ion-item slot="header" color="light">
+        <ion-label>{{ 'Product Specification' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <app-create-or-update-product-specification></app-create-or-update-product-specification>
+      </div>
+    </ion-accordion>
+
+    <ion-accordion value="third" [disabled]="isCreate">
+      <ion-item slot="header" color="light">
+        <ion-label>{{ 'Product Image' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">Content</div>
+    </ion-accordion>
+  </ion-accordion-group>
 </div>

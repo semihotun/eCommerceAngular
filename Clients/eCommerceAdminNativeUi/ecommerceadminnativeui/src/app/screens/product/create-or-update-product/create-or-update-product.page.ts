@@ -13,6 +13,10 @@ import {
   IonTitle,
   IonToolbar,
   NavController,
+  IonAccordion,
+  IonItem,
+  IonLabel,
+  IonAccordionGroup,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -28,6 +32,8 @@ import { CategoryService } from 'src/app/services/category/category.service';
 import { CategoryStore } from 'src/app/stores/category.store';
 import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
 import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.component';
+import { CreateOrUpdateBrandPage } from '../../brand/create-or-update-brand/create-or-update-brand.page';
+import { CreateOrUpdateProductSpecificationComponent } from './components/create-or-update-product-specification/create-or-update-product-specification.component';
 
 @Component({
   selector: 'app-create-or-update-product',
@@ -49,6 +55,12 @@ import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.compone
     SelectboxComponent,
     SegmentLanguageComponent,
     TextEditorComponent,
+    IonAccordion,
+    IonItem,
+    IonLabel,
+    IonAccordionGroup,
+    CreateOrUpdateBrandPage,
+    CreateOrUpdateProductSpecificationComponent,
   ],
 })
 export class CreateOrUpdateProductPage implements OnInit {

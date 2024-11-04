@@ -1,3 +1,31 @@
-<p>
-  create-or-update-product-specification works!
-</p>
+<h6 class="text-center">{{"Add Specification"}}</h6>
+<form [formGroup]="form">
+  <div class="row mt-2">
+    <app-selectbox [data]="specificationAttributeList" [placeholder]="'Specification Attribute' | translate"
+      [label]="'Specification Attribute' | translate" [textProperty]="'name'" [valueProperty]="'id'"
+      (change)="specificationAttributeChange($event)" formControlName="specificationAttributeId"></app-selectbox>
+    <div class="label-error" *ngIf="hasError('specificationAttributeId','required')">{{'Required' |translate}}
+    </div>
+  </div>
+  <div class="row mt-2">
+    <app-selectbox [data]="specificationAttributeOptionList"
+      [placeholder]="'Specification Attribute Option' | translate"
+      [label]="'Specification Attribute Option' | translate" [textProperty]="'name'" [valueProperty]="'id'"
+      formControlName="specificationAttributeOptionId"></app-selectbox>
+    <div class="label-error" *ngIf="hasError('specificationAttributeOptionId','required')">{{'Required' |translate}}
+    </div>
+  </div>
+  <div class="row mt-2">
+    <app-btn-submit [text]="'Save and Continiue' | translate" class="mt-3"
+      (click)="createProductSpecification()"></app-btn-submit>
+  </div>
+</form>
+
+<div class="selected-option mt-5">
+  <h6 class="text-center">{{"Product Selected Specification"}}</h6>
+  <div class="row mt-2">
+    <app-grid [url]="'productSpecification/getgrid'" [btnColumnOn]="true" [deleteBtnUrl]="'productSpecification/delete'"
+      (getAllDataVoid)="getAllData($event)" [datas]="data">
+    </app-grid>
+  </div>
+</div>
