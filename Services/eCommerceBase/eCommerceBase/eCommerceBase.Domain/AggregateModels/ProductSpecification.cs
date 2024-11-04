@@ -5,19 +5,11 @@ namespace eCommerceBase.Domain.AggregateModels
     public class ProductSpecification : BaseEntity
     {
         public Guid ProductId { get; private set; }
-        public Guid ProdcutSpecificationOptionId { get; private set; }
-        public ProductSpecification(Guid productId, Guid prodcutSpecificationOptionId)
+        public Guid SpecificationAttributeOptionId { get; private set; }
+        public ProductSpecification(Guid productId, Guid specificationAttributeOptionId)
         {
             ProductId = productId;
-            ProdcutSpecificationOptionId = prodcutSpecificationOptionId;
-        }
-        public void SetProduct(Product? product)
-        {
-            Product = product;
-        }
-        public void SetSpecificationAttributeOption(SpecificationAttributeOption? specificationAttributeOption)
-        {
-            SpecificationAttributeOption = specificationAttributeOption;
+            SpecificationAttributeOptionId = specificationAttributeOptionId;
         }
         [SwaggerIgnore]
         public Product? Product { get; private set; }

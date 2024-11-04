@@ -9,9 +9,7 @@ using eCommerceBase.Application.Handlers.Mapper;
 
 namespace eCommerceBase.Application.Handlers.ProductSpecifications.Commands;
 public record CreateProductSpecificationCommand(Guid ProductId,
-		Guid ProdcutSpecificationOptionId,
-		Product? Product,
-		SpecificationAttributeOption? SpecificationAttributeOption) : IRequest<Result>;
+		Guid SpecificationAttributeOptionId) : IRequest<Result>;
 public class CreateProductSpecificationCommandHandler(IWriteDbRepository<ProductSpecification> productSpecificationRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<CreateProductSpecificationCommand,
@@ -26,8 +24,6 @@ public class CreateProductSpecificationCommandHandler(IWriteDbRepository<Product
         return await _unitOfWork.BeginTransaction(async () =>
         {
             var data = ProductSpecificationMapper.CreateProductSpecificationCommandToProductSpecification(request);
-            data.SetProduct(request.Product);
-            data.SetSpecificationAttributeOption(request.SpecificationAttributeOption);
             await _productSpecificationRepository.AddAsync(data);
             await _cacheService.RemovePatternAsync("eCommerceBase:ProductSpecifications");
             return Result.SuccessResult(Messages.Added);

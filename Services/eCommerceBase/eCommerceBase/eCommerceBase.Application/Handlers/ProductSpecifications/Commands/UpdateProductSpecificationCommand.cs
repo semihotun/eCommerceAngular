@@ -9,9 +9,7 @@ using eCommerceBase.Application.Handlers.Mapper;
 
 namespace eCommerceBase.Application.Handlers.ProductSpecifications.Commands;
 public record UpdateProductSpecificationCommand(Guid ProductId,
-		Guid ProdcutSpecificationOptionId,
-		Product? Product,
-		SpecificationAttributeOption? SpecificationAttributeOption,
+		Guid SpecificationAttributeOptionId,
 		System.Guid Id) : IRequest<Result>;
 public class UpdateProductSpecificationCommandHandler(IWriteDbRepository<ProductSpecification> productSpecificationRepository,
 		IUnitOfWork unitOfWork,

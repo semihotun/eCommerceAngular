@@ -28,7 +28,7 @@ namespace eCommerceBase.Api.Endpoints
             group.MapGet("/getbyid", GetSpecificationAttributeOptionById)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttributeOption>))
                 .AllowAnonymous();
-            group.MapGet("/getall", GetAllSpecificationAttributeOption)
+            group.MapGet("/getallbyspecid", GetAllBySpecId)
                 .Produces(StatusCodes.Status200OK, typeof(Result<SpecificationAttributeOption>))
                 .AllowAnonymous();
             group.MapPost("/getgrid", GetSpecificationAttributeOptionGrid)
@@ -76,9 +76,9 @@ namespace eCommerceBase.Api.Endpoints
             return Results.BadRequest(result);
         }
 
-        public static async Task<IResult> GetAllSpecificationAttributeOption(ISender sender)
+        public static async Task<IResult> GetAllBySpecId([FromQuery] Guid id,ISender sender)
         {
-            var result = await sender.Send(new GetAllSpecificationAttributeOption());
+            var result = await sender.Send(new GetAllSpecificationAttributeOptionBySpecificationAttributeId(id));
             if (result.Success)
             {
                 return Results.Ok(result);
