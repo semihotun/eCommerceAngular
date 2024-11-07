@@ -32,6 +32,10 @@ namespace eCommerceBase.Domain.SeedWork
         {
             return Id == default;
         }
+        public void SetId(Guid id)
+        {
+            Id = id;
+        }
         public override bool Equals(object? obj)
         {
             if (obj == null || obj is not BaseEntity)

@@ -1,10 +1,11 @@
 ﻿using eCommerceBase.Domain.AggregateModels;
+using eCommerceBase.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eCommerceBase.Persistence.EntityConfigurations
 {
-    public class CategoryEC : IEntityTypeConfiguration<Category>
+    public class CategoryEC : IEntityTypeConfiguration<Category>,ISeed<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
@@ -13,6 +14,13 @@ namespace eCommerceBase.Persistence.EntityConfigurations
             builder.HasMany(c => c.SubCategoryList)
              .WithOne(c => c.ParentCategory)
              .HasForeignKey(c => c.ParentCategoryId);
+        }
+
+        public List<Category> GetSeedData()
+        {
+            var category = new Category("ExemCategory",null);
+            category.SetId(Guid.Parse("d3c1b385-475e-457e-8df5-def8feef2af9"));
+            return [category];
         }
     }
 }
