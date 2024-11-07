@@ -81,6 +81,9 @@ export class GridComponent implements OnInit, OnDestroy {
     private modalController: ModalController,
     private builder: FormBuilder
   ) {}
+  refresh(): void {
+    this.ngOnInit();
+  }
   ngOnDestroy(): void {
     this.onDestroy.next();
     this.onDestroy.complete();

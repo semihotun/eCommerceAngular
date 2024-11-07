@@ -34,6 +34,7 @@ import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-l
 import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.component';
 import { CreateOrUpdateBrandPage } from '../../brand/create-or-update-brand/create-or-update-brand.page';
 import { CreateOrUpdateProductSpecificationComponent } from './components/create-or-update-product-specification/create-or-update-product-specification.component';
+import { CreateOrUpdateProductPhotoComponent } from './components/create-or-update-product-photo/create-or-update-product-photo.component';
 
 @Component({
   selector: 'app-create-or-update-product',
@@ -61,6 +62,7 @@ import { CreateOrUpdateProductSpecificationComponent } from './components/create
     IonAccordionGroup,
     CreateOrUpdateBrandPage,
     CreateOrUpdateProductSpecificationComponent,
+    CreateOrUpdateProductPhotoComponent,
   ],
 })
 export class CreateOrUpdateProductPage implements OnInit {

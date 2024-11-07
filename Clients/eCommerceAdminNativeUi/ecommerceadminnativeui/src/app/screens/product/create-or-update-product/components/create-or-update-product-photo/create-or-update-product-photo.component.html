@@ -1,0 +1,21 @@
+<h6 class="text-center">{{"Add Product Photo"}}</h6>
+<form [formGroup]="form">
+  <div class="row mt-2">
+    <app-image-picker [label]="'Product Image' |translate" [placeholder]="'Product Image' |translate"
+      formControlName="photoBase64" class="mt-2"> </app-image-picker>
+    <div class="label-error" *ngIf="hasError('photoBase64','required')">{{'Required' |translate}}</div>
+  </div>
+  <div class="row mt-2">
+    <app-btn-submit [text]="'Save and Continiue' | translate" class="mt-3"
+      (click)="createProductPhoto()"></app-btn-submit>
+  </div>
+</form>
+
+<div class="selected-option mt-5">
+  <h6 class="text-center">{{"Product Photo List"}}</h6>
+  <div class="row mt-2">
+    <app-grid [url]="'productPhoto/getgrid'" [btnColumnOn]="true" [deleteBtnUrl]="'productPhoto/delete'"
+      (getAllDataVoid)="getAllData($event)" [datas]="data" #productPhotoGrid>
+    </app-grid>
+  </div>
+</div>

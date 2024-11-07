@@ -106,6 +106,9 @@ export class CreateOrUpdateProductSpecificationComponent
       await this.productSpecificationService.createproductSpecification(
         productSpecification
       );
+      this.form.reset();
+      this.form.markAllAsTouched();
+      this.submitted = false;
     }
   }
   async getAllData(data?: GridPostData) {
