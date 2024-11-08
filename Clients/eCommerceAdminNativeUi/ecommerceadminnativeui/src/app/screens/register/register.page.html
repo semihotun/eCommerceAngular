@@ -1,0 +1,36 @@
+<app-header [title]="'Register'" [backButton]="true"></app-header>
+<div id="page">
+  <form [formGroup]="form" id="form-70-center">
+    <div class=" row mt-2">
+      <app-input [label]="'Email' |translate" [placeholder]="'Email' |translate" formControlName="email"></app-input>
+      <div class="label-error" *ngIf="hasError('email','required')">{{'Required' |translate}}</div>
+      <div class="label-error" *ngIf="hasError('email','email')">{{'This is not an email address' |translate}}</div>
+    </div>
+    <div class="row mt-2">
+      <app-input [label]="'Password' |translate" [placeholder]="'Password' |translate" formControlName="password"
+        [type]="'password'"></app-input>
+      <div class="label-error" *ngIf="hasError('password','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="row mt-2">
+      <app-input [label]="'Password Repeat' |translate" [placeholder]="'Password Repeat' |translate"
+        formControlName="passwordRepeat" [type]="'password'"></app-input>
+      <div class="label-error" *ngIf="hasError('passwordRepeat','required')">{{'Required' |translate}}</div>
+      <div class="label-error"
+        *ngIf="form.errors?.['passwordMismatch'] && form.get('passwordRepeat')?.touched && this.submitted">
+        {{'Password Mismatch' |translate}}</div>
+    </div>
+    <div class="row mt-2">
+      <app-input [label]="'FirstName' |translate" [placeholder]="'FirstName' |translate"
+        formControlName="firstName"></app-input>
+      <div class="label-error" *ngIf="hasError('firstName','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="row mt-2">
+      <app-input [label]="'LastName' |translate" [placeholder]="'LastName' |translate"
+        formControlName="lastName"></app-input>
+      <div class="label-error" *ngIf="hasError('lastName','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="row mt-3">
+      <app-btn-submit [text]="'Register' | translate" (click)="register()"></app-btn-submit>
+    </div>
+  </form>
+</div>

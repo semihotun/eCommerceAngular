@@ -19,12 +19,13 @@ namespace eCommerceBase.Insfrastructure.Utilities.Identity.Middleware
                 {
                     throw new UnauthorizedAccessException("User Not Logged In");
                 }
-                if (!httpContext.User
-                    .FindAll(ClaimTypes.Role)
-                    .Any(x => x.Value == httpContext.Request.Path.Value?.Replace("/api", _configuration["RegionName"]).ToLower()))
-                {
-                    throw new UnauthorizedAccessException("Not Access");
-                }
+                //Geçici kapalı
+                //if (!httpContext.User
+                //    .FindAll(ClaimTypes.Role)
+                //    .Any(x => x.Value == httpContext.Request.Path.Value?.Replace("/api", _configuration["RegionName"]).ToLower()))
+                //{
+                //    throw new UnauthorizedAccessException("Not Access");
+                //}
             }
             await _next(httpContext);
         }

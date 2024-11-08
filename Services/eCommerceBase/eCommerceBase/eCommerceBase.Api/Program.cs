@@ -14,7 +14,7 @@ GlobalConfiguration.Configuration.UseActivator(new HangfireJobActivator(app.Serv
 
 if (!app.Environment.IsDevelopment())
 {
-    //Metrics
+    //Metrics Geçici Kapalý
     //app.UseHttpMetrics();
     //app.MapMetrics();
     app.UseHttpsRedirection();
@@ -36,7 +36,7 @@ app.UseMiddleware<ClaimMiddleware>();
 app.UseAntiforgery();
 app.MapCarter();
 var task = app.RunAsync();
-//await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly());
+//await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly()); Geçici Kapalý
 _ = app.GenerateDbRole();
 HangFireJobs.AddAllStartupJobs();
 await task;

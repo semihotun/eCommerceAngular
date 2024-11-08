@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -6,6 +7,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./screens/home/home.page').then((m) => m.HomePage),
     pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
   {
     path: '',
@@ -18,6 +20,7 @@ export const routes: Routes = [
       import('./screens/brand/brand-list/brand-list.page').then(
         (m) => m.BrandListPage
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-brand/:id',
@@ -25,6 +28,7 @@ export const routes: Routes = [
       import(
         './screens/brand/create-or-update-brand/create-or-update-brand.page'
       ).then((m) => m.CreateOrUpdateBrandPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-brand',
@@ -32,6 +36,7 @@ export const routes: Routes = [
       import(
         './screens/brand/create-or-update-brand/create-or-update-brand.page'
       ).then((m) => m.CreateOrUpdateBrandPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-specification-attribute',
@@ -39,6 +44,7 @@ export const routes: Routes = [
       import(
         './screens/specification-attribute/create-or-update-specification-attribute/create-or-update-specification-attribute.page'
       ).then((m) => m.CreateOrUpdatSpecificationAttributePage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-specification-attribute/:id',
@@ -46,6 +52,7 @@ export const routes: Routes = [
       import(
         './screens/specification-attribute/create-or-update-specification-attribute/create-or-update-specification-attribute.page'
       ).then((m) => m.CreateOrUpdatSpecificationAttributePage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'specification-attribute-list',
@@ -53,6 +60,7 @@ export const routes: Routes = [
       import(
         './screens/specification-attribute/specification-attribute-list/specification-attribute-list.page'
       ).then((m) => m.SpecificationAttributeListPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'slider-list',
@@ -60,6 +68,7 @@ export const routes: Routes = [
       import('./screens/slider/slider-list/slider-list.page').then(
         (m) => m.SliderListPage
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-slider',
@@ -67,6 +76,7 @@ export const routes: Routes = [
       import(
         './screens/slider/create-or-update-slider/create-or-update-slider.page'
       ).then((m) => m.CreateOrUpdateSliderPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-slider/:id',
@@ -74,6 +84,7 @@ export const routes: Routes = [
       import(
         './screens/slider/create-or-update-slider/create-or-update-slider.page'
       ).then((m) => m.CreateOrUpdateSliderPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'category-list',
@@ -81,6 +92,7 @@ export const routes: Routes = [
       import('./screens/category/category-list/category-list.page').then(
         (m) => m.CategoryListPage
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-category',
@@ -88,6 +100,7 @@ export const routes: Routes = [
       import(
         './screens/category/create-or-update-category/create-or-update-category.page'
       ).then((m) => m.CreateOrUpdateCategoryPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-page',
@@ -95,6 +108,7 @@ export const routes: Routes = [
       import(
         './screens/page/create-or-update-page/create-or-update-page.page'
       ).then((m) => m.CreateOrUpdatePagePage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-page/:id',
@@ -102,6 +116,7 @@ export const routes: Routes = [
       import(
         './screens/page/create-or-update-page/create-or-update-page.page'
       ).then((m) => m.CreateOrUpdatePagePage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'page-list',
@@ -109,6 +124,7 @@ export const routes: Routes = [
       import('./screens/page/page-list/page-list.page').then(
         (m) => m.PageListPage
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'mail-template-list',
@@ -116,6 +132,7 @@ export const routes: Routes = [
       import(
         './screens/mail-template/mail-template-list/mail-template-list.page'
       ).then((m) => m.MailTemplateListPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-mail-template',
@@ -123,6 +140,7 @@ export const routes: Routes = [
       import(
         './screens/mail-template/create-or-update-mail-template/create-or-update-mail-template.page'
       ).then((m) => m.CreateOrUpdateMailTemplatePage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-mail-template/:id',
@@ -130,6 +148,7 @@ export const routes: Routes = [
       import(
         './screens/mail-template/create-or-update-mail-template/create-or-update-mail-template.page'
       ).then((m) => m.CreateOrUpdateMailTemplatePage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'product-list',
@@ -137,6 +156,7 @@ export const routes: Routes = [
       import('./screens/product/product-list/product-list.page').then(
         (m) => m.ProductListPage
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-product',
@@ -144,6 +164,7 @@ export const routes: Routes = [
       import(
         './screens/product/create-or-update-product/create-or-update-product.page'
       ).then((m) => m.CreateOrUpdateProductPage),
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-or-update-product/:id',
@@ -151,5 +172,16 @@ export const routes: Routes = [
       import(
         './screens/product/create-or-update-product/create-or-update-product.page'
       ).then((m) => m.CreateOrUpdateProductPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./screens/register/register.page').then((m) => m.RegisterPage),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./screens/login/login.page').then((m) => m.LoginPage),
   },
 ];

@@ -50,8 +50,11 @@ export class HeaderComponent implements OnInit {
   @Input() backButton: boolean = false;
   translateService = inject(TranslateService);
   languages = LanguageList;
+  isAuth: boolean = false;
   @ViewChild('menu') menu!: IonMenu;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAuthCheck();
+  }
   routerNavigate() {
     this.navCtrl.back();
   }
@@ -68,5 +71,12 @@ export class HeaderComponent implements OnInit {
     } else if (target.classList.contains('sub-category-close')) {
       target.classList.replace('sub-category-close', 'sub-category-open');
     }
+  }
+  isAuthCheck() {
+    const token = localStorage.getItem('token');
+    this.isAuth = !!token;
+  }
+  logout() {
+    localStorage.removeItem('token');
   }
 }

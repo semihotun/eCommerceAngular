@@ -17,8 +17,7 @@ namespace eCommerceBase.Api.Endpoints
             var group = app.MapGroup("api/brand");
 
             group.MapPost("/create", CreateBrand)
-                .Produces(StatusCodes.Status200OK, typeof(Result))
-                .AllowAnonymous();
+                .Produces(StatusCodes.Status200OK, typeof(Result));
             group.MapPost("/update", UpdateBrand)
                 .Produces(StatusCodes.Status200OK, typeof(Result))
                 .AllowAnonymous();

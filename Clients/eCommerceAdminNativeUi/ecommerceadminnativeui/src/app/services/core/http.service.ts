@@ -27,6 +27,7 @@ export class HttpService {
     let headers = new HttpHeaders({
       LanguageCode:
         data?.languageCode || localStorage.getItem('languageCode')?.toString()!,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
     this.http.post<T>(url, data, { headers: headers }).subscribe({
       next: onNext,
@@ -48,6 +49,7 @@ export class HttpService {
   ): void {
     let headers = new HttpHeaders({
       LanguageCode: localStorage.getItem('languageCode')?.toString()!,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
     this.http.get<T>(url, { params, headers: headers }).subscribe({
       next: onNext,
