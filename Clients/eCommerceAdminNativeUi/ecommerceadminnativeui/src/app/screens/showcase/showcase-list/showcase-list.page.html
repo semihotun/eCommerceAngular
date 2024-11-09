@@ -1,0 +1,9 @@
+<app-header [title]="'Showcase'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/create-or-update-showcase"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'showcase/getgrid'" [btnColumnOn]="true" [editBtnUrl]="'create-or-update-showcase/'"
+    [deleteBtnUrl]="'showcase/delete'">
+  </app-grid>
+</div>

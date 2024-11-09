@@ -184,4 +184,28 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./screens/login/login.page').then((m) => m.LoginPage),
   },
+  {
+    path: 'showcase-list',
+    loadComponent: () =>
+      import('./screens/showcase/showcase-list/showcase-list.page').then(
+        (m) => m.ShowcaseListPage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-showcase',
+    loadComponent: () =>
+      import(
+        './screens/showcase/create-or-update-showcase/create-or-update-showcase.page'
+      ).then((m) => m.CreateOrUpdateShowcasePage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-showcase/:id',
+    loadComponent: () =>
+      import(
+        './screens/showcase/create-or-update-showcase/create-or-update-showcase.page'
+      ).then((m) => m.CreateOrUpdateShowcasePage),
+    canActivate: [AuthGuard],
+  },
 ];

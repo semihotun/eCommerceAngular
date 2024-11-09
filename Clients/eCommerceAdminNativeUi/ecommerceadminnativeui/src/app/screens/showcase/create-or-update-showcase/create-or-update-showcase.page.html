@@ -1,0 +1,35 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <div id="form-70-center">
+    <form [formGroup]="form">
+      <app-segment-language formControlName="languageCode"></app-segment-language>
+      <div class="row">
+        <app-input [label]="'ShowCase Title' |translate" [placeholder]="'ShowCase Title' |translate"
+          formControlName="showCaseTitle"></app-input>
+        <div class="label-error" *ngIf="hasError('showCaseTitle','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="row mt-2">
+        <app-input [label]="'ShowCase Text' |translate" [placeholder]="'ShowCase Text' |translate"
+          formControlName="showCaseText"></app-input>
+        <div class="label-error" *ngIf="hasError('showCaseText','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="row mt-2">
+        <app-input [label]="'ShowCase Order' |translate" [placeholder]="'ShowCase Order' |translate"
+          formControlName="showCaseOrder" [type]="'number'"></app-input>
+        <div class="label-error" *ngIf="hasError('showCaseOrder','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="row mt-2">
+        <app-selectbox placeholder="{{ 'Showcase Type' | translate }}" label="{{ 'Showcase Type' | translate }}"
+          [data]="showcaseTypes" textProperty="type" valueProperty="id"
+          formControlName="showCaseTypeId"></app-selectbox>
+        <div class="label-error" *ngIf="hasError('showCaseTypeId','required')">{{'Required' |translate}}</div>
+      </div>
+      <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+    </form>
+    @if(!this.isCreate){
+    <div class="mt-4">
+      <app-showcase-product></app-showcase-product>
+    </div>
+    }
+  </div>
+</div>

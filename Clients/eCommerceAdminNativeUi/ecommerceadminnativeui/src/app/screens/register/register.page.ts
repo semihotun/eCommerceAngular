@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonIcon } from '@ionic/angular/standalone';
+import { IonIcon, NavController } from '@ionic/angular/standalone';
 import { HeaderComponent } from './../../uı/header/header.component';
 import {
   AbstractControl,
@@ -34,7 +34,8 @@ export class RegisterPage implements OnInit {
   submitted: boolean = false;
   constructor(
     private formbuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private navCtrl: NavController
   ) {}
   initForm() {
     this.form = this.formbuilder.group(
@@ -62,6 +63,7 @@ export class RegisterPage implements OnInit {
       this.form.reset();
       this.form.markAllAsTouched();
       this.submitted = false;
+      this.navCtrl.navigateForward('home');
     }
   }
 }

@@ -1,0 +1,10 @@
+<h6 class="text-center mt-5">{{"Add Showcase Product" |translate}}</h6>
+<div class="mt-3">
+  <app-grid [url]="'product/getgrid'" [btnColumnOn]="true" (addBtn)="addShowcaseProduct($event)"></app-grid>
+</div>
+<h6 class="text-center mt-5">{{"Showcase Product List" |translate}}</h6>
+<div class="mt-3">
+  <app-grid [url]="'showCaseProduct/getgrid'" [btnColumnOn]="true" [deleteBtnUrl]="'showCaseProduct/delete'"
+    (getAllDataVoid)="getAllData($event)" [datas]="data" #showcaseProductGrid>
+  </app-grid>
+</div>
