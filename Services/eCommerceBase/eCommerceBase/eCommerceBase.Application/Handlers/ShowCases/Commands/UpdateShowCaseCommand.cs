@@ -12,7 +12,7 @@ namespace eCommerceBase.Application.Handlers.ShowCases.Commands;
 public record UpdateShowCaseCommand(int ShowCaseOrder,
 		string ShowCaseTitle,
 		Guid ShowCaseTypeId,
-		string ShowCaseText,
+		string? ShowCaseText,
 		System.Guid Id) : IRequest<Result>;
 public class UpdateShowCaseCommandHandler(IWriteDbRepository<ShowCase> showCaseRepository,
      IWriteDbRepository<ShowCaseProduct> showCaseProductRepository,

@@ -27,6 +27,8 @@ import { ShowcaseTypeService } from 'src/app/services/showcase/showcase-type.ser
 import { ShowCaseType } from 'src/app/models/responseModel/showcaseType';
 import { SelectboxComponent } from 'src/app/uı/selectbox/selectbox.component';
 import { ShowcaseProductComponent } from './components/showcase-product/showcase-product.component';
+import { ShowcaseConst } from 'src/app/models/consts/showcaseConst';
+import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.component';
 @Component({
   selector: 'app-create-or-update-showcase',
   templateUrl: './create-or-update-showcase.page.html',
@@ -48,6 +50,7 @@ import { ShowcaseProductComponent } from './components/showcase-product/showcase
     SegmentLanguageComponent,
     SelectboxComponent,
     ShowcaseProductComponent,
+    TextEditorComponent,
   ],
 })
 export class CreateOrUpdateShowcasePage implements OnInit {
@@ -56,6 +59,7 @@ export class CreateOrUpdateShowcasePage implements OnInit {
   submitted: boolean = false;
   isCreate: boolean = true;
   showcaseTypes!: ShowCaseType[];
+  isText: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -71,7 +75,7 @@ export class CreateOrUpdateShowcasePage implements OnInit {
       showCaseOrder: [1, [Validators.required]],
       showCaseTitle: ['', [Validators.required]],
       showCaseTypeId: ['', [Validators.required]],
-      showCaseText: ['', [Validators.required]],
+      showCaseText: [null],
       languageCode: [''],
     });
   }
@@ -81,7 +85,6 @@ export class CreateOrUpdateShowcasePage implements OnInit {
       await this.showcaseTypeService.getAllShowCaseType();
       this.showcaseTypes = this.showcaseStore.showcaseTypeList$();
       if (params.get('id')) {
-        console.log('act', this.translateService.currentLang);
         await this.showcaseService.getShowcaseById(params.get('id')!);
         this.form.patchValue(this.showcaseStore.showcase$());
         this.isCreate = false;
@@ -89,6 +92,7 @@ export class CreateOrUpdateShowcasePage implements OnInit {
       } else {
         this.title = 'Create Showcase';
       }
+      this.isTextOrProduct();
     });
   }
   hasError(controlName: string, errorName: string) {
@@ -96,7 +100,6 @@ export class CreateOrUpdateShowcasePage implements OnInit {
     return this.submitted && control?.hasError(errorName);
   }
   async submitForm() {
-    console.log('asdas', this.form.value);
     this.submitted = true;
     if (this.form.valid) {
       if (!this.form.get('id')?.value) {
@@ -106,5 +109,9 @@ export class CreateOrUpdateShowcasePage implements OnInit {
       }
       this.navCtrl.navigateForward('/showcase-list');
     }
+  }
+  isTextOrProduct() {
+    this.isText =
+      this.form.get('showCaseTypeId')?.value == ShowcaseConst.Text.id;
   }
 }

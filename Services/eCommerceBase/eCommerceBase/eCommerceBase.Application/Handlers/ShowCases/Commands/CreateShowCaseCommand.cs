@@ -11,7 +11,7 @@ namespace eCommerceBase.Application.Handlers.ShowCases.Commands;
 public record CreateShowCaseCommand(int ShowCaseOrder,
 		string ShowCaseTitle,
 		Guid ShowCaseTypeId,
-		string ShowCaseText) : IRequest<Result>;
+		string? ShowCaseText) : IRequest<Result>;
 public class CreateShowCaseCommandHandler(IWriteDbRepository<ShowCase> showCaseRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<CreateShowCaseCommand,
