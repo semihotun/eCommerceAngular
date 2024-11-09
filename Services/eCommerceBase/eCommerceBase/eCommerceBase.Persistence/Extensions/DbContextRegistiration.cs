@@ -47,6 +47,7 @@ namespace eCommerceBase.Persistence.Extensions
                 if (ctx.Database.EnsureCreated())
                 {
                     ctx.Database.Migrate();
+                    //Geçici
                     //CreateCdcForOutboxWithMssql(ctx);
                     //await MssqlDbContextConnectorExtension.AddAllConnectorAsync(configuration);
                     ctx.SeedAsync().GetAwaiter().GetResult();

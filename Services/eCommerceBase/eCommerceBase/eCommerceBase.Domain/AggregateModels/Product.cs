@@ -35,5 +35,7 @@ namespace eCommerceBase.Domain.AggregateModels
         public ICollection<ProductSpecification> ProductSpecificationList { get; private set; } = [];
         [SwaggerIgnore]
         public ICollection<ProductPhoto> ProductPhotoList { get; private set; } = [];
+        [SwaggerIgnore]
+        public ICollection<ShowCaseProduct> ShowCaseProductList { get; private set; } = [];  
     }
 }
