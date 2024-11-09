@@ -62,7 +62,7 @@ export class GridComponent implements OnInit, OnDestroy {
   @ViewChild('nextBtn') nextBtn!: ElementRef<HTMLElement>;
   @Output() getAllDataVoid: EventEmitter<GridPostData> =
     new EventEmitter<GridPostData>();
-
+  @Output() addBtn: EventEmitter<any> = new EventEmitter<any>();
   @Input() datas: BehaviorSubject<PagedList<any[]> | null> =
     new BehaviorSubject<PagedList<any[]> | null>(null);
   localData: any[] = [];
