@@ -1,4 +1,4 @@
-import { Component, forwardRef, inject, OnInit } from '@angular/core';
+import { Component, forwardRef, inject, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   IonSegmentButton,
@@ -29,6 +29,7 @@ export class SegmentLanguageComponent implements ControlValueAccessor, OnInit {
   onChange: any = () => {};
   onTouched: any = () => {};
   translateService = inject(TranslateService);
+  @Input() disabled: boolean = false;
   writeValue(obj: any): void {
     if (obj !== undefined && obj !== '') {
       this.value = obj;

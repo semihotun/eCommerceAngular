@@ -1,4 +1,4 @@
-<ion-segment [scrollable]="true" [value]="value" mode="ios" (ionChange)="onSegmentChange($event)">
+<ion-segment [scrollable]="true" [value]="value" mode="ios" (ionChange)="onSegmentChange($event)" [disabled]="disabled">
   @for (item of languages; track $index) {
   <ion-segment-button [value]="item.code">
     <ion-label>{{item.name}}</ion-label>
