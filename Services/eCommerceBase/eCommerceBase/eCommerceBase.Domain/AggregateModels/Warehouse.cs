@@ -12,5 +12,7 @@ namespace eCommerceBase.Domain.AggregateModels
             Name = name;
             Address = address;
         }
+        [SwaggerIgnore]
+        public ICollection<ProductStock> ProductStockList { get; private set; } = [];
     }
 }
