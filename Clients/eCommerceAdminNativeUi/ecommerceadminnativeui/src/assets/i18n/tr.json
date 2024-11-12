@@ -49,5 +49,9 @@
 	"Page Content": "Sayfa İçeriği",
 	"Template Header": "Tasarım Başlığı",
 	"Template Content": "Tasarım İçeriği",
-	"Operation Completed": "İşlem Başarılı"
+	"Operation Completed": "İşlem Başarılı",
+	"Warehouse":"Depo",
+	"Create Warehouse":"Depo Oluştur",
+	"Update Warehouse":"Depo Bilgisi Güncelle",
+	"Product Stock":"Ürün Stoğu"
 }

@@ -35,6 +35,7 @@ import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.compone
 import { CreateOrUpdateBrandPage } from '../../brand/create-or-update-brand/create-or-update-brand.page';
 import { CreateOrUpdateProductSpecificationComponent } from './components/create-or-update-product-specification/create-or-update-product-specification.component';
 import { CreateOrUpdateProductPhotoComponent } from './components/create-or-update-product-photo/create-or-update-product-photo.component';
+import { CreateProductStockComponent } from './components/create-product-stock/create-product-stock.component';
 
 @Component({
   selector: 'app-create-or-update-product',
@@ -63,6 +64,7 @@ import { CreateOrUpdateProductPhotoComponent } from './components/create-or-upda
     CreateOrUpdateBrandPage,
     CreateOrUpdateProductSpecificationComponent,
     CreateOrUpdateProductPhotoComponent,
+    CreateProductStockComponent,
   ],
 })
 export class CreateOrUpdateProductPage implements OnInit {

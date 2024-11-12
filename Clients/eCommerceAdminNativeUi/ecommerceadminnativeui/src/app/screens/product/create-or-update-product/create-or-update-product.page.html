@@ -36,8 +36,7 @@
             <app-text-editor [label]="'Prodcut Content' |translate" formControlName="productContent"></app-text-editor>
             <div class="label-error" *ngIf="hasError('productName','required')">{{'Required' |translate}}</div>
           </div>
-          <app-btn-submit [text]="'Save and Continiue' | translate" class="mt-3"
-            (click)="submitForm()"></app-btn-submit>
+          <app-btn-submit [text]="'Save Product Info' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
         </form>
       </div>
     </ion-accordion>
@@ -56,6 +55,13 @@
         <ion-label>{{ 'Product Image' | translate }}</ion-label>
       </ion-item>
       <div class="ion-padding" slot="content"><app-create-or-update-product-photo></app-create-or-update-product-photo>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="fourth" [disabled]="isCreate">
+      <ion-item slot="header" color="light">
+        <ion-label>{{ 'Product Stock' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content"><app-create-product-stock></app-create-product-stock>
       </div>
     </ion-accordion>
   </ion-accordion-group>
