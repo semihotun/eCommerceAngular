@@ -208,4 +208,28 @@ export const routes: Routes = [
       ).then((m) => m.CreateOrUpdateShowcasePage),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'warehouse-list',
+    loadComponent: () =>
+      import('./screens/warehouse/warehouse-list/warehouse-list.page').then(
+        (m) => m.WarehouseListPage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-warehouse',
+    loadComponent: () =>
+      import(
+        './screens/warehouse/create-or-update-warehouse/create-or-update-warehouse.page'
+      ).then((m) => m.CreateOrUpdateWarehousePage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-warehouse/:id',
+    loadComponent: () =>
+      import(
+        './screens/warehouse/create-or-update-warehouse/create-or-update-warehouse.page'
+      ).then((m) => m.CreateOrUpdateWarehousePage),
+    canActivate: [AuthGuard],
+  },
 ];

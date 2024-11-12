@@ -1,0 +1,9 @@
+<app-header [title]="'Warehouse'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/create-or-update-warehouse"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'warehouse/getgrid'" [btnColumnOn]="true" [editBtnUrl]="'create-or-update-warehouse/'"
+    [deleteBtnUrl]="'warehouse/delete'">
+  </app-grid>
+</div>
