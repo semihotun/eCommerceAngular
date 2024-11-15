@@ -25,7 +25,7 @@
   <div class="selected-option mt-5">
     <h6 class="text-center">{{"Product Selected Specification"}}</h6>
     <div class="row mt-2">
-      <app-grid [url]="'productSpecification/getgrid'" [btnColumnOn]="true"
+      <app-grid [url]="'productSpecification/getgrid'" [btnColumnOn]="true" #productSpecificationGrid
         [deleteBtnUrl]="'productSpecification/delete'" (getAllDataVoid)="getAllData($event)" [datas]="data">
       </app-grid>
     </div>

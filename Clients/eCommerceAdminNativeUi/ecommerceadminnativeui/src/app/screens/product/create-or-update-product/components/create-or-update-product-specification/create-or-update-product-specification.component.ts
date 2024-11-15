@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ProductStore } from 'src/app/stores/product.store';
 import { ProductSpecification } from './../../../../../models/responseModel/productSpecification';
 import { ProductSpecificationService } from './../../../../../services/product/product-specification.service';
@@ -47,6 +47,8 @@ export class CreateOrUpdateProductSpecificationComponent
   form!: FormGroup;
   submitted: boolean = false;
   onDestroy: Subject<void> = new Subject<void>();
+  @ViewChild('productSpecificationGrid')
+  productSpecificationGrid!: GridComponent;
   constructor(
     private activatedRoute: ActivatedRoute,
     private productStore: ProductStore,
@@ -109,6 +111,7 @@ export class CreateOrUpdateProductSpecificationComponent
       this.form.reset();
       this.form.markAllAsTouched();
       this.submitted = false;
+      this.productSpecificationGrid.refresh();
     }
   }
   async getAllData(data?: GridPostData) {
