@@ -4,16 +4,16 @@ namespace eCommerceBase.Domain.AggregateModels
 {
     public class UserGroupRole : BaseEntity
     {
-        public Guid UserGrupId { get; private set; }
+        public Guid UserGroupId { get; private set; }
         public Guid RoleId { get; private set; }
         [SwaggerIgnore]
         public UserGroup? UserGroup { get; private set; }
         [SwaggerIgnore]
         public Role? Role { get; private set; }
 
-        public UserGroupRole(Guid userGrupId, Guid roleId)
+        public UserGroupRole(Guid userGroupId, Guid roleId)
         {
-            UserGrupId = userGrupId;
+            UserGroupId = userGroupId;
             RoleId = roleId;
         }
 

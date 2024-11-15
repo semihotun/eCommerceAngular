@@ -31,7 +31,7 @@ namespace eCommerceBase.Application.Handlers.AdminUsers.Commands
             {
                 return Result.ErrorDataResult<AccessToken>(Messages.PasswordError);
             }
-            var userGroub = (await _userGroupRoleRepository.ToListAsync(x => x.UserGrupId == userToCheck.UserGroupId,
+            var userGroub = (await _userGroupRoleRepository.ToListAsync(x => x.UserGroupId == userToCheck.UserGroupId,
                        x => x.Role!)).Select(x => x.Role!.RoleName);
 
             var result = _tokenService.CreateToken(userToCheck, userGroub);

@@ -9,6 +9,11 @@ namespace eCommerceBase.Domain.AggregateModels
         {
             RoleName = roleName;
         }
+        public new Role SetId(Guid id)
+        {
+            Id = id;
+            return this;
+        }
         [SwaggerIgnore]
         public ICollection<UserGroup> UserGroupList { get; private set; } = []; 
     }

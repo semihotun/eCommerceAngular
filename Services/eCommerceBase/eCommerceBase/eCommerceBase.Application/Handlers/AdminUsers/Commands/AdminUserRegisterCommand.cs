@@ -41,7 +41,7 @@ namespace eCommerceBase.Application.Handlers.AdminUsers.Commands
                     user.SetAdminForUserGroup();                                        
                     await _adminUserRepository.AddAsync(user);
 
-                    var userGroub = (await _userGroupRoleRepository.ToListAsync(x => x.UserGrupId == Guid.Parse(InitConst.AdminGuid),
+                    var userGroub = (await _userGroupRoleRepository.ToListAsync(x => x.UserGroupId == Guid.Parse(InitConst.AdminGuid),
                         x => x.Role!)).Select(x=>x.Role!.RoleName);
 
                     var result = _tokenService.CreateToken(user,userGroub);

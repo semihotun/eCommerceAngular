@@ -23,7 +23,7 @@ namespace eCommerceBase.Domain.AggregateModels
         public bool Status { get; private set; }
         public Guid UserGroupId { get; private set; }
         [SwaggerIgnore]
-        public ICollection<UserGroup> UserGroupList { get; private set; } = [];
+        public UserGroup? UserGroup { get; private set; }
         public void SetAdminForUserGroup()
         {
             UserGroupId = Guid.Parse(InitConst.AdminGuid);
