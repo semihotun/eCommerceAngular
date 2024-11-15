@@ -232,4 +232,28 @@ export const routes: Routes = [
       ).then((m) => m.CreateOrUpdateWarehousePage),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'user-group-list',
+    loadComponent: () =>
+      import('./screens/user-groups/user-group-list/user-group-list.page').then(
+        (m) => m.UserGroupListPage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-user-group',
+    loadComponent: () =>
+      import(
+        './screens/user-groups/create-or-update-user-group/create-or-update-user-group.page'
+      ).then((m) => m.CreateOrUpdateUserGroupPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-user-group/:id',
+    loadComponent: () =>
+      import(
+        './screens/user-groups/create-or-update-user-group/create-or-update-user-group.page'
+      ).then((m) => m.CreateOrUpdateUserGroupPage),
+    canActivate: [AuthGuard],
+  },
 ];

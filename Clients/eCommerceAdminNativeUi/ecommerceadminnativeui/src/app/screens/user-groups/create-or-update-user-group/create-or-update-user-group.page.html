@@ -1,0 +1,28 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <div id="form-70-center">
+    <form [formGroup]="form">
+      <app-segment-language formControlName="languageCode"></app-segment-language>
+
+      <app-input [label]="'Name' |translate" [placeholder]="'Name' |translate" formControlName="name"></app-input>
+      <div class="label-error" *ngIf="hasError('name','required')">{{'Required' |translate}}</div>
+
+      <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+    </form>
+
+    <h5 class="text-center mt-5">{{"Add User Role" |translate}}</h5>
+    <div class="mt-3">
+      <app-grid [url]="'userGroupRole/getgrid'" [btnColumnOn]="true" (addBtn)="addUserGroupRole($event)"
+        (getAllDataVoid)="getAllNotExistRole($event)" [datas]="role" #roleGrid>
+      </app-grid>
+    </div>
+
+    <h5 class="text-center mt-5">{{"Added User Role" |translate}}</h5>
+    <div class="mt-3">
+      <app-grid [url]="'userGroupRole/getgrid'" [btnColumnOn]="true" (deleteBtn)="deleteUserGroupRole($event)"
+        [deleteBtnUrl]="'userGroupRole/delete'" (getAllDataVoid)="getAllUserGroupRoleData($event)"
+        [datas]="userGroupRole" #userGroupRoleGrid>
+      </app-grid>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<app-header [title]="'User Groups'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/create-or-update-user-group"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'userGroup/getgrid'" [btnColumnOn]="true" [editBtnUrl]="'create-or-update-user-group/'"
+    [deleteBtnUrl]="'userGroup/delete'">
+  </app-grid>
+</div>

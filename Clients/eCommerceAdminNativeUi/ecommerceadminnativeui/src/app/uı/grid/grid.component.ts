@@ -63,6 +63,7 @@ export class GridComponent implements OnInit, OnDestroy {
   @Output() getAllDataVoid: EventEmitter<GridPostData> =
     new EventEmitter<GridPostData>();
   @Output() addBtn: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteBtn: EventEmitter<any> = new EventEmitter<any>();
   @Input() datas: BehaviorSubject<PagedList<any[]> | null> =
     new BehaviorSubject<PagedList<any[]> | null>(null);
   localData: any[] = [];
@@ -139,8 +140,12 @@ export class GridComponent implements OnInit, OnDestroy {
   }
 
   async deleteData(id: number) {
-    await this.gridService.deleteUrl(this.deleteBtnUrl, id);
-    await this.getAllList();
+    if (this.deleteBtn.observed) {
+      this.deleteBtn.emit(id);
+    } else {
+      await this.gridService.deleteUrl(this.deleteBtnUrl, id);
+      await this.getAllList();
+    }
   }
 
   propertyList() {
