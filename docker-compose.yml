@@ -80,6 +80,24 @@ services:
       - sqlserver_log:/var/opt/mssql/log
     networks:
       - net_backendservices
+ 
+  s_nginx:
+    container_name: c_nginx
+    image: nginx
+    ports:
+      - ${Nginx_Port}:80
+    env_file:
+      - ./.env
+       
+  adminapp:
+    ports:
+      - 100:100
+    image: ${DOCKER_REGISTRY-}ecommercebase.adminwebapp
+    build:
+      context: .
+      dockerfile: /Clients/eCommerceAdminNativeUi/ecommerceadminnativeui/Dockerfile
+    networks:
+      - net_frontend
 
   # s_elasticsearch:
   #   container_name: c_elasticsearch
