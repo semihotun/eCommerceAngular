@@ -39,12 +39,6 @@ public class GetAllShowcaseDTOQueryHandler(CoreDbContext coreDbContext, ICacheSe
                     {
                         Id=sp.Product.Id,
                         ProductName = sp.Product.ProductName,
-                        //BrandId = sp.Product.BrandId,
-                        //CategoryId = sp.Product.CategoryId,
-                        //ProductContent = sp.Product.ProductContent,
-                        //Gtin = sp.Product.Gtin,
-                        //Sku = sp.Product.Sku,
-                        //ProductNameUpper = sp.Product.ProductNameUpper,
                         ProductSeo = sp.Product.ProductSeo,
                         Price = sp.Product.ProductStockList.Where(x => x.RemainingStock > 0 && !x.Deleted).OrderBy(x => x.CreatedOnUtc).FirstOrDefault()!.Price,
                         PhotoBase64 = sp.Product.ProductPhotoList.Where(x=>!x.Deleted).FirstOrDefault()!.PhotoBase64,
