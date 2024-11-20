@@ -3,15 +3,18 @@ import { Slider } from '../models/responseModel/Slider';
 import { ComponentStore } from '@ngrx/component-store';
 import { Showcase } from '../models/responseModel/Showcase';
 import { AllShowcaseDTO } from '../models/responseModel/allShowcaseDTO';
+import { WebsiteInfo } from '../models/responseModel/websiteInfo';
 
 export type HomeState = {
   sliders: Slider[];
   showcases: AllShowcaseDTO[];
+  websiteInfo: WebsiteInfo;
 };
 
 export const homeInitialState: HomeState = {
   sliders: [],
   showcases: [],
+  websiteInfo: new WebsiteInfo(),
 };
 
 @Injectable({
@@ -20,7 +23,7 @@ export const homeInitialState: HomeState = {
 export class HomeStore extends ComponentStore<HomeState> {
   readonly sliders$ = this.selectSignal((x) => x.sliders);
   readonly showcases$ = this.selectSignal((x) => x.showcases);
-
+  readonly websiteInfo$ = this.selectSignal((x) => x.websiteInfo);
   constructor() {
     super(homeInitialState);
   }
@@ -36,4 +39,8 @@ export class HomeStore extends ComponentStore<HomeState> {
       showcases,
     })
   );
+  readonly setWebsiteInfo = this.updater((state, websiteInfo: WebsiteInfo) => ({
+    ...state,
+    websiteInfo,
+  }));
 }

@@ -1,12 +1,10 @@
 <div class="footer container">
   <div class="description">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit,<br>
-    sed do eiusmod tempor incididunt ut labore et dolore magna
+    <div [innerHTML]="this.homeStore.websiteInfo$().socialMediaText" class="social-text" style="color:white;"></div>
     <div class="social">
-      <i class="fa-brands fa-facebook"></i>
-      <i class="fa-brands fa-square-twitter"></i>
-      <i class="fa-brands fa-youtube"></i>
-      <i class="fa-brands fa-instagram"></i>
+      <ng-container *ngFor="let item of this.homeStore.websiteInfo$().socialMediaInfos">
+        <a [href]="item.url"><img [src]="item.icon" width="35px" height="35px"></a>
+      </ng-container>
     </div>
   </div>
   <div class="links">

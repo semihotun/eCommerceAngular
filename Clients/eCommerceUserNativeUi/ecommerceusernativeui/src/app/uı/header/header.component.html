@@ -13,7 +13,8 @@
         <ion-icon name="chevron-back-outline" *ngIf="glb.isMobil.value && isNavigationBackUrl != ''"></ion-icon>
       </div>
       <div class="header-left">
-        <div class="logo" *ngIf="!glb.isMobil.value">SCommerce</div>
+        <div class="logo" *ngIf="!glb.isMobil.value"><img [src]="this.homeStore.websiteInfo$().logo" height="50px">
+        </div>
         <div class="search-input-wrapper">
           <input type="text" class="search-input">
           <i class="fas fa-search"></i>

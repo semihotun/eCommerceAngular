@@ -17,6 +17,7 @@ import { WebsiteInfoStore } from 'src/app/stores/website-info.store';
 import { ImagePickerComponent } from '../../../u\u0131/image-picker/image-picker.component';
 import { SocialMediaListComponent } from './components/social-media-list/social-media-list.component';
 import { AddSocialMediaComponent } from './components/add-social-media/add-social-media.component';
+import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.component';
 
 @Component({
   selector: 'app-update-websiteinfo',
@@ -34,6 +35,7 @@ import { AddSocialMediaComponent } from './components/add-social-media/add-socia
     ImagePickerComponent,
     SocialMediaListComponent,
     AddSocialMediaComponent,
+    TextEditorComponent,
   ],
 })
 export class UpdateWebsiteinfoPage implements OnInit {

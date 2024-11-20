@@ -8,6 +8,7 @@ import { Showcase } from '../models/responseModel/Showcase';
 import { HttpHeaders } from '@angular/common/http';
 import { Result } from '../models/core/result';
 import { AllShowcaseDTO } from '../models/responseModel/allShowcaseDTO';
+import { WebsiteInfo } from '../models/responseModel/websiteInfo';
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +19,22 @@ export class HomeService extends Destroyable {
   constructor() {
     super();
   }
-
+  getWebsiteInfo(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<WebsiteInfo>>(
+        environment.baseUrl + 'websiteInfo/get',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.homeStore.setWebsiteInfo(response.data);
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
+  }
   getAllSlider(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.get<Result<Slider[]>>(

@@ -15,7 +15,8 @@ import { Router, RouterModule } from '@angular/router';
 import { GlobalService } from 'src/app/services/global.service';
 import { UserService } from 'src/app/services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { HomeService } from 'src/app/services/home.service';
+import { HomeStore } from 'src/app/stores/home.store';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -39,7 +40,8 @@ export class HeaderComponent implements OnInit {
     private gestureCtrl: GestureController,
     private cdr: ChangeDetectorRef,
     public glb: GlobalService,
-    public userService: UserService
+    public userService: UserService,
+    public homeStore: HomeStore
   ) {}
   ngOnInit(): void {
     this.initializeGesture();
