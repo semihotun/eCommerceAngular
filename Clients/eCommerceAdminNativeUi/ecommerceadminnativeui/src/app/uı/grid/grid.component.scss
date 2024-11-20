@@ -23,10 +23,7 @@ $grid-mobile-width: 800px;
             font-size: 15px;
             font-family: Poppins;
             padding: 15px;
-        }
-
-        tbody tr:hover {
-            background-color: $theme-color-blue;
+            vertical-align: middle;
         }
 
         thead {
@@ -35,8 +32,13 @@ $grid-mobile-width: 800px;
         }
 
         td {
+            vertical-align: middle;
             padding: 15px;
             background-color: 1px solid rgba(0, 31, 63, 0.12);
+
+            .fa-trash-alt {
+                color: $theme-color-red;
+            }
         }
     }
 

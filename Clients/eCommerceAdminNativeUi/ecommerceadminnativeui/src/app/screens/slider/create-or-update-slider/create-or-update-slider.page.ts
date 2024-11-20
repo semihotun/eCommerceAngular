@@ -30,10 +30,6 @@ import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-l
   styleUrls: ['./create-or-update-slider.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     HeaderComponent,

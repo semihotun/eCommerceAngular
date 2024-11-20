@@ -30,11 +30,6 @@ import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-l
   styleUrls: ['./create-or-update-currency.page.scss'],
   standalone: true,
   imports: [
-    IonIcon,
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     HeaderComponent,

@@ -280,4 +280,20 @@ export const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'update-websiteinfo',
+    loadComponent: () =>
+      import(
+        './screens/websiteInfo/update-websiteinfo/update-websiteinfo.page'
+      ).then((m) => m.UpdateWebsiteinfoPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'update-websiteinfo/:id',
+    loadComponent: () =>
+      import(
+        './screens/websiteInfo/update-websiteinfo/update-websiteinfo.page'
+      ).then((m) => m.UpdateWebsiteinfoPage),
+    canActivate: [AuthGuard],
+  },
 ];

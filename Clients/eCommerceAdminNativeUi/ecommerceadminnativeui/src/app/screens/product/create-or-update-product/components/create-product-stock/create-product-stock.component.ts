@@ -30,7 +30,6 @@ import { CurrencyService } from './../../../../../services/currency.service';
   standalone: true,
   imports: [
     CommonModule,
-    IonIcon,
     GridComponent,
     InputComponent,
     TranslateModule,

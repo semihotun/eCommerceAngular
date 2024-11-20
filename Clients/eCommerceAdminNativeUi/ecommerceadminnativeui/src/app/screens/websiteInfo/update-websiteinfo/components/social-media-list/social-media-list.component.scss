@@ -1,0 +1,40 @@
+@import "../../../../../../theme/variables.scss";
+
+.list {
+    width: 100%;
+    border: 1px solid $theme-color-blue !important;
+    font-family: Poppins;
+    background-color: white;
+    font-size: 14px;
+
+    thead {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        tr {
+            th {
+                vertical-align: middle;
+                font-size: 15px;
+                font-family: Poppins;
+                padding: 15px;
+            }
+        }
+    }
+
+
+    tbody {
+        tr {
+            .deleteBtn {
+                i {
+                    color: $theme-color-red;
+                }
+            }
+
+            td {
+                vertical-align: middle;
+                padding: 15px;
+                background-color: 1px solid rgba(0, 31, 63, 0.12);
+            }
+        }
+    }
+}

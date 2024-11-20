@@ -1,0 +1,15 @@
+<h5 class="mt-3 text-center">{{"Add Social Media" |translate}}</h5>
+<form [formGroup]="form">
+    <div class="mt-2">
+        <app-input [label]="'Url' |translate" [placeholder]="'Url' |translate" formControlName="url"></app-input>
+    </div>
+    <div class="mt-2">
+        <app-input [label]="'Platform Name' |translate" [placeholder]="'Platform Name' |translate"
+            formControlName="platformName"></app-input>
+    </div>
+    <div class="mt-2">
+        <app-image-picker [label]="'Icon' |translate" [placeholder]="'Icon' |translate" formControlName="icon">
+        </app-image-picker>
+    </div>
+    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+</form>

@@ -1,0 +1,26 @@
+<h5 class="mt-3 text-center">{{"Added Social Media List" |translate}}</h5>
+<div class="table-responsive">
+  <table class="mt-3 list table">
+    <thead>
+      <tr>
+        <th>{{"Icon" |translate}}</th>
+        <th>{{"Platform Name" |translate}}</th>
+        <th>{{"Url" |translate}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of websiteInfoStore.websiteInfo$().socialMediaInfos">
+        <tr>
+          <td class="icon"><img [src]="item.icon.trim() !== '' ? item.icon : selectedImage" width="35px" height="35px">
+          </td>
+          <td class="platformName">{{ item.platformName }}</td>
+          <td class="url">{{ item.url }}</td>
+          <td style="width: 25px; " class="deleteBtn">
+            <a (click)="deleteData(item)" class="cursor-pointer"><i class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

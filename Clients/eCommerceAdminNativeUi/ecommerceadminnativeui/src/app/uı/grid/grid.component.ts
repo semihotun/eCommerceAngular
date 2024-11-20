@@ -46,7 +46,6 @@ import { LazyImgDirective } from './../../directives/lazy-img.directive';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    CheckboxComponent,
     BtnSubmitComponent,
     SelectboxComponent,
     InputComponent,

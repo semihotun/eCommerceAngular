@@ -1,0 +1,26 @@
+<app-header [title]="'Web Site Info' |translate" [backButton]="true"></app-header>
+<div id="page">
+  <div id="form-70-center">
+    <form [formGroup]="form">
+      <div class="mt-2">
+        <app-input [label]="'Social Media Text' |translate" [placeholder]="'Brand Name' |translate"
+          formControlName="socialMediaText"></app-input>
+        <div class="label-error" *ngIf="hasError('socialMediaText','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="mt-2">
+        <app-image-picker [label]="'Logo' |translate" [placeholder]="'Logo' |translate" formControlName="logo"
+          class="mt-2"> </app-image-picker>
+
+        <div class="label-error" *ngIf="hasError('logo','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="mt-2">
+        <app-input [label]="'Web Site Name' |translate" [placeholder]="'Web Site Name' |translate"
+          formControlName="webSiteName"></app-input>
+        <div class="label-error" *ngIf="hasError('webSiteName','required')">{{'Required' |translate}}</div>
+      </div>
+      <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+    </form>
+    <app-add-social-media></app-add-social-media>
+    <app-social-media-list></app-social-media-list>
+  </div>
+</div>
