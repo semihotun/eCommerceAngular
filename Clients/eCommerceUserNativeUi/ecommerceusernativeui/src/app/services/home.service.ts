@@ -6,6 +6,8 @@ import { Slider } from '../models/responseModel/Slider';
 import { HomeStore } from '../stores/home.store';
 import { Showcase } from '../models/responseModel/Showcase';
 import { HttpHeaders } from '@angular/common/http';
+import { Result } from '../models/core/result';
+import { AllShowcaseDTO } from '../models/responseModel/allShowcaseDTO';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,18 +19,37 @@ export class HomeService extends Destroyable {
     super();
   }
 
-  getAllSlider() {
-    const url = environment.baseUrl + 'sliderqueryservice/getallslider';
-    this.http.get<Slider[]>(url, {}, this.onDestroy, (data) => {
-      this.homeStore.setSliders(data);
+  getAllSlider(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<Slider[]>>(
+        environment.baseUrl + 'slider/getall',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.homeStore.setSliders(response.data);
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
     });
   }
 
-  getShowCaseList() {
-    const url =
-      environment.baseUrl + 'showcasedtoqueryservice/getallshowcasedto';
-    this.http.get<Showcase[]>(url, {}, this.onDestroy, (data) => {
-      this.homeStore.setShowcases(data);
+  getShowCaseList(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<AllShowcaseDTO[]>>(
+        environment.baseUrl + 'showcase/getallhome',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.homeStore.setShowcases(response.data);
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
     });
   }
 }

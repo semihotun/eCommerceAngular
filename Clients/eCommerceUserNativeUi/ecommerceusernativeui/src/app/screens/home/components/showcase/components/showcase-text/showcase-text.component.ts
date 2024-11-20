@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
 import { Showcase } from 'src/app/models/responseModel/Showcase';
 
 @Component({
@@ -8,7 +9,7 @@ import { Showcase } from 'src/app/models/responseModel/Showcase';
   styleUrls: ['./showcase-text.component.scss'],
 })
 export class ShowcaseTextComponent implements OnInit {
-  @Input() data!: Showcase;
+  @Input() data!: AllShowcaseDTO;
   constructor() {}
 
   ngOnInit() {}

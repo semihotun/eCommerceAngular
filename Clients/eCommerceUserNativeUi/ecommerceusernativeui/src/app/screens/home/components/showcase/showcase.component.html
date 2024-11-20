@@ -1,8 +1,8 @@
 @for (showcase of homeStore.showcases$(); track $index) {
-@if (showcase.showCaseType==showcaseType.ProductSlider) {
+@if (isProductSlider(showcase.showCaseTypeId)) {
 <app-showcase-swiper [data]="showcase"></app-showcase-swiper>
 }
-@else if (showcase.showCaseType==showcaseType.EightProduct) {
+@else if (isProduct8x8(showcase.showCaseTypeId)) {
 <app-showcaselist [data]="showcase"></app-showcaselist>
 }
 @else {

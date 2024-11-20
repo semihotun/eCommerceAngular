@@ -21,6 +21,8 @@ import { CommonModule } from '@angular/common';
 import { SelectboxComponent } from './../../../../../uı/selectbox/selectbox.component';
 import { WarehouseStore } from 'src/app/stores/warehouse.store';
 import { WarehouseService } from 'src/app/services/warehouse.service';
+import { CurrencyStore } from 'src/app/stores/currency.store';
+import { CurrencyService } from './../../../../../services/currency.service';
 @Component({
   selector: 'app-create-product-stock',
   templateUrl: './create-product-stock.component.html',
@@ -51,7 +53,9 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private productStore: ProductStore,
     public warehouseStore: WarehouseStore,
-    public warehouseService: WarehouseService
+    public warehouseService: WarehouseService,
+    private currencyService: CurrencyService,
+    public currencyStore: CurrencyStore
   ) {}
 
   async getAllData(data?: GridPostData) {
@@ -72,7 +76,9 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
       id: [''],
       totalStock: [1, Validators.required],
       warehouseId: ['', Validators.required],
+      currencyId: ['', Validators.required],
       languageCode: [''],
+      price: [0, Validators.required],
     });
   }
   async submitForm() {
@@ -83,6 +89,7 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
         ...this.form.value,
         remainingStock: this.form.get('totalStock')?.value,
         productId: this.productId,
+        currencyId: this.form.get('currencyId')?.value,
         languageCode: this.productStore.product$().languageCode,
       };
       await this.productStockService.createproductStock(productStock);
@@ -96,6 +103,7 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     this.initForm();
     this.warehouseService.getAllWarehouse();
+    this.currencyService.getAllCurrency();
     this.productStockStore.productStockGridObservable$
       .pipe(takeUntil(this.onDestroy))
       .subscribe((x) => {

@@ -82,5 +82,8 @@
 	"Create Warehouse": "Depo Oluştur",
 	"Update Warehouse": "Depo Bilgisi Güncelle",
 	"Update User Group" : "Kullanıcı Gruplarını Güncelle",
-	"Create User Group":"Kullanıcı Grubu Oluştur"
+	"Create User Group":"Kullanıcı Grubu Oluştur",
+	"Currency":"Para Birimi",
+	"Create Currency":"Para Birimi Oluştur",
+	"Update Currency":"Para Birimi Güncelle"
 }

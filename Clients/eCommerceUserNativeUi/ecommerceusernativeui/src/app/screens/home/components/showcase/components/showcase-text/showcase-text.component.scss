@@ -1,0 +1,13 @@
+@import '../../../../../../../theme/variables.scss';
+
+$card-bg-color: white;
+
+.show-case-text {
+    border-radius: 15px;
+    background-color: $card-bg-color;
+    margin-top: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 20px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

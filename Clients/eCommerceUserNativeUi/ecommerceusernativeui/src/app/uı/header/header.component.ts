@@ -54,10 +54,10 @@ export class HeaderComponent implements OnInit {
       this.headerRight.nativeElement.parentNode?.parentNode?.contains(
         event.target as Node
       );
-    // if (clickedInside == false) {
-    //   this.removeSubCategoryOpenClass();
-    //   this.glb.isShowMobilBars.next(false);
-    // }
+    if (clickedInside == false) {
+      this.removeSubCategoryOpenClass();
+      this.glb.isShowMobilBars.next(false);
+    }
   }
   removeSubCategoryOpenClass() {
     const elements =

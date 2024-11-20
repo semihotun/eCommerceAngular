@@ -5,6 +5,7 @@ import { HomeStore } from 'src/app/stores/home.store';
 import { HomeService } from 'src/app/services/home.service';
 import { ShowcaseTextComponent } from './components/showcase-text/showcase-text.component';
 import { ShowcaseType } from 'src/app/models/enums/ShowcaseType';
+import { ShowcaseConst } from 'src/app/models/consts/showcaseConst';
 
 @Component({
   selector: 'app-showcase',
@@ -25,5 +26,14 @@ export class ShowcaseComponent implements OnInit {
 
   ngOnInit() {
     this.homeService.getShowCaseList();
+  }
+  isProductSlider(id: string): boolean {
+    return id == ShowcaseConst.ProductSlider.id;
+  }
+  isProduct8x8(id: string): boolean {
+    return id == ShowcaseConst.Product8x8.id;
+  }
+  isText(id: string): boolean {
+    return id == ShowcaseConst.Text.id;
   }
 }
