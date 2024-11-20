@@ -1,4 +1,4 @@
-﻿using eCommerceBase.Domain.SeedWork;
+using eCommerceBase.Domain.SeedWork;
 
 namespace eCommerceBase.Domain.AggregateModels
 {
@@ -17,8 +17,22 @@ namespace eCommerceBase.Domain.AggregateModels
             ShowCaseText = showCaseText;
         }
 
-        public ShowCaseType? ShowCaseType { get;private set; }
+        public ShowCaseType? ShowCaseType { get; private set; }
+
         [SwaggerIgnore]
         public ICollection<ShowCaseProduct> ShowCaseProductList { get; private set; } = [];
+
+        public void SetShowCaseType(ShowCaseType? showCaseType)
+        {
+            ShowCaseType = showCaseType;
+        }
+
+        public void AddShowCaseProductList(ShowCaseProduct? showCaseProduct)
+        {
+            if (showCaseProduct != null)
+            {
+                ShowCaseProductList.Add(showCaseProduct);
+            }
+        }
     }
 }

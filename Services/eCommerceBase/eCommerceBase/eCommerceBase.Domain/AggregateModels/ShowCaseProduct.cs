@@ -12,7 +12,7 @@ namespace eCommerceBase.Domain.AggregateModels
             ProductId = productId;
         }
         [SwaggerIgnore]
-        public ICollection<ShowCase> ShowCaseList { get; private set; } = [];
+        public ShowCase Showcase { get; private set; }
         [SwaggerIgnore]
         public Product Product { get; private set; }
     }   
