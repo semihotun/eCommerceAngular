@@ -26,7 +26,7 @@ public class DeleteProductSpecificationCommandHandler(IWriteDbRepository<Product
             {
                 data.Deleted = true;
                 _productSpecificationRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:ProductSpecifications");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Deleted);
             }
             else

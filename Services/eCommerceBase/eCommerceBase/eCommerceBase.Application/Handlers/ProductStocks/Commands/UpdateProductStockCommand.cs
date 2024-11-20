@@ -12,7 +12,8 @@ public record UpdateProductStockCommand(int RemainingStock,
 		int TotalStock,
 		Guid WarehouseId,
 		Guid ProductId,
-		System.Guid Id) : IRequest<Result>;
+		System.Guid Id, double? Price,
+        Guid CurrencyId) : IRequest<Result>;
 public class UpdateProductStockCommandHandler(IWriteDbRepository<ProductStock> productStockRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<UpdateProductStockCommand,
@@ -31,7 +32,7 @@ public class UpdateProductStockCommandHandler(IWriteDbRepository<ProductStock> p
             {
                 data = ProductStockMapper.UpdateProductStockCommandToProductStock(request);
                 _productStockRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:ProductStocks");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Updated);
             }
 

@@ -25,7 +25,7 @@ public class CreateProductSpecificationCommandHandler(IWriteDbRepository<Product
         {
             var data = ProductSpecificationMapper.CreateProductSpecificationCommandToProductSpecification(request);
             await _productSpecificationRepository.AddAsync(data);
-            await _cacheService.RemovePatternAsync("eCommerceBase:ProductSpecifications");
+            await _cacheService.RemovePatternAsync("eCommerceBase:Product");
             return Result.SuccessResult(Messages.Added);
         });
     }

@@ -31,7 +31,7 @@ public class CreateProductCommandHandler(IWriteDbRepository<Product> productRepo
             var data = ProductMapper.CreateProductCommandToProduct(request);
             data.SetSlug(SlugHelper.GenerateSlug(data.ProductName));
             await _productRepository.AddAsync(data);
-            await _cacheService.RemovePatternAsync("eCommerceBase:Products");
+            await _cacheService.RemovePatternAsync("eCommerceBase:Product");
             return Result.SuccessResult(Messages.Added);
         });
     }

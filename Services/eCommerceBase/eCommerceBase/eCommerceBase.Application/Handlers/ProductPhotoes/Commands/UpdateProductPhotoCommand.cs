@@ -29,7 +29,7 @@ public class UpdateProductPhotoCommandHandler(IWriteDbRepository<ProductPhoto> p
             {
                 data = ProductPhotoMapper.UpdateProductPhotoCommandToProductPhoto(request);
                 _productPhotoRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:ProductPhotoes");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Updated);
             }
 

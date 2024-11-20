@@ -26,7 +26,7 @@ public class DeleteProductPhotoCommandHandler(IWriteDbRepository<ProductPhoto> p
             {
                 data.Deleted = true;
                 _productPhotoRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:ProductPhotoes");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Deleted);
             }
             else

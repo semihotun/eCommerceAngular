@@ -29,7 +29,7 @@ public class UpdateProductSpecificationCommandHandler(IWriteDbRepository<Product
             {
                 data = ProductSpecificationMapper.UpdateProductSpecificationCommandToProductSpecification(request);
                 _productSpecificationRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:ProductSpecifications");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Updated);
             }
 

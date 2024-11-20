@@ -25,7 +25,7 @@ public class CreateShowCaseProductCommandHandler(IWriteDbRepository<ShowCaseProd
         {
             var data = ShowCaseProductMapper.CreateShowCaseProductCommandToShowCaseProduct(request);
             await _showCaseProductRepository.AddAsync(data);
-            await _cacheService.RemovePatternAsync("eCommerceBase:ShowCaseProducts");
+            await _cacheService.RemovePatternAsync("eCommerceBase:ShowCase");
             return Result.SuccessResult(Messages.Added);
         });
     }

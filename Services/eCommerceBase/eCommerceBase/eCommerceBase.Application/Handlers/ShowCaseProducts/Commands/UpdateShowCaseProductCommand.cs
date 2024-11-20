@@ -29,7 +29,7 @@ public class UpdateShowCaseProductCommandHandler(IWriteDbRepository<ShowCaseProd
             {
                 data = ShowCaseProductMapper.UpdateShowCaseProductCommandToShowCaseProduct(request);
                 _showCaseProductRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:ShowCaseProducts");
+                await _cacheService.RemovePatternAsync("eCommerceBase:ShowCase");
                 return Result.SuccessResult(Messages.Updated);
             }
 

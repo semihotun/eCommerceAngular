@@ -25,7 +25,7 @@ public class CreateProductPhotoCommandHandler(IWriteDbRepository<ProductPhoto> p
         {
             var data = ProductPhotoMapper.CreateProductPhotoCommandToProductPhoto(request);
             await _productPhotoRepository.AddAsync(data);
-            await _cacheService.RemovePatternAsync("eCommerceBase:ProductPhotoes");
+            await _cacheService.RemovePatternAsync("eCommerceBase:Product");
             return Result.SuccessResult(Messages.Added);
         });
     }

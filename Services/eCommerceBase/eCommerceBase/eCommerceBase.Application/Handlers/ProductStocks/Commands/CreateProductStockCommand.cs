@@ -11,7 +11,9 @@ namespace eCommerceBase.Application.Handlers.ProductStocks.Commands;
 public record CreateProductStockCommand(int RemainingStock,
 		int TotalStock,
 		Guid WarehouseId,
-		Guid ProductId) : IRequest<Result>;
+		Guid ProductId,
+        double? Price,
+        Guid CurrencyId) : IRequest<Result>;
 public class CreateProductStockCommandHandler(IWriteDbRepository<ProductStock> productStockRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<CreateProductStockCommand,
@@ -27,7 +29,7 @@ public class CreateProductStockCommandHandler(IWriteDbRepository<ProductStock> p
         {
             var data = ProductStockMapper.CreateProductStockCommandToProductStock(request);
             await _productStockRepository.AddAsync(data);
-            await _cacheService.RemovePatternAsync("eCommerceBase:ProductStocks");
+            await _cacheService.RemovePatternAsync("eCommerceBase:Product");
             return Result.SuccessResult(Messages.Added);
         });
     }

@@ -35,7 +35,7 @@ public class DeleteShowCaseCommandHandler(IWriteDbRepository<ShowCase> showCaseR
                     item.Deleted = true;
                     _showCaseProductRepository.Update(item);
                 }
-                await _cacheService.RemovePatternAsync("eCommerceBase:ShowCases");
+                await _cacheService.RemovePatternAsync("eCommerceBase:ShowCase");
                 return Result.SuccessResult(Messages.Deleted);
             }
             else

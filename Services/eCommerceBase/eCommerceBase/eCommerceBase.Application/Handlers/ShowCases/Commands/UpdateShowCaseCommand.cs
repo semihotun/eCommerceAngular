@@ -45,7 +45,7 @@ public class UpdateShowCaseCommandHandler(IWriteDbRepository<ShowCase> showCaseR
                 data = ShowCaseMapper.UpdateShowCaseCommandToShowCase(request);
                 _showCaseRepository.Update(data);
 
-                await _cacheService.RemovePatternAsync("eCommerceBase:ShowCases");
+                await _cacheService.RemovePatternAsync("eCommerceBase:ShowCase");
                 return Result.SuccessResult(Messages.Updated);
             }
 

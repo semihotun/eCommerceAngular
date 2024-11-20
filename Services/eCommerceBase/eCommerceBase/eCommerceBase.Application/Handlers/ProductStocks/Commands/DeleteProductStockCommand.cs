@@ -26,7 +26,7 @@ public class DeleteProductStockCommandHandler(IWriteDbRepository<ProductStock> p
             {
                 data.Deleted = true;
                 _productStockRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:ProductStocks");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Deleted);
             }
             else
