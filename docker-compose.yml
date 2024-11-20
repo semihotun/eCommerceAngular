@@ -99,31 +99,47 @@ services:
   #   networks:
   #     - net_frontend
 
-  # s_elasticsearch:
-  #   container_name: c_elasticsearch
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
-  #   env_file:
-  #     - ./.env
-  #   environment:
-  #     - http.host=0.0.0.0
-  #     - transport.host=localhost
-  #     - network.host=0.0.0.0
-  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  #     - xpack.monitoring.enabled=false
-  #     - xpack.monitoring.collection.enabled=false
-  #     - ELASTIC_PASSWORD=${ElasticSearch_Password}
-  #     - ELASTICSEARCH_USERNAME=${ElasticSearch_UserName}
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
-  #   mem_limit: 1g
-  #   ports:
-  #     - "${Elastic_TCP_Port}:9200"
-  #     - "${Elastic_UDP_Port}:9300"
-  #   networks:
-  #     - net_backendservices
-
+  s_elasticsearch:
+    container_name: c_elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    env_file:
+      - ./.env
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=localhost
+      - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.monitoring.enabled=false
+      - xpack.monitoring.collection.enabled=false
+      - ELASTIC_PASSWORD=${ElasticSearch_Password}
+      - ELASTICSEARCH_USERNAME=${ElasticSearch_UserName}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    ports:
+      - "${Elastic_TCP_Port}:9200"
+      - "${Elastic_UDP_Port}:9300"
+    networks:
+      - net_backendservices
+  s_kibana:
+    container_name: c_kibana
+    image: docker.elastic.co/kibana/kibana:7.10.2
+    env_file:
+      - ./.env
+    environment:
+      - ELASTICSEARCH_HOSTS=["http://s_elasticsearch:${Elastic_TCP_Port}"]
+      - elasticsearch.sniffOnStart=true
+      - ES_JAVA_OPTS=-Xms3g -Xmx3g
+      - xpack.infra.sources.default.metricAlias=metricbeat-*
+      - XPACK_MONITORING_KIBANA_COLLECTION_ENABLED=false
+      - ELASTIC_PASSWORD=${ElasticSearch_Password}
+      - ELASTICSEARCH_USERNAME=${ElasticSearch_UserName}
+    ports:
+      - "${Kibana_Port}:${Kibana_Port}"
+    networks:
+      - net_backendservices
   # s_mongo:
   #   container_name: c_mongo
   #   image: mongo:7.0.7-rc0

@@ -57,7 +57,7 @@ namespace eCommerceBase.Persistence.Extensions
         /// </summary>
         /// <param name="retries"></param>
         /// <returns></returns>
-        private static AsyncRetryPolicy CreatePolicy(int retries)
+        public static AsyncRetryPolicy CreatePolicy(int retries)
         {
             return Policy.Handle<SqlException>().
                 WaitAndRetryAsync(
