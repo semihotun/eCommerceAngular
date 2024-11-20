@@ -1,0 +1,9 @@
+<app-header [title]="'Currency'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/create-or-update-currency"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'currency/getgrid'" [btnColumnOn]="true" [editBtnUrl]="'create-or-update-currency/'"
+    [deleteBtnUrl]="'currency/delete'">
+  </app-grid>
+</div>

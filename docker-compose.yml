@@ -89,15 +89,15 @@ services:
     env_file:
       - ./.env
        
-  adminapp:
-    ports:
-      - 100:100
-    image: ${DOCKER_REGISTRY-}ecommercebase.adminwebapp
-    build:
-      context: .
-      dockerfile: /Clients/eCommerceAdminNativeUi/ecommerceadminnativeui/Dockerfile
-    networks:
-      - net_frontend
+  # adminapp:
+  #   ports:
+  #     - 100:100
+  #   image: ${DOCKER_REGISTRY-}ecommercebase.adminwebapp
+  #   build:
+  #     context: .
+  #     dockerfile: /Clients/eCommerceAdminNativeUi/ecommerceadminnativeui/Dockerfile
+  #   networks:
+  #     - net_frontend
 
   # s_elasticsearch:
   #   container_name: c_elasticsearch

@@ -1,0 +1,21 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <form [formGroup]="form" id="form-70-center">
+    <app-segment-language formControlName="languageCode"></app-segment-language>
+    <div>
+      <app-input [label]="'Symbol' |translate" [placeholder]="'Symbol' |translate" formControlName="symbol"></app-input>
+      <div class="label-error" *ngIf="hasError('symbol','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="mt-2">
+      <app-input [label]="'Code' |translate" [placeholder]="'Code' |translate" formControlName="code"></app-input>
+      <div class="label-error" *ngIf="hasError('code','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="mt-2">
+      <app-input [label]="'Name' |translate" [placeholder]="'Name' |translate" formControlName="name"></app-input>
+      <div class="label-error" *ngIf="hasError('name','required')">{{'Required' |translate}}</div>
+    </div>
+
+
+    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
+  </form>
+</div>

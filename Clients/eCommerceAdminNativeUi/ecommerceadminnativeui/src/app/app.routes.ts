@@ -256,4 +256,28 @@ export const routes: Routes = [
       ).then((m) => m.CreateOrUpdateUserGroupPage),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'create-or-update-currency',
+    loadComponent: () =>
+      import(
+        './screens/currency/create-or-update-currency/create-or-update-currency.page'
+      ).then((m) => m.CreateOrUpdateCurrencyPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-currency/:id',
+    loadComponent: () =>
+      import(
+        './screens/currency/create-or-update-currency/create-or-update-currency.page'
+      ).then((m) => m.CreateOrUpdateCurrencyPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'currency-list',
+    loadComponent: () =>
+      import('./screens/currency/currency-list/currency-list.page').then(
+        (m) => m.CurrencyListPage
+      ),
+    canActivate: [AuthGuard],
+  },
 ];
