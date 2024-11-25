@@ -35,9 +35,10 @@ namespace eCommerceBase.Insfrastructure.Utilities.Grid.PagedList
             var sourceType = source.ElementType;
             result.PropertyInfos = sourceType.GetProperties().Select(x =>
             {
+                var propertyType = Nullable.GetUnderlyingType(x.PropertyType) ?? x.PropertyType;
                 return new GridPropertyInfo
                 {
-                    PropertyType = x.PropertyType.Name,
+                    PropertyType = propertyType.Name,
                     PropertyName = char.ToLowerInvariant(x.Name[0]) + x.Name[1..]
                 };
             });
@@ -61,9 +62,10 @@ namespace eCommerceBase.Insfrastructure.Utilities.Grid.PagedList
                 propertyInfoList = selector.Method.ReturnType.GetProperties()
                     .Select(x =>
                     {
+                        var propertyType = Nullable.GetUnderlyingType(x.PropertyType) ?? x.PropertyType;
                         return new GridPropertyInfo
                         {
-                            PropertyType = x.PropertyType.Name,
+                            PropertyType = propertyType.Name,
                             PropertyName = char.ToLowerInvariant(x.Name[0]) + x.Name[1..]
                         };
                     });
