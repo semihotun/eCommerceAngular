@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { GridComponent } from 'src/app/uı/grid/grid.component';
 import { InputComponent } from 'src/app/uı/input/input.component';
 import { IonIcon } from '@ionic/angular/standalone';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { GridPostData } from 'src/app/models/core/grid';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
@@ -23,6 +23,7 @@ import { WarehouseStore } from 'src/app/stores/warehouse.store';
 import { WarehouseService } from 'src/app/services/warehouse.service';
 import { CurrencyStore } from 'src/app/stores/currency.store';
 import { CurrencyService } from './../../../../../services/currency.service';
+import { DiscountType } from 'src/app/models/consts/discountTypeConst';
 @Component({
   selector: 'app-create-product-stock',
   templateUrl: './create-product-stock.component.html',
@@ -44,6 +45,11 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
   productId!: string;
   form!: FormGroup;
   submitted: boolean = false;
+  discountTypeList: any = DiscountType.getAllWithProductDiscountTranslations(
+    this.translateService
+  );
+  showAndHideDiscount: boolean = false;
+  discountButtonText: 'Add Discount' | 'Cancel Discount' = 'Add Discount';
   @ViewChild('ProductStockGrid') productStockGrid!: GridComponent;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -54,7 +60,8 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
     public warehouseStore: WarehouseStore,
     public warehouseService: WarehouseService,
     private currencyService: CurrencyService,
-    public currencyStore: CurrencyStore
+    public currencyStore: CurrencyStore,
+    private translateService: TranslateService
   ) {}
 
   async getAllData(data?: GridPostData) {
@@ -78,6 +85,8 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
       currencyId: ['', Validators.required],
       languageCode: [''],
       price: [0, Validators.required],
+      discountTypeId: [null],
+      discountNumber: [0],
     });
   }
   async submitForm() {
@@ -90,6 +99,8 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
         productId: this.productId,
         currencyId: this.form.get('currencyId')?.value,
         languageCode: this.productStore.product$().languageCode,
+        discountTypeId: this.form.get('discountTypeId')?.value,
+        discountNumber: this.form.get('discountNumber')?.value,
       };
       await this.productStockService.createproductStock(productStock);
       this.productStockGrid.refresh();
@@ -114,5 +125,17 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.onDestroy.next();
     this.onDestroy.complete();
+  }
+  addDiscount() {
+    if (!this.showAndHideDiscount) {
+      this.discountButtonText = 'Cancel Discount';
+    } else {
+      this.form.patchValue({
+        discountTypeId: null,
+        discountNumber: 0,
+      });
+      this.discountButtonText = 'Add Discount';
+    }
+    this.showAndHideDiscount = !this.showAndHideDiscount;
   }
 }

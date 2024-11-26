@@ -17,11 +17,13 @@
             <app-selectbox placeholder="{{ 'Brand Name' | translate }}" label="{{ 'Brand Name' | translate }}"
               formControlName="brandId" [data]="brandStore.brandList$()" [valueProperty]="'id'"
               [textProperty]="'brandName'"></app-selectbox>
+            <div class="label-error" *ngIf="hasError('brandId','required')">{{'Required' |translate}}</div>
           </div>
           <div class="row">
             <app-selectbox placeholder="{{ 'Category Name' | translate }}" label="{{ 'Category Name' | translate }}"
               [data]="categoryStore.categoryTree$()" formControlName="categoryId" [valueProperty]="'id'"
               [textProperty]="'categoryName'"></app-selectbox>
+            <div class="label-error" *ngIf="hasError('categoryId','required')">{{'Required' |translate}}</div>
           </div>
 
           <div class="row">

@@ -2,14 +2,15 @@
   <form [formGroup]="form">
     <h6 class="text-center">{{'Add Product Stock' | translate}}</h6>
     <div class="row mt-4">
+      <app-selectbox placeholder="{{ 'Currency' | translate }}" label="{{ 'Currency' | translate }}"
+        formControlName="currencyId" [data]="currencyStore.currencyList$()" [valueProperty]="'id'"
+        [textProperty]="'code'"></app-selectbox>
+      <div class="label-error" *ngIf="hasError('currencyId','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="row mt-3">
       <app-input [label]="'Total Stock' |translate" [placeholder]="'Total Stock' |translate"
         formControlName="totalStock" [type]="'number'"></app-input>
       <div class="label-error" *ngIf="hasError('totalStock','required')">{{'Required' |translate}}</div>
-    </div>
-    <div class="row mt-3">
-      <app-input [label]="'Price' |translate" [placeholder]="'Price' |translate" formControlName="price"
-        [type]="'number'"></app-input>
-      <div class="label-error" *ngIf="hasError('price','required')">{{'Required' |translate}}</div>
     </div>
     <div class="row mt-3">
       <app-selectbox placeholder="{{ 'Warehouse' | translate }}" label="{{ 'Warehouse' | translate }}"
@@ -18,14 +19,27 @@
       <div class="label-error" *ngIf="hasError('warehouseId','required')">{{'Required' |translate}}</div>
     </div>
     <div class="row mt-3">
-      <app-selectbox placeholder="{{ 'Currency' | translate }}" label="{{ 'Currency' | translate }}"
-        formControlName="currencyId" [data]="currencyStore.currencyList$()" [valueProperty]="'id'"
-        [textProperty]="'code'"></app-selectbox>
-      <div class="label-error" *ngIf="hasError('currencyId','required')">{{'Required' |translate}}</div>
+      <app-input [label]="'Price' |translate" [placeholder]="'Price' |translate" formControlName="price"
+        [type]="'number'"></app-input>
+      <div class="label-error" *ngIf="hasError('price','required')">{{'Required' |translate}}</div>
+    </div>
+
+    <app-btn-submit [text]="discountButtonText | translate" class="mt-3" (click)="addDiscount()"></app-btn-submit>
+    <div class="discount" *ngIf="showAndHideDiscount">
+      <div class="row mt-3">
+        <app-selectbox placeholder="{{ 'Discount Type' | translate }}" label="{{ 'Discount Type' | translate }}"
+          formControlName="discountTypeId" [data]="discountTypeList" [valueProperty]="'id'"
+          [textProperty]="'name'"></app-selectbox>
+        <div class="label-error" *ngIf="hasError('discountNumber','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="row mt-3">
+        <app-input [label]="'Discount Number' |translate" [placeholder]="'Discount Number' |translate"
+          formControlName="discountNumber" [type]="'number'"></app-input>
+        <div class="label-error" *ngIf="hasError('discountNumber','required')">{{'Required' |translate}}</div>
+      </div>
     </div>
     <app-btn-submit [text]="'Add Product Stock' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
   </form>
-
   <h6 class="text-center mt-5">{{'Product Stock' | translate}}</h6>
   <app-grid [btnColumnOn]="true" [deleteBtnUrl]="'productStock/delete'" (getAllDataVoid)="getAllData($event)"
     [datas]="data" #ProductStockGrid>

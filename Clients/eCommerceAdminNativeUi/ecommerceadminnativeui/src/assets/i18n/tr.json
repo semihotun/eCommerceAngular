@@ -85,5 +85,13 @@
 	"Create User Group":"Kullanıcı Grubu Oluştur",
 	"Currency":"Para Birimi",
 	"Create Currency":"Para Birimi Oluştur",
-	"Update Currency":"Para Birimi Güncelle"
+	"Update Currency":"Para Birimi Güncelle",
+	"Web Site Info":"Web Sitesi Bilgisi",
+	"ProductPercentDiscount":"Ürün % İndirimi",
+	"ProductCurrencyDiscount" :"Ürün - İndirimi",
+	"CategoryPercentDiscount":"Kategori % İndirimi",
+	"CategoryCurrencyDiscount":"Kategori - İndirimi",
+	"Add Discount":"İndirim Ekle",
+	"Discount Number":"İndirim Değeri",
+	"Discount Type":"İndirim Tipi"
 }
