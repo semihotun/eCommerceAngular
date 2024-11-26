@@ -36,12 +36,26 @@ export class DiscountType {
       name: translateService.instant(discount.nameKey),
     }));
   }
-  static getAllWithProductDiscountTranslations(
+  static getAllDiscountListOfProducts(
     translateService: TranslateService
   ): Array<{ id: string; name: string }> {
     const discountArray = [
       this.ProductPercentDiscount,
       this.ProductCurrencyDiscount,
+    ];
+
+    return discountArray.map((discount) => ({
+      id: discount.id,
+      name: translateService.instant(discount.nameKey),
+    }));
+  }
+
+  static getAllNonProductDiscounts(
+    translateService: TranslateService
+  ): Array<{ id: string; name: string }> {
+    const discountArray = [
+      this.CategoryCurrencyDiscount,
+      this.CategoryPercentDiscount,
     ];
 
     return discountArray.map((discount) => ({

@@ -296,4 +296,20 @@ export const routes: Routes = [
       ).then((m) => m.UpdateWebsiteinfoPage),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'discount-list',
+    loadComponent: () =>
+      import('./screens/discounts/discount-list/discount-list.page').then(
+        (m) => m.DiscountListPage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'create-or-update-discount',
+    loadComponent: () =>
+      import(
+        './screens/discounts/create-or-update-discount/create-or-update-discount.page'
+      ).then((m) => m.CreateOrUpdateDiscountPage),
+    canActivate: [AuthGuard],
+  },
 ];

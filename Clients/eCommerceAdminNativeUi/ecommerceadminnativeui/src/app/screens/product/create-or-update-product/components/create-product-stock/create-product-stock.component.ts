@@ -45,7 +45,7 @@ export class CreateProductStockComponent implements OnInit, OnDestroy {
   productId!: string;
   form!: FormGroup;
   submitted: boolean = false;
-  discountTypeList: any = DiscountType.getAllWithProductDiscountTranslations(
+  discountTypeList: any = DiscountType.getAllDiscountListOfProducts(
     this.translateService
   );
   showAndHideDiscount: boolean = false;

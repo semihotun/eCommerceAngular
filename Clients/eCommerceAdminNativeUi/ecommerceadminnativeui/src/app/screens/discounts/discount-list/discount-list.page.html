@@ -1,0 +1,8 @@
+<app-header [title]="'Discount'" [backButton]="true"></app-header>
+<div id="page">
+  <div class="btn-list">
+    <a href="/create-or-update-discount"><ion-icon name="add-outline"></ion-icon></a>
+  </div>
+  <app-grid [url]="'discount/getgrid'" [btnColumnOn]="true" [deleteBtnUrl]="'discount/delete'">
+  </app-grid>
+</div>

@@ -8,10 +8,6 @@ import {
   Validators,
 } from '@angular/forms';
 import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
   NavController,
   IonAccordion,
   IonItem,
@@ -32,7 +28,6 @@ import { CategoryService } from 'src/app/services/category/category.service';
 import { CategoryStore } from 'src/app/stores/category.store';
 import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
 import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.component';
-import { CreateOrUpdateBrandPage } from '../../brand/create-or-update-brand/create-or-update-brand.page';
 import { CreateOrUpdateProductSpecificationComponent } from './components/create-or-update-product-specification/create-or-update-product-specification.component';
 import { CreateOrUpdateProductPhotoComponent } from './components/create-or-update-product-photo/create-or-update-product-photo.component';
 import { CreateProductStockComponent } from './components/create-product-stock/create-product-stock.component';
@@ -43,10 +38,6 @@ import { CreateProductStockComponent } from './components/create-product-stock/c
   styleUrls: ['./create-or-update-product.page.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     HeaderComponent,
@@ -61,7 +52,6 @@ import { CreateProductStockComponent } from './components/create-product-stock/c
     IonItem,
     IonLabel,
     IonAccordionGroup,
-    CreateOrUpdateBrandPage,
     CreateOrUpdateProductSpecificationComponent,
     CreateOrUpdateProductPhotoComponent,
     CreateProductStockComponent,

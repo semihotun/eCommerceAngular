@@ -1,0 +1,28 @@
+<app-header [title]="title |translate" [backButton]="true"></app-header>
+<div id="page">
+  <form [formGroup]="form" id="form-70-center">
+    <app-segment-language formControlName="languageCode"></app-segment-language>
+
+    <div class="mt-3">
+      <app-input [label]="'Name' |translate" [placeholder]="'Name' |translate" formControlName="name"></app-input>
+      <div class="label-error" *ngIf="hasError('name','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="mt-3">
+      <app-selectbox placeholder="{{ 'Discount Type' | translate }}" label="{{ 'Discount Type' | translate }}"
+        formControlName="discountTypeId" [data]="discountTypeList" [valueProperty]="'id'" [textProperty]="'name'"
+        (change)="discountTypeChange($event)"></app-selectbox>
+      <div class="label-error" *ngIf="hasError('discountTypeId','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="mt-3">
+      <app-input [label]="'Discount Number' |translate" [placeholder]="'Discount Number' |translate"
+        formControlName="discountNumber"></app-input>
+      <div class="label-error" *ngIf="hasError('discountNumber','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="mt-3" *ngIf="isCategoryDiscount">
+      <app-selectbox placeholder="{{ 'Category Name' | translate }}" label="{{ 'Category Name' | translate }}"
+        [data]="categoryStore.categoryTree$()" formControlName="categoryId" [valueProperty]="'id'"
+        [textProperty]="'categoryName'"></app-selectbox>
+    </div>
+    <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()" *ngIf="isCreate"></app-btn-submit>
+  </form>
+</div>

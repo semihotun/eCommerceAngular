@@ -1,11 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpService } from './core/http.service';
-import { Result } from '../models/core/result';
-import { Destroyable } from '../shared/destroyable.service';
-import { ToastService } from './core/toast.service';
-import { DiscountProductStore } from '../stores/discount-product.store';
-import { DiscountProduct } from '../models/responseModel/discount-product';
+import { HttpService } from '../core/http.service';
+import { Result } from '../../models/core/result';
+import { Destroyable } from '../../shared/destroyable.service';
+import { ToastService } from '../core/toast.service';
+import { DiscountProductStore } from '../../stores/discount-product.store';
+import { DiscountProduct } from '../../models/responseModel/discount-product';
 
 @Injectable({
   providedIn: 'root',

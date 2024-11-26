@@ -30,7 +30,7 @@
         <app-selectbox placeholder="{{ 'Discount Type' | translate }}" label="{{ 'Discount Type' | translate }}"
           formControlName="discountTypeId" [data]="discountTypeList" [valueProperty]="'id'"
           [textProperty]="'name'"></app-selectbox>
-        <div class="label-error" *ngIf="hasError('discountNumber','required')">{{'Required' |translate}}</div>
+        <div class="label-error" *ngIf="hasError('discountTypeId','required')">{{'Required' |translate}}</div>
       </div>
       <div class="row mt-3">
         <app-input [label]="'Discount Number' |translate" [placeholder]="'Discount Number' |translate"
