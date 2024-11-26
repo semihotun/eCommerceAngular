@@ -4,7 +4,7 @@ namespace eCommerceBase.Domain.AggregateModels
 {
     public class DiscountProduct : BaseEntity
     {
-        public DiscountProduct(Guid discountId, Guid productStockId, int discountNumber)
+        public DiscountProduct(Guid discountId, Guid productStockId, double discountNumber)
         {
             DiscountId = discountId;
             ProductStockId = productStockId;
@@ -12,7 +12,7 @@ namespace eCommerceBase.Domain.AggregateModels
         }
         public Guid DiscountId { get; private set; }
         public Guid ProductStockId { get; private set; }
-        public int DiscountNumber { get; private set; }
+        public double DiscountNumber { get; private set; }
         [SwaggerIgnore]
         public ProductStock? ProductStock { get; private set; }
         [SwaggerIgnore]

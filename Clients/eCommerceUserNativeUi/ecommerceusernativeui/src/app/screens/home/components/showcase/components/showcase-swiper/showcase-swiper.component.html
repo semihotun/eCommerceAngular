@@ -12,7 +12,11 @@
         </div>
         <div class="card-bottom">
           <div class="title">{{product.productName}}</div>
-          <div class="price">{{product.price}} {{product.currencyCode}}</div>
+          <div class="price">
+            <div class="price-without-discount" *ngIf="product.priceWithoutDiscount != product.price">
+              {{product.priceWithoutDiscount}} {{product.currencyCode}}</div>
+            <div class="total-price">{{product.price}} {{product.currencyCode}}</div>
+          </div>
         </div>
         <div class="btn"><button type="button">{{ "Inspect Product" |translate}}</button></div>
 

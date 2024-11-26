@@ -1,4 +1,5 @@
 ﻿using eCommerceBase.Domain.AggregateModels;
+using eCommerceBase.Domain.Constant;
 using System.Linq.Expressions;
 namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 public static class ProductQueryExtensions
@@ -9,7 +10,14 @@ public static class ProductQueryExtensions
          Id = product.Id,
          ProductName = product.ProductName,
          ProductSeo = product.ProductSeo,
-         Price = product.ProductStockList
+         Price = CalculatePrice(
+            product.ProductStockList
+             .AsQueryable()
+             .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
+             .OrderBy(stock => stock.CreatedOnUtc)
+             .FirstOrDefault()
+            ),
+         PriceWithoutDiscount = product.ProductStockList
              .AsQueryable()
              .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
              .OrderBy(stock => stock.CreatedOnUtc)
@@ -24,4 +32,22 @@ public static class ProductQueryExtensions
              .OrderBy(stock => stock.CreatedOnUtc)
              .FirstOrDefault()!.Currency!.Code
      };
+    private static double CalculatePrice(ProductStock? productStock)
+    {
+        var totalPrice = productStock!.Price;
+        foreach (var item in productStock.DiscountProductList)
+        {
+            if (DiscountTypeConst.ProductCurrencyDiscount == item.Discount!.DiscountTypeId ||
+                DiscountTypeConst.CategoryCurrencyDiscount == item.Discount!.DiscountTypeId)
+            {
+                totalPrice = totalPrice - item.DiscountNumber;
+            }
+            if (DiscountTypeConst.ProductPercentDiscount == item.Discount!.DiscountTypeId ||
+                DiscountTypeConst.CategoryPercentDiscount == item.Discount!.DiscountTypeId)
+            {
+                totalPrice -= totalPrice * (item.DiscountNumber / 100.0);
+            }
+        }
+        return totalPrice;
+    }
 }

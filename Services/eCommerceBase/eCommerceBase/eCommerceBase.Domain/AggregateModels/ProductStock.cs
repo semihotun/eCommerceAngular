@@ -8,10 +8,10 @@ namespace eCommerceBase.Domain.AggregateModels
         public int TotalStock { get; private set; }
         public Guid WarehouseId { get; private set; }
         public Guid ProductId { get; private set; }
-        public double? Price { get; private set; }
+        public double Price { get; private set; }
         public Guid CurrencyId { get; private set; }
 
-        public ProductStock(int remainingStock, int totalStock, Guid warehouseId, Guid productId, double? price, Guid currencyId)
+        public ProductStock(int remainingStock, int totalStock, Guid warehouseId, Guid productId, double price, Guid currencyId)
         {
             RemainingStock = remainingStock;
             TotalStock = totalStock;

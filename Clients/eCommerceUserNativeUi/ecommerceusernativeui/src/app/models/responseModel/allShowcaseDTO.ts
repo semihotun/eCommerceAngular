@@ -13,4 +13,5 @@ export class ShowCaseProductDto {
   photoBase64!: string;
   currencyCode!: string;
   price!: number;
+  priceWithoutDiscount!: number;
 }

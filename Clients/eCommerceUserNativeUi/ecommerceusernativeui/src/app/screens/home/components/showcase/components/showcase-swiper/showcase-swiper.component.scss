@@ -49,9 +49,7 @@ swiper-container {
                 padding-bottom: 0px;
             }
 
-            :not(:first-child) {
-                margin-top: 10px;
-            }
+
 
             .image {
                 img {
@@ -69,13 +67,27 @@ swiper-container {
                 }
 
                 .price {
-                    font-size: 14px;
+                    margin-top: 10px;
+                    display: flex;
+                    align-items: center;
+
+                    .total-price {
+                        font-size: 18px;
+                    }
+
+                    .price-without-discount {
+                        margin-right: 12px;
+                        font-size: 14px;
+                        color: red;
+                        text-decoration: line-through;
+                    }
                 }
 
 
             }
 
             .btn {
+                margin-top: 12px;
                 width: 100%;
                 display: flex;
                 justify-content: end;

@@ -14,5 +14,6 @@ namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos
         public string? PhotoBase64 { get; set; }
         public string? CurrencyCode { get; set; }
         public double? Price { get; set; }
+        public double? PriceWithoutDiscount { get; set; }
     }
 }
