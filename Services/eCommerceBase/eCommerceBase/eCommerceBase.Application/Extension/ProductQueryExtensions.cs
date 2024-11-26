@@ -35,7 +35,7 @@ public static class ProductQueryExtensions
     private static double CalculatePrice(ProductStock? productStock)
     {
         var totalPrice = productStock!.Price;
-        foreach (var item in productStock.DiscountProductList)
+        foreach (var item in productStock!.DiscountProductList.Where(x => !x.Deleted))
         {
             if (DiscountTypeConst.ProductCurrencyDiscount == item.Discount!.DiscountTypeId ||
                 DiscountTypeConst.CategoryCurrencyDiscount == item.Discount!.DiscountTypeId)
