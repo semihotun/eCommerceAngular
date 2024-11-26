@@ -7,6 +7,7 @@ using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Persistence.Context;
 using eCommerceBase.Insfrastructure.Utilities.Grid.Filter;
 using Microsoft.EntityFrameworkCore;
+using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 
 namespace eCommerceBase.Application.Handlers.ShowCases.Queries;
 public record GetAllShowcaseDTOQuery()
@@ -20,33 +21,28 @@ public class GetAllShowcaseDTOQueryHandler(CoreDbContext coreDbContext, ICacheSe
     {
         return await _cacheService.GetAsync<Result<List<AllShowcaseDTO>>>(request, async () =>
         {
-            var query = await _coreDbContext.Query<ShowCase>()
-                .Include(x => x.ShowCaseProductList)
+            var query = _coreDbContext.Query<ShowCase>()
+                    .Include(x => x.ShowCaseProductList)
                         .ThenInclude(x => x.Product)
                         .ThenInclude(x => x.ProductStockList)
                         .ThenInclude(x => x.Currency)
                     .Include(x => x.ShowCaseProductList)
                         .ThenInclude(x => x.Product)
                         .ThenInclude(x => x.ProductPhotoList)
-                .Select(x => new AllShowcaseDTO
-                {
-                    Id = x.Id,
-                    ShowCaseText = x.ShowCaseText,
-                    ShowCaseTypeId = x.ShowCaseTypeId,
-                    ShowCaseTitle = x.ShowCaseTitle,
-                    ShowCaseOrder = x.ShowCaseOrder,
-                    ShowCaseProductList = x.ShowCaseProductList.Select(sp => new AllShowcaseDTO.ShowCaseProductDto
+                    .Select(x => new AllShowcaseDTO
                     {
-                        Id=sp.Product.Id,
-                        ProductName = sp.Product.ProductName,
-                        ProductSeo = sp.Product.ProductSeo,
-                        Price = sp.Product.ProductStockList.Where(x => x.RemainingStock > 0 && !x.Deleted).OrderBy(x => x.CreatedOnUtc).FirstOrDefault()!.Price,
-                        PhotoBase64 = sp.Product.ProductPhotoList.Where(x=>!x.Deleted).FirstOrDefault()!.PhotoBase64,
-                        CurrencyCode= sp.Product.ProductStockList.Where(x => x.RemainingStock > 0 && !x.Deleted).OrderBy(x => x.CreatedOnUtc).FirstOrDefault()!.Currency!.Code
-                    }).ToList()
-                }).OrderBy(x=>x.ShowCaseOrder).ToListAsync();
-
-            return Result.SuccessDataResult<List<AllShowcaseDTO>>(query!);
+                        Id = x.Id,
+                        ShowCaseText = x.ShowCaseText,
+                        ShowCaseTypeId = x.ShowCaseTypeId,
+                        ShowCaseTitle = x.ShowCaseTitle,
+                        ShowCaseOrder = x.ShowCaseOrder,
+                        ShowCaseProductList = x.ShowCaseProductList
+                            .AsQueryable()
+                            .Select(sp => sp.Product)
+                            .Select(ProductQueryExtensions.ToProductDto)
+                            .AsEnumerable()
+                    }).OrderBy(x => x.ShowCaseOrder);
+            return Result.SuccessDataResult<List<AllShowcaseDTO>>(await query!.ToListAsync());
         }, cancellationToken);
     }
 }
