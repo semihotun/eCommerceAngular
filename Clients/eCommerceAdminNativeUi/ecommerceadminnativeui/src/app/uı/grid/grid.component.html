@@ -39,7 +39,7 @@
           <ng-container *ngFor="let key of keys">
             <th *ngIf="key.checked == true" (click)="changeOrderBy(key.propertyName)">
               <div class="d-flex justify-content-between">
-                <span>{{ key.propertyName | titlecase }}</span>
+                <span>{{ key.propertyName | titlecase | translate}}</span>
               </div>
             </th>
           </ng-container>
