@@ -15,23 +15,23 @@ namespace eCommerceBase.Persistence.EntityConfigurations
 
         public List<DiscountType> GetSeedData()
         {
-            var discount1 = new Discount("Product Percent Discount", DiscountTypeConst.ProductPercentDiscount);
+            var discount1 = new Discount("Ürün % İndirimi", DiscountTypeConst.ProductPercentDiscount);
             discount1.SetId(DiscountTypeConst.ProductPercentDiscount);
-            var disCountType1 = new DiscountType("ProductPercentDiscount");
+            var disCountType1 = new DiscountType("Ürün % İndirimi");
             disCountType1.SetId(DiscountTypeConst.ProductPercentDiscount);
             disCountType1.AddDiscountList(discount1);
 
-            var disCountType3 = new DiscountType("ProductCurrencyDiscount");
-            disCountType1.SetId(DiscountTypeConst.ProductCurrencyDiscount);
-            var discount2 = new Discount("Product Currency Discount", DiscountTypeConst.ProductCurrencyDiscount);
+            var disCountType2 = new DiscountType("Ürün - İndirimi");
+            disCountType2.SetId(DiscountTypeConst.ProductCurrencyDiscount);
+            var discount2 = new Discount("Ürün Birim İndirimi", DiscountTypeConst.ProductCurrencyDiscount);
             discount2.SetId(DiscountTypeConst.ProductCurrencyDiscount);
-            disCountType3.AddDiscountList(discount2);
+            disCountType2.AddDiscountList(discount2);
 
-            var disCountType2 = new DiscountType("CategoryPercentDiscount");
-            disCountType2.SetId(DiscountTypeConst.CategoryPercentDiscount);
+            var disCountType3 = new DiscountType("Kategori % İndirimi");
+            disCountType3.SetId(DiscountTypeConst.CategoryPercentDiscount);
 
-            var disCountType4 = new DiscountType("CategoryCurrencyDiscount");
-            disCountType2.SetId(DiscountTypeConst.CategoryCurrencyDiscount);
+            var disCountType4 = new DiscountType("Kategori - İndirimi");
+            disCountType4.SetId(DiscountTypeConst.CategoryCurrencyDiscount);
 
             return [disCountType1,disCountType2,disCountType3, disCountType4];
         }
