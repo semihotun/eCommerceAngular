@@ -87,7 +87,7 @@ namespace eCommerceBase.Persistence.GenericRepository
             var query = _writeContext.WriteQuery<TEntity>();
             foreach (var item in includes)
             {
-                query.Include(item);
+                query = query.Include(item);
             }
             return await query.FirstOrDefaultAsync(expression);
         }

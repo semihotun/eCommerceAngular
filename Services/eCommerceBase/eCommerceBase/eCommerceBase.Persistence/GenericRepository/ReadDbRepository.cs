@@ -19,7 +19,7 @@ namespace eCommerceBase.Persistence.GenericRepository
         }
         public async Task<TEntity?> GetByIdAsync(Guid Id)
         {
-            var entity = await _writeContext.Query<TEntity>().FirstOrDefaultAsync(x=>x.Id == Id);
+            var entity = await _writeContext.Query<TEntity>().FirstOrDefaultAsync(x => x.Id == Id);
             if (entity?.Deleted == false)
             {
                 return entity;
@@ -36,7 +36,7 @@ namespace eCommerceBase.Persistence.GenericRepository
             var query = _writeContext.Query<TEntity>();
             foreach (var item in includes)
             {
-                query.Include(item);
+                query = query.Include(item);
             }
             return await query.FirstOrDefaultAsync(expression);
         }
