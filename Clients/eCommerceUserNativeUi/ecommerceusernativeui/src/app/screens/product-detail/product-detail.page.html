@@ -1,1 +1,12 @@
-<div>product-detail</div>
+<ion-content fullscreen="true">
+    <app-header></app-header>
+    <div id="product-detail">
+        asdsa
+    </div>
+    @if (!glb.isMobil.value) {
+    <app-footer></app-footer>
+    }
+    @else {
+    <app-mobile-footer></app-mobile-footer>
+    }
+</ion-content>

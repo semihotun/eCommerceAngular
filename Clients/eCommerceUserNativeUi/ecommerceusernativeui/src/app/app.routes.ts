@@ -3,14 +3,14 @@ import { LoginPage } from './screens/login/login.page';
 
 export const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadComponent: () =>
       import('./screens/home/home.page').then((m) => m.HomePage),
     pathMatch: 'full',
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '',
     pathMatch: 'full',
   },
   {
@@ -38,7 +38,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'product-detail',
+    path: ':slug',
     loadComponent: () =>
       import('./screens/product-detail/product-detail.page').then(
         (m) => m.ProductDetailPage

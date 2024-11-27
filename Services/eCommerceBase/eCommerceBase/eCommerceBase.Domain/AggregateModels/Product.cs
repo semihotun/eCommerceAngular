@@ -11,7 +11,7 @@ namespace eCommerceBase.Domain.AggregateModels
         public string Gtin { get; private set; }
         public string Sku { get; private set; }
         public string ProductNameUpper { get; private set; }
-        public string ProductSeo { get; private set; }
+        public string? Slug { get; private set; }
 
         public Product(string productName, Guid? brandId, Guid? categoryId, string productContent, string gtin, string sku)
         {
@@ -24,9 +24,9 @@ namespace eCommerceBase.Domain.AggregateModels
             ProductNameUpper = productName.ToUpper();
         }
 
-        public void SetSlug(string productSeo)
+        public void SetSlug(string slug)
         {
-            ProductSeo = productSeo;
+            Slug = slug;
         }
 
         [SwaggerIgnore]

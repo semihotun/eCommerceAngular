@@ -9,6 +9,7 @@ import {
   ViewChild,
   input,
 } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LazyImgDirective } from 'src/app/directives/lazy-img.directive';
 import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
@@ -21,7 +22,7 @@ import { Swiper } from 'swiper/types';
   styleUrls: ['./showcase-swiper.component.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [CommonModule, LazyImgDirective, TranslateModule],
+  imports: [CommonModule, LazyImgDirective, TranslateModule, RouterModule],
 })
 export class ShowcaseSwiperComponent implements AfterViewInit {
   @ViewChild('swiper') swiperRef: ElementRef | undefined;

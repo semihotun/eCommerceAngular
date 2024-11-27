@@ -9,7 +9,7 @@ export class AllShowcaseDTO {
 
 export class ShowCaseProductDto {
   productName!: string;
-  productSeo!: string;
+  slug!: string;
   photoBase64!: string;
   currencyCode!: string;
   price!: number;

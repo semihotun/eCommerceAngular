@@ -19,10 +19,6 @@ import { ShowcaseComponent } from './components/showcase/showcase.component';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
-    IonRouterOutlet,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     HeaderComponent,
     FooterComponent,

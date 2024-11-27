@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
       this.headerRight.nativeElement.parentNode?.parentNode?.contains(
         event.target as Node
       );
-    if (clickedInside == false) {
+    if (clickedInside == false && this.glb.isShowMobilBars.value == true) {
       this.removeSubCategoryOpenClass();
       this.glb.isShowMobilBars.next(false);
     }

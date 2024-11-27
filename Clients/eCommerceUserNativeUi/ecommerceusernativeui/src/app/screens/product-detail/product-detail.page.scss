@@ -1,0 +1,10 @@
+@import '../../../theme/styles.scss';
+
+#product-detail {
+    min-height: 70%;
+
+    @media screen and (max-width:$tablet-size) {
+        min-height: 100%;
+        padding-bottom: 65px;
+    }
+}

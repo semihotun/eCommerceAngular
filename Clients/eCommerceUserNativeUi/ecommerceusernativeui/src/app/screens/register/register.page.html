@@ -1,7 +1,7 @@
 <ion-content fullscreen="true">
     <app-header *ngIf="!this.glb.isMobil.value"></app-header>
     <div id="not-header-page">
-        <app-sub-header [previousUrl]="['login']" [title]="'Register' |translate"></app-sub-header>
+        <app-sub-header [previousUrl]="['']" [title]="'Register' |translate"></app-sub-header>
         <form class="form" [formGroup]="form">
             <app-input [label]="'Name' |translate" [placeholder]="'NamePlaceHolder' | translate"
                 formControlName="name"></app-input>

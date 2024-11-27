@@ -45,10 +45,10 @@ bootstrapApplication(AppComponent, {
         },
       })
     ),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: LoaderInterceptor,
+    //   multi: true,
+    // },
   ],
 }).catch((err) => console.error(err));

@@ -9,7 +9,7 @@ public static class ProductQueryExtensions
      {
          Id = product.Id,
          ProductName = product.ProductName,
-         ProductSeo = product.ProductSeo,
+         Slug = product.Slug,
          Price = CalculatePrice(
             product.ProductStockList
              .AsQueryable()
