@@ -35,6 +35,7 @@
         width: 100%;
         background-color: white;
         z-index: 3;
+        height: $header-mobile-middle-height;
     }
 
 
@@ -66,7 +67,7 @@
         align-items: center;
 
         @media screen and (max-width: $tablet-size) {
-            height: $header-mobile-middle-height;
+            height: 100%;
             padding: 1% 0px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 0px 0px 140px 7px rgba(0, 0, 0, 0.1);
@@ -85,6 +86,23 @@
                 vertical-align: center;
                 align-items: center;
                 font-size: 22px;
+                margin-right: 25px;
+                position: relative;
+
+                .previousbtn {
+                    position: absolute;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    background-color: transparent;
+
+                    &::before {
+                        content: '<';
+                        color: #333;
+                        margin-right: 5px;
+                        font-size: 30px;
+                    }
+                }
             }
 
             .header-left {

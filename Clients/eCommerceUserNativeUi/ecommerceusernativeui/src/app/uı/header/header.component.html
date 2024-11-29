@@ -9,8 +9,10 @@
   </div>
   <div class="header-middle">
     <div class="header-container container">
-      <div class="header-back-button" *ngIf="glb.isMobil.value">
-        <ion-icon name="chevron-back-outline" *ngIf="glb.isMobil.value && isNavigationBackUrl != ''"></ion-icon>
+
+      <div class="header-back-button" *ngIf="glb.isMobil.value"
+        (click)="this.navController.navigateBack(this.isNavigationBackUrl!)">
+        <button class="previousbtn" *ngIf="glb.isMobil.value && isNavigationBackUrl != null"></button>
       </div>
       <div class="header-left">
         <div class="logo" *ngIf="!glb.isMobil.value"><img [src]="this.homeStore.websiteInfo$().logo" height="50px">

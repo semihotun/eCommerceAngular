@@ -7,7 +7,7 @@ import { Result } from '../models/core/result';
 import { UserLoginResponse } from '../models/responseModel/UserLoginResponse';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { UserRegisterResponse } from '../models/responseModel/UserRegisterResponse';
-import { HttpService } from './http.service';
+import { HttpService } from './core/http.service';
 import { Destroyable } from '../shared/destroyable.service';
 import { Router } from '@angular/router';
 

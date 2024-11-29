@@ -1,0 +1,30 @@
+<div class="tabs">
+  <div class="tab-button" [class.active]="selectedTab === 1" (click)="selectTab(1)">
+    {{'Product Content' |translate}}
+  </div>
+  <div class="tab-button" [class.active]="selectedTab === 2" (click)="selectTab(2)">
+    {{'Product Specification' |translate}}
+  </div>
+  <div class="tab-button" [class.active]="selectedTab === 3" (click)="selectTab(3)">
+    {{'Question-Answer' |translate}}
+  </div>
+  <div class="tab-button" [class.active]="selectedTab === 4" (click)="selectTab(4)">
+    {{'Comments' |translate}}
+  </div>
+  <div class="visible-tab-button"> &nbsp; </div>
+</div>
+
+<div class="tab-content">
+  <div *ngIf="selectedTab === 1 && !this.glb.isMobil.value">
+    {{productStore.productDTO$().productContent}}
+  </div>
+  <div *ngIf="selectedTab === 2 && !this.glb.isMobil.value">
+    <app-product-specification></app-product-specification>
+  </div>
+  <div *ngIf="selectedTab === 3 && !this.glb.isMobil.value">
+    <app-product-question-answer></app-product-question-answer>
+  </div>
+  <div *ngIf="selectedTab === 4 && !this.glb.isMobil.value">
+    <app-comments></app-comments>
+  </div>
+</div>

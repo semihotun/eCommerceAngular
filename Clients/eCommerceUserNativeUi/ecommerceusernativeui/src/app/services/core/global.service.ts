@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, fromEvent } from 'rxjs';
+import { NavController } from '@ionic/angular/standalone';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,7 +11,7 @@ export class GlobalService {
   isShowMobilBars: BehaviorSubject<boolean | null> = new BehaviorSubject<
     boolean | null
   >(null);
-  constructor() {
+  constructor(private navController: NavController) {
     this.onResize();
   }
   onResize() {
@@ -22,5 +24,8 @@ export class GlobalService {
         this.isMobil.next(true);
       }
     });
+  }
+  navigateProductDetail(slug: String): void {
+    this.navController.navigateForward(['', slug]);
   }
 }

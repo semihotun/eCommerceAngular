@@ -4,6 +4,11 @@ using System.Linq.Expressions;
 namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 public static class ProductQueryExtensions
 {
+    /// <summary>
+    /// Tek bir dto ve extension altında yaparak sürekli query sorgularını yazmaktan kaçma aynı şekilde 
+    /// select değimi içinde AsQueryable olan sorguları ef kendi içinde inject ediyor 
+    /// include atmayada  yada linq kullnamayada gerek kalmıyor
+    /// </summary>
     public static Expression<Func<Product, ProductDto>> ToProductDto =>
      (Product product) => new ProductDto
      {
@@ -30,7 +35,12 @@ public static class ProductQueryExtensions
              .AsQueryable()
              .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
              .OrderBy(stock => stock.CreatedOnUtc)
-             .FirstOrDefault()!.Currency!.Code
+             .FirstOrDefault()!.Currency!.Code,
+         BrandName = product.Brand!.BrandName,
+         CategoryName = product.Category!.CategoryName,
+         BrandId =product.BrandId,
+         CategoryId = product.CategoryId,
+         ProductContent = product.ProductContent
      };
     private static double CalculatePrice(ProductStock? productStock)
     {

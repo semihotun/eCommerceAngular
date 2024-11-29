@@ -9,7 +9,7 @@ import {
 } from '@ionic/angular/standalone';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from 'src/app/services/core/global.service';
 
 @Component({
   selector: 'app-sub-header',

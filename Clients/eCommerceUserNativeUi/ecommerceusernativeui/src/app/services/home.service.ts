@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpService } from './http.service';
+import { HttpService } from './core/http.service';
 import { Destroyable } from '../shared/destroyable.service';
 import { environment } from 'src/environments/environment';
 import { Slider } from '../models/responseModel/Slider';

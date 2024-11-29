@@ -1,0 +1,40 @@
+<div class="tabs">
+  <div class="tab-button">
+    <div class="tab-header">
+      <div class="title">{{'Product Content' |translate}}</div>
+      <div class="see-all">{{'See All' |translate}}</div>
+    </div>
+    <div class="tab-content">
+      {{productStore.productDTO$().productContent}}
+    </div>
+  </div>
+  <div class="tab-button">
+    <div class="tab-header">
+      <div class="title">{{'Product Specification' |translate}}</div>
+      <div class="see-all">{{'See All' |translate}}</div>
+    </div>
+    <div class="tab-content">
+      <app-product-specification></app-product-specification>
+    </div>
+
+  </div>
+  <div class="tab-button">
+    <div class="tab-header">
+      <div class="title">{{'Question-Answer' |translate}}</div>
+      <div class="see-all">{{'See All' |translate}}</div>
+    </div>
+    <div class="tab-content">
+      <app-product-question-answer></app-product-question-answer>
+    </div>
+
+  </div>
+  <div class="tab-button">
+    <div class="tab-header">
+      <div class="title">{{'Comments' |translate}}</div>
+      <div class="see-all">{{'See All' |translate}}</div>
+    </div>
+    <div class="tab-content">
+      <app-product-comments></app-product-comments>
+    </div>
+  </div>
+</div>

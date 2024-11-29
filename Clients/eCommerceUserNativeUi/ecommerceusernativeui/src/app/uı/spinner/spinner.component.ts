@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IonSpinner } from '@ionic/angular/standalone';
-import { LoaderService } from 'src/app/services/loader.service';
+import { LoaderService } from 'src/app/services/core/loader.service';
 
 @Component({
   selector: 'app-spinner',

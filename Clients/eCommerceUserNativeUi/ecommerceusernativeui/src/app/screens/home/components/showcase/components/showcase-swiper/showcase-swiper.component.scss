@@ -19,12 +19,22 @@ $card-bg-color: white;
 
     .show-case-title {
         display: flex;
+        padding: 0px 5px;
         justify-content: space-between;
         width: 100%;
-        align-items: center;
+        align-items: baseline;
+        margin-top: 16px;
+        margin-bottom: 10px;
 
-        h4 {
+        .showcase-title-text {
+
+            font-size: 20px;
             padding-bottom: 20px;
+
+            @media screen and (max-width: $tablet-size) {
+                padding-bottom: 14px;
+                font-size: 18px;
+            }
         }
 
         .all-show-text {
@@ -64,12 +74,24 @@ swiper-container {
 
                 .title {
                     font-size: 16px;
+
+                    @media screen and (max-width: $tablet-size) {
+
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+
+                        font-size: 14px;
+                    }
                 }
 
                 .price {
                     margin-top: 10px;
                     display: flex;
                     align-items: center;
+                    font-weight: 500;
 
                     .total-price {
                         font-size: 18px;
@@ -103,7 +125,8 @@ swiper-container {
                     @media screen and (max-width: $tablet-size) {
                         width: 100%;
                         font-size: 12px;
-                        padding: 6px;
+                        padding: 8px;
+                        letter-spacing: 1.5px;
                     }
                 }
 

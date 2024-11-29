@@ -29,6 +29,12 @@ namespace eCommerceBase.Api.Endpoints
             group.MapGet("/getbyid", GetProductById)
                .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
                .AllowAnonymous();
+            group.MapGet("/getproductdetailbyid", GetProductDetailById)
+             .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
+             .AllowAnonymous();
+            group.MapGet("/getproductdetailbyslug", GetProductDetailBySlug)
+            .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
+            .AllowAnonymous();
             group.MapGet("/getall", GetAllProduct)
                 .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
                 .AllowAnonymous();
@@ -63,6 +69,25 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
+        public static async Task<IResult> GetProductDetailById([FromQuery] Guid? id, ISender sender)
+        {
+            var result = await sender.Send(new GetProductDTOByIdQuery(id));
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> GetProductDetailBySlug([FromQuery] string? slug, ISender sender)
+        {
+            var result = await sender.Send(new GetProductDTOBySlugQuery(slug));
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+
         public static async Task<IResult> GetProductById([FromQuery] Guid id, ISender sender)
         {
             var result = await sender.Send(new GetProductByIdQuery(id));

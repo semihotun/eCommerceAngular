@@ -1,8 +1,30 @@
 <ion-content fullscreen="true">
-    <app-header></app-header>
+    <app-header [isNavigationBackUrl]="''"></app-header>
     <div id="product-detail">
-        asdsa
+        <div class="product">
+            <img [src]="this.productDto$().photoBase64" class="photo">
+            <div class="info">
+                <div class="product-title">
+                    <span class="brand-name">{{this.productDto$().brandName}}</span>{{this.productDto$().productName}}
+                </div>
+                <div class="product-price">
+                    <div class="price-without-discount"
+                        *ngIf="this.productDto$().priceWithoutDiscount != this.productDto$().price">
+                        {{this.productDto$().priceWithoutDiscount}} {{this.productDto$().currencyCode}}</div>
+                    <div class="total-price">{{this.productDto$().price}} {{this.productDto$().currencyCode}}</div>
+                </div>
+                <div class="add-basket"></div>
+            </div>
+        </div>
+        <div class="product-tabs">
+            <app-product-tabs></app-product-tabs>
+        </div>
+        <div class="another-products">
+
+        </div>
     </div>
+
+
     @if (!glb.isMobil.value) {
     <app-footer></app-footer>
     }

@@ -21,7 +21,7 @@ import {
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { FooterComponent } from 'src/app/uı/footer/footer.component';
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from 'src/app/services/core/global.service';
 import { MobileFooterComponent } from 'src/app/uı/mobile-footer/mobile-footer.component';
 import { InputComponent } from 'src/app/uı/input/input.component';
 import { TranslateModule } from '@ngx-translate/core';

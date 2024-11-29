@@ -22,7 +22,7 @@ import { MobileFooterComponent } from 'src/app/uı/mobile-footer/mobile-footer.c
 import { InputComponent } from 'src/app/uı/input/input.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component';
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from 'src/app/services/core/global.service';
 import { CheckboxComponent } from '../../u\u0131/checkbox/checkbox.component';
 import { RouterModule } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';

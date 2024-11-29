@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LazyImgDirective } from 'src/app/directives/lazy-img.directive';
 import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
 import { Showcase } from 'src/app/models/responseModel/Showcase';
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from 'src/app/services/core/global.service';
 import { Swiper } from 'swiper/types';
 @Component({
   selector: 'app-showcase-swiper',

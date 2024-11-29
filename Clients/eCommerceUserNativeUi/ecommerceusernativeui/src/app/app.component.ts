@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { IonApp, IonContent, NavController } from '@ionic/angular/standalone';
+import {
+  IonApp,
+  IonContent,
+  NavController,
+  IonRouterOutlet,
+} from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
 import { register } from 'swiper/element/bundle';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -13,6 +18,7 @@ register();
   templateUrl: 'app.component.html',
   standalone: true,
   imports: [
+    IonRouterOutlet,
     IonContent,
     IonApp,
     RouterModule,

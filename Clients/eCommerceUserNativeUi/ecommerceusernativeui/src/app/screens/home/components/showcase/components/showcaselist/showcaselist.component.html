@@ -1,6 +1,6 @@
 <div class="showcase-list">
   <div class="show-case-title">
-    <h4>{{data.showCaseTitle}}</h4>
+    <div class="showcase-title-text">{{data.showCaseTitle}}</div>
     <div class="all-show-text"><a href="">{{ "See All" |translate}}</a></div>
   </div>
   @for (product of data.showCaseProductList; track $index) {
@@ -16,7 +16,7 @@
         <div class="total-price">{{product.price}} {{product.currencyCode}}</div>
       </div>
     </div>
-    <div class="btn"><button type="button" [routerLink]="['', product.slug]">{{ "Inspect Product"
+    <div class="btn"><button type="button" (click)="glb.navigateProductDetail(product.slug)">{{ "Inspect Product"
         |translate}}</button></div>
   </div>
   }

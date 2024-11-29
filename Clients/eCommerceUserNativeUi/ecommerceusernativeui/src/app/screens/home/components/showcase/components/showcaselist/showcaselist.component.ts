@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LazyImgDirective } from 'src/app/directives/lazy-img.directive';
 import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
+import { GlobalService } from 'src/app/services/core/global.service';
 
 @Component({
   selector: 'app-showcaselist',
@@ -14,6 +15,6 @@ import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
 })
 export class ShowcaselistComponent implements OnInit {
   @Input() data!: AllShowcaseDTO;
-  constructor() {}
+  constructor(public glb: GlobalService) {}
   ngOnInit() {}
 }

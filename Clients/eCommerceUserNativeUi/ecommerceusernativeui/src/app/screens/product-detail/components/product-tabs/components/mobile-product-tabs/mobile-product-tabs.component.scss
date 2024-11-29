@@ -1,0 +1,33 @@
+ @import '../../../../../../../theme/variables.scss';
+
+ .tab-button {
+     background-color: white;
+     padding: 20px 15px;
+     box-shadow:
+         0 -2px 4px rgba(0, 0, 0, 0.02),
+         0 2px 4px rgba(0, 0, 0, 0.02);
+     margin-top: 10px;
+     border-radius: 4px;
+
+     .tab-header {
+         display: flex;
+         justify-content: space-between;
+         width: 100%;
+         align-items: baseline;
+         margin-bottom: 10px;
+
+         .title {
+             font-size: 15px;
+             padding-bottom: 14px;
+
+         }
+
+         .see-all {
+             font-size: 12px;
+         }
+     }
+
+     .tab-content {
+         font-size: 13px;
+     }
+ }

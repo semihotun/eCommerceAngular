@@ -4,31 +4,31 @@ import {
   Component,
   ElementRef,
   HostListener,
+  Input,
   OnInit,
   ViewChild,
   inject,
 } from '@angular/core';
 import { Gesture, GestureController, GestureDetail } from '@ionic/angular';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
-import { IonIcon, IonHeader } from '@ionic/angular/standalone';
+import { IonIcon, NavController } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
-import { GlobalService } from 'src/app/services/global.service';
+import { GlobalService } from 'src/app/services/core/global.service';
 import { UserService } from 'src/app/services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { HomeService } from 'src/app/services/home.service';
 import { HomeStore } from 'src/app/stores/home.store';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [IonIcon, CommonModule, RouterModule, IonHeader, TranslateModule],
+  imports: [IonIcon, CommonModule, RouterModule, TranslateModule],
 })
 export class HeaderComponent implements OnInit {
   subCategoryLists!: NodeListOf<HTMLElement>;
   headerMobilWidth: number = 1000;
   headerBottom: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  isNavigationBackUrl: string = '';
+  @Input() isNavigationBackUrl: string | null = null;
   onDestroy = new Subject<void>();
   router = inject(Router);
   ngOnDestroy(): void {
@@ -41,7 +41,8 @@ export class HeaderComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     public glb: GlobalService,
     public userService: UserService,
-    public homeStore: HomeStore
+    public homeStore: HomeStore,
+    public navController: NavController
   ) {}
   ngOnInit(): void {
     this.initializeGesture();
@@ -57,6 +58,7 @@ export class HeaderComponent implements OnInit {
         event.target as Node
       );
     if (clickedInside == false && this.glb.isShowMobilBars.value == true) {
+      console.log('adana');
       this.removeSubCategoryOpenClass();
       this.glb.isShowMobilBars.next(false);
     }

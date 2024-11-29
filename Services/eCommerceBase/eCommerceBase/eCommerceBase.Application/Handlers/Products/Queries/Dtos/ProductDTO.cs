@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos
+﻿namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos
 {
     public class ProductDto
     {
@@ -15,5 +9,11 @@ namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos
         public string? CurrencyCode { get; set; }
         public double? Price { get; set; }
         public double? PriceWithoutDiscount { get; set; }
+        public string? BrandName { get; set; }
+        public Guid? BrandId { get; set; }
+        public string? CategoryName { get; set; }
+        public Guid? CategoryId { get; set; }
+        public string? ProductContent { get; set; }
+        
     }
 }
