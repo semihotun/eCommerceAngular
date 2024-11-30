@@ -29,9 +29,6 @@ public class ShowcaseEndpoints : ICarterModule
         group.MapGet("/getall", GetAllShowCase)
             .Produces(StatusCodes.Status200OK, typeof(Result<ShowCase>))
             .AllowAnonymous();
-        group.MapGet("/getallhome", GetAllHome)
-           .Produces(StatusCodes.Status200OK, typeof(Result<AllShowcaseDTO>))
-           .AllowAnonymous();
         group.MapPost("/getgrid", GetShowCaseGrid)
             .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<ShowcaseGrid>>))
             .AllowAnonymous();
@@ -66,15 +63,6 @@ public class ShowcaseEndpoints : ICarterModule
     public static async Task<IResult> GetShowCaseById([FromQuery] Guid id, ISender sender)
     {
         var result = await sender.Send(new GetShowCaseByIdQuery(id));
-        if (result.Success)
-        {
-            return Results.Ok(result);
-        }
-        return Results.BadRequest(result);
-    }
-    public static async Task<IResult> GetAllHome(ISender sender)
-    {
-        var result = await sender.Send(new GetAllShowcaseDTOQuery());
         if (result.Success)
         {
             return Results.Ok(result);

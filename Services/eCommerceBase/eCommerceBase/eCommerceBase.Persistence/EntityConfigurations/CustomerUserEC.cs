@@ -9,6 +9,8 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<CustomerUser> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.UserGroupId);
+            builder.HasIndex(x => x.Deleted);
         }
     }
 }

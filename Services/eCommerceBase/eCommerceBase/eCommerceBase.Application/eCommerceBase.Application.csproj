@@ -14,6 +14,8 @@
     <Folder Include="Handlers\Currencies\Queries\Dtos\" />
     <Folder Include="Handlers\CustomerUsers\Commands\" />
     <Folder Include="Handlers\CustomerUsers\Queries\" />
+    <Folder Include="Handlers\Home\Commands\" />
+    <Folder Include="Handlers\Home\Mappers\" />
     <Folder Include="Handlers\Sliders\Commands\" />
     <Folder Include="Handlers\Sliders\Mappers\" />
 	<Folder Include="Jobs\" />

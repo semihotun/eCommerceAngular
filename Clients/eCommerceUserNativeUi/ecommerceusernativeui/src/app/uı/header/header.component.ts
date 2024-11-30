@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { Gesture, GestureController, GestureDetail } from '@ionic/angular';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
-import { IonIcon, NavController } from '@ionic/angular/standalone';
+import { NavController } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 import { GlobalService } from 'src/app/services/core/global.service';
 import { UserService } from 'src/app/services/user.service';
@@ -22,7 +22,7 @@ import { HomeStore } from 'src/app/stores/home.store';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
-  imports: [IonIcon, CommonModule, RouterModule, TranslateModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
 })
 export class HeaderComponent implements OnInit {
   subCategoryLists!: NodeListOf<HTMLElement>;

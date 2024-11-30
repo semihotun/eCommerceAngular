@@ -4,7 +4,6 @@ using eCommerceBase.Application.Extension;
 using eCommerceBase.Insfrastructure.Utilities.ApiDoc.Swagger;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Insfrastructure.Utilities.Cors;
-using eCommerceBase.Insfrastructure.Utilities.HangFire;
 using eCommerceBase.Insfrastructure.Utilities.Identity;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Service;
 using eCommerceBase.Insfrastructure.Utilities.Logging;
@@ -33,7 +32,7 @@ namespace eCommerceBase.Extensions
             builder.Services.AddMvc();
             //Log-Cache-Mediatr-FluentValidation-Mass transit
             builder.AddSerilog();
-            //builder.AddTelemeter();
+            builder.AddTelemeter();
             builder.AddRedis();
             var assembly = ApiAssemblyExtensions.GetLibrariesAssemblies();
             //builder.AddHangFire(assembly);

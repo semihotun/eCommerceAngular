@@ -9,6 +9,9 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<CategorySpecification> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.CategoryId);
+            builder.HasIndex(x => x.SpecificationAttributeteId);
+            builder.HasIndex(x => x.Deleted);
         }
     }
 }

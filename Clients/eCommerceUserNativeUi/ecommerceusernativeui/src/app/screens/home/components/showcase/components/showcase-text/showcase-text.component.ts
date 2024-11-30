@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
-import { Showcase } from 'src/app/models/responseModel/Showcase';
 
 @Component({
   selector: 'app-showcase-text',

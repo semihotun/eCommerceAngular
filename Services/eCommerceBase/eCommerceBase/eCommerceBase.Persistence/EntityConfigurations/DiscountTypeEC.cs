@@ -11,6 +11,7 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<DiscountType> builder)
         {
            builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.Deleted);
         }
 
         public List<DiscountType> GetSeedData()

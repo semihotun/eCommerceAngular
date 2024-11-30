@@ -9,6 +9,10 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<ProductStock> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.WarehouseId);
+            builder.HasIndex(x => x.ProductId);
+            builder.HasIndex(x => x.Deleted);
+            builder.HasIndex(x => x.CurrencyId);
         }
     }
 }

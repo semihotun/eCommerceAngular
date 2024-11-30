@@ -10,6 +10,8 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<MailTemplateKeyword> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.Deleted);
+            builder.HasIndex(x => x.MailTemplateId);
         }
 
         public List<MailTemplateKeyword> GetSeedData()

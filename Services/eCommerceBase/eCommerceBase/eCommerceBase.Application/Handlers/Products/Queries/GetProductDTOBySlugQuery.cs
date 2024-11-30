@@ -1,3 +1,5 @@
+using eCommerceBase.Application.Constants;
+using eCommerceBase.Application.Handlers.Products.Extenison;
 using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
@@ -7,23 +9,27 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceBase.Application.Handlers.Products.Queries;
-public record GetProductDTOBySlugQuery(string? Slug) : IRequest<Result<ProductDto>>;
+public record GetProductDTOBySlugQuery(string? Slug) : IRequest<Result<ProductDetailDTO>>;
 public class GetProductDTOBySlugQueryHandler(CoreDbContext coreDbContext,
         ICacheService cacheService) : IRequestHandler<GetProductDTOBySlugQuery,
-		Result<ProductDto>>
+		Result<ProductDetailDTO>>
 {
     private readonly CoreDbContext _coreDbContext = coreDbContext;
     private readonly ICacheService _cacheService = cacheService;
-    public async Task<Result<ProductDto>> Handle(GetProductDTOBySlugQuery request,
+    public async Task<Result<ProductDetailDTO>> Handle(GetProductDTOBySlugQuery request,
 		CancellationToken cancellationToken)
     {
         return await _cacheService.GetAsync(request,
 		async () =>
         {
             var data = await _coreDbContext.Query<Product>()
-               .Select(ProductQueryExtensions.ToProductDto)
-               .FirstOrDefaultAsync(x => x.Slug == request.Slug);
-            return Result.SuccessDataResult<ProductDto>(data!);
+                .Select(ProductDetailExtension.ToProductDetailDTO)
+                .FirstOrDefaultAsync(x => x.Slug == request.Slug);
+            if(data == null)
+            {
+                return Result.ErrorDataResult<ProductDetailDTO>(Messages.NotFoundData);
+            }
+            return Result.SuccessDataResult<ProductDetailDTO>(data!);
         },
 		cancellationToken);
     }

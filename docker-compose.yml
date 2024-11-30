@@ -31,7 +31,7 @@ services:
       # - s_zookeeper
       # - s_kafka
       # - s_debeziumconnect
-      # - s_zipkin
+      - s_zipkin
   s_rabbitmq:
     container_name: c_rabbitmq
     image: rabbitmq:3-management
@@ -203,13 +203,13 @@ services:
   #   env_file:
   #     - ./.env  
 
-  # s_zipkin:
-  #   container_name: c_zipkin
-  #   image: openzipkin/zipkin:3
-  #   ports:
-  #     - "9411:9411"
-  #   networks:
-  #     - net_backendservices
+  s_zipkin:
+    container_name: c_zipkin
+    image: openzipkin/zipkin:3
+    ports:
+      - "9411:9411"
+    networks:
+      - net_backendservices
 
 networks:
   net_frontend:

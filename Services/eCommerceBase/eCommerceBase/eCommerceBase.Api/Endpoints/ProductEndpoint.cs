@@ -30,11 +30,11 @@ namespace eCommerceBase.Api.Endpoints
                .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
                .AllowAnonymous();
             group.MapGet("/getproductdetailbyid", GetProductDetailById)
-             .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
-             .AllowAnonymous();
+                 .Produces(StatusCodes.Status200OK, typeof(Result<ProductDetailDTO>))
+                 .AllowAnonymous();
             group.MapGet("/getproductdetailbyslug", GetProductDetailBySlug)
-            .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
-            .AllowAnonymous();
+                .Produces(StatusCodes.Status200OK, typeof(Result<ProductDetailDTO>))
+                .AllowAnonymous();
             group.MapGet("/getall", GetAllProduct)
                 .Produces(StatusCodes.Status200OK, typeof(Result<Product>))
                 .AllowAnonymous();
@@ -71,7 +71,7 @@ namespace eCommerceBase.Api.Endpoints
         }
         public static async Task<IResult> GetProductDetailById([FromQuery] Guid? id, ISender sender)
         {
-            var result = await sender.Send(new GetProductDTOByIdQuery(id));
+            var result = await sender.Send(new GetProductDetailDTOByIdQuery(id));
             if (result.Success)
             {
                 return Results.Ok(result);

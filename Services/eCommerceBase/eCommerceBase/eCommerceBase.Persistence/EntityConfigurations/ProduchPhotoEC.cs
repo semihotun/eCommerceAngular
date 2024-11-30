@@ -13,7 +13,9 @@ namespace eCommerceBase.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<ProductPhoto> builder)
         {
+            builder.HasIndex(x => x.ProductId);
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.Deleted);
         }
     }
 }

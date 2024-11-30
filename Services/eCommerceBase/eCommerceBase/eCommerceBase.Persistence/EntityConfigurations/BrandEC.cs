@@ -10,6 +10,7 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Brand> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.Deleted);
         }
 
         public List<Brand> GetSeedData()

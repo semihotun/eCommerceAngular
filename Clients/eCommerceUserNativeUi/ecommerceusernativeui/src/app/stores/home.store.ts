@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Slider } from '../models/responseModel/Slider';
 import { ComponentStore } from '@ngrx/component-store';
-import { Showcase } from '../models/responseModel/Showcase';
 import { AllShowcaseDTO } from '../models/responseModel/allShowcaseDTO';
 import { WebsiteInfo } from '../models/responseModel/websiteInfo';
 

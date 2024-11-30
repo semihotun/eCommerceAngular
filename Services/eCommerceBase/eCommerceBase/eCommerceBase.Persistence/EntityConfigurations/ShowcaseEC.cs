@@ -11,6 +11,8 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<ShowCase> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.ShowCaseTypeId);
+            builder.HasIndex(x => x.Deleted);
         }
 
         public List<ShowCase> GetSeedData()

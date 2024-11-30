@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { NavController } from '@ionic/angular/standalone';
 @Injectable({

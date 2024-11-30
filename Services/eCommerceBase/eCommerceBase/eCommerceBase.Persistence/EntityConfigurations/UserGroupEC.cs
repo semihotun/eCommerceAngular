@@ -10,6 +10,7 @@ namespace eCommerceBase.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<UserGroup> builder)
         {
+            builder.HasIndex(x => x.Deleted);
             builder.HasKey(x => x.Id);
         }
         public List<UserGroup> GetSeedData()

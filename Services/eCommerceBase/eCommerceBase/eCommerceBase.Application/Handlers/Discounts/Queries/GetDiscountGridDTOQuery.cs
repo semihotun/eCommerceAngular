@@ -19,8 +19,8 @@ public class GetDiscountGridDTOQueryHandler(CoreDbContext coreDbContext, ICacheS
     private readonly ICacheService _cacheService = cacheService;
     public async Task<Result<PagedList<DiscountGridDTO>>> Handle(GetDiscountGridDTOQuery request, CancellationToken cancellationToken)
     {
-        //return await _cacheService.GetAsync<Result<PagedList<DiscountGridDTO>>>(request, async () =>
-        //{
+        return await _cacheService.GetAsync<Result<PagedList<DiscountGridDTO>>>(request, async () =>
+        {
             var query = await _coreDbContext.Query<Discount>().Include(x => x.DiscountType)
             .Where(x=>x.DiscountTypeId != DiscountTypeConst.ProductCurrencyDiscount &&
                       x.DiscountTypeId != DiscountTypeConst.ProductPercentDiscount)
@@ -38,6 +38,6 @@ public class GetDiscountGridDTOQueryHandler(CoreDbContext coreDbContext, ICacheS
                 OrderByColumnName = request.OrderByColumnName
             });
             return Result.SuccessDataResult<PagedList<DiscountGridDTO>>(query);
-        //}, cancellationToken);
+        }, cancellationToken);
     }
 }

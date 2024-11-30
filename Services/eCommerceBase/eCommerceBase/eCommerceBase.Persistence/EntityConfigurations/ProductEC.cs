@@ -2,8 +2,6 @@
 using eCommerceBase.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.IdentityModel.Logging;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace eCommerceBase.Persistence.EntityConfigurations
 {
@@ -12,6 +10,10 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.BrandId);
+            builder.HasIndex(x => x.CategoryId);
+            builder.HasIndex(x => x.Slug);
+            builder.HasIndex(x => x.Deleted);
         }
 
         public List<Product> GetSeedData()

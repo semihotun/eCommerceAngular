@@ -9,6 +9,7 @@ namespace eCommerceBase.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<ShowCaseType> builder)
         {
+            builder.HasIndex(x => x.Deleted);
             builder.HasKey(x => x.Id);
         }
 

@@ -9,6 +9,8 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Discount> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.HasIndex(x => x.DiscountTypeId);
+            builder.HasIndex(x => x.Deleted);
         }
     }
 }

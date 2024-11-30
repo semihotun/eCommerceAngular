@@ -12,6 +12,9 @@ namespace eCommerceBase.Persistence.EntityConfigurations
             builder.HasOne(x => x.ProductStock)
              .WithMany(p => p.DiscountProductList)
              .HasForeignKey(x => x.ProductStockId);
+            builder.HasIndex(x => x.ProductStockId);
+            builder.HasIndex(x => x.DiscountId);
+            builder.HasIndex(x => x.Deleted);
         }
     }
 }

@@ -8,6 +8,9 @@ namespace eCommerceBase.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<UserGroupRole> builder)
         {
+            builder.HasIndex(x => x.Deleted);
+            builder.HasIndex(x => x.RoleId);
+            builder.HasIndex(x => x.UserGroupId);
             builder.HasKey(x => x.Id);
         }
     }

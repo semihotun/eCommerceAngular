@@ -5,6 +5,7 @@
         public static string OperationSuccess => "OperationSuccess";
         public static string OperationError => "OperationError";
         public static string Added => "Added";
+        public static string NotFoundData => "NotFoundData";
         public static string AddedError => "AddedError";
         public static string Deleted => "Deleted";
         public static string DeletedError => "DeletedError";

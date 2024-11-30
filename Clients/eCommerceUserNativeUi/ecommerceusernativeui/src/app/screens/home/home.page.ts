@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -12,6 +12,7 @@ import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { MobileFooterComponent } from 'src/app/uı/mobile-footer/mobile-footer.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { ShowcaseComponent } from './components/showcase/showcase.component';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,12 @@ import { ShowcaseComponent } from './components/showcase/showcase.component';
     ShowcaseComponent,
   ],
 })
-export class HomePage {
-  constructor(public glb: GlobalService) {}
+export class HomePage implements OnInit {
+  constructor(public glb: GlobalService, private homeService: HomeService) {}
+  ngOnInit(): void {
+    console.log(this.glb.isMobil.value);
+    if (!this.glb.isMobil.value) {
+      this.homeService.getHomeDTO();
+    }
+  }
 }

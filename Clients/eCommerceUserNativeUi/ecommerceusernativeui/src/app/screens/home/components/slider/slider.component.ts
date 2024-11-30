@@ -26,9 +26,7 @@ export class SliderComponent implements AfterViewInit, OnInit {
   swiper?: Swiper;
   homeService = inject(HomeService);
   homeStore = inject(HomeStore);
-  ngOnInit(): void {
-    this.homeService.getAllSlider();
-  }
+  ngOnInit(): void {}
   goNext() {
     this.swiper?.slideNext();
   }

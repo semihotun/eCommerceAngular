@@ -11,6 +11,8 @@ import { ProductDto } from 'src/app/models/responseModel/productDto';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductTabsComponent } from './components/product-tabs/product-tabs.component';
+import { ProductSpecificationService } from 'src/app/services/product-specification.service';
+import { GridPostData } from 'src/app/models/core/grid';
 
 @Component({
   selector: 'app-product-detail',
@@ -34,7 +36,8 @@ export class ProductDetailPage implements OnInit {
     private productService: ProductService,
     public productStore: ProductStore,
     private activatedRoute: ActivatedRoute,
-    private navController: NavController
+    private navController: NavController,
+    private productSpecificationService: ProductSpecificationService
   ) {}
 
   ngOnInit() {
@@ -56,7 +59,6 @@ export class ProductDetailPage implements OnInit {
       }
     });
   }
-
   getProductDtoById() {
     this.productService
       .getProductDtoById(this.productStore.selectedProductId$())

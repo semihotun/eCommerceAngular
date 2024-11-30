@@ -24,9 +24,7 @@ export class ShowcaseComponent implements OnInit {
   showcaseType = ShowcaseType;
   constructor() {}
 
-  ngOnInit() {
-    this.homeService.getShowCaseList();
-  }
+  ngOnInit() {}
   isProductSlider(id: string): boolean {
     return id == ShowcaseConst.ProductSlider.id;
   }

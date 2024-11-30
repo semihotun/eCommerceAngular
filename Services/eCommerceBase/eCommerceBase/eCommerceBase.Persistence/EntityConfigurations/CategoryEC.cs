@@ -14,6 +14,9 @@ namespace eCommerceBase.Persistence.EntityConfigurations
             builder.HasMany(c => c.SubCategoryList)
              .WithOne(c => c.ParentCategory)
              .HasForeignKey(c => c.ParentCategoryId);
+
+            builder.HasIndex(x => x.ParentCategoryId);
+            builder.HasIndex(x => x.Deleted);
         }
 
         public List<Category> GetSeedData()

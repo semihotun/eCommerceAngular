@@ -1,4 +1,5 @@
 export class ProductDto {
+  id!: string;
   productName!: string;
   slug!: string;
   photoBase64!: string;

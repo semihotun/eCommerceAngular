@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductSpecificationService } from 'src/app/services/product-specification.service';
+import { ProductSpecificationStore } from 'src/app/stores/product-specification.store';
 
 @Component({
   selector: 'app-product-specification',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
   standalone: true,
 })
 export class ProductSpecificationComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private productSpecificationStore: ProductSpecificationStore,
+    private productSpecificationService: ProductSpecificationService
+  ) {}
 
   ngOnInit() {}
 }

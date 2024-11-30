@@ -1,6 +1,6 @@
 ﻿namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos
 {
-    public class ProductDto
+    public class ProductDetailDTO
     {
         public Guid Id { get; set; }
         public string? ProductName { get; set; }
@@ -14,6 +14,5 @@
         public string? CategoryName { get; set; }
         public Guid? CategoryId { get; set; }
         public string? ProductContent { get; set; }
-        
     }
 }
