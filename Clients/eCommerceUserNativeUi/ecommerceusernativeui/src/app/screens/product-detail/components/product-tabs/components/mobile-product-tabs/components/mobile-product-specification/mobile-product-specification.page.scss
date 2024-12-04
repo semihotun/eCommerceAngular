@@ -1,0 +1,29 @@
+.table {
+    margin-top: 10px;
+    font-size: 14px;
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+
+        &:nth-child(odd) {
+            background-color: #efecec;
+            color: black;
+
+        }
+
+        &:nth-child(even) {
+            background-color: #fffaf6;
+            color: black;
+
+
+        }
+
+        .spec-name {
+            font-weight: 600;
+        }
+
+        .spec-option-name {}
+    }
+}

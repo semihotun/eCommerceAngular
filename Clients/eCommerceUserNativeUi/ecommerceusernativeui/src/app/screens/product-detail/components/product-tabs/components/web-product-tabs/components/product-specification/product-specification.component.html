@@ -1,0 +1,6 @@
+<div class="table">
+  <div class="row" *ngFor="let item of productStore.productSpecificationList$().data">
+    <div class="spec-name">{{item.specificationAttributeName}}</div>
+    <div class="spec-option-name">{{item.specificationAttributeOptionName}}</div>
+  </div>
+</div>

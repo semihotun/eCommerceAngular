@@ -58,7 +58,6 @@ export class HeaderComponent implements OnInit {
         event.target as Node
       );
     if (clickedInside == false && this.glb.isShowMobilBars.value == true) {
-      console.log('adana');
       this.removeSubCategoryOpenClass();
       this.glb.isShowMobilBars.next(false);
     }
@@ -129,6 +128,13 @@ export class HeaderComponent implements OnInit {
           }
           this.headerBottom.next('display-none');
         });
+    }
+  }
+  backButtonClick() {
+    if (this.isNavigationBackUrl == '') {
+      this.navController.navigateForward(this.isNavigationBackUrl!);
+    } else {
+      this.navController.navigateBack(this.isNavigationBackUrl!);
     }
   }
 }

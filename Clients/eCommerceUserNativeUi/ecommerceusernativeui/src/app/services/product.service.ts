@@ -6,6 +6,9 @@ import { ProductStore } from 'src/app/stores/product.store';
 import { ProductDto } from '../models/responseModel/productDto';
 import { HttpService } from './core/http.service';
 import { ToastService } from './core/toast.service';
+import { PagedList } from '../models/core/grid';
+import { GetProductDetailSpeficationListRequest } from '../models/requestModel/getProductDetailSpeficationListRequest';
+import { ProductDetailSpeficationListDTO } from '../models/responseModel/productDetailSpeficationListDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +47,28 @@ export class ProductService extends Destroyable {
           resolve();
         },
         (err) => {
+          reject();
+        }
+      );
+    });
+  }
+  getProductDetailSpeficationList(
+    data: GetProductDetailSpeficationListRequest
+  ): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const url =
+        environment.baseUrl +
+        'productSpecification/getproductdetailspecificationlist';
+      this.http.post<Result<PagedList<any>>>(
+        url,
+        data,
+        this.onDestroy,
+        (response) => {
+          this.productStore.setProductSpecificationList(response.data);
+          resolve();
+        },
+        (err) => {
+          console.log(err);
           reject();
         }
       );

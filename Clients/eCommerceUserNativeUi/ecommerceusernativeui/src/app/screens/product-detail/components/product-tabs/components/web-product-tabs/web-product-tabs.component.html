@@ -16,7 +16,7 @@
 
 <div class="tab-content">
   <div *ngIf="selectedTab === 1 && !this.glb.isMobil.value">
-    {{productStore.productDTO$().productContent}}
+    <div [innerHTML]="productStore.productDTO$().productContent"></div>
   </div>
   <div *ngIf="selectedTab === 2 && !this.glb.isMobil.value">
     <app-product-specification></app-product-specification>

@@ -1,0 +1,13 @@
+<ion-content fullscreen="true">
+    <div id="not-header-page">
+        <app-sub-header [previousUrl]="[this.slug]" [title]="'Product Specification' |translate"></app-sub-header>
+        <div class="table">
+            <div class="row" *ngFor="let item of productStore.productSpecificationList$().data">
+                <div class="spec-name">{{item.specificationAttributeName}}</div>
+                <div class="spec-option-name">{{item.specificationAttributeOptionName}}</div>
+            </div>
+        </div>
+    </div>
+
+    <app-mobile-footer></app-mobile-footer>
+</ion-content>

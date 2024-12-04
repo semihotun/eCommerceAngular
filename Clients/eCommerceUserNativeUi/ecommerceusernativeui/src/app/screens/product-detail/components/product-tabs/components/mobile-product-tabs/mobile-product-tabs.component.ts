@@ -2,25 +2,26 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProductStore } from 'src/app/stores/product.store';
-import { ProductCommentsComponent } from '../../../product-comments/product-comments.component';
-import { ProductQuestionAnswerComponent } from '../../../product-question-answer/product-question-answer.component';
-import { ProductSpecificationComponent } from '../../../product-specification/product-specification.component';
-
+import { RouterModule, ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular/standalone';
 @Component({
   selector: 'app-mobile-product-tabs',
   templateUrl: './mobile-product-tabs.component.html',
   styleUrls: ['./mobile-product-tabs.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    TranslateModule,
-    ProductCommentsComponent,
-    ProductQuestionAnswerComponent,
-    ProductSpecificationComponent,
-  ],
+  imports: [CommonModule, TranslateModule, RouterModule],
 })
 export class MobileProductTabsComponent implements OnInit {
-  constructor(public productStore: ProductStore) {}
+  slug: string = '';
+  constructor(
+    public productStore: ProductStore,
+    public navController: NavController,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(async (params) => {
+      this.slug = params.get('slug')!;
+    });
+  }
 }

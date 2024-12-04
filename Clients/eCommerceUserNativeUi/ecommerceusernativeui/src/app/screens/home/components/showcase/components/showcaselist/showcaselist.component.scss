@@ -7,7 +7,7 @@ $card-bg-color: white;
 .showcase-list {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     flex-direction: row;
     border-radius: 15px;
@@ -121,12 +121,13 @@ $card-bg-color: white;
                 text-align: center;
                 color: $header-bg-color;
                 background-color: $header-bottom-bg;
+                letter-spacing: 1.5px;
 
                 @media screen and (max-width: $tablet-size) {
                     width: 100%;
                     font-size: 12px;
                     padding: 8px;
-                    letter-spacing: 1.5px;
+                    letter-spacing: 0.5px;
                 }
             }
 

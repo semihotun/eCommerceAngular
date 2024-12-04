@@ -43,6 +43,7 @@ img {
     .btn {
         padding: 10px 15px;
         background-color: $theme-color-orange;
+        letter-spacing: 1px;
 
         @media screen and (max-width:$tablet-size) {
             padding: 4px 4px;

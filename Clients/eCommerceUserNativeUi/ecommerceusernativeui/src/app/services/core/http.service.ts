@@ -26,7 +26,9 @@ export class HttpService {
   ): void {
     let headers = new HttpHeaders({
       LanguageCode:
-        data?.languageCode || localStorage.getItem('languageCode')?.toString()!,
+        (data?.languageCode ||
+          localStorage.getItem('languageCode')?.toString()!) ??
+        'tr',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
     this.http.post<T>(url, data, { headers: headers }).subscribe({

@@ -15,7 +15,9 @@
           <div class="price">
             <div class="price-without-discount" *ngIf="product.priceWithoutDiscount != product.price">
               {{product.priceWithoutDiscount}} {{product.currencyCode}}</div>
-            <div class="total-price">{{product.price}} {{product.currencyCode}}</div>
+            <div class="total-price">
+              {{product.price ? product.price + ' ' + product.currencyCode : '&nbsp;'}}
+            </div>
           </div>
         </div>
         <div class="btn">

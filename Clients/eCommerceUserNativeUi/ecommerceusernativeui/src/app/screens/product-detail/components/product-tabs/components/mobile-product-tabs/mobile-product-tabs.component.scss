@@ -2,7 +2,7 @@
 
  .tab-button {
      background-color: white;
-     padding: 20px 15px;
+     padding: 20px 20px 0px 20px;
      box-shadow:
          0 -2px 4px rgba(0, 0, 0, 0.02),
          0 2px 4px rgba(0, 0, 0, 0.02);
@@ -18,16 +18,17 @@
 
          .title {
              font-size: 15px;
-             padding-bottom: 14px;
+
 
          }
 
          .see-all {
-             font-size: 12px;
+             font-size: 16px;
          }
      }
 
      .tab-content {
          font-size: 13px;
+         padding-bottom: 14px;
      }
  }

@@ -10,8 +10,7 @@
   <div class="header-middle">
     <div class="header-container container">
 
-      <div class="header-back-button" *ngIf="glb.isMobil.value"
-        (click)="this.navController.navigateBack(this.isNavigationBackUrl!)">
+      <div class="header-back-button" *ngIf="glb.isMobil.value" (click)="backButtonClick()">
         <button class="previousbtn" *ngIf="glb.isMobil.value && isNavigationBackUrl != null"></button>
       </div>
       <div class="header-left">

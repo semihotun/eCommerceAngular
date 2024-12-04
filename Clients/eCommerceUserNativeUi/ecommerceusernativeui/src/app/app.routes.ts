@@ -38,14 +38,6 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: ':slug',
-    loadComponent: () =>
-      import('./screens/product-detail/product-detail.page').then(
-        (m) => m.ProductDetailPage
-      ),
-    pathMatch: 'full',
-  },
-  {
     path: 'register',
     loadComponent: () =>
       import('./screens/register/register.page').then((m) => m.RegisterPage),
@@ -63,5 +55,37 @@ export const routes: Routes = [
       import('./screens/user-management/user-management.page').then(
         (m) => m.UserManagementPage
       ),
+  },
+  {
+    path: ':slug/mobile-product-comments',
+    loadComponent: () =>
+      import(
+        './screens/product-detail/components/product-tabs/components/mobile-product-tabs/components/mobile-product-comments/mobile-product-comments.page'
+      ).then((m) => m.MobileProductCommentsPage),
+    pathMatch: 'full',
+  },
+  {
+    path: ':slug/mobile-product-question-answer',
+    loadComponent: () =>
+      import(
+        './screens/product-detail/components/product-tabs/components/mobile-product-tabs/components/mobile-product-question-answer/mobile-product-question-answer.page'
+      ).then((m) => m.MobileProductQuestionAnswerPage),
+    pathMatch: 'full',
+  },
+  {
+    path: ':slug/product-specification',
+    loadComponent: () =>
+      import(
+        './screens/product-detail/components/product-tabs/components/mobile-product-tabs/components/mobile-product-specification/mobile-product-specification.page'
+      ).then((m) => m.MobileProductSpecificationPage),
+    pathMatch: 'full',
+  },
+  {
+    path: ':slug',
+    loadComponent: () =>
+      import('./screens/product-detail/product-detail.page').then(
+        (m) => m.ProductDetailPage
+      ),
+    pathMatch: 'full',
   },
 ];
