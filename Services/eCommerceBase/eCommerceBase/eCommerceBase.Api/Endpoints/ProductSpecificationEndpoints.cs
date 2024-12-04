@@ -6,7 +6,6 @@ using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerceBase.Api.Endpoints
@@ -35,6 +34,9 @@ namespace eCommerceBase.Api.Endpoints
             group.MapPost("/getgrid", GetProductSpecificationGrid)
                 .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<ProductSpecificationGridDTO>>))
                 .AllowAnonymous();
+            group.MapPost("/getproductdetailspecificationlist", GetProductDetailSpeficationList)
+               .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<ProductDetailSpeficationListDTO>>))
+               .AllowAnonymous();
         }
         public static async Task<IResult> CreateProductSpecification([FromBody] CreateProductSpecificationCommand data, ISender sender)
         {
@@ -82,6 +84,15 @@ namespace eCommerceBase.Api.Endpoints
             return Results.BadRequest(result);
         }
         public static async Task<IResult> GetProductSpecificationGrid([FromBody] GetProductSpecificationGridDTOQuery data, ISender sender)
+        {
+            var result = await sender.Send(data);
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> GetProductDetailSpeficationList([FromBody] GetProductDetailSpeficationListDTOQuery data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)

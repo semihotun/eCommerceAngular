@@ -8,13 +8,6 @@ public class HomeDto
     public IList<Slider>? SliderList { get; set; } = [];
     public IEnumerable<HomeShowcaseDto> ShowcaseList { get; set; } = [];
 }
-public class HomeSliderDto : BaseEntity
-{
-    public string? SliderHeading { get; set; }
-    public string? SliderText { get; set; }
-    public string? SliderLink { get; set; }
-    public string? SliderImage { get; set; }
-}
 public class HomeShowcaseDto
 {
     public Guid Id { get; set; }

@@ -30,6 +30,7 @@ public class UpdateSpecificationAttributeOptionCommandHandler(IWriteDbRepository
                 data = SpecificationAttributeOptionMapper.UpdateSpecificationAttributeOptionCommandToSpecificationAttributeOption(request);
                 _specificationAttributeOptionRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttribute");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Updated);
             }
 

@@ -29,6 +29,7 @@ public class UpdateSpecificationAttributeCommandHandler(IWriteDbRepository<Speci
                 data = SpecificationAttributeMapper.UpdateSpecificationAttributeCommandToSpecificationAttribute(request);
                 _specificationAttributeRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:SpecificationAttributes");
+                await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Updated);
             }
 

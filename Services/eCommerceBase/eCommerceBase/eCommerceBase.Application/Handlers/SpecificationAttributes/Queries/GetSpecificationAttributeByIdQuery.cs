@@ -18,7 +18,7 @@ public class GetSpecificationAttributeByIdQueryHandler(IReadDbRepository<Specifi
         return await _cacheService.GetAsync(request,
 		async () =>
         {
-            var query = await _specificationAttributeRepository.GetAsync(x=>x.Id==request.Id,x=>x.SpecificationAttributeOption);
+            var query = await _specificationAttributeRepository.GetAsync(x=>x.Id==request.Id);
             return Result.SuccessDataResult<SpecificationAttribute>(query!);
         },
 		cancellationToken);

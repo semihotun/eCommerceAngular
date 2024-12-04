@@ -6,6 +6,7 @@ using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using eCommerceBase.Persistence.Context;
+using eCommerceBase.Persistence.EntityConfigurations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,7 +44,7 @@ public class GetHomeDTOQueryHandler(CoreDbReadContext coreDbContext, ICacheServi
                                sp.Product.ProductStockList
                                .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
                                .OrderBy(stock => stock.CreatedOnUtc)
-                               .First()
+                               .FirstOrDefault()
                            ),
                            PriceWithoutDiscount = sp.Product.ProductStockList
                                .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
@@ -56,11 +57,12 @@ public class GetHomeDTOQueryHandler(CoreDbReadContext coreDbContext, ICacheServi
                                .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
                                .OrderBy(stock => stock.CreatedOnUtc)
                                .First()!.Currency!.Code,
-                       }).AsEnumerable()
+                       }).Take(10).AsEnumerable()
                })
                .OrderBy(x => x.ShowCaseOrder)
                .AsSplitQuery()
                .ToListAsync();
+
             await Task.WhenAll(showcaseQuery, sliderQuery);
             var homeDto = new HomeDto
             {
@@ -72,3 +74,45 @@ public class GetHomeDTOQueryHandler(CoreDbReadContext coreDbContext, ICacheServi
         }, cancellationToken);
     }
 }
+// Test gerek sunucuda 
+//var showcaseQuery = (
+//    from s in _coreDbContext.Query<ShowCase>()
+//    orderby s.ShowCaseOrder
+//    let ShowCaseProductList = (from sp in _coreDbContext.Query<ShowCaseProduct>()
+//                               where sp.ShowCaseId == s.Id
+//                               join p in _coreDbContext.Query<Product>() on sp.ProductId equals p.Id
+//                               let productPhoto = (from photo in _coreDbContext.Query<ProductPhoto>()
+//                                                   where photo.ProductId == p.Id
+//                                                   select photo.PhotoBase64).FirstOrDefault()
+//                               let productStockList = (from stock in _coreDbContext.Query<ProductStock>()
+//                                                       where stock.ProductId == p.Id && stock.RemainingStock > 0
+//                                                       orderby stock.CreatedOnUtc
+//                                                       let discountProduct = (from discountProduct in _coreDbContext.Query<DiscountProduct>()
+//                                                                              where discountProduct.ProductStockId == stock.Id
+//                                                                              join discount in _coreDbContext.Query<Discount>() on discountProduct.Id equals discount.Id
+//                                                                              select discountProduct).AsEnumerable()
+//                                                       select new
+//                                                       {
+//                                                           Price = discountProduct.Any() ? ProductQueryExtensions.CalculatePrice(stock, discountProduct) : 0,
+//                                                           PriceWithoutDiscount = stock.Price,
+//                                                           CurrencyCode = stock.Currency!.Code,
+//                                                       }).FirstOrDefault()
+//                               select new HomeShowcaseProductDto
+//                               {
+//                                   PhotoBase64 = productPhoto,
+//                                   Id = sp.Id,
+//                                   ProductName = p.ProductName,
+//                                   Slug = p.Slug,
+//                                   CurrencyCode = productStockList.CurrencyCode,
+//                                   Price = productStockList.Price,
+//                                   PriceWithoutDiscount = productStockList.PriceWithoutDiscount,
+//                               }).AsEnumerable()
+//    select new HomeShowcaseDto
+//    {
+//        Id = s.Id,
+//        ShowCaseText = s.ShowCaseText,
+//        ShowCaseTypeId = s.ShowCaseTypeId,
+//        ShowCaseTitle = s.ShowCaseTitle,
+//        ShowCaseOrder = s.ShowCaseOrder,
+//        ShowCaseProductList = ShowCaseProductList
+//    }).AsSplitQuery().ToListAsync();

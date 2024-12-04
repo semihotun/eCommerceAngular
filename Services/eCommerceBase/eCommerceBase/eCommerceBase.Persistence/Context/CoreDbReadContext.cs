@@ -15,7 +15,7 @@ namespace eCommerceBase.Persistence.Context
         }
         public IQueryable<TEntity> Query<TEntity>() where TEntity : BaseEntity
         {
-            return Set<TEntity>().AsQueryable().Where(x => !x.Deleted);
+            return Set<TEntity>().AsQueryable().Where(x => !x.Deleted).AsNoTracking();
         }
     }
 }
