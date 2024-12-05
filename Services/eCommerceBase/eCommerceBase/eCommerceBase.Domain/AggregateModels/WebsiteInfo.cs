@@ -1,6 +1,5 @@
 using eCommerceBase.Domain.Constant;
 using eCommerceBase.Domain.SeedWork;
-using Newtonsoft.Json;
 
 namespace eCommerceBase.Domain.AggregateModels
 {

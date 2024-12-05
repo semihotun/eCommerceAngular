@@ -32,7 +32,7 @@ namespace eCommerceBase.Extensions
             builder.Services.AddMvc();
             //Log-Cache-Mediatr-FluentValidation-Mass transit
             builder.AddSerilog();
-            builder.AddTelemeter();
+            //builder.AddTelemeter();
             builder.AddRedis();
             var assembly = ApiAssemblyExtensions.GetLibrariesAssemblies();
             //builder.AddHangFire(assembly);
