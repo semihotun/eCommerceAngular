@@ -312,4 +312,11 @@ export const routes: Routes = [
       ).then((m) => m.CreateOrUpdateDiscountPage),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'update-mail-info',
+    loadComponent: () =>
+      import('./screens/mailInfo/update-mail-info/update-mail-info.page').then(
+        (m) => m.UpdateMailInfoPage
+      ),
+  },
 ];

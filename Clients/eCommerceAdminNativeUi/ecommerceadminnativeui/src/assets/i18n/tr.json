@@ -114,5 +114,10 @@
 	"Symbol":"Sembol",
 	"Code":"Kod",
 	"Add Social Media":"Sosyal Medya Ekle",
-	"Added Social Media List":"Eklenmiş Sosyal Medya"
+	"Added Social Media List":"Eklenmiş Sosyal Medya",
+	"Mail Info":"Mail Bilgisi",
+	"From Address":"Mail Adresiniz",
+	"From Password":"Mail Şifreniz",
+	"Host":"Host",
+	"Port":"Port"
 }
