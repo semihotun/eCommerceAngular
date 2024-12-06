@@ -29,5 +29,7 @@ namespace eCommerceBase.Domain.AggregateModels
         {
             UserGroupId = Guid.Parse(InitConst.UserGuid);
         }
+        [SwaggerIgnore]
+        public CustomerActivationCode? CustomerActivationCode { get; private set; }
     }
 }

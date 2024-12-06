@@ -1,4 +1,5 @@
 ﻿using eCommerceBase.Domain.AggregateModels;
+using eCommerceBase.Domain.Constant;
 using eCommerceBase.Domain.SeedWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -15,10 +16,17 @@ namespace eCommerceBase.Persistence.EntityConfigurations
 
         public List<MailTemplate> GetSeedData()
         {
+            var activationMailId = Guid.Parse(InitConst.ActivationMailId);
+            var activationMail = new MailTemplate("Hoşgeldiniz", "Web sitesi için aktivasyon linki #{{email}}");
+            activationMail.SetId(activationMailId);
+            activationMail.AddMailTemplateKeywordList(new MailTemplateKeyword(activationMailId, "email", "Email"));
+            activationMail.AddMailTemplateKeywordList(new MailTemplateKeyword(activationMailId, "name", "İsim"));
+            activationMail.AddMailTemplateKeywordList(new MailTemplateKeyword(activationMailId, "surname", "Soy İsim"));
+            activationMail.AddMailTemplateKeywordList(new MailTemplateKeyword(activationMailId, "activationCode", "Aktivasyon Kodu"));
             return
              [
                  new("Hesabınız saldırı altında", "Sistemimizde hesabınız için sık sık \"Şifremi Unuttum\" talebi gönderildiğini fark ettik"),
-                 new MailTemplate("Hoşgeldiniz", "Hoşgeldiniz").SetId(Guid.Parse("7bd1e571-9151-405e-b0dd-60f288da2fb8"))
+                 activationMail,
              ];
         }
     }

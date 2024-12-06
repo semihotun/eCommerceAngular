@@ -9,7 +9,7 @@ namespace eCommerceBase.Persistence.UnitOfWork
         Task<T> BeginTransaction<T>(Func<Task<T>> action)
         where T : IResult;
         Task<T> BeginTransactionAndCreateOutbox<T>(Func<Action<IOutboxMessage>, Task<T>> action)
-           where T : Result;
+           where T : IResult;
         Task BeginTransactionAndCreateOutbox(Func<Action<IOutboxMessage>, Task> action);
         Task DispatchDomainEventsOutboxAsync(IOutboxMessage message);
     }

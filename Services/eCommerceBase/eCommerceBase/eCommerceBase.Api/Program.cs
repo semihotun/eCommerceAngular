@@ -1,10 +1,12 @@
 using Carter;
+using eCommerceBase.Application.Assemblies;
 using eCommerceBase.Application.Jobs;
 using eCommerceBase.Extensions;
 using eCommerceBase.Insfrastructure.Utilities.Exceptions.GlobalEror;
 using eCommerceBase.Insfrastructure.Utilities.HangFire;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
 using eCommerceBase.Insfrastructure.Utilities.Ioc;
+using eCommerceBase.Insfrastructure.Utilities.Outboxes;
 using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,7 +38,7 @@ app.UseMiddleware<ClaimMiddleware>();
 app.UseAntiforgery();
 app.MapCarter();
 var task = app.RunAsync();
-//await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly()); Geçici Kapalý
+await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly());
 _ = app.GenerateDbRole();
 HangFireJobs.AddAllStartupJobs();
 await task;

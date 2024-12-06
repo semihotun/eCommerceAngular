@@ -36,7 +36,7 @@ namespace eCommerceBase.Persistence.UnitOfWork
             return result;
         }
         public async Task<T> BeginTransactionAndCreateOutbox<T>(Func<Action<IOutboxMessage>, Task<T>> action)
-           where T : Result
+           where T : IResult
         {
             var result = default(T);
             await _ctx.Database.CreateExecutionStrategy().ExecuteAsync(async () =>

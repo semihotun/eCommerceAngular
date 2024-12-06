@@ -1,4 +1,5 @@
 ﻿using eCommerceBase.Application.IntegrationEvents.AdminRoles;
+using eCommerceBase.Application.IntegrationEvents.CustomerRegister;
 using eCommerceBase.Insfrastructure.Utilities.AdminRole;
 using eCommerceBase.Insfrastructure.Utilities.ServiceBus;
 using MassTransit;
@@ -13,10 +14,19 @@ namespace eCommerceBase.Application.Extension
         public static void AddPublishers(this IRabbitMqBusFactoryConfigurator cfg)
         {
             cfg.AddDirectProducer<AddUserRoleIntegrationEvent>();
+            ///Customer User
+            cfg.AddDirectProducer<CustomerMailActivationSendedStartedIE>();
+            cfg.AddDirectProducer<CustomerMailActivationSendedCompletedIE>();
+            cfg.AddDirectProducer<CustomerMailActivationSendedFailedIE>();
         }
         public static void AddConsumers(this IRabbitMqBusFactoryConfigurator cfg, IBusRegistrationContext ctx)
         {
             cfg.AddDirectConsumer<AddUserRoleIntegrationEvent>((x) => x.ConfigureConsumer<AddUserRoleIntegrationEventHandler>(ctx));
+            ///Customer User
+            cfg.AddDirectConsumer<CustomerMailActivationSendedStartedIE>((x) =>
+            {
+                x.ConfigureConsumer<CustomerMailActivationSendedStartedIEHandler>(ctx);
+            });
         }
     }
 }

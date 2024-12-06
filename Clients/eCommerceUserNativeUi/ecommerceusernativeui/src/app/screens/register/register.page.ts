@@ -15,6 +15,7 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
+  NavController,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { FooterComponent } from 'src/app/uı/footer/footer.component';
@@ -57,14 +58,17 @@ export class RegisterPage implements OnInit {
   glb = inject(GlobalService);
   userService = inject(UserService);
   submitted: boolean = false;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private navController: NavController
+  ) {
     this.initForm();
   }
   ngOnInit() {}
   initForm() {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      surname: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: [''.trim(), [Validators.required]],
       termsOfUse: [false, this.trueValidator()],
@@ -76,10 +80,12 @@ export class RegisterPage implements OnInit {
       return control.value === true ? null : { termOfUseFalse: true };
     };
   }
-  saveForm() {
+  async saveForm() {
     this.submitted = true;
     if (this.form.valid) {
-      this.userService.register(this.form.value);
+      await this.userService.register(this.form.value).then(() => {
+        this.navController.navigateForward('');
+      });
     }
   }
   hasError(controlName: string, errorName: string) {

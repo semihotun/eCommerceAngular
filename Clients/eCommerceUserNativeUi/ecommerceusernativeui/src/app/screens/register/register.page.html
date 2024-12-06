@@ -4,12 +4,12 @@
         <app-sub-header [previousUrl]="['']" [title]="'Register' |translate"></app-sub-header>
         <form class="form" [formGroup]="form">
             <app-input [label]="'Name' |translate" [placeholder]="'NamePlaceHolder' | translate"
-                formControlName="name"></app-input>
-            <div class="label-error" *ngIf="hasError('name','required')">{{'Required' |translate}}</div>
+                formControlName="firstName"></app-input>
+            <div class="label-error" *ngIf="hasError('firstName','required')">{{'Required' |translate}}</div>
 
             <app-input [label]="'Surname' |translate" [placeholder]="'SurnamePlaceHolder' | translate"
-                formControlName="surname"></app-input>
-            <div class="label-error" *ngIf="hasError('surname','required')">{{'Required' |translate}}</div>
+                formControlName="lastName"></app-input>
+            <div class="label-error" *ngIf="hasError('lastName','required')">{{'Required' |translate}}</div>
 
             <app-input [label]="'Email' |translate" [placeholder]="'EmailPlaceHolder' | translate"
                 formControlName="email" [type]="'email'"></app-input>

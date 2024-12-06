@@ -48,8 +48,8 @@ namespace eCommerceBase.Persistence.Extensions
                 {
                     ctx.Database.Migrate();
                     //Geçici
-                    //CreateCdcForOutboxWithMssql(ctx);
-                    //await MssqlDbContextConnectorExtension.AddAllConnectorAsync(configuration);
+                    CreateCdcForOutboxWithMssql(ctx);
+                    await MssqlDbContextConnectorExtension.AddAllConnectorAsync(configuration);
                     ctx.SeedAsync().GetAwaiter().GetResult();
                 }
                 else

@@ -17,7 +17,11 @@
         public static string UserNotFound => "UserNotFound";
         public static string PasswordError => "PasswordError";
         public static string NameAlreadyExist => "NameAlreadyExist";
+        public static string EmailAlreadyExist => "EmailAlreadyExist";
         public static string PasswordEmpty => "PasswordEmpty";
         public static string PasswordSpecialCharacter => "PasswordSpecialCharacter";
+        public static string MailInformationIsMissing => "MailInformationIsMissing";
+        public static string MailSended => "MailSended";
+        public static string MailNotSended => "MailNotSended";
     }
 }

@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Added" xml:space="preserve">
-    <value>Eklendi</value>
+    <value>Added</value>
   </data>
   <data name="AddedError" xml:space="preserve">
-    <value>Eklenemedi</value>
+    <value>AddedError</value>
   </data>
   <data name="AuthorizationDenied" xml:space="preserve">
-    <value>Giriş Reddedildi</value>
+    <value>AuthorizationDenied</value>
   </data>
   <data name="ClaimExists" xml:space="preserve">
-    <value>İlgili Yetki Yok</value>
+    <value>ClaimExists</value>
   </data>
   <data name="Deleted" xml:space="preserve">
-    <value>Silindi</value>
+    <value>Deleted</value>
   </data>
   <data name="DeletedError" xml:space="preserve">
-    <value>Silinemedi</value>
+    <value>DeletedError</value>
   </data>
   <data name="NameAlreadyExist" xml:space="preserve">
-    <value>İsim Kullanılıyor</value>
+    <value>NameAlreadyExist</value>
   </data>
   <data name="PasswordEmpty" xml:space="preserve">
-    <value>Şifre Boştu</value>
+    <value>PasswordEmpty</value>
   </data>
   <data name="PasswordError" xml:space="preserve">
-    <value>Şifre Yanlış</value>
+    <value>PasswordError</value>
   </data>
   <data name="PasswordSpecialCharacter" xml:space="preserve">
-    <value>Şifre özel karakterler içeriyor</value>
+    <value>PasswordSpecialCharacter</value>
   </data>
   <data name="Updated" xml:space="preserve">
-    <value>Güncellendi</value>
+    <value>Updated</value>
   </data>
   <data name="UpdatedError" xml:space="preserve">
-    <value>Güncellenemedi</value>
+    <value>UpdatedError</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
-    <value>Kullanıcı Bulunamadı</value>
+    <value>UserNotFound</value>
   </data>
   <data name="UserNotLogged" xml:space="preserve">
-    <value>Kullanıcı Giriş yapmadı</value>
+    <value>UserNotLogged</value>
   </data>
   <data name="OperationError" xml:space="preserve">
-    <value>İşlem Başarısız</value>
+    <value>OperationError</value>
   </data>
   <data name="OperationSuccess" xml:space="preserve">
-    <value>İşlem Başarılı</value>
+    <value>OperationSuccess</value>
   </data>
   <data name="MailSended" xml:space="preserve">
-    <value>Mail Gönderildi</value>
+    <value>MailSended</value>
   </data>
   <data name="MailNotSended" xml:space="preserve">
-    <value>Mail Gönderilemedi</value>
+    <value>MailNotSended</value>
   </data>
 </root>

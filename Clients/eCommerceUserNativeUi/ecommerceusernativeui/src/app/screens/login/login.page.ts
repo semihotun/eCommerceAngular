@@ -18,6 +18,7 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
+  NavController,
 } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { FooterComponent } from 'src/app/uı/footer/footer.component';
@@ -66,7 +67,8 @@ export class LoginPage implements OnInit {
   glb = inject(GlobalService);
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private navController: NavController
   ) {
     this.initForm();
   }
@@ -77,8 +79,10 @@ export class LoginPage implements OnInit {
       rememberMe: [true, Validators.required],
     });
   }
-  saveForm() {
-    this.userService.login(this.form.value);
+  async saveForm() {
+    await this.userService.login(this.form.value).then(() => {
+      this.navController.navigateForward('');
+    });
   }
   ngOnInit() {}
   changePasswordType() {
