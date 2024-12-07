@@ -1,4 +1,6 @@
-﻿namespace eCommerceBase.Application.Constants
+﻿using Elastic.CommonSchema;
+
+namespace eCommerceBase.Application.Constants
 {
     public static class Messages
     {
@@ -23,5 +25,7 @@
         public static string MailInformationIsMissing => "MailInformationIsMissing";
         public static string MailSended => "MailSended";
         public static string MailNotSended => "MailNotSended";
+        public static string ActivationCodeWrongOrOutOfDate => "ActivationCodeWrongOrOutOfDate";
+        public static string UserHasAldreadyBeenApproved => "UserHasAldreadyBeenApproved";
     }
 }

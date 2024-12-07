@@ -5,6 +5,7 @@ using eCommerceBase.Insfrastructure.Utilities.ApiDoc.Swagger;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Insfrastructure.Utilities.Cors;
 using eCommerceBase.Insfrastructure.Utilities.Identity;
+using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Service;
 using eCommerceBase.Insfrastructure.Utilities.Logging;
 using eCommerceBase.Insfrastructure.Utilities.MediatR;
@@ -46,6 +47,7 @@ namespace eCommerceBase.Extensions
             });
             builder.AddIdentitySettings();
             //Service Registered
+            builder.Services.AddScoped<UserScoped>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<ICoreDbContext, CoreDbContext>();

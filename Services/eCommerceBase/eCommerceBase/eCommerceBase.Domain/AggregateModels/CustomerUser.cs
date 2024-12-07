@@ -6,7 +6,7 @@ namespace eCommerceBase.Domain.AggregateModels
     public class CustomerUser : BaseEntity,IUser
     {
         public CustomerUser(string firstName, string lastName, string email,
-            byte[] passwordSalt, byte[] passwordHash, bool status)
+            byte[] passwordSalt, byte[] passwordHash, bool status,bool isActivationApprove)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -14,6 +14,7 @@ namespace eCommerceBase.Domain.AggregateModels
             PasswordSalt = passwordSalt;
             PasswordHash = passwordHash;
             Status = status;
+            IsActivationApprove = isActivationApprove;
         }
 
         public string FirstName { get; private set; }
@@ -23,11 +24,16 @@ namespace eCommerceBase.Domain.AggregateModels
         public byte[] PasswordHash { get; private set; }
         public bool Status { get; private set; }
         public Guid UserGroupId { get; private set; }
+        public bool IsActivationApprove { get; private set; }
         [SwaggerIgnore]
         public UserGroup? UserGroup { get; private set; }
         public void SetUserForUserGroup()
         {
             UserGroupId = Guid.Parse(InitConst.UserGuid);
+        }
+        public void SetIsActivationApprove(bool isActivationApprove)
+        {
+            IsActivationApprove = isActivationApprove;
         }
         [SwaggerIgnore]
         public CustomerActivationCode? CustomerActivationCode { get; private set; }

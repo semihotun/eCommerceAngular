@@ -41,7 +41,8 @@ namespace eCommerceBase.Application.Handlers.CustomerUsers.Commands
                     request.Email,
                     passwordSalt,
                     passwordHash,
-                    true);
+                    true,
+                    false);
                 user.SetUserForUserGroup();
                 await _customerUserRepository.AddAsync(user);
 

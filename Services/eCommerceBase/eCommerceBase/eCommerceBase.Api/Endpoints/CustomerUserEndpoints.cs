@@ -17,8 +17,10 @@ namespace eCommerceBase.Api.Endpoints
                 .Produces(StatusCodes.Status200OK, typeof(Result<AccessToken>))
                 .AllowAnonymous();
             group.MapPost("/customeruserregister", CustomerUserRegister)
-             .Produces(StatusCodes.Status200OK, typeof(Result<AccessToken>))
-             .AllowAnonymous();
+                .Produces(StatusCodes.Status200OK, typeof(Result<AccessToken>))
+                .AllowAnonymous();
+            group.MapPost("/customeruseractivationconfirmation", CustomerUserActivationConfirmation)
+                 .Produces(StatusCodes.Status200OK, typeof(Result));
         }
         public static async Task<IResult> CustomerUserLogin([FromBody] CustomerUserLoginCommand data, ISender sender)
         {
@@ -30,6 +32,15 @@ namespace eCommerceBase.Api.Endpoints
             return Results.BadRequest(result);
         }
         public static async Task<IResult> CustomerUserRegister([FromBody] CustomerUserRegisterCommand data, ISender sender)
+        {
+            var result = await sender.Send(data);
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> CustomerUserActivationConfirmation([FromBody] CustomerUserActivationConfirmationCommand data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)

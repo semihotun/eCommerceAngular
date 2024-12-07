@@ -17,7 +17,7 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         public List<MailTemplate> GetSeedData()
         {
             var activationMailId = Guid.Parse(InitConst.ActivationMailId);
-            var activationMail = new MailTemplate("Hoşgeldiniz", "Web sitesi için aktivasyon linki #{{email}}");
+            var activationMail = new MailTemplate("Hoşgeldiniz", "Web sitesi için aktivasyon linki #{{activationCode}}");
             activationMail.SetId(activationMailId);
             activationMail.AddMailTemplateKeywordList(new MailTemplateKeyword(activationMailId, "email", "Email"));
             activationMail.AddMailTemplateKeywordList(new MailTemplateKeyword(activationMailId, "name", "İsim"));

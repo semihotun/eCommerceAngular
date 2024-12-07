@@ -50,11 +50,14 @@ namespace eCommerceBase.Insfrastructure.Utilities.Identity.Service
         }
         private IEnumerable<Claim> SetClaims(IUser user, IEnumerable<string>? roleList)
         {
-            var claims = new List<Claim>();
-            claims.AddNameIdentifier(user.Id.ToString());
-            claims.AddEmail(user.Email);
-            claims.AddName($"{user.FirstName} {user.LastName}");
-            claims.AddRoles(roleList!.ToArray());
+            var claims = new List<Claim>
+            {
+                new("name", user.FirstName),
+                new("surname", user.LastName),
+                new("id", user.Id.ToString()),
+                new("email", user.Id.ToString()),
+                new("roles",roleList!.ToArray().ToString()!)
+            };
             return claims;
         }
         public bool ValidateToken(string token)
