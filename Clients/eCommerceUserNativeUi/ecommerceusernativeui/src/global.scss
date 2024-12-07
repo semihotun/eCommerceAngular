@@ -52,7 +52,7 @@ a {
     color: black;
 }
 
-#not-header-page {
+#not-header-search-page {
     background-color: white;
     padding: 65px 2%;
     border-radius: 15px;
@@ -62,7 +62,7 @@ a {
         padding: 65px 2%;
         background-color: rgba(255, 255, 255, 0.918);
         padding: 0px 0px;
-        margin: 0px;
+        margin: 0px 0px $fix-tap-height 0px;
         border-radius: 0px;
         min-height: 100%;
     }

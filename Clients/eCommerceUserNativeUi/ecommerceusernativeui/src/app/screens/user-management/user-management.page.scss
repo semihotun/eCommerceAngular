@@ -3,6 +3,8 @@
 
 
 .row-list {
+    margin-top: 50px;
+
     @media screen and (max-width:$tablet-size) {
         margin: 10% 2% 0% 2%;
     }

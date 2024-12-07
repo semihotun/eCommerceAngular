@@ -30,5 +30,9 @@
 	"User Not Login In": "User Not Login In",
 	"Save": "Kaydet",
 	"Username": "Kullanıcı Adı",
-	"UsernamePlaceholder": "Kullanıcı Adı giriniz"
+	"UsernamePlaceholder": "Kullanıcı Adı giriniz",
+	"Account Creation Date":"Hesap Oluşturulma Tarihi",
+	"Verify Mail Send":"Hesabımı Onayla'ma linki gönder",
+	"Operation Completed":"İşlem Başarılı",
+	"Operation Failed":"İşlem Başarısız"
 }

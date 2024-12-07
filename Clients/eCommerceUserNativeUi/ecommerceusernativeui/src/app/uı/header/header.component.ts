@@ -14,7 +14,7 @@ import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { NavController } from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 import { GlobalService } from 'src/app/services/core/global.service';
-import { UserService } from 'src/app/services/user.service';
+import { CustomerUserService } from 'src/app/services/customer-user.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeStore } from 'src/app/stores/home.store';
 @Component({
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     private gestureCtrl: GestureController,
     private cdr: ChangeDetectorRef,
     public glb: GlobalService,
-    public userService: UserService,
+    public userService: CustomerUserService,
     public homeStore: HomeStore,
     public navController: NavController
   ) {}

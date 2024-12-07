@@ -1,0 +1,62 @@
+@import '../../../theme/variables.scss';
+
+
+.title {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+
+    @media screen and (max-width:$tablet-size) {
+        margin-bottom: 0px;
+    }
+}
+
+.form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+
+    .checkbox-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+
+    @media screen and (max-width:$tablet-size) {
+        width: 100%;
+        padding: 4% 4%;
+        margin-top: 0px;
+    }
+
+    .links {
+        flex-wrap: wrap;
+        font-size: 12px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 1px;
+        margin-right: 1px;
+    }
+
+    .another-info {
+        font-size: 13px;
+
+        .verify-row {
+            color: red;
+            justify-content: center;
+            margin-top: 12px;
+            min-height: 38px;
+            border: 1px solid red;
+            border-radius: 4px;
+            align-items: center;
+            vertical-align: middle;
+            display: flex;
+        }
+    }
+
+}

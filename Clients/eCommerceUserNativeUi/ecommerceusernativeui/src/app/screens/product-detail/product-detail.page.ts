@@ -49,6 +49,7 @@ export class ProductDetailPage implements OnInit {
       if (slug) {
         this.productService.getProductDtoBySlug(slug).then((x) => {
           this.productDto$.set(this.productStore.productDTO$());
+          console.log(this.productStore.productDTO$());
         });
       } else {
         this.navController.navigateForward('');
@@ -60,6 +61,7 @@ export class ProductDetailPage implements OnInit {
       .getProductDtoById(this.productStore.selectedProductId$())
       .then((x) => {
         this.productDto$.set(this.productStore.productDTO$());
+        console.log(this.productStore.productDTO$());
       });
   }
 }

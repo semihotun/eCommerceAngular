@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginPage } from './screens/login/login.page';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -50,17 +51,12 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'user-management;',
-    loadComponent: () =>
-      import('./screens/register/register.page').then((m) => m.RegisterPage),
-    pathMatch: 'full',
-  },
-  {
     path: 'user-management',
     loadComponent: () =>
       import('./screens/user-management/user-management.page').then(
         (m) => m.UserManagementPage
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: ':slug/mobile-product-comments',
@@ -104,6 +100,25 @@ export const routes: Routes = [
     path: 'user-info',
     loadComponent: () =>
       import('./screens/user-info/user-info.page').then((m) => m.UserInfoPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'favorites',
+    loadComponent: () =>
+      import('./screens/favorites/favorites.page').then((m) => m.FavoritesPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'addresses',
+    loadComponent: () =>
+      import('./screens/addresses/addresses.page').then((m) => m.AddressesPage),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'orders',
+    loadComponent: () =>
+      import('./screens/orders/orders.page').then((m) => m.OrdersPage),
+    canActivate: [AuthGuard],
   },
   {
     path: ':slug',

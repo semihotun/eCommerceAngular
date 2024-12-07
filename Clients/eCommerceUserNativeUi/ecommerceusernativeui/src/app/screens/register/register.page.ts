@@ -10,13 +10,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  NavController,
-} from '@ionic/angular/standalone';
+import { IonContent, NavController } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { FooterComponent } from 'src/app/uı/footer/footer.component';
 import { MobileFooterComponent } from 'src/app/uı/mobile-footer/mobile-footer.component';
@@ -26,9 +20,8 @@ import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component'
 import { GlobalService } from 'src/app/services/core/global.service';
 import { CheckboxComponent } from '../../u\u0131/checkbox/checkbox.component';
 import { RouterModule } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { CustomerUserService } from 'src/app/services/customer-user.service';
 import { SubHeaderComponent } from 'src/app/uı/sub-header/sub-header.component';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -36,9 +29,6 @@ import { SubHeaderComponent } from 'src/app/uı/sub-header/sub-header.component'
   standalone: true,
   imports: [
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     HeaderComponent,
@@ -56,7 +46,7 @@ import { SubHeaderComponent } from 'src/app/uı/sub-header/sub-header.component'
 export class RegisterPage implements OnInit {
   form!: FormGroup;
   glb = inject(GlobalService);
-  userService = inject(UserService);
+  userService = inject(CustomerUserService);
   submitted: boolean = false;
   constructor(
     private formBuilder: FormBuilder,

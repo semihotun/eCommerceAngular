@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { UserService } from 'src/app/services/user.service';
+import { CustomerUserService } from 'src/app/services/customer-user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/services/core/toast.service';
 import { NavController } from '@ionic/angular/standalone';
@@ -14,7 +14,7 @@ import { NavController } from '@ionic/angular/standalone';
 export class ActivationCodePage implements OnInit {
   constructor(
     private translateService: TranslateService,
-    private userService: UserService,
+    private userService: CustomerUserService,
     private activatedRoute: ActivatedRoute,
     private toastService: ToastService,
     private navController: NavController

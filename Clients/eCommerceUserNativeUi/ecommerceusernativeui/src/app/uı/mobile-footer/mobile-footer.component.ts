@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/services/core/global.service';
 import { IonIcon } from '@ionic/angular/standalone';
 import { RouterModule } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { CustomerUserService } from 'src/app/services/customer-user.service';
 
 @Component({
   selector: 'app-mobile-footer',
@@ -13,7 +13,10 @@ import { UserService } from 'src/app/services/user.service';
   imports: [IonIcon, CommonModule, RouterModule],
 })
 export class MobileFooterComponent implements OnInit {
-  constructor(public glb: GlobalService, public userService: UserService) {}
+  constructor(
+    public glb: GlobalService,
+    public userService: CustomerUserService
+  ) {}
 
   ngOnInit() {}
 }

@@ -18,7 +18,7 @@ import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component'
 import { CheckboxComponent } from 'src/app/uı/checkbox/checkbox.component';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RouterModule, ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { CustomerUserService } from 'src/app/services/customer-user.service';
 import { SubHeaderComponent } from 'src/app/uı/sub-header/sub-header.component';
 
 @Component({
@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
   activationCode!: string;
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService,
+    private userService: CustomerUserService,
     private navController: NavController,
     private activatedRoute: ActivatedRoute
   ) {
