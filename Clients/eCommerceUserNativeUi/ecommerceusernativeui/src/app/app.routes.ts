@@ -38,6 +38,12 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'login/:activationCode',
+    loadComponent: () =>
+      import('./screens/login/login.page').then((m) => m.LoginPage),
+    pathMatch: 'full',
+  },
+  {
     path: 'register',
     loadComponent: () =>
       import('./screens/register/register.page').then((m) => m.RegisterPage),
@@ -79,6 +85,25 @@ export const routes: Routes = [
         './screens/product-detail/components/product-tabs/components/mobile-product-tabs/components/mobile-product-specification/mobile-product-specification.page'
       ).then((m) => m.MobileProductSpecificationPage),
     pathMatch: 'full',
+  },
+  {
+    path: 'activation-code',
+    loadComponent: () =>
+      import('./screens/activation-code/activation-code.page').then(
+        (m) => m.ActivationCodePage
+      ),
+  },
+  {
+    path: 'activation-code/:id',
+    loadComponent: () =>
+      import('./screens/activation-code/activation-code.page').then(
+        (m) => m.ActivationCodePage
+      ),
+  },
+  {
+    path: 'user-info',
+    loadComponent: () =>
+      import('./screens/user-info/user-info.page').then((m) => m.UserInfoPage),
   },
   {
     path: ':slug',

@@ -11,11 +11,15 @@ export class ToastService {
     private translate: TranslateService
   ) {}
 
-  async presentSuccessToast(message: string = 'Operation Completed') {
-    const messageTranslated = await this.translate.get(message).toPromise();
+  async presentSuccessToast(
+    message: string = 'Operation Completed',
+    duration: number = 3000
+  ) {
+    const messageTranslated =
+      this.translate.instant(message) ?? 'Operation Completed';
     const toast = await this.toastController.create({
       message: messageTranslated,
-      duration: 3000,
+      duration: duration,
       color: 'success',
       position: 'bottom',
       cssClass: 'success-toast',
@@ -23,11 +27,15 @@ export class ToastService {
     toast.present();
   }
 
-  async presentDangerToast(message: string = 'Operation Failed') {
-    const messageTranslated = await this.translate.get(message).toPromise();
+  async presentDangerToast(
+    message: string = 'Operation Failed',
+    duration: number = 3000
+  ) {
+    const messageTranslated =
+      this.translate.instant(message) ?? 'Operation Failed';
     const toast = await this.toastController.create({
       message: messageTranslated,
-      duration: 3000,
+      duration: duration,
       color: 'danger',
       position: 'bottom',
       cssClass: 'danger-toast',

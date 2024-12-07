@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  inject,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -13,13 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-  NavController,
-} from '@ionic/angular/standalone';
+import { NavController, IonContent } from '@ionic/angular/standalone';
 import { HeaderComponent } from 'src/app/uı/header/header.component';
 import { FooterComponent } from 'src/app/uı/footer/footer.component';
 import { GlobalService } from 'src/app/services/core/global.service';
@@ -29,7 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component';
 import { CheckboxComponent } from 'src/app/uı/checkbox/checkbox.component';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { SubHeaderComponent } from 'src/app/uı/sub-header/sub-header.component';
 
@@ -40,9 +28,6 @@ import { SubHeaderComponent } from 'src/app/uı/sub-header/sub-header.component'
   standalone: true,
   imports: [
     IonContent,
-    IonHeader,
-    IonTitle,
-    IonToolbar,
     CommonModule,
     FormsModule,
     HeaderComponent,
@@ -65,10 +50,12 @@ export class LoginPage implements OnInit {
     'text' | 'password'
   >('password');
   glb = inject(GlobalService);
+  activationCode!: string;
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private navController: NavController
+    private navController: NavController,
+    private activatedRoute: ActivatedRoute
   ) {
     this.initForm();
   }
@@ -81,10 +68,20 @@ export class LoginPage implements OnInit {
   }
   async saveForm() {
     await this.userService.login(this.form.value).then(() => {
+      if (this.activationCode) {
+        this.navController.navigateForward([
+          'activation-code',
+          localStorage.getItem('activationCode'),
+        ]);
+      }
       this.navController.navigateForward('');
     });
   }
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.activatedRoute.paramMap.subscribe(async (params) => {
+      this.activationCode = params.get('activationCode')!;
+    });
+  }
   changePasswordType() {
     this.passwordTypeCheck = !this.passwordTypeCheck;
     this.passwordType.next(this.passwordTypeCheck ? 'text' : 'password');

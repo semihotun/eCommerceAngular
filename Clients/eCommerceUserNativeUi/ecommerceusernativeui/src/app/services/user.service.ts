@@ -5,6 +5,7 @@ import { HttpService } from './core/http.service';
 import { Destroyable } from '../shared/destroyable.service';
 import { Router } from '@angular/router';
 import { ToastService } from './core/toast.service';
+import { AccessToken } from '../models/responseModel/accesstoken';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class UserService extends Destroyable {
 
   login(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.post<Result<any>>(
+      this.http.post<Result<AccessToken>>(
         environment.baseUrl + 'customeruser/customeruserlogin',
         data,
         this.onDestroy,
@@ -29,7 +30,7 @@ export class UserService extends Destroyable {
           resolve();
         },
         (err) => {
-          this.toast.presentDangerToast(err.error.Message);
+          this.toast.presentDangerToast(err.error.message);
           reject();
         }
       );
@@ -37,7 +38,7 @@ export class UserService extends Destroyable {
   }
   register(data: any): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.post<Result<any>>(
+      this.http.post<Result<AccessToken>>(
         environment.baseUrl + 'customeruser/customeruserregister',
         data,
         this.onDestroy,
@@ -47,7 +48,25 @@ export class UserService extends Destroyable {
           resolve();
         },
         (err) => {
-          this.toast.presentDangerToast();
+          this.toast.presentDangerToast(err.error.message);
+          reject();
+        }
+      );
+    });
+  }
+  customerUserActivationConfirmation(data: any): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post<Result<AccessToken>>(
+        environment.baseUrl + 'customeruser/customeruseractivationconfirmation',
+        data,
+        this.onDestroy,
+        (response) => {
+          this.toast.presentSuccessToast();
+          localStorage.setItem('token', response.data.token);
+          resolve();
+        },
+        (err) => {
+          this.toast.presentDangerToast(err.error.message);
           reject();
         }
       );
@@ -58,7 +77,6 @@ export class UserService extends Destroyable {
   }
   logOut() {
     localStorage.removeItem('token');
-    localStorage.removeItem('claims');
     this.router.navigate(['']);
   }
 }
