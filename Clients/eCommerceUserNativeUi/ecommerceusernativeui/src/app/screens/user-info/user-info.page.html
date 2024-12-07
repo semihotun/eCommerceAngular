@@ -1,7 +1,7 @@
 <ion-content fullscreen="true">
   <app-header *ngIf="!this.glb.isMobil.value"></app-header>
   <div id="not-header-search-page">
-    <app-sub-header [previousUrl]="['user-management']" [title]="'User Info' |translate"></app-sub-header>
+    <app-sub-header [previousUrl]="'user-management'" [title]="'User Info' |translate"></app-sub-header>
     <form class="form" [formGroup]="form">
       <app-input [label]="'Name' |translate" [placeholder]="'Name' |translate" formControlName="firstName"></app-input>
       <div class="label-error" *ngIf="hasError('firstName','required')">{{'Required' |translate}}</div>

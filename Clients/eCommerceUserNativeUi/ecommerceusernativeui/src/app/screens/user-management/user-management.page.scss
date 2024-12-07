@@ -6,7 +6,7 @@
     margin-top: 50px;
 
     @media screen and (max-width:$tablet-size) {
-        margin: 10% 2% 0% 2%;
+        margin: 12px 2% 0% 12px;
     }
 
     .row {
@@ -31,6 +31,32 @@
 
         a {
             color: white;
+            font-size: 14px;
+        }
+    }
+
+    .row-logout {
+        margin-top: 10px;
+        border-radius: 4px;
+        width: 70%;
+        height: 40px;
+        align-items: center;
+        vertical-align: middle;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid red;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media screen and (max-width:$tablet-size) {
+            width: 98%;
+            height: 34px;
+        }
+
+        a {
+            color: red;
             font-size: 14px;
         }
     }
