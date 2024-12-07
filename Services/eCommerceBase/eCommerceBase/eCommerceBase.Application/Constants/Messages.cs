@@ -2,6 +2,9 @@
 
 namespace eCommerceBase.Application.Constants
 {
+    /// <summary>
+    /// Buradaki Bütün mesajlar translate'e key olarak verilip front ende döndürülecek
+    /// </summary>
     public static class Messages
     {
         public static string OperationSuccess => "OperationSuccess";
@@ -27,5 +30,7 @@ namespace eCommerceBase.Application.Constants
         public static string MailNotSended => "MailNotSended";
         public static string ActivationCodeWrongOrOutOfDate => "ActivationCodeWrongOrOutOfDate";
         public static string UserHasAldreadyBeenApproved => "UserHasAldreadyBeenApproved";
+        public static string AccountAlreadyConfirmed => "AccounAlreadyConfirmed";
+        public static string EmailConfirmed => "EmailConfirmed";
     }
 }

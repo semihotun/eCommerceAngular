@@ -36,7 +36,7 @@ namespace eCommerceBase.Application.Handlers.CustomerUsers.Commands
                 if (isActivationCodeTrue)
                 {
                     customerUser!.SetIsActivationApprove(true);
-                    return Result.SuccessResult(Messages.OperationSuccess);
+                    return Result.SuccessResult(Messages.EmailConfirmed);
                 }
                 else
                 {
