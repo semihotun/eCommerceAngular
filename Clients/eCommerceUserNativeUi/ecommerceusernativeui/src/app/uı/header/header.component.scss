@@ -5,14 +5,15 @@
 .sub-category-open {
     box-sizing: border-box;
     padding: 20px;
-    left: 5%;
-    right: 5%;
+    // left: 10%;
+    // right: 10%;
     position: absolute;
     display: flex;
     flex-direction: column;
     height: 300px;
     flex-wrap: wrap;
     overflow: hidden;
+    border: 1px solid black;
 
     @media screen and (max-width: $tablet-size) {
         display: block;
@@ -44,7 +45,7 @@
         width: 100%;
 
         .links {
-            padding: 4px 5%;
+            padding: 4px 10%;
             font-size: 12px;
             font-weight: 200;
             display: flex;
@@ -211,7 +212,7 @@
         margin: 0px;
         padding: 0px;
         z-index: 102;
-        padding: 0px 5%;
+        padding: 0px 10%;
         display: flex;
         font-weight: 200;
         background-color: $header-bottom-bg;
@@ -325,14 +326,20 @@
 
                 .sub-category-list {
                     top: $header-height;
-                    background-color: $list-show-bg;
+                    background-color: white;
+                    margin-left: 5%;
+                    margin-right: 5%;
+                    border: 1px solid #e2e2e2;
 
                     @media screen and (max-width: $tablet-size) {
                         background-color: transparent;
+                        border: none;
+                        margin-left: 0%;
+                        margin-right: 0%;
                     }
 
                     .sub-category {
-                        background-color: $list-show-bg;
+                        background-color: white;
                         display: flex;
                         align-items: center;
                         vertical-align: middle;

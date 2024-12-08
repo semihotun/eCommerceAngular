@@ -3,6 +3,18 @@
 swiper-container {
     --swiper-pagination-bullet-inactive-color: #{rgba(255, 102, 0, 0.5)};
     --swiper-pagination-color:#{$theme-color-orange};
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 10%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width:$tablet-size) {
+        width: 100%;
+        display: block;
+        justify-content: center;
+        margin: 0px;
+    }
 }
 
 img {
