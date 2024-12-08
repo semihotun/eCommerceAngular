@@ -1,28 +1,29 @@
-<div class="footer container">
-  <div class="description">
-    <div [innerHTML]="this.homeStore.websiteInfo$().socialMediaText" class="social-text" style="color:white;"></div>
-    <div class="social">
-      <ng-container *ngFor="let item of this.homeStore.websiteInfo$().socialMediaInfos">
-        <a [href]="item.url"><img [src]="item.icon" width="35px" height="35px"></a>
-      </ng-container>
+<div class="footer">
+  <div class="footer-container">
+    <div class="description">
+      <div [innerHTML]="this.homeStore.websiteInfo$().socialMediaText" class="social-text" style="color:white;"></div>
+      <div class="social">
+        <ng-container *ngFor="let item of this.homeStore.websiteInfo$().socialMediaInfos">
+          <a [href]="item.url"><img [src]="item.icon" width="35px" height="35px"></a>
+        </ng-container>
+      </div>
+    </div>
+    <div class="links">
+      <a href="#">Hakkında</a>
+      <a href="#">İadeler Hakkında</a>
+      <a href="#">Kargo Hakkında</a>
+    </div>
+    <div class="links">
+      <a href="#">Hakkında</a>
+      <a href="#">İadeler Hakkında</a>
+      <a href="#">Kargo Hakkında</a>
+    </div>
+    <div class="links  grid-cols-1">
+      <a href="#">Hakkında</a>
+      <a href="#">İadeler Hakkında</a>
+      <a href="#">Kargo Hakkında</a>
     </div>
   </div>
-  <div class="links">
-    <a href="#">Hakkında</a>
-    <a href="#">İadeler Hakkında</a>
-    <a href="#">Kargo Hakkında</a>
-  </div>
-  <div class="links">
-    <a href="#">Hakkında</a>
-    <a href="#">İadeler Hakkında</a>
-    <a href="#">Kargo Hakkında</a>
-  </div>
-  <div class="links  grid-cols-1">
-    <a href="#">Hakkında</a>
-    <a href="#">İadeler Hakkında</a>
-    <a href="#">Kargo Hakkında</a>
-  </div>
-
 </div>
 <div class="copyright">
   © Semih Ötün

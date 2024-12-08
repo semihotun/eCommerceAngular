@@ -42,7 +42,11 @@
         width: 100%;
 
         .links {
-            padding: 4px 10%;
+            max-width: $container-max-width;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            padding: 4px 0px;
             font-size: 11px;
             font-weight: 200;
             display: flex;
@@ -76,8 +80,11 @@
             display: flex;
             vertical-align: middle;
             align-items: center;
-            width: 100%;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
             background-color: $header-bg-color;
+            max-width: $container-max-width;
 
             .header-back-button {
                 display: flex;
@@ -208,7 +215,7 @@
         margin: 0px;
         padding: 0px;
         z-index: 102;
-        padding: 0px 10%;
+        // padding: 0px 10%;
         display: flex;
         font-weight: 200;
         background-color: $header-bottom-bg;
@@ -249,10 +256,14 @@
             margin: 0px;
             padding: 0px;
             list-style-type: none;
-            width: 100%;
             background-color: $header-bottom-bg;
+            max-width: $container-max-width;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
 
             @media screen and (max-width: $tablet-size) {
+                width: 100%;
                 background-color: $header-bottom-bg;
                 padding: 0px;
                 margin: 0px;

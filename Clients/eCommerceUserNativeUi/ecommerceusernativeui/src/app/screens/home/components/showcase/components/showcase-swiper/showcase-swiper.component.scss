@@ -11,6 +11,7 @@ $card-bg-color: white;
     margin-right: auto;
     width: 80%;
     box-shadow: 0 0 8px 0 rgba(51, 51, 51, .16);
+    max-width: $container-max-width;
 
     @media screen and (max-width: $tablet-size) {
         padding: 10px;
