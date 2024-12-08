@@ -1,12 +1,11 @@
-using MediatR;
-using eCommerceBase.Domain.Result;
-using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Persistence.UnitOfWork;
-using eCommerceBase.Persistence.GenericRepository;
-using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Application.Constants;
 using eCommerceBase.Application.Handlers.Mapper;
-using eCommerceBase.Application.Helpers;
+using eCommerceBase.Domain.AggregateModels;
+using eCommerceBase.Domain.Result;
+using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
+using eCommerceBase.Persistence.GenericRepository;
+using eCommerceBase.Persistence.UnitOfWork;
+using MediatR;
 
 namespace eCommerceBase.Application.Handlers.Products.Commands;
 public record CreateProductCommand(string ProductName,
@@ -29,7 +28,7 @@ public class CreateProductCommandHandler(IWriteDbRepository<Product> productRepo
         return await _unitOfWork.BeginTransaction(async () =>
         {
             var data = ProductMapper.CreateProductCommandToProduct(request);
-            data.SetSlug(SlugHelper.GenerateSlug(data.ProductName));
+            data.GenerateSlug();
             await _productRepository.AddAsync(data);
             await _cacheService.RemovePatternAsync("eCommerceBase:Product");
             return Result.SuccessResult(Messages.Added);

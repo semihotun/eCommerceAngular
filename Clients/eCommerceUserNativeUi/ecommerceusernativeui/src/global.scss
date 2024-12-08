@@ -72,3 +72,13 @@ a {
     font-size: 12px;
     color: red;
 }
+
+.success-toast {
+    --background: $theme-color-success;
+    color: white;
+}
+
+.danger-toast {
+    --background: $theme-color-danger;
+    color: white;
+}

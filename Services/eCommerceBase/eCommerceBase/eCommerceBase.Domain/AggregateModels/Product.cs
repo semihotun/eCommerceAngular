@@ -1,3 +1,4 @@
+using eCommerceBase.Domain.DomainEvents.Products;
 using eCommerceBase.Domain.SeedWork;
 
 namespace eCommerceBase.Domain.AggregateModels
@@ -11,8 +12,9 @@ namespace eCommerceBase.Domain.AggregateModels
         public string Gtin { get; private set; }
         public string Sku { get; private set; }
         public string ProductNameUpper { get; private set; }
+        public string? SlugBase { get; private set; }
         public string? Slug { get; private set; }
-
+        public int SlugCounter { get; private set; }
         public Product(string productName, Guid? brandId, Guid? categoryId, string productContent, string gtin, string sku)
         {
             ProductName = productName;
@@ -21,12 +23,21 @@ namespace eCommerceBase.Domain.AggregateModels
             ProductContent = productContent;
             Gtin = gtin;
             Sku = sku;
-            ProductNameUpper = productName.ToUpper();
+            ProductNameUpper = productName.ToUpper();         
         }
 
-        public void SetSlug(string slug)
+        public void SetSlug(string slugBase,int slugCounter =0)
         {
-            Slug = slug;
+            SlugBase = slugBase;
+            SlugCounter = slugCounter;
+            if(slugCounter  == 0)
+            {
+                Slug = slugBase;
+            }
+            else
+            {
+                Slug = slugBase + slugCounter;
+            }
         }
 
         [SwaggerIgnore]
@@ -87,6 +98,10 @@ namespace eCommerceBase.Domain.AggregateModels
             {
                 ProductStockList.Add(productStock);
             }
+        }
+        public void GenerateSlug()
+        {
+            base.AddDomainEvent(new ProductSlugGenerateDE(this));
         }
     }
 }

@@ -33,7 +33,7 @@ public class UpdateProductCommandHandler(IWriteDbRepository<Product> productRepo
             if (data is not null)
             {
                 data = ProductMapper.UpdateProductCommandToProduct(request);
-                data.SetSlug(SlugHelper.GenerateSlug(data.ProductName));
+                data.GenerateSlug();
                 _productRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Updated);

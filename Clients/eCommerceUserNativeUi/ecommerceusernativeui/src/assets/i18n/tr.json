@@ -34,5 +34,6 @@
 	"Account Creation Date":"Hesap Oluşturulma Tarihi",
 	"Verify Mail Send":"Hesabımı Onayla'ma linki gönder",
 	"Operation Completed":"İşlem Başarılı",
-	"Operation Failed":"İşlem Başarısız"
+	"Operation Failed":"İşlem Başarısız",
+	"Spefication is Empty":"Ürün Özelliği Belirtilmemiş"
 }

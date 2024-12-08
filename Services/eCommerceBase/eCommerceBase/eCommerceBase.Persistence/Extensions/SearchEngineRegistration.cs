@@ -86,7 +86,7 @@ namespace eCommerceBase.Persistence.Extensions
             var existingDoc = await client.GetAsync<MailInfo>(InitConst.MailInfoId, g => g.Index(indexName));
             if (!existingDoc.Found)
             {
-                var data = new MailInfo("", "", "smtp.gmail.com", 587);
+                var data = new MailInfo("semihotunwebsite@gmail.com", "jeus nyri crti gcko", "smtp.gmail.com", 587);
                 data.SetId(Guid.Parse(InitConst.MailInfoId));
                 var response = await client.IndexAsync(data, idx => idx.Index(indexName));
                 if (!response.IsValid)
