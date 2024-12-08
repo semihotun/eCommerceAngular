@@ -1,74 +1,108 @@
 @import '../../../../../theme/variables.scss';
+$slider-btn-radius: 40px;
 
-swiper-container {
-    --swiper-pagination-bullet-inactive-color: #{rgba(255, 102, 0, 0.5)};
-    --swiper-pagination-color:#{$theme-color-orange};
+.slider-container {
+    position: relative;
+    overflow: hidden;
     width: 80%;
-    display: flex;
-    justify-content: center;
     margin: 20px 10%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
 
     @media screen and (max-width:$tablet-size) {
         width: 100%;
-        display: block;
-        justify-content: center;
         margin: 0px;
     }
-}
 
-img {
-    height: 500px;
-    width: 100%;
-    position: relative;
+    .slider-wrapper {
+        display: flex;
+        transition: transform 1.3s ease-in-out;
+        will-change: transform;
 
-    @media screen and (max-width:$tablet-size) {
-        height: 200px;
-    }
-}
-
-.slider-info {
-    position: absolute;
-
-
-    .header {
-        font-weight: 600;
-        font-size: 24px;
-        color: $theme-color-orange;
-        margin-bottom: 20px;
-
-        @media screen and (max-width:$tablet-size) {
-            font-size: 16px;
-        }
-    }
-
-    .text {
-        font-size: 20px;
-        color: white;
-        margin-bottom: 20px;
-
-        @media screen and (max-width:$tablet-size) {
-            font-size: 14px;
-        }
-    }
-
-    .btn {
-        padding: 10px 15px;
-        background-color: $theme-color-orange;
-        letter-spacing: 1px;
-
-        @media screen and (max-width:$tablet-size) {
-            padding: 4px 4px;
-            font-size: 12px;
-        }
-
-        a {
-            color: white;
-            font-size: 16px;
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            height: 500px;
+            transition: transform 0.5s ease;
+            overflow: hidden;
+            background-size: cover;
 
             @media screen and (max-width:$tablet-size) {
-                padding: 4px 4px;
-                font-size: 12px;
+                height: 240px;
+            }
+
+            .slider-info {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                color: white;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+                padding: 10px;
+                border-radius: 5px;
+
+                .header {
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    color: $theme-color-orange;
+
+                    @media (max-width: $tablet-size) {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .text {
+                    font-size: 20px;
+                    color: white;
+                    margin-bottom: 20px;
+
+                    @media (max-width: $tablet-size) {
+                        font-size: 14px;
+                    }
+                }
+
+                .btn {
+                    padding: 10px 15px;
+                    background-color: $theme-color-orange;
+                    letter-spacing: 1px;
+                    color: white;
+
+                    @media (max-width: $tablet-size) {
+                        padding: 4px 4px;
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .next {
+                border: 1px solid $theme-bg-color;
+                padding: 10px 25px;
+                font-size: 32px;
+                font-weight: 100;
+                border-bottom-left-radius: $slider-btn-radius;
+                color: $theme-bg-color;
+                border-top-left-radius: $slider-btn-radius;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+            }
+
+            .prev {
+                font-weight: 100;
+                border: 1px solid $theme-bg-color;
+                padding: 10px 25px;
+                font-size: 32px;
+                border-bottom-right-radius: $slider-btn-radius;
+                border-top-right-radius: $slider-btn-radius;
+                color: $theme-bg-color;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
         }
     }

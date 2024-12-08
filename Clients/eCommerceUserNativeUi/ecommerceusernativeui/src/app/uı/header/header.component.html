@@ -9,7 +9,6 @@
   </div>
   <div class="header-middle">
     <div class="header-container container">
-
       <div class="header-back-button" *ngIf="glb.isMobil.value" (click)="backButtonClick()">
         <button class="previousbtn" *ngIf="glb.isMobil.value && isNavigationBackUrl != null"></button>
       </div>
@@ -24,7 +23,6 @@
       <div class="header-right" *ngIf="!glb.isMobil.value">
         <a href="#"><i class="fa-solid fa-cart-shopping" id="shoppingIcon"></i><span
             *ngIf="!glb.isMobil.value">Sepetim</span></a>
-
         @if(!userService.isLogin()){
         <a routerLink="/login"><i class="fa-regular fa-user" id="userIcon"></i><span *ngIf="!glb.isMobil.value">
             {{'Login' |translate}}
@@ -40,10 +38,7 @@
       <div class="mobile-bars" (click)="showMobileBars()">
         <i class="fa-solid fa-bars bar-icon"></i>
       </div>
-
-
     </div>
-
   </div>
   <div [ngClass]="'header-bottom ' + headerBottom.value" #headerRight>
     <ul>

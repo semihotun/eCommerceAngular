@@ -1,12 +1,16 @@
-<swiper-container #swiper [loop]="true" [pagination]="true" [zoom]="true" (swiperinit)="swiperInit()">
-  <swiper-slide *ngFor="let slider of homeStore.sliders$()">
-    <div class="swiper-zoom-container">
-      <img [src]="slider.sliderImage" />
-      <div class="slider-info">
-        <div class="header">{{slider.sliderHeading}}</div>
-        <div class="text">{{slider.sliderText}}</div>
-        <div class="btn"><a href="{{slider.sliderLink}}">{{ 'Go Page'|translate}}</a></div>
+<div class="slider-container">
+  <div class="slider-wrapper" [style.transform]="transformStyle" #sliderWrapper>
+    <ng-container *ngFor="let slider of this.homeStore.sliders$(); let i = index">
+      <div class="slide" [class.active]="i === currentIndex"
+        [style.background-image]="'url(' + slider.sliderImage + ')'">
+        <div class="prev" (click)="goPrev()" *ngIf="!this.glb.isMobil.getValue()">&#10094;</div>
+        <div class="slider-info">
+          <div class="header">{{ slider.sliderHeading }}</div>
+          <div class="text">{{ slider.sliderText }}</div>
+          <a class="btn" [href]="slider.sliderLink"> {{ 'Go Page' | translate }}</a>
+        </div>
+        <div class="next" (click)="goNext()" *ngIf="!this.glb.isMobil.getValue()">&#10095;</div>
       </div>
-    </div>
-  </swiper-slide>
-</swiper-container>
+    </ng-container>
+  </div>
+</div>

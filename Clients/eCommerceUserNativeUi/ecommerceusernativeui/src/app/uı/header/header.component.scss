@@ -5,8 +5,6 @@
 .sub-category-open {
     box-sizing: border-box;
     padding: 20px;
-    // left: 10%;
-    // right: 10%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -39,18 +37,17 @@
         height: $header-mobile-middle-height;
     }
 
-
     .header-top {
-        background-color: $list-show-bg;
+        background-color: $theme-bg-color;
         width: 100%;
 
         .links {
             padding: 4px 10%;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 200;
             display: flex;
             justify-content: flex-end;
-            border-bottom: 1px solid rgba($color: $header-bottom-bg, $alpha: 0.2);
+            border-bottom: 1px solid rgba($color: $header-bottom-bg, $alpha: 0.08);
 
             a {
                 color: black;
@@ -189,7 +186,6 @@
                 display: flex;
                 color: black;
 
-
                 .bar-icon {
                     padding: 10px;
                     display: none;
@@ -231,7 +227,6 @@
             width: 45%;
             height: 100%;
             align-items: center;
-            // top: $header-mobile-middle-height;
             right: 0px;
             padding: 0px 0%;
         }
@@ -269,7 +264,6 @@
                 height: 100%;
                 display: inline-block;
                 background-color: $header-bottom-bg;
-
 
                 .header-bottom-a {
                     color: white;
@@ -354,7 +348,6 @@
                             width: 100%;
                             background-color: $header-bottom-bg;
                             color: white;
-
                             // &::before {
                             //     content: ">";
                             //     font-weight: 500;
