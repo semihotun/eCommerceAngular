@@ -28,6 +28,7 @@ public class GetAllCategoryHandler(IReadDbRepository<Category> categoryRepositor
                     {
                         Id=c.Id,
                         CategoryName = c.CategoryName,
+                        Slug= c.Slug,   
                         SubCategories = BuildCategoryTree(c.Id)
                     }).ToList();
             }

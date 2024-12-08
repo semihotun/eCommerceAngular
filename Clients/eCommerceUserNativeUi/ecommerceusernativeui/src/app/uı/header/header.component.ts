@@ -17,6 +17,7 @@ import { GlobalService } from 'src/app/services/core/global.service';
 import { CustomerUserService } from 'src/app/services/customer-user.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { HomeStore } from 'src/app/stores/home.store';
+import { HomeService } from './../../services/home.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -42,7 +43,8 @@ export class HeaderComponent implements OnInit {
     public glb: GlobalService,
     public userService: CustomerUserService,
     public homeStore: HomeStore,
-    public navController: NavController
+    public navController: NavController,
+    private homeService: HomeService
   ) {}
   ngOnInit(): void {
     this.initializeGesture();
@@ -50,6 +52,7 @@ export class HeaderComponent implements OnInit {
     if (window.innerWidth < this.headerMobilWidth) {
       this.glb.isMobil.next(true);
     }
+    this.homeService.getCategoryTree();
   }
   @HostListener('document:click', ['$event'])
   handleDocumentClick(event: MouseEvent) {

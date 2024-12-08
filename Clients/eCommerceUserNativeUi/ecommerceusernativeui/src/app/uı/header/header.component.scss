@@ -348,10 +348,10 @@
                             background-color: $header-bottom-bg;
                             color: white;
 
-                            &::before {
-                                content: ">";
-                                font-weight: 500;
-                            }
+                            // &::before {
+                            //     content: ">";
+                            //     font-weight: 500;
+                            // }
                         }
 
                         a {

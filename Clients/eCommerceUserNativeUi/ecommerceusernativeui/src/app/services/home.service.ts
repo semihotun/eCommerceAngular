@@ -7,6 +7,7 @@ import { HomeStore } from '../stores/home.store';
 import { Result } from '../models/core/result';
 import { AllShowcaseDTO } from '../models/responseModel/allShowcaseDTO';
 import { WebsiteInfo } from '../models/responseModel/websiteInfo';
+import { CategoryTreeDTO } from '../models/responseModel/CategoryTreeDTO';
 @Injectable({
   providedIn: 'root',
 })
@@ -50,20 +51,20 @@ export class HomeService extends Destroyable {
       );
     });
   }
-  // getShowCaseList(): Promise<void> {
-  //   return new Promise((resolve, reject) => {
-  //     this.http.get<Result<AllShowcaseDTO[]>>(
-  //       environment.baseUrl + 'showcase/getallhome',
-  //       {},
-  //       this.onDestroy,
-  //       (response) => {
-  //         this.homeStore.setShowcases(response.data);
-  //         resolve();
-  //       },
-  //       (err) => {
-  //         reject();
-  //       }
-  //     );
-  //   });
-  // }
+  getCategoryTree(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<CategoryTreeDTO[]>>(
+        environment.baseUrl + 'category/getall',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.homeStore.setCategoryTreeDto(response.data);
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
+  }
 }

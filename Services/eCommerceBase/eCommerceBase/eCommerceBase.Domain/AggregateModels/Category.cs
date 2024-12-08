@@ -1,4 +1,5 @@
-﻿using eCommerceBase.Domain.SeedWork;
+﻿using eCommerceBase.Domain.DomainEvents.Products;
+using eCommerceBase.Domain.SeedWork;
 
 namespace eCommerceBase.Domain.AggregateModels
 {
@@ -12,8 +13,28 @@ namespace eCommerceBase.Domain.AggregateModels
 
         public string CategoryName { get; private set; }
         public Guid? ParentCategoryId { get; private set; }
+        public string? SlugBase { get; private set; }
+        public string? Slug { get; private set; }
+        public int SlugCounter { get; private set; }
+        public void SetSlug(string slugBase, int slugCounter = 0)
+        {
+            SlugBase = slugBase;
+            SlugCounter = slugCounter;
+            if (slugCounter == 0)
+            {
+                Slug = slugBase;
+            }
+            else
+            {
+                Slug = slugBase + slugCounter;
+            }
+        }
+        public void GenerateSlug()
+        {
+            base.AddDomainEvent(new CategorySlugGenerateDE(this));
+        }
         [SwaggerIgnore]
-        public Category ParentCategory { get; private set; }
+        public Category? ParentCategory { get; private set; }
         [SwaggerIgnore]
         public ICollection<Category> SubCategoryList { get; private set; } = new List<Category>();
         [SwaggerIgnore]

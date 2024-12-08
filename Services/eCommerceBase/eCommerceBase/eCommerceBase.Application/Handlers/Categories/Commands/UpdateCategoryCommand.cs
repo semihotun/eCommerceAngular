@@ -28,6 +28,7 @@ public class UpdateCategoryCommandHandler(IWriteDbRepository<Category> categoryR
             if (data is not null)
             {
                 data = CategoryMapper.UpdateCategoryCommandToCategory(request);
+                data.GenerateSlug();
                 _categoryRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:Categories");
                 return Result.SuccessResult(Messages.Updated);

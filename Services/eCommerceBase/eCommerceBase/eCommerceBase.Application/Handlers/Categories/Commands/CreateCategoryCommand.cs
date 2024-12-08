@@ -24,6 +24,7 @@ public class CreateCategoryCommandHandler(IWriteDbRepository<Category> categoryR
         return await _unitOfWork.BeginTransaction(async () =>
         {
             var data = CategoryMapper.CreateCategoryCommandToCategory(request);
+            data.GenerateSlug();
             await _categoryRepository.AddAsync(data);
             await _cacheService.RemovePatternAsync("eCommerceBase:Categories");
             return Result.SuccessResult(Messages.Added);

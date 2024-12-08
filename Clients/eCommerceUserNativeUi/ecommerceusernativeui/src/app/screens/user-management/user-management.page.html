@@ -3,17 +3,17 @@
     <div id="not-header-search-page">
         <app-sub-header [previousUrl]="''" [title]="'User Management' |translate"></app-sub-header>
         <div class="row-list">
-            <div class="row">
-                <a routerLink="/user-info">{{'User Info'| translate}}</a>
+            <div class="row" routerLink="/user-info">
+                <a>{{'User Info'| translate}}</a>
             </div>
-            <div class="row">
-                <a routerLink="/favorites">{{'Favorites'| translate}}</a>
+            <div class="row" routerLink="/favorites">
+                <a>{{'Favorites'| translate}}</a>
             </div>
-            <div class="row">
-                <a routerLink="/addresses">{{'Addresses'| translate}}</a>
+            <div class="row" routerLink="/addresses">
+                <a>{{'Addresses'| translate}}</a>
             </div>
-            <div class="row">
-                <a routerLink="/orders">{{'Orders'| translate}}</a>
+            <div class="row" routerLink="/orders">
+                <a>{{'Orders'| translate}}</a>
             </div>
             <div class="row-logout">
                 <a (click)="logout()">{{'Logout'| translate}}</a>

@@ -29,7 +29,7 @@ namespace eCommerceBase.Api.Endpoints
                .Produces(StatusCodes.Status200OK, typeof(Result<Category>))
                .AllowAnonymous();
             group.MapGet("/getall", GetAllCategory)
-                .Produces(StatusCodes.Status200OK, typeof(Result<CategoryTreeDTO>))
+                .Produces(StatusCodes.Status200OK, typeof(Result<List<CategoryTreeDTO>>))
                 .AllowAnonymous();
         }
         public static async Task<IResult> CreateCategory([FromBody] CreateCategoryCommand data, ISender sender)
