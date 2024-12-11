@@ -1,0 +1,6 @@
+<div class="textarea-wrapper" [class]="class">
+  <label class="label">{{label}}</label>
+  <textarea [placeholder]="placeholder" class="textarea" [value]="val" (input)="onInputChange($event)"
+    [disabled]="disabled" [id]="id" [rows]="rows">
+  </textarea>
+</div>
