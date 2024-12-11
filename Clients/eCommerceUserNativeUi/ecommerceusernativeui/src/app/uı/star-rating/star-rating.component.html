@@ -1,0 +1,18 @@
+<div class="star-container">
+  <!-- <div class="star-value" [style.font-size]="starSize+'px'">{{value}}</div> -->
+  <div class="stars">
+    <ng-container *ngFor="let star of fullStars">
+      <div class="star full" [ngStyle]="{ width: starSize-2 + 'px', height: starSize + 'px' }"></div>
+    </ng-container>
+
+    <div class="star partial" *ngIf="partialStarWidth > 0"
+      [ngStyle]="{ width: starSize + 'px', height: starSize + 'px' }">
+      <div class="star-fill" [style.width.%]="partialStarWidth"></div>
+    </div>
+
+    <ng-container *ngFor="let star of emptyStars">
+      <div class="star empty" [ngStyle]="{ width: starSize + 'px', height: starSize + 'px' }"></div>
+    </ng-container>
+  </div>
+  <div class="count" [style.font-size]="starSize-2+'px'">{{'('+count+')'}}</div>
+</div>
