@@ -1,0 +1,7 @@
+<div class="stars-container">
+  <ng-container *ngFor="let star of stars">
+    <div class="star" [class.full]="star <= value" [ngStyle]="{ width: starSize + 'px', height: starSize + 'px' }"
+      (click)="selectStar(star)">
+    </div>
+  </ng-container>
+</div>
