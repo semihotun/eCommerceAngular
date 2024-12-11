@@ -4,12 +4,16 @@
     <div class="all-show-text"><a href="">{{ "See All" |translate}}</a></div>
   </div>
   @for (product of data.showCaseProductList; track $index) {
-  <div class="card">
+  <div class="card" (click)="glb.navigateProductDetail(product.slug)">
     <div class="image">
       <img [src]="product.photoBase64" />
     </div>
     <div class="card-bottom">
-      <div class="title">{{product.productName}}</div>
+      <div class="title"><span class="brandName">{{product.brandName}} </span>{{product.productName}}</div>
+      <div class="comment-rate">
+        <app-star-rating [value]="product.avgStarRate" [count]="product.commentCount"
+          [starSize]="!this.glb.isMobil.value ? 15 : 12"></app-star-rating>
+      </div>
       <div class="price">
         <div class="price-without-discount" *ngIf="product.priceWithoutDiscount != product.price">
           {{product.priceWithoutDiscount}} {{product.currencyCode}}</div>
@@ -18,8 +22,8 @@
         </div>
       </div>
     </div>
-    <div class="btn"><button type="button" (click)="glb.navigateProductDetail(product.slug)">{{ "Inspect Product"
-        |translate}}</button></div>
+    <!-- <div class="btn"><button type="button" (click)="glb.navigateProductDetail(product.slug)">{{ "Inspect Product"
+        |translate}}</button></div> -->
   </div>
   }
 </div>

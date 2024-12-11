@@ -14,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LazyImgDirective } from 'src/app/directives/lazy-img.directive';
 import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
 import { GlobalService } from 'src/app/services/core/global.service';
+import { StarRatingComponent } from 'src/app/uı/star-rating/star-rating.component';
 import { Swiper } from 'swiper/types';
 @Component({
   selector: 'app-showcase-swiper',
@@ -21,7 +22,13 @@ import { Swiper } from 'swiper/types';
   styleUrls: ['./showcase-swiper.component.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [CommonModule, LazyImgDirective, TranslateModule, RouterModule],
+  imports: [
+    CommonModule,
+    LazyImgDirective,
+    TranslateModule,
+    RouterModule,
+    StarRatingComponent,
+  ],
 })
 export class ShowcaseSwiperComponent implements AfterViewInit {
   @ViewChild('swiper') swiperRef: ElementRef | undefined;

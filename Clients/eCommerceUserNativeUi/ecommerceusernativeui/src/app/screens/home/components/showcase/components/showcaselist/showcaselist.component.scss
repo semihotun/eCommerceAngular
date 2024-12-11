@@ -66,6 +66,10 @@ $card-bg-color: white;
         padding: 5px;
         margin-bottom: 20px;
 
+        &:hover {
+            cursor: pointer;
+        }
+
         @media screen and (max-width: $tablet-size) {
             padding-bottom: 0px;
             width: 50%;
@@ -92,9 +96,17 @@ $card-bg-color: white;
                 overflow: hidden;
                 text-overflow: ellipsis;
 
-                @media screen and (max-width: $tablet-size) {
-                    font-size: 14px;
+                .brandName {
+                    font-weight: 600;
                 }
+
+                @media screen and (max-width: $tablet-size) {
+                    font-size: 11px;
+                }
+            }
+
+            .comment-rate {
+                margin-top: 10px;
             }
 
             .price {
@@ -105,12 +117,14 @@ $card-bg-color: white;
 
                 .total-price {
                     font-size: 18px;
+                    color: $theme-color-orange;
+                    font-weight: 600;
                 }
 
                 .price-without-discount {
                     margin-right: 12px;
                     font-size: 14px;
-                    color: red;
+                    // color: red;
                     text-decoration: line-through;
                 }
             }
