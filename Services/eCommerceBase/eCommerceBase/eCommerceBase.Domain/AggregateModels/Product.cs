@@ -103,5 +103,13 @@ namespace eCommerceBase.Domain.AggregateModels
         {
             base.AddDomainEvent(new ProductSlugGenerateDE(this));
         }
+        public void AddProductCommentList(ProductComment? productComment)
+        {
+            if (productComment != null)
+            {
+                ProductCommentList.Add(productComment);
+            }
+        }
+        public ICollection<ProductComment> ProductCommentList { get; private set; } = []; 
     }
 }
