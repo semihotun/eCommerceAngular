@@ -1,5 +1,6 @@
 ﻿using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace eCommerceBase.Application.Handlers.Products.Extenison
@@ -12,12 +13,12 @@ namespace eCommerceBase.Application.Handlers.Products.Extenison
                 Id = product.Id,
                 ProductName = product.ProductName,
                 Slug = product.Slug,
-                Price = ProductQueryExtensions.CalculatePrice(
-                            product.ProductStockList
-                                .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
-                                .OrderBy(stock => stock.CreatedOnUtc)
-                                .First()
-                        ),
+                Price = product.ProductStockList
+                           .AsQueryable()
+                           .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
+                           .OrderBy(stock => stock.CreatedOnUtc)
+                           .Select(ProductQueryExtensions.ToCalculatePrice)
+                           .FirstOrDefault(),
                 PriceWithoutDiscount = product.ProductStockList
                             .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
                             .OrderBy(stock => stock.CreatedOnUtc)
@@ -33,7 +34,15 @@ namespace eCommerceBase.Application.Handlers.Products.Extenison
                 CategoryName = product.Category!.CategoryName,
                 BrandId = product.BrandId,
                 CategoryId = product.CategoryId,
-                ProductContent = product.ProductContent
+                ProductContent = product.ProductContent,
+                CommentCount=product.ProductCommentList.Count,
+                AvgStarRate = product.ProductCommentList
+                    .Where(x => x.IsApprove)
+                    .Select(x => x.Rate)
+                    .AsEnumerable()           
+                    .DefaultIfEmpty()
+                    .Average()
+
             };
     }
 }

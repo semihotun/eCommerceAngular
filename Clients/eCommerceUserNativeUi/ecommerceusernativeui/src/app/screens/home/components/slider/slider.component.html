@@ -3,14 +3,17 @@
     <ng-container *ngFor="let slider of this.homeStore.sliders$(); let i = index">
       <div class="slide" [class.active]="i === currentIndex">
         <img [src]="slider.sliderImage">
-        <div class="prev" (click)="goPrev()" *ngIf="!this.glb.isMobil.getValue()">&#10094;</div>
         <div class="slider-info">
           <div class="header">{{ slider.sliderHeading }}</div>
           <div class="text">{{ slider.sliderText }}</div>
           <a class="btn" [href]="slider.sliderLink"> {{ 'Go Page' | translate }}</a>
         </div>
-        <div class="next" (click)="goNext()" *ngIf="!this.glb.isMobil.getValue()">&#10095;</div>
       </div>
     </ng-container>
+
+  </div>
+  <div class="next-prev-wrapper" *ngIf="!this.glb.isMobil.getValue()">
+    <div class="prev" (click)="goPrev()">&#10094;</div>
+    <div class="next" (click)="goNext()">&#10095;</div>
   </div>
 </div>

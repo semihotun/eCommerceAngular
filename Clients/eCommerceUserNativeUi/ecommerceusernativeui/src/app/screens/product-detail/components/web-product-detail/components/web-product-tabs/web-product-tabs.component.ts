@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { GlobalService } from 'src/app/services/core/global.service';
 import { ProductStore } from 'src/app/stores/product.store';
-import { CommentsPage } from '../../../../../comments/comments.page';
-import { ProductQuestionAnswerComponent } from './components/product-question-answer/product-question-answer.component';
 import { ProductSpecificationComponent } from './components/product-specification/product-specification.component';
 import { ProductService } from 'src/app/services/product.service';
 import { GetProductDetailSpeficationListRequest } from 'src/app/models/requestModel/getProductDetailSpeficationListRequest';
 import { INT32_MAX_VALUE } from 'src/app/models/consts/contant';
+import { ProductCommentsComponent } from './components/product-comments/product-comments.component';
+import { ProductQuestionAnswerComponent } from './components/product-question-answer/product-question-answer.component';
 @Component({
   selector: 'app-web-product-tabs',
   templateUrl: './web-product-tabs.component.html',
@@ -17,9 +17,9 @@ import { INT32_MAX_VALUE } from 'src/app/models/consts/contant';
   imports: [
     CommonModule,
     TranslateModule,
-    CommentsPage,
     ProductQuestionAnswerComponent,
     ProductSpecificationComponent,
+    ProductCommentsComponent,
   ],
 })
 export class WebProductTabsComponent implements OnInit {
@@ -30,7 +30,7 @@ export class WebProductTabsComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
-  selectedTab: number = 1;
+  selectedTab: number = 4;
 
   selectTab(tabIndex: number): void {
     this.selectedTab = tabIndex;

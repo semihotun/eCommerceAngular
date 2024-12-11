@@ -11,4 +11,6 @@ export class ProductDto {
   categoryName!: string;
   categoryId!: string;
   productContent!: string;
+  avgStarRate: number = 0;
+  commentCount: number = 0;
 }

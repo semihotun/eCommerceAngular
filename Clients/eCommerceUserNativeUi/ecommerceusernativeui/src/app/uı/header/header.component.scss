@@ -86,6 +86,10 @@
             background-color: $header-bg-color;
             max-width: $container-max-width;
 
+            @media screen and (max-width: $tablet-size) {
+                width: 95%;
+            }
+
             .header-back-button {
                 display: flex;
                 vertical-align: center;

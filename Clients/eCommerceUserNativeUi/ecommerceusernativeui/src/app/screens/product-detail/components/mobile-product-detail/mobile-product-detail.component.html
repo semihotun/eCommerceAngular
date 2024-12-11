@@ -1,0 +1,34 @@
+<app-header [isNavigationBackUrl]="''"></app-header>
+<div id="product-detail">
+  <div class="product">
+    <img [src]="this.productDto$().photoBase64" class="photo">
+    <div class="info">
+      <div class="product-title">
+        <span class="brand-name">{{this.productDto$().brandName}}</span>{{this.productDto$().productName}}
+      </div>
+      <div class="comment-rate">
+        <app-star-rating [value]="this.productDto$().avgStarRate" [count]="this.productDto$().commentCount"
+          [starSize]="17"></app-star-rating>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div class="product-tabs">
+    <app-mobile-product-tabs></app-mobile-product-tabs>
+  </div>
+  <div class="another-products">
+
+  </div>
+</div>
+
+
+<div class="fixTap">
+  <div class="product-price">
+    <div class="price-without-discount" *ngIf="this.productDto$().priceWithoutDiscount != this.productDto$().price">
+      {{this.productDto$().priceWithoutDiscount}} {{this.productDto$().currencyCode}}</div>
+    <div class="total-price">{{this.productDto$().price}} {{this.productDto$().currencyCode}}</div>
+  </div>
+  <div class="add-basket">{{'Add Basket' | translate}}</div>
+</div>

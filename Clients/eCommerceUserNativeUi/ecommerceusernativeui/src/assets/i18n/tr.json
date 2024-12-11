@@ -18,10 +18,10 @@
 	"TermsOfUse": "Kullanım koşullarını okudum anladım onaylıyorum",
 	"NotSelected": "Bu alanı seçmeniz gerekli",
 	"ForgetPassword": "Şifremi Unuttum",
-	"Product Content": "Product Content",
-	"Product Specification": "Product Specification",
-	"Question-Answer": "Question-Answer",
-	"Comments": "Comments",
+	"Product Content": "Ürün Bilgisi",
+	"Product Specification": "Ürün Özellikleri",
+	"Question-Answer": "Soru-Cevap",
+	"Comments": "Yorumlar",
 	"RememberMe": "Beni Hatırla",
 	"ShowPassword": "Şifreyi Göster",
 	"Go Page": "Sayfaya Git",
@@ -35,5 +35,6 @@
 	"Verify Mail Send":"Hesabı Onayla",
 	"Operation Completed":"İşlem Başarılı",
 	"Operation Failed":"İşlem Başarısız",
-	"Spefication is Empty":"Ürün Özelliği Belirtilmemiş"
+	"Spefication is Empty":"Ürün Özelliği Belirtilmemiş",
+	"Add Basket":"Sepete Ekle"
 }
