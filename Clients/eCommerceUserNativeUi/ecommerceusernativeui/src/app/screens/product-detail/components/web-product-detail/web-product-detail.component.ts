@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { ProductStore } from 'src/app/stores/product.store';
 import { ActivatedRoute } from '@angular/router';
 import { WebProductTabsComponent } from './components/web-product-tabs/web-product-tabs.component';
+import { FavoriteProductButtonComponent } from '../../../../u\u0131/favorite-product-button/favorite-product-button.component';
 @Component({
   selector: 'app-web-product-detail',
   templateUrl: './web-product-detail.component.html',
@@ -21,6 +22,7 @@ import { WebProductTabsComponent } from './components/web-product-tabs/web-produ
     CommonModule,
     StarRatingComponent,
     WebProductTabsComponent,
+    FavoriteProductButtonComponent,
   ],
 })
 export class WebProductDetailComponent implements OnInit {
@@ -32,7 +34,6 @@ export class WebProductDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private navController: NavController
   ) {}
-
   ngOnInit() {
     if (this.productStore.selectedProductId$()) {
       this.getProductDtoById();

@@ -14,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LazyImgDirective } from 'src/app/directives/lazy-img.directive';
 import { AllShowcaseDTO } from 'src/app/models/responseModel/allShowcaseDTO';
 import { GlobalService } from 'src/app/services/core/global.service';
+import { FavoriteProductButtonComponent } from 'src/app/uı/favorite-product-button/favorite-product-button.component';
 import { StarRatingComponent } from 'src/app/uı/star-rating/star-rating.component';
 import { Swiper } from 'swiper/types';
 @Component({
@@ -28,6 +29,7 @@ import { Swiper } from 'swiper/types';
     TranslateModule,
     RouterModule,
     StarRatingComponent,
+    FavoriteProductButtonComponent,
   ],
 })
 export class ShowcaseSwiperComponent implements AfterViewInit {

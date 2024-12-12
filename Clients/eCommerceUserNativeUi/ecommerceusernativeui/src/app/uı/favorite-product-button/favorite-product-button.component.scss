@@ -1,0 +1,22 @@
+@import '../../../theme/variables.scss';
+
+
+.fa-heart {
+    background-color: white;
+    box-shadow: 0 0 8px #e2e2e2;
+    padding: 6px;
+    border-radius: 50%;
+    color: black;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    @media screen and (max-width:$tablet-size) {
+        padding: 5px;
+    }
+}
+
+.fa-solid {
+    color: $theme-color-orange;
+}

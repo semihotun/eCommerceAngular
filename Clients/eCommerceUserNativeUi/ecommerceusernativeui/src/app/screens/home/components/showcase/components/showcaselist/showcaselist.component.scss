@@ -78,9 +78,18 @@ $card-bg-color: white;
 
 
         .image {
+            position: relative;
+
             img {
                 border-top-right-radius: 5px;
                 border-top-left-radius: 5px;
+            }
+
+            .favorite-button {
+                position: absolute;
+                top: 7px;
+                right: 7px;
+                z-index: 5;
             }
         }
 

@@ -20,11 +20,7 @@ export class SubHeaderComponent implements OnInit {
   constructor() {}
 
   routerNavigate() {
-    if (this.previousUrl == '') {
-      this.navController.navigateForward(this.previousUrl!);
-    } else {
-      this.navController.navigateBack(this.previousUrl!);
-    }
+    this.navController.navigateBack(this.previousUrl!);
   }
   ngOnInit() {}
 }

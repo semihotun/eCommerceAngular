@@ -1,7 +1,11 @@
 <app-header [isNavigationBackUrl]="''"></app-header>
 <div id="product-detail">
   <div class="product">
-    <img [src]="this.productDto$().photoBase64" class="photo">
+    <div class="photo">
+      <img [src]="this.productDto$().photoBase64">
+      <app-favorite-product-button class="favorite-button" [size]="22" [productId]="this.productDto$().id"
+        [favoriteId]="this.productDto$().favoriteId"></app-favorite-product-button>
+    </div>
     <div class="info">
       <div class="product-title">
         <span class="brand-name">{{this.productDto$().brandName}}</span>{{this.productDto$().productName}}
@@ -10,20 +14,13 @@
         <app-star-rating [value]="this.productDto$().avgStarRate" [count]="this.productDto$().commentCount"
           [starSize]="17"></app-star-rating>
       </div>
-
-
-
     </div>
   </div>
   <div class="product-tabs">
     <app-mobile-product-tabs></app-mobile-product-tabs>
   </div>
-  <div class="another-products">
-
-  </div>
+  <div class="another-products"></div>
 </div>
-
-
 <div class="fixTap">
   <div class="product-price">
     <div class="price-without-discount" *ngIf="this.productDto$().priceWithoutDiscount != this.productDto$().price">

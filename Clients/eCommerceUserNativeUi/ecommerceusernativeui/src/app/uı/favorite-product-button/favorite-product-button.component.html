@@ -1,0 +1,8 @@
+<div class="favorite-icon">
+    @if(this.favoriteId != null){
+    <i class="fa-solid fa-heart" (click)="removeFavorite($event)" [style.font-size]="this.size + 'px'"></i>
+    }
+    @else{
+    <i class="fa-regular fa-heart" (click)="addFavorite($event)" [style.font-size]="this.size+ 'px'"></i>
+    }
+</div>

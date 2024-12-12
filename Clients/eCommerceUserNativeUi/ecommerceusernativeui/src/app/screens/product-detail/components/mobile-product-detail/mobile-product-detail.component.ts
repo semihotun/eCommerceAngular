@@ -10,6 +10,7 @@ import { ProductStore } from 'src/app/stores/product.store';
 import { ActivatedRoute } from '@angular/router';
 import { MobileProductTabsComponent } from './components/mobile-product-tabs/mobile-product-tabs.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FavoriteProductButtonComponent } from '../../../../u\u0131/favorite-product-button/favorite-product-button.component';
 @Component({
   selector: 'app-mobile-product-detail',
   templateUrl: './mobile-product-detail.component.html',
@@ -21,6 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     StarRatingComponent,
     MobileProductTabsComponent,
+    FavoriteProductButtonComponent,
   ],
 })
 export class MobileProductDetailComponent implements OnInit {
@@ -32,7 +34,6 @@ export class MobileProductDetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private navController: NavController
   ) {}
-
   ngOnInit() {
     if (this.productStore.selectedProductId$()) {
       this.getProductDtoById();

@@ -17,4 +17,5 @@ export class HomeShowcaseProductDto {
   priceWithoutDiscount!: number;
   avgStarRate!: number;
   commentCount!: number;
+  favoriteId: string | null = null;
 }

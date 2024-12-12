@@ -134,10 +134,6 @@ export class HeaderComponent implements OnInit {
     }
   }
   backButtonClick() {
-    if (this.isNavigationBackUrl == '') {
-      this.navController.navigateForward(this.isNavigationBackUrl!);
-    } else {
-      this.navController.navigateBack(this.isNavigationBackUrl!);
-    }
+    this.navController.navigateBack(this.isNavigationBackUrl!);
   }
 }

@@ -1,7 +1,13 @@
 <app-header [isNavigationBackUrl]="''"></app-header>
 <div id="product-detail">
   <div class="product">
-    <img [src]="this.productDto$().photoBase64" class="photo">
+    <div class="photo">
+      <img [src]="this.productDto$().photoBase64">
+      <app-favorite-product-button class="favorite-button" [size]="22" [productId]="this.productDto$().id"
+        [favoriteId]="this.productDto$().favoriteId"></app-favorite-product-button>
+    </div>
+
+
     <div class="info">
       <div class="product-title">
         <span class="brand-name">{{this.productDto$().brandName}}</span>{{this.productDto$().productName}}
@@ -15,6 +21,7 @@
           {{this.productDto$().priceWithoutDiscount}} {{this.productDto$().currencyCode}}</div>
         <div class="total-price">{{this.productDto$().price}} {{this.productDto$().currencyCode}}</div>
       </div>
+
       <div class="add-basket"></div>
     </div>
   </div>

@@ -30,9 +30,8 @@ import { HomeService } from 'src/app/services/home.service';
 })
 export class HomePage implements OnInit {
   constructor(public glb: GlobalService, private homeService: HomeService) {}
+
   ngOnInit(): void {
-    if (!this.glb.isMobil.value) {
-      this.homeService.getHomeDTO();
-    }
+    this.homeService.getHomeDTO();
   }
 }

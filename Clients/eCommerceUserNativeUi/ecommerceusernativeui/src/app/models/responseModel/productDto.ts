@@ -13,4 +13,5 @@ export class ProductDto {
   productContent!: string;
   avgStarRate: number = 0;
   commentCount: number = 0;
+  favoriteId!: string;
 }
