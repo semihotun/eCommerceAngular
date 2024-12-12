@@ -1,6 +1,6 @@
 ﻿using Carter;
-using eCommerceBase.Application.Handlers.ShowCases.Queries;
-using eCommerceBase.Application.Handlers.ShowCases.Queries.Dtos;
+using eCommerceBase.Application.Handlers.Products.Queries;
+using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 using eCommerceBase.Domain.Result;
 using MediatR;
 

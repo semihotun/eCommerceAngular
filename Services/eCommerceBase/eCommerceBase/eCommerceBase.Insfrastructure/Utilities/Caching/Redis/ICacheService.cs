@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
+using MediatR;
 
 namespace eCommerceBase.Insfrastructure.Utilities.Caching.Redis
 {
@@ -13,6 +14,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Caching.Redis
         Task<string?> GetAsync(string key, CancellationToken cancellation = default);
         Task<T> GetAsync<T>(string key, Func<Task<T>> factory, CancellationToken cancellation = default) where T : class;
         Task<T> GetAsync<T>(IRequest<T> arg, Func<Task<T>> factory, CancellationToken cancellation = default) where T : class;
+        Task<T> GetAsync<T>(IRequest<T> arg, UserScoped userScoped, Func<Task<T>> factory,CancellationToken cancellation = default) where T : class;
         Task SetAsync<T>(string key, T value, CancellationToken cancellation = default) where T : class;
         Task RemovePatternAsync(string key, CancellationToken cancellation = default);
         Task RemoveByPrefixAsync(string prefixKey, CancellationToken cancellation = default);

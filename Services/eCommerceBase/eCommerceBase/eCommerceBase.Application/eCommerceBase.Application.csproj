@@ -11,9 +11,8 @@
     <Folder Include="Features\" />
     <Folder Include="Handlers\AdminUsers\Queries\" />
     <Folder Include="Handlers\Currencies\Queries\Dtos\" />
-    <Folder Include="Handlers\Home\Commands\" />
-    <Folder Include="Handlers\Home\Mappers\" />
     <Folder Include="Handlers\ProductComments\Mappers\" />
+    <Folder Include="Handlers\ProductFavorites\Mappers\" />
     <Folder Include="Handlers\Sliders\Commands\" />
     <Folder Include="Handlers\Sliders\Mappers\" />
 	<Folder Include="Jobs\" />

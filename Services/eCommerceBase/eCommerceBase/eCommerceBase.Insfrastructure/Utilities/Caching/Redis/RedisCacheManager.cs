@@ -1,4 +1,5 @@
-﻿using MassTransit.Futures.Contracts;
+﻿using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
+using MassTransit.Futures.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -66,6 +67,21 @@ namespace eCommerceBase.Insfrastructure.Utilities.Caching.Redis
             var region = _configuration["RegionName"];
             var methodName = arg.GetType().FullName?.Replace(region + ".Application.Handlers.", "");
             var key = $"{region}:{methodName}:{GetLanguageCode()}({BuildKey(arg)})";
+            T? cachedValue = await GetAsync<T>(key, cancellation);
+            if (cachedValue is not null)
+            {
+                return (T)cachedValue;
+            }
+            cachedValue = await factory();
+            await SetAsync(key, cachedValue, cancellation);
+            return (T)cachedValue;
+        }
+        public async Task<T> GetAsync<T>(IRequest<T> arg, UserScoped userScoped, Func<Task<T>> factory,  CancellationToken cancellation = default)
+      where T : class
+        {
+            var region = _configuration["RegionName"];
+            var methodName = arg.GetType().FullName?.Replace(region + ".Application.Handlers.", "");
+            var key = $"{region}:{methodName}:{GetLanguageCode()}:{userScoped.Id}:{userScoped.UserGroupId}({BuildKey(arg)})";
             T? cachedValue = await GetAsync<T>(key, cancellation);
             if (cachedValue is not null)
             {
