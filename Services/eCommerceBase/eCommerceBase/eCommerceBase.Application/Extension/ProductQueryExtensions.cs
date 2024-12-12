@@ -13,14 +13,4 @@ public static class ProductQueryExtensions
                     : dp.Discount!.DiscountTypeId == DiscountTypeConst.ProductPercentDiscount
                         ? dp.DiscountNumber / 100.0
                         : 0.0);
-
-
-    public static double? ToPriceQuery (this IQueryable<ProductStock> query)
-    {
-        return query.Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
-                           .OrderBy(stock => stock.CreatedOnUtc)
-                           .Select(ToCalculatePrice)
-                           .FirstOrDefault();
-    }
-
 }

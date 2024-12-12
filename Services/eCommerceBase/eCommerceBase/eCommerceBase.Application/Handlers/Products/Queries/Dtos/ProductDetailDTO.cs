@@ -15,6 +15,7 @@
         public Guid? CategoryId { get; set; }
         public string? ProductContent { get; set; }
         public double AvgStarRate { get; set; } = 0;
-        public int CommentCount { get; set; } = 0;
+        public Guid? FavoriteId { get; set; }
+        public int CommentCount { get; set; }
     }
 }

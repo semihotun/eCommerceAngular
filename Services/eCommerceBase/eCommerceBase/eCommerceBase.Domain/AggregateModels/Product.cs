@@ -110,6 +110,9 @@ namespace eCommerceBase.Domain.AggregateModels
                 ProductCommentList.Add(productComment);
             }
         }
-        public ICollection<ProductComment> ProductCommentList { get; private set; } = []; 
+        [SwaggerIgnore]
+        public ICollection<ProductComment> ProductCommentList { get; private set; } = [];
+        [SwaggerIgnore]
+        public ICollection<ProductFavorite> ProductFavoriteList { get; private set; } = [];
     }
 }

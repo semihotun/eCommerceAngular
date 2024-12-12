@@ -1,11 +1,10 @@
-using MediatR;
-using eCommerceBase.Domain.Result;
+using eCommerceBase.Application.Handlers.CustomerUsers.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Persistence.GenericRepository;
+using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
 using eCommerceBase.Persistence.Context;
-using eCommerceBase.Application.Handlers.CustomerUsers.Queries.Dtos;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceBase.Application.Handlers.CustomerUsers.Queries;
@@ -21,7 +20,7 @@ public class GetCustomerUserByIdQueryHandler(ICoreDbContext coreDbContext,
     public async Task<Result<CustomerUserDTO>> Handle(GetCustomerUserByIdDTOQuery request,
         CancellationToken cancellationToken)
     {
-        return await _cacheService.GetAsync(request,
+        return await _cacheService.GetAsync(request, _userScoped,
         async () =>
         {
             var result =await _coreDbContext.Query<CustomerUser>()
@@ -35,8 +34,7 @@ public class GetCustomerUserByIdQueryHandler(ICoreDbContext coreDbContext,
                 IsActivationApprove=x.IsActivationApprove,
             }).FirstOrDefaultAsync();
 
-
-            return Result.SuccessDataResult<CustomerUserDTO>(result!);
+            return Result.SuccessDataResult(result!);
         },
         cancellationToken);
     }

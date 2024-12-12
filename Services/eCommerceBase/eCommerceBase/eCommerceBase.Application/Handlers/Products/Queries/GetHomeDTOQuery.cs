@@ -1,28 +1,29 @@
 using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
-using eCommerceBase.Application.Handlers.ShowCases.Queries.Dtos;
 using eCommerceBase.Application.Handlers.Sliders.Queries;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Constant;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
+using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
 using eCommerceBase.Persistence.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-namespace eCommerceBase.Application.Handlers.ShowCases.Queries;
+namespace eCommerceBase.Application.Handlers.Products.Queries;
 public record GetHomeDTOQuery()
     : IRequest<Result<HomeDto>>;
 public class GetHomeDTOQueryHandler(CoreDbReadContext coreDbContext, ICacheService cacheService,
-        ISender sender)
+        ISender sender,
+        UserScoped userScoped)
     : IRequestHandler<GetHomeDTOQuery, Result<HomeDto>>
 {
     private readonly CoreDbReadContext _coreDbContext = coreDbContext;
     private readonly ISender _sender = sender;
     private readonly ICacheService _cacheService = cacheService;
-
+    private readonly UserScoped _userScoped = userScoped;
     public async Task<Result<HomeDto>> Handle(GetHomeDTOQuery request, CancellationToken cancellationToken)
     {
-        return await _cacheService.GetAsync<Result<HomeDto>>(request, async () =>
+        return await _cacheService.GetAsync(request, _userScoped, async () =>
         {
             var sliderQuery = _sender.Send(new GetAllSlider());
             var showcaseQuery = _coreDbContext.Query<ShowCase>()
@@ -63,7 +64,12 @@ public class GetHomeDTOQueryHandler(CoreDbReadContext coreDbContext, ICacheServi
                             .Select(x => x.Rate)
                             .AsEnumerable()
                             .DefaultIfEmpty()
-                            .Average()
+                            .Average(),
+                           FavoriteId = _userScoped!.Id != Guid.Empty
+                                        ? sp.Product.ProductFavoriteList
+                                         .FirstOrDefault(x => x.CustomerUserId == _userScoped.Id && !x.Deleted)!.Id
+                                        : null
+
                        }).Take(10).AsEnumerable()
                })
                .OrderBy(x => x.ShowCaseOrder)
@@ -76,7 +82,7 @@ public class GetHomeDTOQueryHandler(CoreDbReadContext coreDbContext, ICacheServi
                 SliderList = (await sliderQuery).Data,
                 ShowcaseList = await showcaseQuery
             };
-            return Result.SuccessDataResult<HomeDto>(homeDto);
+            return Result.SuccessDataResult(homeDto);
 
         }, cancellationToken);
     }

@@ -1,4 +1,5 @@
-﻿using eCommerceBase.Domain.SeedWork;
+﻿using eCommerceBase.Domain.AggregateModels;
+using eCommerceBase.Domain.SeedWork;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Extension;
 using eCommerceBase.Insfrastructure.Utilities.Security.Encyption;
 using eCommerceBase.Insfrastructure.Utilities.Security.Jwt;
@@ -56,8 +57,9 @@ namespace eCommerceBase.Insfrastructure.Utilities.Identity.Service
                 new("surname", user.LastName),
                 new("id", user.Id.ToString()),
                 new("email", user.Id.ToString()),
-                new("roles",roleList!.ToArray().ToString()!)
-            };
+                new("roles",roleList!.ToArray().ToString()!),
+                new("usergroupid",user.UserGroupId.ToString())
+            }; 
             return claims;
         }
         public bool ValidateToken(string token)

@@ -20,9 +20,7 @@ namespace eCommerceBase.Insfrastructure.Utilities.Identity.Middleware
                 {
                     throw new UnauthorizedAccessException("User Not Logged In");
                 }
-                var _userContext = httpContext.RequestServices.GetRequiredService<UserScoped>();
-                _userContext.Id = Guid.Parse(httpContext.User.FindFirst("id")?.Value!);
-                _userContext.Roles = httpContext.User.FindFirst("roles")?.Value;
+            
                 //Geçici kapalı
                 //if (!httpContext.User
                 //    .FindAll(ClaimTypes.Role)
@@ -31,6 +29,12 @@ namespace eCommerceBase.Insfrastructure.Utilities.Identity.Middleware
                 //    throw new UnauthorizedAccessException("Not Access");
                 //}
             }
+            if ((httpContext.User.Identity?.IsAuthenticated) == true)
+            {
+                var _userContext = httpContext.RequestServices.GetRequiredService<UserScoped>();
+                _userContext.Id = Guid.Parse(httpContext.User.FindFirst("id")?.Value!);
+                _userContext.Roles = httpContext.User.FindFirst("roles")?.Value;
+            }
             await _next(httpContext);
         }
     }
@@ -38,5 +42,6 @@ namespace eCommerceBase.Insfrastructure.Utilities.Identity.Middleware
     {
         public Guid Id { get; set; }
         public string? Roles { get; set; }
+        public Guid? UserGroupId { get; set; }
     }
 }

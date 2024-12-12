@@ -1,7 +1,7 @@
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.SeedWork;
 
-namespace eCommerceBase.Application.Handlers.ShowCases.Queries.Dtos;
+namespace eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 
 public class HomeDto
 {
@@ -29,4 +29,5 @@ public class HomeShowcaseProductDto
     public double? PriceWithoutDiscount { get; set; }
     public double AvgStarRate { get; set; } = 0;
     public int CommentCount { get; set; } = 0;
+    public Guid? FavoriteId { get; set; }
 }

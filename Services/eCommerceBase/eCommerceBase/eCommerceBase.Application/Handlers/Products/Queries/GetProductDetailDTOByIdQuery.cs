@@ -4,6 +4,7 @@ using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
+using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
 using eCommerceBase.Persistence.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -16,19 +17,20 @@ namespace eCommerceBase.Application.Handlers.Products.Queries
     {
         private readonly CoreDbContext _coreDbContext;
         private readonly ICacheService _cacheService;
-
-        public GetProductDetailDTOByIdQueryHandler(CoreDbContext coreDbContext, ICacheService cacheService)
+        private readonly UserScoped _userScoped;
+        public GetProductDetailDTOByIdQueryHandler(CoreDbContext coreDbContext, ICacheService cacheService, UserScoped userScoped)
         {
             _coreDbContext = coreDbContext;
             _cacheService = cacheService;
+            _userScoped = userScoped;
         }
 
         public async Task<Result<ProductDetailDTO>> Handle(GetProductDetailDTOByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _cacheService.GetAsync(request, async () =>
+            return await _cacheService.GetAsync(request, _userScoped, async () =>
             {
                 var data = await _coreDbContext.Query<Product>()
-                    .Select(ProductDetailExtension.ToProductDetailDTO)
+                        .Select(ProductDetailExtension.ToProductDetailDTO(_userScoped.Id))
                     .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
                 if (data == null)
                 {
