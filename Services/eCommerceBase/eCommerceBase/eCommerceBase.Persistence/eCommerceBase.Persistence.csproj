@@ -9,6 +9,7 @@
 		<ProjectReference Include="..\eCommerceBase.Insfrastructure\eCommerceBase.Insfrastructure.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="Bogus" Version="35.6.1" />
 		<PackageReference Include="NEST" Version="7.17.5" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
