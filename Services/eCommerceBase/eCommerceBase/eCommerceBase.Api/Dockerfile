@@ -26,4 +26,6 @@ RUN dotnet publish "./eCommerceBase.Api.csproj" -c $BUILD_CONFIGURATION -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+COPY ./wwwroot /app/wwwroot
 ENTRYPOINT ["dotnet", "eCommerceBase.Api.dll"]

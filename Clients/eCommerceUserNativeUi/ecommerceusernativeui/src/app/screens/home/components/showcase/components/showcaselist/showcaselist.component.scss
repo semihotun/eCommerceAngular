@@ -126,8 +126,13 @@ $card-bg-color: white;
 
                 .total-price {
                     font-size: 18px;
-                    color: $theme-color-orange;
                     font-weight: 600;
+                    color: $theme-color-orange;
+
+                    @media screen and (max-width: $tablet-size) {
+                        margin-right: 3px;
+                        font-size: 14px;
+                    }
                 }
 
                 .price-without-discount {
@@ -135,6 +140,11 @@ $card-bg-color: white;
                     font-size: 14px;
                     // color: red;
                     text-decoration: line-through;
+
+                    @media screen and (max-width: $tablet-size) {
+                        margin-right: 5px;
+                        font-size: 10px;
+                    }
                 }
             }
 

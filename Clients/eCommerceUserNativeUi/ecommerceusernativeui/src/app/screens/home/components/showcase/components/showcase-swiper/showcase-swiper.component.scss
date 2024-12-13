@@ -102,9 +102,6 @@ swiper-container {
                     }
 
                     @media screen and (max-width: $tablet-size) {
-
-
-
                         font-size: 11px;
                     }
                 }
@@ -123,6 +120,11 @@ swiper-container {
                         font-size: 18px;
                         font-weight: 600;
                         color: $theme-color-orange;
+
+                        @media screen and (max-width: $tablet-size) {
+                            margin-right: 3px;
+                            font-size: 14px;
+                        }
                     }
 
                     .price-without-discount {
@@ -130,6 +132,11 @@ swiper-container {
                         font-size: 14px;
                         // color: red;
                         text-decoration: line-through;
+
+                        @media screen and (max-width: $tablet-size) {
+                            margin-right: 5px;
+                            font-size: 10px;
+                        }
                     }
                 }
 
