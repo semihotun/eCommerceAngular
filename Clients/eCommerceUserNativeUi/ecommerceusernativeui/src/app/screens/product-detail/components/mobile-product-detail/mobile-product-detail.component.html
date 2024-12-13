@@ -2,17 +2,18 @@
 <div id="product-detail">
   <div class="product">
     <div class="photo">
-      <img [src]="this.productDto$().photoBase64">
-      <app-favorite-product-button class="favorite-button" [size]="22" [productId]="this.productDto$().id"
-        [favoriteId]="this.productDto$().favoriteId"></app-favorite-product-button>
+      <img [src]="this.productStore.productDTO$().photoBase64">
+      <app-favorite-product-button class="favorite-button" [size]="22" [productId]="this.productStore.productDTO$().id"
+        [favoriteId]="this.productStore.productDTO$().favoriteId"></app-favorite-product-button>
     </div>
     <div class="info">
       <div class="product-title">
-        <span class="brand-name">{{this.productDto$().brandName}}</span>{{this.productDto$().productName}}
+        <span
+          class="brand-name">{{this.productStore.productDTO$().brandName}}</span>{{this.productStore.productDTO$().productName}}
       </div>
       <div class="comment-rate">
-        <app-star-rating [value]="this.productDto$().avgStarRate" [count]="this.productDto$().commentCount"
-          [starSize]="17"></app-star-rating>
+        <app-star-rating [value]="this.productStore.productDTO$().avgStarRate"
+          [count]="this.productStore.productDTO$().commentCount" [starSize]="17"></app-star-rating>
       </div>
     </div>
   </div>
@@ -23,9 +24,11 @@
 </div>
 <div class="fixTap">
   <div class="product-price">
-    <div class="price-without-discount" *ngIf="this.productDto$().priceWithoutDiscount != this.productDto$().price">
-      {{this.productDto$().priceWithoutDiscount}} {{this.productDto$().currencyCode}}</div>
-    <div class="total-price">{{this.productDto$().price}} {{this.productDto$().currencyCode}}</div>
+    <div class="price-without-discount"
+      *ngIf="this.productStore.productDTO$().priceWithoutDiscount != this.productStore.productDTO$().price">
+      {{this.productStore.productDTO$().priceWithoutDiscount}} {{this.productStore.productDTO$().currencyCode}}</div>
+    <div class="total-price">{{this.productStore.productDTO$().price}} {{this.productStore.productDTO$().currencyCode}}
+    </div>
   </div>
   <div class="add-basket">{{'Add Basket' | translate}}</div>
 </div>

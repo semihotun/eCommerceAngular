@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductFavoriteService } from './../../services/product-favorite.service';
 import { CustomerUserService } from 'src/app/services/customer-user.service';
 import { NavController } from '@ionic/angular/standalone';
@@ -15,6 +15,8 @@ export class FavoriteProductButtonComponent implements OnInit {
   @Input() size: number = 5;
   @Input() productId!: string;
   @Input() favoriteId!: string | null;
+  @Output() deleteClick = new EventEmitter<any>();
+  @Output() addClick = new EventEmitter<any>();
   constructor(
     private productFavoriteService: ProductFavoriteService,
     private customerUserService: CustomerUserService,
@@ -43,6 +45,7 @@ export class FavoriteProductButtonComponent implements OnInit {
             this.productId,
             this.favoriteId
           );
+          this.addClick.emit(this.favoriteId);
         });
     }
   }
@@ -57,6 +60,7 @@ export class FavoriteProductButtonComponent implements OnInit {
             this.productId,
             this.favoriteId
           );
+          this.deleteClick.emit(this.favoriteId);
         });
     }
   }

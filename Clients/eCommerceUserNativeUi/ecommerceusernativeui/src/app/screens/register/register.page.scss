@@ -1,5 +1,13 @@
 @import '../../../theme/variables.scss';
 
+ion-content {
+    --offset-bottom: 0%;
+
+    @media screen and (max-width:$tablet-size) {
+        --offset-bottom: -8% !important;
+    }
+}
+
 .title {
     text-align: center;
     font-size: 16px;

@@ -55,7 +55,7 @@ a {
 
 #not-header-search-page {
     background-color: white;
-    padding: 65px 2%;
+    padding: 40px 2%;
     border-radius: 15px;
     min-height: 70%;
 
@@ -63,11 +63,12 @@ a {
         padding: 65px 2%;
         background-color: rgba(255, 255, 255, 0.918);
         padding: 0px 0px;
-        margin: 0px 0px $fix-tap-height 0px;
+        // margin: 0px 0px $fix-tap-height 0px;
         border-radius: 0px;
         min-height: 100%;
     }
 }
+
 
 .label-error {
     font-size: 12px;

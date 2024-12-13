@@ -1,7 +1,7 @@
 <div class="fixTap">
-  <div class="tap"><a routerLink=""><i class="fa-solid fa-house"></i></a></div>
+  <div class="tap"><i routerLink="" class="fa-solid fa-house"></i></div>
   <div class="tap"><i class="fa-solid fa-cart-shopping" id="shoppingIcon"></i></div>
-  <div class="tap"><i class="fa-solid fa-heart"></i></div>
+  <div class="tap"><i routerLink="favorites" class="fa-solid fa-heart"></i></div>
   <div class="tap">
     @if(userService.isLogin()){
     <a (click)="this.navController.navigateForward('user-management')"><i class="fa-solid fa-user"
@@ -10,6 +10,5 @@
     @else {
     <a (click)="this.navController.navigateForward('login')"><i class="fa-solid fa-user" id="shoppingIcon"></i></a>
     }
-
   </div>
 </div>

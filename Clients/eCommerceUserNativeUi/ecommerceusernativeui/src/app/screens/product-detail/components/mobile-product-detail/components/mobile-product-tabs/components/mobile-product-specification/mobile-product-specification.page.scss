@@ -1,3 +1,13 @@
+@import '../../../../../../../../../theme/variables.scss';
+
+ion-content {
+    --offset-bottom: 0%;
+
+    @media screen and (max-width:$tablet-size) {
+        --offset-bottom: -8% !important;
+    }
+}
+
 .table {
     margin-top: 10px;
     font-size: 14px;
@@ -30,7 +40,7 @@
 
 .empty-spefication {
     font-size: 14px;
-    font-weight: 600;
+    letter-spacing: 1px;
     padding: 12px;
     text-align: center;
     background-color: #e2e2e2;
