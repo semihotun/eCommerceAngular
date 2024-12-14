@@ -115,6 +115,14 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'add-address',
+    loadComponent: () =>
+      import('./screens/add-address/add-address.page').then(
+        (m) => m.AddAddressPage
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
     path: ':slug',
     loadComponent: () =>
       import('./screens/product-detail/product-detail.page').then(

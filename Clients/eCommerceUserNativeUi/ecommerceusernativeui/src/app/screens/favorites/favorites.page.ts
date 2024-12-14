@@ -62,7 +62,9 @@ export class FavoritesPage implements OnInit {
         }
       });
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.getFavorites();
+  }
   deleteFavorite(id: string) {
     this.ionViewWillEnter();
   }

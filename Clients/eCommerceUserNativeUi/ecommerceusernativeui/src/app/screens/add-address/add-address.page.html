@@ -1,0 +1,45 @@
+<ion-content fullscreen="true">
+  <app-header *ngIf="!this.glb.isMobil.value"></app-header>
+  <div id="not-header-search-page">
+    <app-sub-header [previousUrl]="''" [title]="'Add Address' |translate"></app-sub-header>
+    <form class="form" [formGroup]="form">
+      <div class="row">
+        <app-input [placeholder]="'Address Name' |translate" [label]="'Address Name' |translate"
+          formControlName="name"></app-input>
+        <div class=" label-error" *ngIf="hasError('name','required')">{{'Required' |translate}}
+        </div>
+      </div>
+      <div class="row">
+        <app-pagination-selectbox [placeholder]="'City' |translate" [label]="'City' |translate" [textProperty]="'name'"
+          [valueProperty]="'id'" (searchableTriggered)="citySearch($event)"
+          [pagedListData]="this.cityAndDistrictStore.cityList$()" formControlName="cityId"
+          (change)="changeCity()"></app-pagination-selectbox>
+        <div class="label-error" *ngIf="hasError('cityId','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="row">
+        <app-pagination-selectbox [placeholder]="'District' |translate" [label]="'District' |translate"
+          [textProperty]="'name'" [valueProperty]="'id'" (searchableTriggered)="districtSearch($event)"
+          [pagedListData]="this.cityAndDistrictStore.districtList$()" [disabled]="!isSelectedCity"
+          formControlName="districtId"></app-pagination-selectbox>
+        <div class="label-error" *ngIf="hasError('districtId','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="row">
+        <app-input [placeholder]="'Street' |translate" [label]="'Street' |translate"
+          formControlName="street"></app-input>
+        <div class="label-error" *ngIf="hasError('street','required')">{{'Required' |translate}}</div>
+      </div>
+      <div class="row">
+        <app-textarea [placeholder]="'Address' |translate" [label]="'Address' |translate" [rows]="4"
+          formControlName="address"></app-textarea>
+        <div class="label-error" *ngIf="hasError('address','required')">{{'Required' |translate}}</div>
+      </div>
+      <app-btn-submit (click)="saveForm()" [text]="'Add Address' |translate"></app-btn-submit>
+    </form>
+  </div>
+  @if (!glb.isMobil.value) {
+  <app-footer></app-footer>
+  }
+  @else {
+  <app-mobile-footer></app-mobile-footer>
+  }
+</ion-content>

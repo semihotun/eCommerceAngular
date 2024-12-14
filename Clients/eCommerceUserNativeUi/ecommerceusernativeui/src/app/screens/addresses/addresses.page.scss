@@ -1,0 +1,165 @@
+@import '../../../theme/variables.scss';
+
+ion-content {
+    --offset-bottom: 0%;
+
+    @media screen and (max-width:$tablet-size) {
+        --offset-bottom: -8% !important;
+    }
+}
+
+#address-page {
+    background-color: $theme-bg-color;
+    padding: 40px 10%;
+    min-height: 70%;
+
+    @media screen and (max-width:$tablet-size) {
+        padding: 0px 0%;
+        width: 100%;
+    }
+}
+
+.address-list {
+    margin-top: 30px;
+    border-radius: 4px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (max-width:$tablet-size) {
+        box-shadow: none;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .address {
+        position: relative;
+        margin-top: 20px;
+        padding: 20px;
+        box-shadow: 0 0 8px 0 rgba(51, 51, 51, .16);
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 8px 0 rgba(51, 51, 51, .16);
+
+        .deleteBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+
+            i {
+                color: $theme-color-danger;
+            }
+        }
+
+        @media screen and (max-width:$tablet-size) {
+            padding: 20px;
+        }
+
+        .title {
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+
+            @media screen and (max-width:$tablet-size) {
+                font-size: 18px;
+            }
+        }
+
+        .address-head {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 15px;
+            font-size: 14px;
+
+            @media screen and (max-width:$tablet-size) {
+                flex-direction: column;
+                font-size: 12px;
+
+            }
+
+            .city {
+                span {
+                    font-weight: 600;
+                    margin-right: 5px;
+                }
+            }
+
+            .district {
+                span {
+                    font-weight: 600;
+                    margin-right: 5px;
+                }
+
+                @media screen and (max-width:$tablet-size) {
+                    margin-left: 0px;
+                }
+
+                margin-left: 10px;
+            }
+
+            .street {
+                span {
+                    font-weight: 600;
+                    margin-right: 5px;
+                }
+
+                @media screen and (max-width:$tablet-size) {
+                    margin-left: 0px;
+                }
+
+                margin-left: 10px;
+            }
+        }
+
+        .address-content {
+            margin-top: 15px;
+            font-size: 15px;
+
+            @media screen and (max-width:$tablet-size) {
+                font-size: 14px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .no-more-products {
+        margin-top: 20px;
+        letter-spacing: 1px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #e2e2e2;
+        font-size: 14px;
+
+        @media screen and (max-width:$tablet-size) {
+            font-size: 12px;
+        }
+    }
+}
+
+
+.addBtn {
+    right: 4%;
+    position: absolute;
+    color: white;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    &::before {
+        border: 1px solid #333;
+        content: "+";
+        padding: 0px 10px;
+        color: #333;
+        font-size: 30px;
+
+        @media screen and (max-width:$tablet-size) {
+            border: none;
+            content: '+';
+            padding: 0px;
+            color: #333;
+            font-size: 30px;
+        }
+    }
+}

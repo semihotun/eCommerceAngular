@@ -1,13 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>addresses</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">addresses</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen="true">
+  <app-header *ngIf="!this.glb.isMobil.value"></app-header>
+  <div id="address-page">
+    <app-sub-header [previousUrl]="''" [title]="'Addresses' |translate">
+      <button class="addBtn" #customButton (click)="this.navController.navigateForward('add-address')"></button>
+    </app-sub-header>
+    <div class="address-list" *ngFor="let item of this.customerUserAddressStore.customerUserAddressDTOList$()">
+      <div class="address">
+        <span class="title">{{item.name.toLocaleUpperCase()}}</span>
+        <div class="address-head">
+          <div class="city"><span>{{'City' |translate}}:</span>{{item.cityName}}</div>
+          <div class="district"><span>{{'District' | translate}}:</span>{{item.districtName}}</div>
+          <div class="street"><span>{{'Street' | translate}}:</span>{{item.street.toUpperCase()}}</div>
+        </div>
+        <div class="address-content">
+          {{item.address}}
+        </div>
+        <div class="deleteBtn" (click)="deleteClick(item.id)"><i class="fa-solid fa-trash"></i></div>
+      </div>
+    </div>
+  </div>
+  @if (!glb.isMobil.value) {
+  <app-footer></app-footer>
+  }
+  @else {
+  <app-mobile-footer></app-mobile-footer>
+  }
 </ion-content>
