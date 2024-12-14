@@ -1,12 +1,12 @@
 <div class="selectbox-wrapper" [class]="class">
   <label class="label">{{label}}</label>
   <input type="text" [placeholder]="placeholder" class="input" [disabled]="disabled" [value]="val" readonly
-    id="open-modal" />
-  <div class="mark" id="open-modal"><ion-icon name="chevron-up-outline"></ion-icon></div>
+    (click)="openModal()" />
+  <div class="mark" (click)="openModal()"><ion-icon name="chevron-up-outline"></ion-icon></div>
 </div>
 
 
-<ion-modal trigger="open-modal">
+<ion-modal>
   <ng-template>
     <div class="sub-header">
       <button class="closeBtn" (click)="closeModal()"></button>

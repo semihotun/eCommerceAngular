@@ -58,7 +58,7 @@ export class PaginationSelectboxComponent implements ControlValueAccessor {
   val: any = null;
   constructor() {}
   ngOnInit(): void {}
-  public disabled: boolean = false;
+  @Input() disabled: boolean = false;
   @Input() placeholder: string = '';
   @Input() label: string = '';
   @Input() class!: string;
@@ -72,7 +72,7 @@ export class PaginationSelectboxComponent implements ControlValueAccessor {
     replace: boolean;
   }>();
   @ViewChild(IonModal) modal!: IonModal;
-  filterText!: string;
+  filterText: string = '';
   writeValue(obj: any): void {
     if (obj !== undefined && this.val !== obj) {
       const foundItem =
@@ -88,7 +88,11 @@ export class PaginationSelectboxComponent implements ControlValueAccessor {
       this.onTouched();
     }
   }
-
+  openModal() {
+    if (this.modal) {
+      this.modal.present();
+    }
+  }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -98,7 +102,7 @@ export class PaginationSelectboxComponent implements ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    // this.disabled = isDisabled;
   }
 
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
