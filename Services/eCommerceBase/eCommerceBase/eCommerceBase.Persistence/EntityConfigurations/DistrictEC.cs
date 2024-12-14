@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eCommerceBase.Persistence.EntityConfigurations
 {
-    public class StateEC : IEntityTypeConfiguration<State>
+    public class DistrictEC : IEntityTypeConfiguration<District>
     {
-        public void Configure(EntityTypeBuilder<State> builder)
+        public void Configure(EntityTypeBuilder<District> builder)
         {
             builder.HasKey(x => x.Id);
             builder.HasIndex(x => x.Deleted);

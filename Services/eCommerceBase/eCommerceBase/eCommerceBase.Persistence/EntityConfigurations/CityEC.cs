@@ -23,11 +23,11 @@ namespace eCommerceBase.Persistence.EntityConfigurations
                 var city = new City(countryExcellObject.Name!);
                 foreach (var stateExcellObject in GetStateExcell().Where(x => x.CityId == countryExcellObject.Id))
                 {
-                    city.AddStateList(new State(stateExcellObject.Name!, city.Id));
+                    city.AddDistrictList(new District(stateExcellObject.Name!, city.Id));
                 }
                 cityList.Add(city);
             }
-            return cityList;
+            return [.. cityList.OrderBy(x=>x.Name)];
         }
         private List<StateExcell> GetStateExcell()
         {
