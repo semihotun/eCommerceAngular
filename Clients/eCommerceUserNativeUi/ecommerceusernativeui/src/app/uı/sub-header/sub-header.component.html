@@ -1,6 +1,6 @@
 <div class="sub-header">
   <button class="previousbtn" (click)="routerNavigate()" *ngIf="previousUrl != null && glb.isMobil.value"></button>
-  <div class="title">
-    {{title}}
-  </div>
+  <ng-content></ng-content>
+  <div class="title">{{ title }}</div>
+
 </div>
