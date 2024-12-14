@@ -53,16 +53,14 @@ a {
 }
 
 #not-header-search-page {
-    background-color: white;
-    padding: 40px 2%;
-    border-radius: 15px;
+    background-color: $theme-bg-color;
+    padding: 40px 2% 90px 2%;
     min-height: 70%;
 
     @media screen and (max-width:$tablet-size) {
         padding: 65px 2%;
-        background-color: rgba(255, 255, 255, 0.918);
+        background-color: $theme-bg-color;
         padding: 0px 0px;
-        // margin: 0px 0px $fix-tap-height 0px;
         border-radius: 0px;
         min-height: 100%;
     }

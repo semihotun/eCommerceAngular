@@ -1,35 +1,38 @@
 <app-header [isNavigationBackUrl]="''"></app-header>
-<div id="product-detail">
-  <div class="product">
-    <div class="photo">
-      <img [src]="this.productStore.productDTO$().photoBase64">
-      <app-favorite-product-button class="favorite-button" [size]="22" [productId]="this.productStore.productDTO$().id"
-        [favoriteId]="this.productStore.productDTO$().favoriteId"></app-favorite-product-button>
-    </div>
-    <div class="info">
-      <div class="product-title">
-        <span
-          class="brand-name">{{this.productStore.productDTO$().brandName}}</span>{{this.productStore.productDTO$().productName}}
+<div class="product-detail-page">
+  <div id="product-detail">
+    <div class="product">
+      <div class="photo">
+        <img [src]="this.productStore.productDTO$().photoBase64">
+        <app-favorite-product-button class="favorite-button" [size]="22"
+          [productId]="this.productStore.productDTO$().id"
+          [favoriteId]="this.productStore.productDTO$().favoriteId"></app-favorite-product-button>
       </div>
-      <div class="comment-rate">
-        <app-star-rating [value]="this.productStore.productDTO$().avgStarRate"
-          [count]="this.productStore.productDTO$().commentCount" [starSize]="18"></app-star-rating>
-      </div>
-      <div class="product-price">
-        <div class="price-without-discount"
-          *ngIf="this.productStore.productDTO$().priceWithoutDiscount != this.productStore.productDTO$().price">
-          {{this.productStore.productDTO$().priceWithoutDiscount}} {{productStore.productDTO$().currencyCode}}</div>
-        <div class="total-price">{{this.productStore.productDTO$().price}} {{productStore.productDTO$().currencyCode}}
+      <div class="info">
+        <div class="product-title">
+          <span
+            class="brand-name">{{this.productStore.productDTO$().brandName}}</span>{{this.productStore.productDTO$().productName}}
         </div>
-      </div>
+        <div class="comment-rate">
+          <app-star-rating [value]="this.productStore.productDTO$().avgStarRate"
+            [count]="this.productStore.productDTO$().commentCount" [starSize]="18"></app-star-rating>
+        </div>
+        <div class="product-price">
+          <div class="price-without-discount"
+            *ngIf="this.productStore.productDTO$().priceWithoutDiscount != this.productStore.productDTO$().price">
+            {{this.productStore.productDTO$().priceWithoutDiscount}} {{productStore.productDTO$().currencyCode}}</div>
+          <div class="total-price">{{this.productStore.productDTO$().price}} {{productStore.productDTO$().currencyCode}}
+          </div>
+        </div>
 
-      <div class="add-basket"></div>
+        <div class="add-basket"></div>
+      </div>
     </div>
-  </div>
-  <div class="product-tabs">
-    <app-web-product-tabs></app-web-product-tabs>
-  </div>
-  <div class="another-products">
+    <div class="product-tabs">
+      <app-web-product-tabs></app-web-product-tabs>
+    </div>
+    <div class="another-products">
+    </div>
   </div>
 </div>
 <app-footer></app-footer>

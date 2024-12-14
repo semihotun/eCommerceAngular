@@ -2,6 +2,8 @@
 
 #home-page {
     min-height: 70%;
+    background-color: $theme-bg-color;
+    padding-bottom: 50px;
 
     @media screen and (max-width:$tablet-size) {
         min-height: 100%;

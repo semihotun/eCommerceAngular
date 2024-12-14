@@ -5,7 +5,7 @@
     width: 100%;
     margin-top: $header-mobile-middle-height;
     padding-bottom: 65px;
-
+    background-color: $theme-bg-color;
 
     .product {
         display: block;
@@ -33,6 +33,7 @@
             padding: 20px 15px;
             margin-left: 0px;
             width: 100%;
+            background-color: white;
 
             .product-title {
                 font-size: 18px;
