@@ -13,8 +13,8 @@ namespace eCommerceBase.Insfrastructure.Utilities.Grid.PagedList
         /// <param name="pageSize"></param>
         /// <returns></returns>
         public static async Task<PagedList<T>> ToPagedListAsync<T>(this IQueryable<T> source,
-            int pageIndex,
-            int pageSize)
+            int pageIndex = 1,
+            int pageSize = int.MaxValue)
         {
             if (source == null)
                 return new PagedList<T>();

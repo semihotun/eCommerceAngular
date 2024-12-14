@@ -44,5 +44,6 @@ namespace eCommerceBase.Domain.AggregateModels
         public CustomerActivationCode? CustomerActivationCode { get; private set; }
         [SwaggerIgnore]
         public ICollection<ProductFavorite> ProductFavoriteList { get; private set; } = [];
+        public ICollection<CustomerUserAddress> CustomerUserAdressList { get; set; } = [];
     }
 }
