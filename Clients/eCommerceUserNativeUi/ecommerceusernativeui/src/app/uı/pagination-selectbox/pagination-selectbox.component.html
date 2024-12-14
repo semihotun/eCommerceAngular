@@ -1,0 +1,37 @@
+<div class="selectbox-wrapper" [class]="class">
+  <label class="label">{{label}}</label>
+  <input type="text" [placeholder]="placeholder" class="input" [disabled]="disabled" [value]="val" readonly
+    id="open-modal" />
+  <div class="mark" id="open-modal"><ion-icon name="chevron-up-outline"></ion-icon></div>
+</div>
+
+
+<ion-modal trigger="open-modal">
+  <ng-template>
+    <div class="sub-header">
+      <button class="closeBtn" (click)="closeModal()"></button>
+      <div class="title">
+        {{label}}
+      </div>
+      <input type="text" class="search-input" placeholder="{{'Search in List' | translate}}"
+        (input)="changeSearchBox($event)" *ngIf="this.searchableTriggered.observers.length > 0">
+
+    </div>
+    <ion-content fullscreen="true">
+      <div class="container">
+
+        <div *ngFor="let item of pagedListData.data">
+          <ion-item (click)="selectedItem(item)">{{ item[textProperty] || item }}</ion-item>
+        </div>
+
+        <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" loadingSpinner="bubbles"
+          [disabled]="this.pagedListData.pageIndex >= this.pagedListData.totalPages">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </div>
+      <div *ngIf="this.pagedListData.pageIndex >= this.pagedListData.totalPages" class="no-more-data">
+        {{ 'Not more data' | translate }}
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
