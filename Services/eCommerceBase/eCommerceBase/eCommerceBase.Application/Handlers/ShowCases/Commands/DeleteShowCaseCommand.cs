@@ -1,11 +1,10 @@
-using MediatR;
-using eCommerceBase.Domain.Result;
-using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Persistence.UnitOfWork;
-using eCommerceBase.Persistence.GenericRepository;
-using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Application.Constants;
-using eCommerceBase.Domain.SeedWork;
+using eCommerceBase.Domain.AggregateModels;
+using eCommerceBase.Domain.Result;
+using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
+using eCommerceBase.Persistence.GenericRepository;
+using eCommerceBase.Persistence.UnitOfWork;
+using MediatR;
 
 namespace eCommerceBase.Application.Handlers.ShowCases.Commands;
 public record DeleteShowCaseCommand(System.Guid Id) : IRequest<Result>;

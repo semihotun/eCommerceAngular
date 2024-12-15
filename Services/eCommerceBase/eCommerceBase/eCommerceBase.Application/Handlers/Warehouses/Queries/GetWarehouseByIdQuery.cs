@@ -19,7 +19,7 @@ public class GetWarehouseByIdQueryHandler(IReadDbRepository<Warehouse> warehouse
 		async () =>
         {
             var query = await _warehouseRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<Warehouse>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

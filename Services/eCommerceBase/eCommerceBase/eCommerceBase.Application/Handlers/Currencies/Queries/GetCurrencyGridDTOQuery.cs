@@ -1,11 +1,11 @@
-using MediatR;
-using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
-using eCommerceBase.Domain.Result;
 using eCommerceBase.Application.Handlers.Currencies.Queries.Dtos;
+using eCommerceBase.Domain.AggregateModels;
+using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
-using eCommerceBase.Persistence.Context;
 using eCommerceBase.Insfrastructure.Utilities.Grid.Filter;
+using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
+using eCommerceBase.Persistence.Context;
+using MediatR;
 
 namespace eCommerceBase.Application.Handlers.Currencies.Queries;
 public record GetCurrencyGridDTOQuery(int PageIndex, int PageSize, string? OrderByColumnName, List<FilterModel>? FilterModelList) 
@@ -17,7 +17,7 @@ public class GetCurrencyGridDTOQueryHandler(CoreDbContext coreDbContext, ICacheS
     private readonly ICacheService _cacheService = cacheService;
     public async Task<Result<PagedList<CurrencyGridDTO>>> Handle(GetCurrencyGridDTOQuery request, CancellationToken cancellationToken)
     {
-        return await _cacheService.GetAsync<Result<PagedList<CurrencyGridDTO>>>(request, async () =>
+        return await _cacheService.GetAsync(request, async () =>
         {
             var query = await _coreDbContext.Query<Currency>().Select(x => new CurrencyGridDTO
             {
@@ -32,7 +32,7 @@ public class GetCurrencyGridDTOQueryHandler(CoreDbContext coreDbContext, ICacheS
                 FilterModelList = request.FilterModelList,
                 OrderByColumnName = request.OrderByColumnName
             });
-            return Result.SuccessDataResult<PagedList<CurrencyGridDTO>>(query);
+            return Result.SuccessDataResult(query);
         }, cancellationToken);
     }
 }

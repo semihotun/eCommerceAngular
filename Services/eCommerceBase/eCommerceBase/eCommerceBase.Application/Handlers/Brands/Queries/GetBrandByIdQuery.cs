@@ -19,7 +19,7 @@ public class GetBrandByIdQueryHandler(IReadDbRepository<Brand> brandRepository,
 		async () =>
         {
             var query = await _brandRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<Brand>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

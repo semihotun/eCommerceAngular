@@ -5,23 +5,23 @@ using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Insfrastructure.Utilities.Grid.Filter;
 using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
-using eCommerceBase.Persistence.Context;
+using eCommerceBase.Persistence.GenericRepository;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceBase.Application.Handlers.Discounts.Queries;
 public record GetDiscountGridDTOQuery(int PageIndex, int PageSize, string? OrderByColumnName, List<FilterModel>? FilterModelList) :
     IRequest<Result<PagedList<DiscountGridDTO>>>;
-public class GetDiscountGridDTOQueryHandler(CoreDbContext coreDbContext, ICacheService cacheService) 
+public class GetDiscountGridDTOQueryHandler(IReadDbRepository<Discount> discountRepository, ICacheService cacheService) 
     : IRequestHandler<GetDiscountGridDTOQuery, Result<PagedList<DiscountGridDTO>>>
 {
-    private readonly CoreDbContext _coreDbContext = coreDbContext;
+    private readonly IReadDbRepository<Discount> _discountRepository = discountRepository;
     private readonly ICacheService _cacheService = cacheService;
     public async Task<Result<PagedList<DiscountGridDTO>>> Handle(GetDiscountGridDTOQuery request, CancellationToken cancellationToken)
     {
-        return await _cacheService.GetAsync<Result<PagedList<DiscountGridDTO>>>(request, async () =>
+        return await _cacheService.GetAsync(request, async () =>
         {
-            var query = await _coreDbContext.Query<Discount>().Include(x => x.DiscountType)
+            var query = await _discountRepository.Query()
             .Where(x=>x.DiscountTypeId != DiscountTypeConst.ProductCurrencyDiscount &&
                       x.DiscountTypeId != DiscountTypeConst.ProductPercentDiscount)
             .Include(x=>x.DiscountType)
@@ -37,7 +37,7 @@ public class GetDiscountGridDTOQueryHandler(CoreDbContext coreDbContext, ICacheS
                 FilterModelList = request.FilterModelList,
                 OrderByColumnName = request.OrderByColumnName
             });
-            return Result.SuccessDataResult<PagedList<DiscountGridDTO>>(query);
+            return Result.SuccessDataResult(query);
         }, cancellationToken);
     }
 }

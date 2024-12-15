@@ -18,7 +18,7 @@ public class GetUserGroupNotExistRoleGridDTOQueryHandler(CoreDbContext coreDbCon
     private readonly ICacheService _cacheService = cacheService;
     public async Task<Result<PagedList<GetUserGroupNotExistRoleGridDTO>>> Handle(GetUserGroupNotExistRoleGridDTOQuery request, CancellationToken cancellationToken)
     {
-        return await _cacheService.GetAsync<Result<PagedList<GetUserGroupNotExistRoleGridDTO>>>(request, async () =>
+        return await _cacheService.GetAsync(request, async () =>
         {
             var existingRoleIds = await _coreDbContext.WriteQuery<UserGroupRole>()
                 .Where(x => x.UserGroupId == request.UserGroupId)
@@ -38,7 +38,7 @@ public class GetUserGroupNotExistRoleGridDTOQueryHandler(CoreDbContext coreDbCon
                 FilterModelList = request.FilterModelList,
                 OrderByColumnName = request.OrderByColumnName
             });
-            return Result.SuccessDataResult<PagedList<GetUserGroupNotExistRoleGridDTO>>(query);
+            return Result.SuccessDataResult(query);
         }, cancellationToken);
     }
 }

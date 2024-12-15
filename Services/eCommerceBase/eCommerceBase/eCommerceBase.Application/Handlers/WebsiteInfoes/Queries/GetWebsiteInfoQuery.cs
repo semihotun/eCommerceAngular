@@ -22,7 +22,7 @@ public class GetWebsiteInfoQueryHandler(ICoreSearchEngineContext searchEngineCon
             string indexName = _searchEngineContext.IndexName<WebsiteInfo>();
             var existingDoc = await _searchEngineContext.Client.GetAsync<WebsiteInfo>(InitConst.WebSiteInfoId, g => g.Index(indexName));
             
-            return Result.SuccessDataResult<WebsiteInfo>(existingDoc.Source!);
+            return Result.SuccessDataResult(existingDoc.Source!);
         },
 		cancellationToken);
     }

@@ -1,8 +1,8 @@
-using MediatR;
-using eCommerceBase.Domain.Result;
 using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Persistence.GenericRepository;
+using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
+using eCommerceBase.Persistence.GenericRepository;
+using MediatR;
 
 namespace eCommerceBase.Application.Handlers.ProductSpecifications.Queries;
 public record GetAllProductSpecification() : IRequest<Result<IList<ProductSpecification>>>;

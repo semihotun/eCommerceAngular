@@ -19,7 +19,7 @@ public class GetPageByIdQueryHandler(IReadDbRepository<Page> pageRepository,
 		async () =>
         {
             var query = await _pageRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<Page>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

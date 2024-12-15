@@ -19,7 +19,7 @@ public class GetShowCaseByIdQueryHandler(IReadDbRepository<ShowCase> showCaseRep
 		async () =>
         {
             var query = await _showCaseRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<ShowCase>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

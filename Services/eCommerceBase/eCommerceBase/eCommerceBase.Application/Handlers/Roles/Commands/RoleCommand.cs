@@ -23,7 +23,7 @@ namespace eCommerceBase.Application.Handlers.Roles.Commands
         public async Task<Result> Handle(RoleCommand request, CancellationToken cancellationToken)
         {
             var newRole = new List<Role>();
-            await _unitOfWork.BeginTransaction<Result>(async () =>
+            await _unitOfWork.BeginTransaction(async () =>
             {
                 newRole = request.RolePath
                            .Where(newAdminRole => !_roleRepository.AnyAsync(existingAdminRole => existingAdminRole.RoleName == newAdminRole).Result)
@@ -36,7 +36,7 @@ namespace eCommerceBase.Application.Handlers.Roles.Commands
                 return Result.SuccessResult();
             });
             //Şimdilik 2 unit of work sonrasında farklı handler'a çekilicek
-            return await _unitOfWork.BeginTransaction<Result>(async () =>
+            return await _unitOfWork.BeginTransaction(async () =>
             {
                 foreach (var item in newRole!)
                 {

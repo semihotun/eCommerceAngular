@@ -6,7 +6,8 @@ using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceBase.Application.Handlers.SpecificationAttributeOptions.Queries;
-public record GetAllSpecificationAttributeOptionBySpecificationAttributeId(Guid SpecificationAttributeId) : IRequest<Result<List<SpecificationAttributeOption>>>;
+public record GetAllSpecificationAttributeOptionBySpecificationAttributeId(Guid SpecificationAttributeId) 
+    : IRequest<Result<List<SpecificationAttributeOption>>>;
 public class GetAllSpecificationAttributeBySpecificationAttributeIdHandler(IReadDbRepository<SpecificationAttributeOption> specificationAttributeOptionRepository,
 		ICacheService cacheService) : IRequestHandler<GetAllSpecificationAttributeOptionBySpecificationAttributeId,
 		Result<List<SpecificationAttributeOption>>>

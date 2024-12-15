@@ -6,7 +6,6 @@ using eCommerceBase.Persistence.GenericRepository;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Application.Constants;
 using eCommerceBase.Application.Handlers.Mapper;
-using eCommerceBase.Application.Helpers;
 
 namespace eCommerceBase.Application.Handlers.Products.Commands;
 public record UpdateProductCommand(string ProductName,

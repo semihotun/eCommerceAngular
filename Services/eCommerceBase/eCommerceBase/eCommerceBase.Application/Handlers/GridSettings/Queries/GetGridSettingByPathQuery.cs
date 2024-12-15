@@ -19,7 +19,7 @@ public class GetGridSettingByPathQueryHandler(IReadDbRepository<GridSetting> gri
 		async () =>
         {
             var query = await _gridSettingRepository.GetAsync(x=>x.Path == request.Path);
-            return Result.SuccessDataResult<GridSetting>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

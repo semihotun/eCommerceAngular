@@ -33,7 +33,9 @@ export class AddressesPage implements OnInit {
     private customerUserAddressService: CustomerUserAddressService,
     public customerUserAddressStore: CustomerUserAddressStore
   ) {}
-
+  ionViewWillEnter() {
+    this.ngOnInit();
+  }
   ngOnInit() {
     this.customerUserAddressService.getAllCustomerUserAdressDto();
   }

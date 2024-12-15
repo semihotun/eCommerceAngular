@@ -1,4 +1,4 @@
-using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
+﻿using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
@@ -6,35 +6,25 @@ using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
 using eCommerceBase.Persistence.GenericRepository;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-namespace eCommerceBase.Application.Handlers.Products.Queries;
-public record GetHomeDTOQuery()
-    : IRequest<Result<HomeDto>>;
-public class GetHomeDTOQueryHandler(IReadDbRepository<ShowCase> showcaseRepository, IReadDbRepository<Slider> sliderRepository ,ICacheService cacheService,
-        ISender sender,
-        UserScoped userScoped)
-    : IRequestHandler<GetHomeDTOQuery, Result<HomeDto>>
+
+namespace eCommerceBase.Application.Handlers.Products.Queries
 {
-    private readonly IReadDbRepository<ShowCase> _showcaseRepository = showcaseRepository;
-    private readonly IReadDbRepository<Slider> _sliderRepository = sliderRepository;
-    private readonly ISender _sender = sender;
-    private readonly ICacheService _cacheService = cacheService;
-    private readonly UserScoped _userScoped = userScoped;
-    public async Task<Result<HomeDto>> Handle(GetHomeDTOQuery request, CancellationToken cancellationToken)
+    public record GetHomeShowcaseDetailQuery(Guid ShowCaseId, int PageIndex, int PageSize) : IRequest<Result<PagedList<GetHomeShowcaseDetailDTO>>>;
+
+    public class GetHomeShowcaseDetailQueryHandler(IReadDbRepository<ShowCaseProduct> showcaseProductRepository, ICacheService cacheService,
+        UserScoped userScoped) : IRequestHandler<GetHomeShowcaseDetailQuery, Result<PagedList<GetHomeShowcaseDetailDTO>>>
     {
-        return await _cacheService.GetAsync(request, _userScoped, async () =>
+        private readonly ICacheService _cacheService = cacheService;
+        private readonly UserScoped _userScoped = userScoped;
+        private readonly IReadDbRepository<ShowCaseProduct> _showcaseProductRepository = showcaseProductRepository;
+
+        public async Task<Result<PagedList<GetHomeShowcaseDetailDTO>>> Handle(GetHomeShowcaseDetailQuery request, CancellationToken cancellationToken)
         {
-            var sliderQuery = _sliderRepository.ToListAsync();
-            var showcaseQuery = _showcaseRepository.Query()
-               .Select(x => new HomeShowcaseDto
-               {
-                   Id = x.Id,
-                   ShowCaseText = x.ShowCaseText,
-                   ShowCaseTypeId = x.ShowCaseTypeId,
-                   ShowCaseTitle = x.ShowCaseTitle,
-                   ShowCaseOrder = x.ShowCaseOrder,
-                   ShowCaseProductList = x.ShowCaseProductList
-                       .Select(sp => new HomeShowcaseProductDto
+            return await _cacheService.GetAsync(request, _userScoped, async () =>
+            {
+                var data = await _showcaseProductRepository.Query()
+                       .Where(x => x.ShowCaseId == request.ShowCaseId)
+                       .Select(sp => new GetHomeShowcaseDetailDTO
                        {
                            Id = sp.Product.Id,
                            ProductName = sp.Product.ProductName,
@@ -69,20 +59,10 @@ public class GetHomeDTOQueryHandler(IReadDbRepository<ShowCase> showcaseReposito
                                          .FirstOrDefault(x => x.CustomerUserId == _userScoped.Id && !x.Deleted)!.Id
                                         : null
 
-                       }).Take(10).AsEnumerable()
-               })
-               .OrderBy(x => x.ShowCaseOrder)
-               .AsSplitQuery()
-               .ToListAsync();
+                       }).ToPagedListAsync(request.PageIndex, request.PageSize);
 
-            await Task.WhenAll(showcaseQuery, sliderQuery);
-            var homeDto = new HomeDto
-            {
-                SliderList = (await sliderQuery),
-                ShowcaseList = await showcaseQuery
-            };
-            return Result.SuccessDataResult(homeDto);
-
-        }, cancellationToken);
+                return Result.SuccessDataResult(data!);
+            }, cancellationToken);
+        }
     }
 }

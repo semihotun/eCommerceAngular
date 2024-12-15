@@ -4,7 +4,6 @@ using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Constant;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Persistence.SearchEngine;
-using eCommerceBase.Persistence.UnitOfWork;
 using Elasticsearch.Net;
 using MediatR;
 

@@ -20,9 +20,8 @@ public class GetAllCityQueryHandler(IReadDbRepository<City> cityRepository,
         async () =>
         {
             var data = await _cityRepository.Query()
-               .Where(x => request.City.Trim() != ""
-                   ? x.Name.StartsWith(request.City.Trim())
-                   : true)
+               .Where(x => request.City.Trim() == ""
+                || x.Name.StartsWith(request.City.Trim()))
                    .ToPagedListAsync(request.PageIndex, request.PageSize);
             return Result.SuccessDataResult(data!);
         },

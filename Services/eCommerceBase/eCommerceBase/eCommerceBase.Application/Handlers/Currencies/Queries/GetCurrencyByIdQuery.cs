@@ -19,7 +19,7 @@ public class GetCurrencyByIdQueryHandler(IReadDbRepository<Currency> currencyRep
 		async () =>
         {
             var query = await _currencyRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<Currency>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

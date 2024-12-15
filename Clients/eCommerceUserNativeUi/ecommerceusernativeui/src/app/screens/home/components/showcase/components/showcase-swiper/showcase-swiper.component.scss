@@ -75,6 +75,12 @@ swiper-container {
                 img {
                     border-top-right-radius: 5px;
                     border-top-left-radius: 5px;
+                    height: 250px;
+                    width: 100%;
+
+                    @media screen and (max-width: $tablet-size) {
+                        height: 180px;
+                    }
                 }
 
                 .favorite-button {

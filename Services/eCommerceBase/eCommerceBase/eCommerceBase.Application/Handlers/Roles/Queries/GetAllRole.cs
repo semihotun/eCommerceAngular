@@ -1,9 +1,8 @@
-using MediatR;
-using eCommerceBase.Domain.Result;
 using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Persistence.GenericRepository;
+using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
-using System.Diagnostics;
+using eCommerceBase.Persistence.GenericRepository;
+using MediatR;
 
 namespace eCommerceBase.Application.Handlers.Roles.Queries;
 public record GetAllRole() : IRequest<Result<IList<Role>>>;

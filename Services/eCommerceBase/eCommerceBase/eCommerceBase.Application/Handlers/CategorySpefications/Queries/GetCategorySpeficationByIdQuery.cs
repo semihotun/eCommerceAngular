@@ -19,7 +19,7 @@ public class GetCategorySpeficationByIdQueryHandler(IReadDbRepository<CategorySp
 		async () =>
         {
             var query = await _categorySpeficationRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<CategorySpecification>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

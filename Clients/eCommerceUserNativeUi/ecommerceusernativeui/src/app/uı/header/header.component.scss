@@ -38,8 +38,9 @@
     }
 
     .header-top {
-        background-color: $theme-bg-color;
+        background-color: #3333330a;
         width: 100%;
+        border-bottom: 1px solid rgba($color: $header-bottom-bg, $alpha: 0.08);
 
         .links {
             max-width: $container-max-width;
@@ -51,7 +52,7 @@
             font-weight: 200;
             display: flex;
             justify-content: flex-end;
-            border-bottom: 1px solid rgba($color: $header-bottom-bg, $alpha: 0.08);
+
 
             a {
                 color: black;

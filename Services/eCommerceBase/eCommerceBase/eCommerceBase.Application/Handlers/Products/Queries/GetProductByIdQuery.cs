@@ -19,7 +19,7 @@ public class GetProductByIdQueryHandler(IReadDbRepository<Product> productReposi
 		async () =>
         {
             var query = await _productRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<Product>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

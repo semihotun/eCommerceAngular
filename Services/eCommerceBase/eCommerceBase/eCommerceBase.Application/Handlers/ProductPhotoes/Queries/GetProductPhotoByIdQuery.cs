@@ -19,7 +19,7 @@ public class GetProductPhotoByIdQueryHandler(IReadDbRepository<ProductPhoto> pro
 		async () =>
         {
             var query = await _productPhotoRepository.GetByIdAsync(request.Id);
-            return Result.SuccessDataResult<ProductPhoto>(query!);
+            return Result.SuccessDataResult(query!);
         },
 		cancellationToken);
     }

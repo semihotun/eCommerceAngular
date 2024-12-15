@@ -1,7 +1,6 @@
-using Riok.Mapperly.Abstractions;
 using eCommerceBase.Application.Handlers.DiscountProducts.Commands;
 using eCommerceBase.Domain.AggregateModels;
-using eCommerceBase.Application.Handlers.Mapper;
+using Riok.Mapperly.Abstractions;
 
 namespace eCommerceBase.Application.Handlers.Mapper
 {

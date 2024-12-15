@@ -1,5 +1,4 @@
 using eCommerceBase.Application.Handlers.Brands.Commands;
-using eCommerceBase.Application.Handlers.Brands.Queries.Dtos;
 using eCommerceBase.Domain.AggregateModels;
 using Riok.Mapperly.Abstractions;
 

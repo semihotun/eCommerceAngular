@@ -4,12 +4,10 @@ using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Constant;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Service;
-using eCommerceBase.Insfrastructure.Utilities.Outboxes;
 using eCommerceBase.Insfrastructure.Utilities.Security.Hashing;
 using eCommerceBase.Insfrastructure.Utilities.Security.Jwt;
 using eCommerceBase.Persistence.GenericRepository;
 using eCommerceBase.Persistence.UnitOfWork;
-using MassTransit;
 using MediatR;
 namespace eCommerceBase.Application.Handlers.CustomerUsers.Commands
 {

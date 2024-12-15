@@ -4,18 +4,17 @@ using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using eCommerceBase.Insfrastructure.Utilities.Identity.Middleware;
-using eCommerceBase.Persistence.Context;
 using eCommerceBase.Persistence.GenericRepository;
 using MediatR;
 
 namespace eCommerceBase.Application.Handlers.ProductFavorites.Queries;
 
 public record GetAllProductFavoriteByCustomerIdQuery(int PageIndex, int PageSize) : IRequest<Result<PagedList<ProductFavoriteDTO>>>;
-public class GetAllProductFavoriteByCustomerIdQueryHandler(CoreDbContext readDbContext,
+public class GetAllProductFavoriteByCustomerIdQueryHandler(IReadDbRepository<ProductFavorite> productFavoriteRepository,
         ICacheService cacheService, UserScoped userScoped) : IRequestHandler<GetAllProductFavoriteByCustomerIdQuery,
         Result<PagedList<ProductFavoriteDTO>>>
 {
-    private readonly CoreDbContext _readDbContext = readDbContext;
+    private readonly IReadDbRepository<ProductFavorite> _productFavoriteRepository = productFavoriteRepository;
     private readonly ICacheService _cacheService = cacheService;
     private readonly UserScoped _userScoped = userScoped;
     public async Task<Result<PagedList<ProductFavoriteDTO>>> Handle(GetAllProductFavoriteByCustomerIdQuery request,
@@ -24,7 +23,7 @@ public class GetAllProductFavoriteByCustomerIdQueryHandler(CoreDbContext readDbC
         return await _cacheService.GetAsync(request, _userScoped,
         async () =>
         {
-            var data =await _readDbContext.Query<ProductFavorite>()
+            var data =await _productFavoriteRepository.Query()
                         .Where(x => x.CustomerUserId == _userScoped.Id)
                             .Select(sp => new ProductFavoriteDTO
                             {
