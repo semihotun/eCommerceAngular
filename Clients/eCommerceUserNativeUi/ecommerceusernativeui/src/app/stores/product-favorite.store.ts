@@ -31,4 +31,17 @@ export class ProductFavoriteStore extends ComponentStore<ProductFavoriteState> {
       },
     })
   );
+  readonly resetProductFavoriteList = this.updater((state) => ({
+    ...state,
+    productFavoriteList: productFavoriteInitialState.productFavoriteList,
+  }));
+  readonly deleteProductFavoriteById = this.updater((state, id: string) => ({
+    ...state,
+    productFavoriteList: {
+      ...state.productFavoriteList,
+      data: state.productFavoriteList.data.filter(
+        (item) => item.favoriteId !== id
+      ),
+    },
+  }));
 }

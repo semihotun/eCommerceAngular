@@ -51,6 +51,7 @@ namespace eCommerceBase.Extensions
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<ICoreDbContext, CoreDbContext>();
+            builder.Services.AddTransient<ICoreDbReadContext, CoreDbReadContext>();
             builder.Services.AddScoped(typeof(IWriteDbRepository<>), typeof(WriteDbRepository<>));
             builder.Services.AddTransient(typeof(IReadDbRepository<>), typeof(ReadDbRepository<>));
             await SearchEngineRegistration.MigrateElasticDbAsync(assembly, builder.Configuration);

@@ -55,12 +55,12 @@ export class FavoriteProductButtonComponent implements OnInit {
       this.productFavoriteService
         .deleteProductFavorite(this.favoriteId)
         .then((x) => {
+          this.deleteClick.emit(this.favoriteId);
           this.favoriteId = null;
           this.updateHomeShowcaseProductFavorite(
             this.productId,
             this.favoriteId
           );
-          this.deleteClick.emit(this.favoriteId);
         });
     }
   }

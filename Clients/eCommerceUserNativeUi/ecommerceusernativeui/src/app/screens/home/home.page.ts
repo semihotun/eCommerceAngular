@@ -28,9 +28,9 @@ import { HomeService } from 'src/app/services/home.service';
     ShowcaseComponent,
   ],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   constructor(public glb: GlobalService, private homeService: HomeService) {}
-  ngOnInit(): void {
+  ionViewWillEnter(): void {
     this.homeService.getHomeDTO();
   }
 }

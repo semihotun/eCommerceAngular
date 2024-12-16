@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { ProductFavoriteStore } from '../stores/product-favorite.store';
 import { PagedList } from '../models/core/grid';
 import { ProductFavoriteDTO } from '../models/responseModel/productFavoriteDTO';
+import { LoaderService } from './core/loader.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,15 +17,17 @@ export class ProductFavoriteService extends Destroyable {
   }
   http = inject(HttpService);
   toast = inject(ToastService);
+  loader = inject(LoaderService);
   productFavoriteStore = inject(ProductFavoriteStore);
   createProductFavorite(data: any): Promise<string> {
+    const url = environment.baseUrl + 'productFavorite/create';
+    this.loader.addExcludedUrl(url);
     return new Promise((resolve, reject) => {
       this.http.post<Result<string>>(
-        environment.baseUrl + 'productFavorite/create',
+        url,
         data,
         this.onDestroy,
         (response) => {
-          this.toast.presentSuccessToast();
           resolve(response.data);
         },
         (err) => {
@@ -35,13 +38,14 @@ export class ProductFavoriteService extends Destroyable {
     });
   }
   deleteProductFavorite(id: string): Promise<void> {
+    const url = environment.baseUrl + 'productFavorite/delete';
+    this.loader.addExcludedUrl(url);
     return new Promise((resolve, reject) => {
       this.http.post<Result<any>>(
-        environment.baseUrl + 'productFavorite/delete',
+        url,
         { id: id },
         this.onDestroy,
         (response) => {
-          this.toast.presentSuccessToast();
           resolve();
         },
         (err) => {
@@ -51,14 +55,25 @@ export class ProductFavoriteService extends Destroyable {
       );
     });
   }
-  getAllFavoriteProduct(pageIndex: number, pageSize: number): Promise<void> {
+  getAllFavoriteProduct(
+    pageIndex: number,
+    pageSize: number,
+    addableNumber: number = pageSize
+  ): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.post<Result<PagedList<ProductFavoriteDTO>>>(
         environment.baseUrl + 'productFavorite/getallfavoriteproduct',
         { PageIndex: pageIndex, PageSize: pageSize },
         this.onDestroy,
         (response) => {
-          this.productFavoriteStore.addProductFavoriteList(response.data);
+          const dataToAdd =
+            addableNumber == pageSize
+              ? response.data.data
+              : response.data.data.slice(addableNumber);
+          this.productFavoriteStore.addProductFavoriteList({
+            ...response.data,
+            data: dataToAdd,
+          });
           resolve();
         },
         (err) => {

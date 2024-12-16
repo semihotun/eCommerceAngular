@@ -123,6 +123,20 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'showcase',
+    loadComponent: () =>
+      import('./screens/showcase-detail/showcase-detail.page').then(
+        (m) => m.ShowcaseDetailPage
+      ),
+  },
+  {
+    path: 'showcase/:id',
+    loadComponent: () =>
+      import('./screens/showcase-detail/showcase-detail.page').then(
+        (m) => m.ShowcaseDetailPage
+      ),
+  },
+  {
     path: ':slug',
     loadComponent: () =>
       import('./screens/product-detail/product-detail.page').then(
