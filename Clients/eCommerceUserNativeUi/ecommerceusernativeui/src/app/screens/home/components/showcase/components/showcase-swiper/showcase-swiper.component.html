@@ -1,10 +1,11 @@
 <div class="show-cases">
   <div class="show-case-title">
     <div class="showcase-title-text">{{data.showCaseTitle}}</div>
-    <div class="all-show-text"><a href="">{{ "See All" |translate}}</a></div>
+    <div class="all-show-text"><a (click)="this.navController.navigateForward(['showcase',data.id])">{{ "See All"
+        |translate}}</a></div>
   </div>
 
-  <swiper-container #swiper [zoom]="true" [slidesPerView]="glb.isMobil.value ? 2.5 : 5">
+  <swiper-container #swiper>
     <swiper-slide *ngFor="let product of data.showCaseProductList " (click)="glb.navigateProductDetail(product.slug)">
       <div class="card">
         <div class="image">

@@ -1,7 +1,8 @@
 <div class="showcase-list">
   <div class="show-case-title">
     <div class="showcase-title-text">{{data.showCaseTitle}}</div>
-    <div class="all-show-text"><a href="">{{ "See All" |translate}}</a></div>
+    <div class="all-show-text"><a (click)="this.navController.navigateForward(['showcase',data.id])">{{ "See All"
+        |translate}}</a></div>
   </div>
   @for (product of data.showCaseProductList; track $index) {
   <div class="card" (click)="glb.navigateProductDetail(product.slug)">

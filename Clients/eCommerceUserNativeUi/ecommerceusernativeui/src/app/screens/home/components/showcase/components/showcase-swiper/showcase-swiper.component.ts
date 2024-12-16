@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   CUSTOM_ELEMENTS_SCHEMA,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
@@ -17,6 +18,7 @@ import { GlobalService } from 'src/app/services/core/global.service';
 import { FavoriteProductButtonComponent } from 'src/app/uı/favorite-product-button/favorite-product-button.component';
 import { StarRatingComponent } from 'src/app/uı/star-rating/star-rating.component';
 import { Swiper } from 'swiper/types';
+import { NavController } from '@ionic/angular/standalone';
 @Component({
   selector: 'app-showcase-swiper',
   templateUrl: './showcase-swiper.component.html',
@@ -33,10 +35,10 @@ import { Swiper } from 'swiper/types';
   ],
 })
 export class ShowcaseSwiperComponent implements AfterViewInit {
-  @ViewChild('swiper') swiperRef: ElementRef | undefined;
+  @ViewChild('swiper', { static: true }) swiperRef!: ElementRef;
   swiper?: Swiper;
   @Input() data!: AllShowcaseDTO;
-  constructor(public glb: GlobalService) {}
+  constructor(public glb: GlobalService, public navController: NavController) {}
   goNext() {
     this.swiper?.slideNext();
   }
