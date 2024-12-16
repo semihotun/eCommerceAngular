@@ -26,7 +26,7 @@ import { CustomerUserAddressService } from 'src/app/services/customer-user-addre
     MobileFooterComponent,
   ],
 })
-export class AddressesPage implements OnInit {
+export class AddressesPage {
   constructor(
     public glb: GlobalService,
     public navController: NavController,
@@ -34,9 +34,6 @@ export class AddressesPage implements OnInit {
     public customerUserAddressStore: CustomerUserAddressStore
   ) {}
   ionViewWillEnter() {
-    this.ngOnInit();
-  }
-  ngOnInit() {
     this.customerUserAddressService.getAllCustomerUserAdressDto();
   }
   deleteClick(id: string) {

@@ -14,10 +14,11 @@
      .title {
          font-weight: 600;
          text-align: center;
-         font-size: 18px;
+         font-size: 22px;
 
          @media screen and (max-width:$tablet-size) {
              margin-bottom: 0px;
+             font-size: 18px;
          }
      }
 

@@ -13,7 +13,7 @@ export class ToastService {
 
   async presentSuccessToast(
     message: string = 'Operation Completed',
-    duration: number = 3000
+    duration: number = 2000
   ) {
     const messageTranslated =
       this.translate.instant(message) ?? 'Operation Completed';
@@ -29,7 +29,7 @@ export class ToastService {
 
   async presentDangerToast(
     message: string = 'Operation Failed',
-    duration: number = 3000
+    duration: number = 2000
   ) {
     const messageTranslated =
       this.translate.instant(message) ?? 'Operation Failed';

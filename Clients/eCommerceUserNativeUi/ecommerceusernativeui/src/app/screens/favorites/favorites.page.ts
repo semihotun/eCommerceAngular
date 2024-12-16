@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FavoriteProductButtonComponent } from '../../u\u0131/favorite-product-button/favorite-product-button.component';
 import { StarRatingComponent } from '../../u\u0131/star-rating/star-rating.component';
+import { PagedList } from 'src/app/models/core/grid';
 
 @Component({
   selector: 'app-favorites',
@@ -38,41 +39,52 @@ import { StarRatingComponent } from '../../u\u0131/star-rating/star-rating.compo
     StarRatingComponent,
   ],
 })
-export class FavoritesPage implements OnInit {
+export class FavoritesPage {
   pageIndex: number = 1;
-  pageSıze: number = 7;
+  pageSize: number = 7;
+  deletedCount: number = 0;
+  totalPages: number = 0;
+  removeableCount: number = 2;
   constructor(
     public glb: GlobalService,
     private productFavoriteService: ProductFavoriteService,
     public productFavoriteStore: ProductFavoriteStore
   ) {}
   ionViewWillEnter() {
+    this.deletedCount = 0;
     this.getFavorites();
   }
   getFavorites() {
     this.productFavoriteService
-      .getAllFavoriteProduct(this.pageIndex, this.pageSıze)
-      .then(() => {
-        if (
-          this.productFavoriteStore.productFavoriteList$().pageIndex >
-          this.productFavoriteStore.productFavoriteList$().totalPages
-        ) {
-          this.pageIndex =
-            this.productFavoriteStore.productFavoriteList$().totalPages;
-        }
+      .getAllFavoriteProduct(
+        this.pageIndex,
+        this.pageSize,
+        this.pageSize - this.deletedCount
+      )
+      .then((x) => {
+        this.totalPages =
+          this.productFavoriteStore.productFavoriteList$().totalPages;
+        this.deletedCount = 0;
       });
   }
-  ngOnInit() {
-    this.getFavorites();
-  }
   deleteFavorite(id: string) {
-    this.ionViewWillEnter();
+    this.productFavoriteStore.deleteProductFavoriteById(id);
+    this.deletedCount++;
+    if (this.deletedCount == this.removeableCount) {
+      this.getFavorites();
+      this.deletedCount = 0;
+    }
   }
   onIonInfinite(ev: InfiniteScrollCustomEvent) {
     setTimeout(() => {
-      this.pageIndex++;
+      if (this.deletedCount == 0) {
+        this.pageIndex++;
+      }
       this.getFavorites();
       ev.target.complete();
     }, 1000);
+  }
+  ionViewWillLeave() {
+    this.productFavoriteStore.resetProductFavoriteList();
   }
 }

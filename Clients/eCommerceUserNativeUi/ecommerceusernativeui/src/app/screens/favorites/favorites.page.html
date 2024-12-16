@@ -7,7 +7,8 @@
         <div class="photo">
           <img [src]="product.photoBase64">
           <app-favorite-product-button class="favorite-button" [size]="15" [productId]="product.id"
-            [favoriteId]="product.favoriteId" (deleteClick)="deleteFavorite($event)"></app-favorite-product-button>
+            [favoriteId]="product.favoriteId"
+            (deleteClick)="deleteFavorite(product.favoriteId!)"></app-favorite-product-button>
         </div>
         <div class="info">
           <div class="product-title">
@@ -25,11 +26,10 @@
         </div>
       </div>
       <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" loadingSpinner="bubbles"
-        [threshold]="!glb.isMobil.value ?'531px' : '8%'"
-        [disabled]="pageIndex >= productFavoriteStore.productFavoriteList$().totalPages">
+        [threshold]="!glb.isMobil.value ?'531px' : '8%'" [disabled]="pageIndex >= this.totalPages">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
       </ion-infinite-scroll>
-      <div *ngIf="pageIndex >= productFavoriteStore.productFavoriteList$().totalPages" class="no-more-products">
+      <div *ngIf="pageIndex >= this.totalPages" class="no-more-products">
         {{ 'No more products' | translate }}
       </div>
     </div>
