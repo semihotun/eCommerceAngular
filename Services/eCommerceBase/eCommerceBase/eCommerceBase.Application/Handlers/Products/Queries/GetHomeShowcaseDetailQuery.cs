@@ -40,9 +40,9 @@ namespace eCommerceBase.Application.Handlers.Products.Queries
                                .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
                                .OrderBy(stock => stock.CreatedOnUtc)
                                .First()!.Price,
-                           PhotoBase64 = sp.Product.ProductPhotoList
+                           ImageUrl = sp.Product.ProductPhotoList
                                .Where(photo => !photo.Deleted)
-                               .First()!.PhotoBase64,
+                               .First()!.ImageUrl,
                            CurrencyCode = sp.Product.ProductStockList
                                .Where(stock => stock.RemainingStock > 0 && !stock.Deleted)
                                .OrderBy(stock => stock.CreatedOnUtc)

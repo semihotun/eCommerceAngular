@@ -53,8 +53,8 @@
         <tr *ngFor="let data of localData">
           <ng-container *ngFor="let datakey of keys">
             <td *ngIf="datakey.checked == true ">
-              @if(data[datakey.propertyName]?.toString().startsWith('data:image/jpeg;base64')){
-              <img [src]="data[datakey.propertyName]">
+              @if(datakey.propertyName.startsWith('imageUrl')){
+              <img [src]="getImagePath(data[datakey.propertyName])">
               }
               @else{
               {{ data[datakey.propertyName] }}

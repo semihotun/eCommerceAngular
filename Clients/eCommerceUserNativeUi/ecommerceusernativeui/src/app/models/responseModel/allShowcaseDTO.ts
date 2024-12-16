@@ -11,7 +11,7 @@ export class HomeShowcaseProductDto {
   productName!: string;
   brandName!: string;
   slug!: string;
-  photoBase64!: string;
+  imageUrl!: string;
   currencyCode!: string;
   price!: number;
   priceWithoutDiscount!: number;

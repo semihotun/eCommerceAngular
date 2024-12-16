@@ -2,7 +2,7 @@ export class ProductDto {
   id!: string;
   productName!: string;
   slug!: string;
-  photoBase64!: string;
+  imageUrl!: string;
   currencyCode!: string;
   price!: number;
   priceWithoutDiscount!: number;

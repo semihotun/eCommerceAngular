@@ -26,7 +26,7 @@ public class GetProductPhotoGridQueryHandler(IReadDbRepository<ProductPhoto> pro
             {
                 Id = x.Id,
                 ProductId = x.ProductId,
-                PhotoBase64 = x.PhotoBase64
+                ImageUrl = x.ImageUrl
             }).ToTableSettings(
                 new PagedListFilterModel()
                 {

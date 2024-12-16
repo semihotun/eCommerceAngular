@@ -6,10 +6,11 @@ using eCommerceBase.Persistence.GenericRepository;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Application.Constants;
 using eCommerceBase.Application.Handlers.Mapper;
+using eCommerceBase.Application.Helpers;
 
 namespace eCommerceBase.Application.Handlers.ProductPhotoes.Commands;
 public record UpdateProductPhotoCommand(Guid ProductId,
-		string PhotoBase64,
+		string ImageUrl,
 		System.Guid Id) : IRequest<Result>;
 public class UpdateProductPhotoCommandHandler(IWriteDbRepository<ProductPhoto> productPhotoRepository,
 		IUnitOfWork unitOfWork,
@@ -28,6 +29,13 @@ public class UpdateProductPhotoCommandHandler(IWriteDbRepository<ProductPhoto> p
             if (data is not null)
             {
                 data = ProductPhotoMapper.UpdateProductPhotoCommandToProductPhoto(request);
+                if (data.ImageUrl != request.ImageUrl)
+                {
+                    var saveImage = await PhotoHelper.SaveBase64ImageAsWebP(data.Id, data.ImageUrl);
+                    if (!saveImage.Success)
+                        Result.ErrorResult(saveImage.Message);
+                    data.SetImageUrl(saveImage.Data!);
+                }
                 _productPhotoRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:Product");
                 return Result.SuccessResult(Messages.Updated);

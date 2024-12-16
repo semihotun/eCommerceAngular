@@ -21,4 +21,7 @@
     <ProjectReference Include="..\eCommerceBase.Insfrastructure\eCommerceBase.Insfrastructure.csproj" />
     <ProjectReference Include="..\eCommerceBase.Persistence\eCommerceBase.Persistence.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
 </Project>

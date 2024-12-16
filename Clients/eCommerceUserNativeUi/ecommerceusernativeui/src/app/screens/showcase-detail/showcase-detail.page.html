@@ -6,7 +6,7 @@
       @for (product of this.showcaseStore.getHomeShowcaseDetailDTO$().data; track $index) {
       <div class="card" (click)="glb.navigateProductDetail(product.slug)">
         <div class="image">
-          <img [src]="product.photoBase64" />
+          <img [src]="glb.getImagePath(product.imageUrl)" />
           <app-favorite-product-button class="favorite-button" [size]="15" [productId]="product.id"
             [favoriteId]="product.favoriteId"></app-favorite-product-button>
         </div>

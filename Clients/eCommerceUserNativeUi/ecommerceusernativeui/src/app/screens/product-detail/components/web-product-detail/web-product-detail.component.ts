@@ -6,6 +6,7 @@ import { StarRatingComponent } from 'src/app/uı/star-rating/star-rating.compone
 import { ProductStore } from 'src/app/stores/product.store';
 import { WebProductTabsComponent } from './components/web-product-tabs/web-product-tabs.component';
 import { FavoriteProductButtonComponent } from '../../../../u\u0131/favorite-product-button/favorite-product-button.component';
+import { GlobalService } from 'src/app/services/core/global.service';
 @Component({
   selector: 'app-web-product-detail',
   templateUrl: './web-product-detail.component.html',
@@ -21,6 +22,6 @@ import { FavoriteProductButtonComponent } from '../../../../u\u0131/favorite-pro
   ],
 })
 export class WebProductDetailComponent implements OnInit {
-  constructor(public productStore: ProductStore) {}
+  constructor(public productStore: ProductStore, public glb: GlobalService) {}
   ngOnInit() {}
 }

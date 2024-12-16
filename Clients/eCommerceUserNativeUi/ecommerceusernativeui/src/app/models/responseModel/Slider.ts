@@ -3,7 +3,7 @@ export interface Slider {
   isDeleted: boolean;
   createdOnUtc: string;
   updatedOnUtc: string;
-  sliderImage: string;
+  imageUrl: string;
   sliderHeading: string;
   sliderText: string;
   sliderLink: string;

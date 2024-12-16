@@ -1,21 +1,16 @@
 using eCommerceBase.Domain.SeedWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eCommerceBase.Domain.AggregateModels
 {
     public class ProductPhoto : BaseEntity
     {
         public Guid ProductId { get; private set; }
-        public string PhotoBase64 { get; private set; }
+        public string ImageUrl { get; private set; }
 
-        public ProductPhoto(Guid productId, string photoBase64)
+        public ProductPhoto(Guid productId, string imageUrl)
         {
             ProductId = productId;
-            PhotoBase64 = photoBase64;
+            ImageUrl = imageUrl;
         }
 
         public Product? Product { get; private set; }
@@ -23,6 +18,10 @@ namespace eCommerceBase.Domain.AggregateModels
         public void SetProduct(Product? product)
         {
             Product = product;
+        }
+        public void SetImageUrl(string imageUrl)
+        {
+            ImageUrl = imageUrl;
         }
     }
 }

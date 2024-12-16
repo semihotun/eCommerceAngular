@@ -4,8 +4,8 @@
     <app-segment-language formControlName="languageCode"></app-segment-language>
 
     <app-image-picker [label]="'Slider Image' |translate" [placeholder]="'Slider Image' |translate"
-      formControlName="sliderImage" class="mt-2"> </app-image-picker>
-    <div class="label-error" *ngIf="hasError('sliderImage','required')">{{'Required' |translate}}</div>
+      formControlName="imageUrl" class="mt-2"> </app-image-picker>
+    <div class="label-error" *ngIf="hasError('imageUrl','required')">{{'Required' |translate}}</div>
 
     <app-input [label]="'Slider Heading' |translate" [placeholder]="'Slider Heading' |translate"
       formControlName="sliderHeading" class="mt-2"> </app-input>

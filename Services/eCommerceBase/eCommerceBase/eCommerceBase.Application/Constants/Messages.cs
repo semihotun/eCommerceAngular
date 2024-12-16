@@ -32,5 +32,6 @@ namespace eCommerceBase.Application.Constants
         public static string UserHasAldreadyBeenApproved => "UserHasAldreadyBeenApproved";
         public static string AccountAlreadyConfirmed => "AccounAlreadyConfirmed";
         public static string EmailConfirmed => "EmailConfirmed";
+        public static string UnsupportedImageFormat => "UnsupportedImageFormat";
     }
 }

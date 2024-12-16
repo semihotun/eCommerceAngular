@@ -63,7 +63,7 @@ export class CreateOrUpdateProductPhotoComponent implements OnInit, OnDestroy {
   }
   initForm() {
     this.form = this.formBuilder.group({
-      photoBase64: ['', Validators.required],
+      imageUrl: ['', Validators.required],
     });
   }
   hasError(controlName: string, errorName: string) {
@@ -76,7 +76,7 @@ export class CreateOrUpdateProductPhotoComponent implements OnInit, OnDestroy {
       let productPhoto = new ProductPhoto();
       productPhoto.languageCode = this.productStore.product$().languageCode;
       productPhoto.productId = this.productStore.product$().id;
-      productPhoto.photoBase64 = this.form.get('photoBase64')?.value;
+      productPhoto.imageUrl = this.form.get('imageUrl')?.value;
       await this.productPhotoService.createProductPhoto(productPhoto);
       this.productPhotoGrid.refresh();
       this.form.reset();

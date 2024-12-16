@@ -279,3 +279,4 @@ packages
 *.editorconfig
 /Services/eCommerceBase/eCommerceBase/eCommerceBase.Insfrastructure/obj
 /.vs
+/Services/eCommerceBase/eCommerceBase/eCommerceBase.Api/wwwroot

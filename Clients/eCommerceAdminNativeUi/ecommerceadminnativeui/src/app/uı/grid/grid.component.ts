@@ -35,6 +35,7 @@ import { SelectboxComponent } from '../selectbox/selectbox.component';
 import { InputComponent } from '../input/input.component';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { LazyImgDirective } from './../../directives/lazy-img.directive';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
@@ -146,7 +147,12 @@ export class GridComponent implements OnInit, OnDestroy {
       await this.getAllList();
     }
   }
-
+  getImagePath(path: string) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path;
+    }
+    return environment.photoPath + path;
+  }
   propertyList() {
     if (this.gridStore.gridSettings$() != null) {
       const splitData =

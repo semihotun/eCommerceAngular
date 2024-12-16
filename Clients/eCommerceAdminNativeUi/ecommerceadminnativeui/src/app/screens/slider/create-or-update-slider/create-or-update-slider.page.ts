@@ -70,7 +70,7 @@ export class CreateOrUpdateSliderPage implements OnInit {
   initForm() {
     this.form = this.formBuilder.group({
       id: [''],
-      sliderImage: ['', [Validators.required]],
+      imageUrl: ['', [Validators.required]],
       sliderHeading: ['', [Validators.required]],
       sliderText: ['', [Validators.required]],
       sliderLink: ['', [Validators.required]],

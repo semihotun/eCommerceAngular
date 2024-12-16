@@ -10,6 +10,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Platform, IonButton } from '@ionic/angular/standalone';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-image-picker',
@@ -54,7 +55,7 @@ export class ImagePickerComponent implements OnInit, ControlValueAccessor {
         source: CameraSource.Photos,
       });
       this.selectedImage = `data:image/jpeg;base64,${image.base64String}`;
-      this.valuChange();
+      this.valueChange();
     }
   }
 
@@ -65,21 +66,21 @@ export class ImagePickerComponent implements OnInit, ControlValueAccessor {
       reader.onload = () => {
         const base64String = (reader.result as string).split(',')[1];
         this.selectedImage = `data:image/jpeg;base64,${base64String}`;
-        this.valuChange();
+        this.valueChange();
       };
       reader.readAsDataURL(file);
     }
   }
-  valuChange() {
+  valueChange() {
     this.value = this.selectedImage;
     this.onChange(this.value);
     this.onTouched();
   }
 
   writeValue(obj: any): void {
+    console.log(obj);
     if (obj !== undefined && this.value !== obj && obj != '') {
-      //daha sonra değişicek
-      this.selectedImage = obj;
+      this.selectedImage = environment.photoPath + obj;
       this.value = obj;
       this.onChange(this.value);
       this.onTouched();

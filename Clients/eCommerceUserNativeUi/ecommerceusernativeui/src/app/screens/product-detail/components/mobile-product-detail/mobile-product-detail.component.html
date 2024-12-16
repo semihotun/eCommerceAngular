@@ -2,7 +2,7 @@
 <div id="product-detail">
   <div class="product">
     <div class="photo">
-      <img [src]="this.productStore.productDTO$().photoBase64">
+      <img [src]="this.glb.getImagePath(this.productStore.productDTO$().imageUrl)">
       <app-favorite-product-button class="favorite-button" [size]="22" [productId]="this.productStore.productDTO$().id"
         [favoriteId]="this.productStore.productDTO$().favoriteId"></app-favorite-product-button>
     </div>

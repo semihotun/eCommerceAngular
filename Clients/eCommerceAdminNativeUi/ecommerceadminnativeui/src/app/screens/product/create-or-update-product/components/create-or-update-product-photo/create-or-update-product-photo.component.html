@@ -3,8 +3,8 @@
   <form [formGroup]="form">
     <div class="row mt-2">
       <app-image-picker [label]="'Product Image' |translate" [placeholder]="'Product Image' |translate"
-        formControlName="photoBase64" class="mt-2"> </app-image-picker>
-      <div class="label-error" *ngIf="hasError('photoBase64','required')">{{'Required' |translate}}</div>
+        formControlName="imageUrl" class="mt-2"> </app-image-picker>
+      <div class="label-error" *ngIf="hasError('imageUrl','required')">{{'Required' |translate}}</div>
     </div>
     <div>
       <app-btn-submit [text]="'Add Product Photo' | translate" class="mt-3"

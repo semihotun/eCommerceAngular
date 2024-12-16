@@ -5,7 +5,7 @@
     <div class="product-list">
       <div class="product" *ngFor="let product of this.productFavoriteStore.productFavoriteList$().data">
         <div class="photo">
-          <img [src]="product.photoBase64">
+          <img [src]="this.glb.getImagePath(product.imageUrl)">
           <app-favorite-product-button class="favorite-button" [size]="15" [productId]="product.id"
             [favoriteId]="product.favoriteId"
             (deleteClick)="deleteFavorite(product.favoriteId!)"></app-favorite-product-button>

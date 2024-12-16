@@ -5,5 +5,5 @@ public class SliderGridDTO
     public string? SliderHeading { get; set; }
     public string? SliderText { get; set; }
     public string? SliderLink { get; set; }
-    public string? SliderImage { get; set; }
+    public string? ImageUrl { get; set; }
 }

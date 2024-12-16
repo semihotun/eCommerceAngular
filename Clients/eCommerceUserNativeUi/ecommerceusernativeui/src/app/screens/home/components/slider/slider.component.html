@@ -3,7 +3,7 @@
     <div class="slider-wrapper" [style.transform]="transformStyle" #sliderWrapper>
       <ng-container *ngFor="let slider of this.homeStore.sliders$(); let i = index">
         <div class="slide" [class.active]="i === currentIndex">
-          <img [src]="slider.sliderImage">
+          <img [src]="slider.imageUrl">
           <div class="slider-info">
             <div class="header">{{ slider.sliderHeading }}</div>
             <div class="text">{{ slider.sliderText }}</div>

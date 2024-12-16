@@ -25,7 +25,7 @@ public class GetSliderGridDTOQueryHandler(IReadDbRepository<Slider> sliderReposi
                 SliderHeading = x.SliderHeading,
                 SliderText = x.SliderText,
                 SliderLink = x.SliderLink,
-                SliderImage = x.SliderImage
+                ImageUrl = x.ImageUrl
             }).ToTableSettings(new PagedListFilterModel()
             {
                 PageIndex = request.PageIndex,
