@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, takeUntil } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +31,14 @@ export class HttpService {
         'tr',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
-    this.http.post<T>(url, data, { headers: headers }).subscribe({
-      next: onNext,
-      error: onError,
-      complete: onComplete,
-    });
+    this.http
+      .post<T>(url, data, { headers: headers })
+      .pipe(takeUntil(takeUntil$))
+      .subscribe({
+        next: onNext,
+        error: onError,
+        complete: onComplete,
+      });
   }
   public get<T>(
     url: string,
@@ -53,10 +56,13 @@ export class HttpService {
       LanguageCode: localStorage.getItem('languageCode')?.toString()! ?? 'tr',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
-    this.http.get<T>(url, { params, headers: headers }).subscribe({
-      next: onNext,
-      error: onError,
-      complete: onComplete,
-    });
+    this.http
+      .get<T>(url, { params, headers: headers })
+      .pipe(takeUntil(takeUntil$))
+      .subscribe({
+        next: onNext,
+        error: onError,
+        complete: onComplete,
+      });
   }
 }

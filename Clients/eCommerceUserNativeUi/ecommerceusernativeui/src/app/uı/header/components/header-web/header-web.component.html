@@ -1,0 +1,65 @@
+<div class="header">
+  <div class="header-top">
+    <div class="links">
+      <a href="#">Hakkımızda</a>
+      <a href="#">Yardım & Destek</a>
+      <a href="#">İndirimli Kuponlarım</a>
+      <a href="#">Destek Talebi Oluştur</a>
+    </div>
+  </div>
+  <div class="header-middle">
+    <div class="header-container">
+      <div class="header-left">
+        <div class="logo"><img [src]="this.homeStore.websiteInfo$().logo" height="50px">
+        </div>
+        <div class="search-input-wrapper">
+          <div class="search-list" *ngIf="isSearchShow">
+            <div class="product" *ngFor="let product of this.homeStore.homeSearchList$()">
+              <div class="product-name">{{product.productName}}</div>
+            </div>
+          </div>
+          <input type="text" class="search-input" [formControl]="searchText" (input)="changeSearchInput()"
+            (focus)="clickSearchInput()" [placeholder]="'Enter product name' |translate">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+      <div class="header-right">
+        <a href="#" class="shopping"><i class="fa-solid fa-cart-shopping" id="shoppingIcon"></i><span>Sepetim</span></a>
+        @if(!userService.isLogin()){
+        <a (click)="this.navController.navigateForward('/login')"><i class="fa-regular fa-user" id="userIcon"></i><span>
+            {{'Login' |translate}}
+          </span></a>
+        }
+        @else {
+        <a (click)="this.navController.navigateForward('/user-management')"><i class="fa-regular fa-user"
+            id="userIcon"></i><span>
+            {{'User' |translate}}
+          </span></a>
+        }
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="'header-bottom ' + headerBottom.value" #headerRight>
+    <ul>
+      <li id="home"><a (click)="this.navController.navigateForward('')">{{ "Home" |translate
+          }}</a></li>
+      <ng-container *ngFor="let category of homeStore.categoryTreeDto$()">
+        @if (category.subCategories.length == 0){
+        <li><a (click)="this.navController.navigateForward(['/category', category.slug])">{{category.categoryName}}</a>
+          }
+          @else {
+        <li>
+          <a id="show-sub-category">
+            {{category.categoryName}}
+          </a>
+          <div class="sub-category-list sub-category-close">
+            <div class="sub-category" *ngFor="let subCategory of category.subCategories"><a
+                (click)="this.navController.navigateForward(['/category', subCategory.slug])">{{subCategory.categoryName}}</a>
+            </div>
+          </div>
+        </li>
+        }
+      </ng-container>
+    </ul>
+  </div>
+</div>

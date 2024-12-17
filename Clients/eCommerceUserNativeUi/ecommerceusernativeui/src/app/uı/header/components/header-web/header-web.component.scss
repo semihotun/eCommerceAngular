@@ -1,0 +1,259 @@
+@import "../../../../../theme/variables.scss";
+
+.sub-category-open {
+    box-sizing: border-box;
+    padding: 20px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    flex-wrap: wrap;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.sub-category-close {
+    display: none;
+}
+
+.header {
+
+    .header-top {
+        background-color: #3333330a;
+        width: 100%;
+        border-bottom: 1px solid rgba($color: $header-bottom-bg, $alpha: 0.08);
+
+        .links {
+            max-width: $container-max-width;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            padding: 4px 0px;
+            font-size: 11px;
+            font-weight: 200;
+            display: flex;
+            justify-content: flex-end;
+
+            a {
+                color: black;
+                padding-left: 20px;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .header-middle {
+        background-color: $header-bg-color;
+        height: $header-middle-height;
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+
+        .header-container {
+            justify-content: space-between;
+            display: flex;
+            vertical-align: middle;
+            align-items: center;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: $header-bg-color;
+            max-width: $container-max-width;
+
+            .header-left {
+                display: flex;
+                justify-content: flex-start;
+                vertical-align: middle;
+                align-items: center;
+                width: 65%;
+                background-color: $header-bg-color;
+
+                .logo {
+                    color: black;
+                    height: 100%;
+                    background-color: $header-bg-color;
+                    display: flex;
+                    align-items: center;
+                    font-size: 2rem;
+                    padding-right: 100px;
+                }
+
+                .search-input-wrapper {
+                    width: 100%;
+                    height: 38px;
+                    position: relative;
+                    display: flex;
+                    vertical-align: middle;
+                    align-items: center;
+
+                    .search-list {
+                        z-index: 50;
+                        position: absolute;
+                        top: 100%;
+                        width: 100%;
+                        background-color: white;
+                        border: 1px solid $header-bottom-bg;
+                        min-height: 100px;
+                        padding-left: 10px;
+
+                        .product {
+                            font-size: 12px;
+                            margin-top: 10px;
+                        }
+                    }
+
+                    .search-input {
+                        background-color: $header-bg-color;
+                        height: 100%;
+                        padding-left: 10px;
+                        font-size: 12px;
+                        width: 100%;
+                        border-radius: 5px;
+                        border: 1px solid $header-bottom-bg;
+
+                        &::placeholder {
+                            font-weight: bold;
+                            color: darkgray;
+                        }
+
+                    }
+
+                    i {
+                        height: 100%;
+                        background-color: transparent;
+                        position: absolute;
+                        right: 10px;
+                        display: flex;
+                        vertical-align: middle;
+                        align-items: center;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .header-right {
+                background-color: $header-bg-color;
+
+                .shopping {
+                    margin-right: 20px;
+                }
+
+                i {
+                    border: 1px solid $header-bottom-bg;
+                    padding: 7px;
+                    margin: 0px 10px;
+                }
+
+                a {
+                    span {
+                        background-color: $header-bg-color;
+                    }
+
+                    background-color: $header-bg-color;
+                    font-size: 12px;
+                    text-decoration: none;
+                    color: $header-bottom-bg;
+                }
+            }
+        }
+    }
+
+    .header-bottom {
+        font-size: 12px;
+        margin: 0px;
+        padding: 0px;
+        z-index: 102;
+        display: flex;
+        font-weight: 200;
+        background-color: $header-bottom-bg;
+        align-items: center;
+        vertical-align: middle;
+        justify-content: flex-start;
+        height: 44px;
+
+        #home {
+            background-color: $theme-color-orange;
+        }
+
+        ul {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+            background-color: $header-bottom-bg;
+            max-width: $container-max-width;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+
+            #home {
+                a {
+                    color: white;
+                }
+
+            }
+
+            li {
+                height: 100%;
+                display: inline-block;
+                background-color: $header-bottom-bg;
+
+                #show-sub-category {
+                    color: white;
+                }
+
+                a {
+                    box-sizing: border-box;
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    padding: 10px;
+                    margin: 2px;
+                    color: black;
+                    text-decoration: none;
+
+                    i {
+                        background-color: red;
+                        padding-left: 5px;
+                    }
+                }
+
+                &:hover .sub-category-list {
+                    z-index: 999;
+                    box-sizing: border-box;
+                    left: 5%;
+                    right: 5%;
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    height: 300px;
+                    flex-wrap: wrap;
+                    overflow: hidden;
+                }
+
+                .sub-category-list {
+                    top: $header-height;
+                    background-color: white;
+                    margin-left: 5%;
+                    margin-right: 5%;
+                    border: 1px solid #e2e2e2;
+
+                    .sub-category {
+                        background-color: white;
+                        display: flex;
+                        align-items: center;
+                        vertical-align: middle;
+                        padding-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+a:hover {
+    cursor: pointer;
+}

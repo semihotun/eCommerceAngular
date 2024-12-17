@@ -88,7 +88,7 @@
             max-width: $container-max-width;
 
             @media screen and (max-width: $tablet-size) {
-                width: 95%;
+                width: 100%;
             }
 
             .header-back-button {
@@ -125,7 +125,7 @@
 
                 @media screen and (max-width: $tablet-size) {
                     justify-content: space-around;
-                    width: 85%;
+                    width: 100%;
                 }
 
                 .logo {
@@ -142,18 +142,78 @@
                     }
                 }
 
+
+
                 .search-input-wrapper {
                     width: 100%;
-                    height: 34px;
+                    height: 38px;
                     position: relative;
+                    display: flex;
+                    vertical-align: middle;
+                    align-items: center;
+
+                    .closeBtn {
+                        color: white;
+                        border: none;
+                        cursor: pointer;
+                        background-color: transparent;
+                        padding: 10px;
+
+                        &::before {
+                            content: 'X';
+                            color: #333;
+                            margin-right: 5px;
+                            font-size: 20px;
+                            font-weight: bold;
+                        }
+                    }
+
+                    .search-list {
+                        z-index: 50;
+                        position: absolute;
+                        top: 100%;
+                        width: 100%;
+                        background-color: white;
+                        border: 1px solid $header-bottom-bg;
+                        min-height: 100px;
+                        padding-left: 10px;
+
+                        @media screen and (max-width: $tablet-size) {
+                            min-height: 100%;
+                            margin-top: 5px;
+                            border-top: none;
+                            border-left: none;
+                            border-right: none;
+                        }
+
+                        .product {
+                            font-size: 12px;
+                            margin-top: 10px;
+                        }
+                    }
 
                     .search-input {
                         background-color: $header-bg-color;
                         height: 100%;
-                        position: absolute;
+                        padding-left: 10px;
+                        // position: absolute;
+                        font-size: 12px;
                         width: 100%;
                         border-radius: 5px;
-                        border: 1px solid gray;
+                        border: 1px solid #e2e2e2;
+
+                        &::placeholder {
+                            font-weight: bold;
+                            color: darkgray;
+                        }
+
+                        @media screen and (max-width: $tablet-size) {
+                            &:focus {
+                                outline: none;
+                                border: none;
+                            }
+                        }
+
                     }
 
                     i {
@@ -389,4 +449,15 @@
             }
         }
     }
+}
+
+.search-list {
+    position: fixed;
+    min-height: 100%;
+    background-color: white;
+    z-index: 9999999999999999999;
+    width: 100%;
+    top: $header-mobile-middle-height;
+    padding-left: 8px;
+    font-size: 14px;
 }

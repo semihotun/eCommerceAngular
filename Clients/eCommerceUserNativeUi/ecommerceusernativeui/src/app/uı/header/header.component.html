@@ -1,66 +1,7 @@
-<div class="header">
-  <div class="header-top" *ngIf="!glb.isMobil.value">
-    <div class="links">
-      <a href="#">Hakkımızda</a>
-      <a href="#">Yardım & Destek</a>
-      <a href="#">İndirimli Kuponlarım</a>
-      <a href="#">Destek Talebi Oluştur</a>
-    </div>
-  </div>
-  <div class="header-middle">
-    <div class="header-container">
-      <div class="header-back-button" *ngIf="glb.isMobil.value" (click)="backButtonClick()">
-        <button class="previousbtn" *ngIf="glb.isMobil.value && isNavigationBackUrl != null"></button>
-      </div>
-      <div class="header-left">
-        <div class="logo" *ngIf="!glb.isMobil.value"><img [src]="this.homeStore.websiteInfo$().logo" height="50px">
-        </div>
-        <div class="search-input-wrapper">
-          <input type="text" class="search-input">
-          <i class="fas fa-search"></i>
-        </div>
-      </div>
-      <div class="header-right" *ngIf="!glb.isMobil.value">
-        <a href="#"><i class="fa-solid fa-cart-shopping" id="shoppingIcon"></i><span
-            *ngIf="!glb.isMobil.value">Sepetim</span></a>
-        @if(!userService.isLogin()){
-        <a routerLink="/login"><i class="fa-regular fa-user" id="userIcon"></i><span *ngIf="!glb.isMobil.value">
-            {{'Login' |translate}}
-          </span></a>
-        }
-        @else {
-        <a routerLink="/user-management"><i class="fa-regular fa-user" id="userIcon"></i><span
-            *ngIf="!glb.isMobil.value">
-            {{'User' |translate}}
-          </span></a>
-        }
-      </div>
-      <div class="mobile-bars" (click)="showMobileBars()">
-        <i class="fa-solid fa-bars bar-icon"></i>
-      </div>
-    </div>
-  </div>
-  <div [ngClass]="'header-bottom ' + headerBottom.value" #headerRight>
-    <ul>
-      <li id="home"><a [routerLink]="['']" class="header-bottom-a">{{ "Home" |translate }}</a></li>
-      <ng-container *ngFor="let category of homeStore.categoryTreeDto$()">
-        @if (category.subCategories.length == 0){
-        <li><a [routerLink]="['/category', category.slug]" class="header-bottom-a">{{category.categoryName}}</a>
-          }
-          @else {
-        <li>
-          <a id="show-sub-category" class="header-bottom-a" (click)="showSubNodeCategory($event.currentTarget!)">
-            {{category.categoryName}}
-            <i *ngIf="glb.isMobil.value" class="fa-solid fa-chevron-down"></i>
-          </a>
-          <div class="sub-category-list sub-category-close">
-            <div class="sub-category" *ngFor="let subCategory of category.subCategories"><a
-                [routerLink]="['/category', subCategory.slug]">{{subCategory.categoryName}}</a>
-            </div>
-          </div>
-        </li>
-        }
-      </ng-container>
-    </ul>
-  </div>
-</div>
+@if (!this.glb.isMobil.value) {
+<app-header-web [isNavigationBackUrl]="this.isNavigationBackUrl"></app-header-web>
+
+}
+@else {
+<app-header-mobile [isNavigationBackUrl]="this.isNavigationBackUrl"></app-header-mobile>
+}

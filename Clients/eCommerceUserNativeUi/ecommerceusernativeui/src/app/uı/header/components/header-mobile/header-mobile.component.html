@@ -1,0 +1,58 @@
+<div class="header">
+  <div class="header-middle">
+    <div class="header-container">
+      <div class="header-back-button" *ngIf="isNavigationBackUrl != null && !this.glb.isMobilSearch.value"
+        (click)="backButtonClick()">
+        <button class="previousbtn"></button>
+      </div>
+      <div class="search-input-wrapper">
+        <div class="closeBtn" *ngIf="glb.isMobil.value && this.glb.isMobilSearch.value" (click)="searchClose()"></div>
+        <input type="text" class="search-input" [formControl]="searchText" (input)="changeSearchInput($event)"
+          (focus)="clickSearchInput()" [placeholder]="'Enter product name' | translate">
+        <i class="fas fa-search"></i>
+      </div>
+      <div class="mobile-bars" (click)="openOrCloseMobileBars()" *ngIf="!this.glb.isMobilSearch.value">
+        <i class="fa-solid fa-bars bar-icon"></i>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="'header-bottom ' + headerBottom.value" #headerRight>
+    <ul>
+      <li id="home">
+        <a (click)="navigateTo('')" class="header-bottom-a">{{ "Home" | translate }}</a>
+      </li>
+      <ng-container *ngFor="let category of homeStore.categoryTreeDto$()">
+        @if (category.subCategories.length == 0) {
+        <li>
+          <a (click)="navigateTo('/category/' + category.slug)" class="header-bottom-a">
+            {{ category.categoryName }}
+          </a>
+        </li>
+        } @else {
+        <li>
+          <a id="show-sub-category" class="header-bottom-a" (click)="showSubNodeCategory($event.currentTarget!)">
+            {{ category.categoryName }}
+            <i class="fa-solid fa-chevron-down"></i>
+          </a>
+          <div class="sub-category-list sub-category-close">
+            <div class="sub-category" *ngFor="let subCategory of category.subCategories">
+              <a (click)="navigateTo('/category/' + subCategory.slug)">
+                {{ subCategory.categoryName }}
+              </a>
+            </div>
+          </div>
+        </li>
+        }
+      </ng-container>
+    </ul>
+  </div>
+</div>
+<div class="search-list" *ngIf="this.glb.isMobilSearch.value">
+  <div class="search-list-container ">
+    @for (product of this.homeStore.homeSearchList$(); track $index) {
+    <div class="search-product">
+      <div class="search-product-name">{{ product.productName }}</div>
+    </div>
+    }
+  </div>
+</div>

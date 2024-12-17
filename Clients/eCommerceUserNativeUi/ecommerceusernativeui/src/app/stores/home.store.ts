@@ -4,12 +4,14 @@ import { ComponentStore } from '@ngrx/component-store';
 import { AllShowcaseDTO } from '../models/responseModel/allShowcaseDTO';
 import { WebsiteInfo } from '../models/responseModel/websiteInfo';
 import { CategoryTreeDTO } from '../models/responseModel/CategoryTreeDTO';
+import { ProductSearch } from '../models/responseModel/productSearch';
 
 export type HomeState = {
   sliders: Slider[];
   showcases: AllShowcaseDTO[];
   websiteInfo: WebsiteInfo;
   categoryTreeDto: CategoryTreeDTO[];
+  homeSearchList: ProductSearch[];
 };
 
 export const homeInitialState: HomeState = {
@@ -17,6 +19,7 @@ export const homeInitialState: HomeState = {
   showcases: [],
   websiteInfo: new WebsiteInfo(),
   categoryTreeDto: [],
+  homeSearchList: [],
 };
 
 @Injectable({
@@ -27,6 +30,7 @@ export class HomeStore extends ComponentStore<HomeState> {
   readonly showcases$ = this.selectSignal((x) => x.showcases);
   readonly websiteInfo$ = this.selectSignal((x) => x.websiteInfo);
   readonly categoryTreeDto$ = this.selectSignal((x) => x.categoryTreeDto);
+  readonly homeSearchList$ = this.selectSignal((x) => x.homeSearchList);
   constructor() {
     super(homeInitialState);
   }
@@ -40,6 +44,12 @@ export class HomeStore extends ComponentStore<HomeState> {
     ...state,
     sliders,
   }));
+  readonly setHomeSearchList = this.updater(
+    (state, homeSearchList: ProductSearch[]) => ({
+      ...state,
+      homeSearchList,
+    })
+  );
 
   readonly setShowcases = this.updater(
     (state, showcases: AllShowcaseDTO[]) => ({
