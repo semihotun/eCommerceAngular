@@ -1,6 +1,8 @@
 ﻿using Carter;
 using eCommerceBase.Application.Handlers.Products.Queries;
 using eCommerceBase.Application.Handlers.Products.Queries.Dtos;
+using eCommerceBase.Application.Handlers.ProductSearches.Queries;
+using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Grid.PagedList;
 using MediatR;
@@ -20,6 +22,9 @@ namespace eCommerceBase.Api.Endpoints
             group.MapPost("/gethomeshowcasedetailquery", GetHomeShowcaseDetail)
                .Produces(StatusCodes.Status200OK, typeof(Result<PagedList<GetHomeShowcaseDetailDTO>>))
                .AllowAnonymous();
+            group.MapPost("/gethomeproductsearchquery", GetHomeProductSearch)
+                .Produces(StatusCodes.Status200OK, typeof(Result<List<ProductSearch>>))
+                .AllowAnonymous();
         }
         public static async Task<IResult> GetAllHome(ISender sender)
         {
@@ -31,6 +36,15 @@ namespace eCommerceBase.Api.Endpoints
             return Results.BadRequest(result);
         }
         public static async Task<IResult> GetHomeShowcaseDetail([FromBody] GetHomeShowcaseDetailQuery data, ISender sender)
+        {
+            var result = await sender.Send(data);
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> GetHomeProductSearch([FromBody] GetHomeProductSearchQuery data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)
