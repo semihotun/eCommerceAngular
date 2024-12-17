@@ -6,6 +6,7 @@ using eCommerceBase.Persistence.GenericRepository;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Application.Constants;
 using eCommerceBase.Application.Handlers.Mapper;
+using eCommerceBase.Application.IntegrationEvents.Product;
 
 namespace eCommerceBase.Application.Handlers.Products.Commands;
 public record UpdateProductCommand(string ProductName,
@@ -26,7 +27,7 @@ public class UpdateProductCommandHandler(IWriteDbRepository<Product> productRepo
     public async Task<Result> Handle(UpdateProductCommand request,
 		CancellationToken cancellationToken)
     {
-        return await _unitOfWork.BeginTransaction(async () =>
+        return await _unitOfWork.BeginTransactionAndCreateOutbox(async (setMessage) =>
         {
             var data = await _productRepository.GetAsync(u => u.Id == request.Id);
             if (data is not null)
@@ -35,6 +36,7 @@ public class UpdateProductCommandHandler(IWriteDbRepository<Product> productRepo
                 data.GenerateSlug();
                 _productRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:Product");
+                setMessage(new UpdateProductSearchStartedIE(data.Id, data.ProductName));
                 return Result.SuccessResult(Messages.Updated);
             }
 

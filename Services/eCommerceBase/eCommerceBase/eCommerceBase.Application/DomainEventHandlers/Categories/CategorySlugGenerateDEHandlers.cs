@@ -28,7 +28,7 @@ namespace eCommerceBase.Application.DomainEventHandlers.Products
             {
                 category.SetSlug(slug);
             }
-            return Task.FromResult<object?>(true);
+            return slug;
         }
     }
 }

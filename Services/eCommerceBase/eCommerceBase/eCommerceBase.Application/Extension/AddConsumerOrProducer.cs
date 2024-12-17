@@ -1,5 +1,6 @@
 ﻿using eCommerceBase.Application.IntegrationEvents.AdminRoles;
 using eCommerceBase.Application.IntegrationEvents.CustomerRegister;
+using eCommerceBase.Application.IntegrationEvents.Product;
 using eCommerceBase.Insfrastructure.Utilities.AdminRole;
 using eCommerceBase.Insfrastructure.Utilities.ServiceBus;
 using MassTransit;
@@ -18,6 +19,9 @@ namespace eCommerceBase.Application.Extension
             cfg.AddDirectProducer<CustomerMailActivationSendedStartedIE>();
             cfg.AddDirectProducer<CustomerMailActivationSendedCompletedIE>();
             cfg.AddDirectProducer<CustomerMailActivationSendedFailedIE>();
+            ///Product Search
+            cfg.AddDirectProducer<CreateProductSearchStartedIE>();
+            cfg.AddDirectProducer<UpdateProductSearchStartedIE>();
         }
         public static void AddConsumers(this IRabbitMqBusFactoryConfigurator cfg, IBusRegistrationContext ctx)
         {
@@ -26,6 +30,15 @@ namespace eCommerceBase.Application.Extension
             cfg.AddDirectConsumer<CustomerMailActivationSendedStartedIE>((x) =>
             {
                 x.ConfigureConsumer<CustomerMailActivationSendedStartedIEHandler>(ctx);
+            });
+            //Product Search
+            cfg.AddDirectConsumer<CreateProductSearchStartedIE>((x) =>
+            {
+                x.ConfigureConsumer<CreateProductSearchStartedIEHandler>(ctx);
+            });
+            cfg.AddDirectConsumer<UpdateProductSearchStartedIE>((x) =>
+            {
+                x.ConfigureConsumer<UpdateProductSearchStartedIEHandler>(ctx);
             });
         }
     }

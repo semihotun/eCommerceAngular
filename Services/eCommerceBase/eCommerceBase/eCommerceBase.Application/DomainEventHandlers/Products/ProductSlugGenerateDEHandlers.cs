@@ -29,7 +29,7 @@ namespace eCommerceBase.Application.DomainEventHandlers.Products
             {
                 product.SetSlug(slug);
             }
-            return Task.FromResult<object?>(true);
+            return slug;
         }
     }
 }

@@ -1,5 +1,6 @@
 using eCommerceBase.Application.Constants;
 using eCommerceBase.Application.Handlers.Mapper;
+using eCommerceBase.Application.IntegrationEvents.Product;
 using eCommerceBase.Domain.AggregateModels;
 using eCommerceBase.Domain.Result;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
@@ -25,12 +26,13 @@ public class CreateProductCommandHandler(IWriteDbRepository<Product> productRepo
     public async Task<Result> Handle(CreateProductCommand request,
 		CancellationToken cancellationToken)
     {
-        return await _unitOfWork.BeginTransaction(async () =>
+        return await _unitOfWork.BeginTransactionAndCreateOutbox(async (setMessage) =>
         {
             var data = ProductMapper.CreateProductCommandToProduct(request);
             data.GenerateSlug();
             await _productRepository.AddAsync(data);
             await _cacheService.RemovePatternAsync("eCommerceBase:Product");
+            setMessage(new CreateProductSearchStartedIE(data.Id!,data.ProductName));
             return Result.SuccessResult(Messages.Added);
         });
     }
