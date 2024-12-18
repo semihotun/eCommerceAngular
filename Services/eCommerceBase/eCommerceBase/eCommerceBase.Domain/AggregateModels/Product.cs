@@ -114,5 +114,7 @@ namespace eCommerceBase.Domain.AggregateModels
         public ICollection<ProductComment> ProductCommentList { get; private set; } = [];
         [SwaggerIgnore]
         public ICollection<ProductFavorite> ProductFavoriteList { get; private set; } = [];
+        [SwaggerIgnore]
+        public ProductShipmentInfo? ProductShipmentInfo { get; private set; }    
     }
 }
