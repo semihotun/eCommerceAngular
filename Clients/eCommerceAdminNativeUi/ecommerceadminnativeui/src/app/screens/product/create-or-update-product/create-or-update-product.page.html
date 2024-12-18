@@ -71,5 +71,13 @@
         @if (!isCreate) {<app-create-product-stock></app-create-product-stock>}
       </div>
     </ion-accordion>
+    <ion-accordion value="fifth" [disabled]="isCreate">
+      <ion-item slot="header" color="light">
+        <ion-label>{{ 'Product Shipment Info' | translate }}</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        @if (!isCreate) {<app-create-or-update-product-shipment></app-create-or-update-product-shipment>}
+      </div>
+    </ion-accordion>
   </ion-accordion-group>
 </div>

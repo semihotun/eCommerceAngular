@@ -6,27 +6,27 @@ using eCommerceBase.Persistence.GenericRepository;
 using eCommerceBase.Insfrastructure.Utilities.Caching.Redis;
 using eCommerceBase.Application.Constants;
 
-namespace eCommerceBase.Application.Handlers.CategorySpefications.Commands;
-public record DeleteCategorySpeficationCommand(System.Guid Id) : IRequest<Result>;
-public class DeleteCategorySpeficationCommandHandler(IWriteDbRepository<CategorySpecification> categorySpeficationRepository,
+namespace eCommerceBase.Application.Handlers.CategorySpecifications.Commands;
+public record DeleteCategorySpecificationCommand(System.Guid Id) : IRequest<Result>;
+public class DeleteCategorySpecificationCommandHandler(IWriteDbRepository<CategorySpecification> categorySpecificationRepository,
 		IUnitOfWork unitOfWork,
-		ICacheService cacheService) : IRequestHandler<DeleteCategorySpeficationCommand,
+		ICacheService cacheService) : IRequestHandler<DeleteCategorySpecificationCommand,
 		Result>
 {
-    private readonly IWriteDbRepository<CategorySpecification> _categorySpeficationRepository = categorySpeficationRepository;
+    private readonly IWriteDbRepository<CategorySpecification> _categorySpecificationRepository = categorySpecificationRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICacheService _cacheService = cacheService;
-    public async Task<Result> Handle(DeleteCategorySpeficationCommand request,
+    public async Task<Result> Handle(DeleteCategorySpecificationCommand request,
 		CancellationToken cancellationToken)
     {
         return await _unitOfWork.BeginTransaction(async () =>
         {
-            var data = await _categorySpeficationRepository.GetAsync(p => p.Id == request.Id);
+            var data = await _categorySpecificationRepository.GetAsync(p => p.Id == request.Id);
             if (data is not null)
             {
                 data.Deleted = true;
-                _categorySpeficationRepository.Update(data);
-                await _cacheService.RemovePatternAsync("eCommerceBase:Category");
+                _categorySpecificationRepository.Update(data);
+                await _cacheService.RemovePatternAsync("eCommerceBase:CategorySpecifications");
                 return Result.SuccessResult(Messages.Deleted);
             }
             else

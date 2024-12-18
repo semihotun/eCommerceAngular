@@ -119,5 +119,11 @@
 	"From Address":"Mail Adresiniz",
 	"From Password":"Mail Şifreniz",
 	"Host":"Host",
-	"Port":"Port"
+	"Port":"Port",
+	"Product Shipment Info":"Ürün Kargo Bilgisi",
+	"Save Product Shipment":"Kargo Bilgisini Kaydet",
+	"Width":"Genişlik",
+	"Length":"Uzunluk",
+	"Height":"Yükseklik",
+	"Weight":"Ağırlık"
 }

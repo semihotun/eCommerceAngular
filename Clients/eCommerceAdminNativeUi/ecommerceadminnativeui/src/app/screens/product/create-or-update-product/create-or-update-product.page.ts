@@ -31,6 +31,7 @@ import { TextEditorComponent } from 'src/app/uı/text-editor/text-editor.compone
 import { CreateOrUpdateProductSpecificationComponent } from './components/create-or-update-product-specification/create-or-update-product-specification.component';
 import { CreateOrUpdateProductPhotoComponent } from './components/create-or-update-product-photo/create-or-update-product-photo.component';
 import { CreateProductStockComponent } from './components/create-product-stock/create-product-stock.component';
+import { CreateOrUpdateProductShipmentComponent } from './components/create-or-update-product-shipment/create-or-update-product-shipment.component';
 
 @Component({
   selector: 'app-create-or-update-product',
@@ -55,6 +56,7 @@ import { CreateProductStockComponent } from './components/create-product-stock/c
     CreateOrUpdateProductSpecificationComponent,
     CreateOrUpdateProductPhotoComponent,
     CreateProductStockComponent,
+    CreateOrUpdateProductShipmentComponent,
   ],
 })
 export class CreateOrUpdateProductPage implements OnInit {

@@ -1,3 +1,30 @@
-<p>
-  create-or-update-product-shipment works!
-</p>
+<div id="form-70-center">
+  <h6 class="text-center">{{'Product Shipment Info' |translate }}</h6>
+  <form [formGroup]="form">
+    <div class="row mt-4">
+      <app-input [placeholder]="'Width' |translate" [label]="'Width' |translate" formControlName="width"
+        [type]="'number'"></app-input>
+      <div class="label-error" *ngIf="hasError('width','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="row mt-2">
+      <app-input [placeholder]="'Length' |translate" [label]="'Length' |translate" formControlName="length"
+        [type]="'number'"></app-input>
+      <div class="label-error" *ngIf="hasError('length','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="row mt-2">
+      <app-input [placeholder]="'Height' |translate" [label]="'Height' |translate" formControlName="height"
+        [type]="'number'"></app-input>
+      <div class="label-error" *ngIf="hasError('height','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="row mt-2">
+      <app-input [placeholder]="'Weight' |translate" [label]="'Weight' |translate" formControlName="weight"
+        [type]="'number'"></app-input>
+      <div class="label-error" *ngIf="hasError('weight','required')">{{'Required' |translate}}</div>
+    </div>
+    <div>
+      <app-btn-submit [text]="'Save Product Shipment' | translate" class="mt-3"
+        (click)="createOrUpdateProductShipmentInfo()"></app-btn-submit>
+    </div>
+  </form>
+
+</div>

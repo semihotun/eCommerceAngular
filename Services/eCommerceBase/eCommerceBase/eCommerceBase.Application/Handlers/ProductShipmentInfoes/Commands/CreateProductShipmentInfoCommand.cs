@@ -12,16 +12,16 @@ public record CreateProductShipmentInfoCommand(double? Width,
 		double? Length,
 		double? Height,
 		double? Weight,
-		Guid ProductId) : IRequest<Result>;
+		Guid ProductId) : IRequest<Result<ProductShipmentInfo>>;
 public class CreateProductShipmentInfoCommandHandler(IWriteDbRepository<ProductShipmentInfo> productShipmentInfoRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<CreateProductShipmentInfoCommand,
-		Result>
+		Result<ProductShipmentInfo>>
 {
     private readonly IWriteDbRepository<ProductShipmentInfo> _productShipmentInfoRepository = productShipmentInfoRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICacheService _cacheService = cacheService;
-    public async Task<Result> Handle(CreateProductShipmentInfoCommand request,
+    public async Task<Result<ProductShipmentInfo>> Handle(CreateProductShipmentInfoCommand request,
 		CancellationToken cancellationToken)
     {
         return await _unitOfWork.BeginTransaction(async () =>
@@ -29,7 +29,7 @@ public class CreateProductShipmentInfoCommandHandler(IWriteDbRepository<ProductS
             var data = ProductShipmentInfoMapper.CreateProductShipmentInfoCommandToProductShipmentInfo(request);
             await _productShipmentInfoRepository.AddAsync(data);
             await _cacheService.RemovePatternAsync("eCommerceBase:Product");
-            return Result.SuccessResult(Messages.Added);
+            return Result.SuccessDataResult(data,Messages.Added);
         });
     }
 }

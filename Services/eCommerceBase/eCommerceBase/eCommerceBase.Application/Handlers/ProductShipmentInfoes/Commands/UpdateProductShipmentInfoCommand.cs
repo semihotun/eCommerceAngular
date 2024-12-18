@@ -13,16 +13,16 @@ public record UpdateProductShipmentInfoCommand(double? Width,
 		double? Height,
 		double? Weight,
 		Guid ProductId,
-		System.Guid Id) : IRequest<Result>;
+		System.Guid Id) : IRequest<Result<ProductShipmentInfo>>;
 public class UpdateProductShipmentInfoCommandHandler(IWriteDbRepository<ProductShipmentInfo> productShipmentInfoRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<UpdateProductShipmentInfoCommand,
-		Result>
+		Result<ProductShipmentInfo>>
 {
     private readonly IWriteDbRepository<ProductShipmentInfo> _productShipmentInfoRepository = productShipmentInfoRepository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICacheService _cacheService = cacheService;
-    public async Task<Result> Handle(UpdateProductShipmentInfoCommand request,
+    public async Task<Result<ProductShipmentInfo>> Handle(UpdateProductShipmentInfoCommand request,
 		CancellationToken cancellationToken)
     {
         return await _unitOfWork.BeginTransaction(async () =>
@@ -33,10 +33,10 @@ public class UpdateProductShipmentInfoCommandHandler(IWriteDbRepository<ProductS
                 data = ProductShipmentInfoMapper.UpdateProductShipmentInfoCommandToProductShipmentInfo(request);
                 _productShipmentInfoRepository.Update(data);
                 await _cacheService.RemovePatternAsync("eCommerceBase:Product");
-                return Result.SuccessResult(Messages.Updated);
+                return Result.SuccessDataResult(data,Messages.Updated);
             }
 
-            return Result.ErrorResult(Messages.UpdatedError);
+            return Result.SuccessDataResult(data!,Messages.UpdatedError);
         });
     }
 }

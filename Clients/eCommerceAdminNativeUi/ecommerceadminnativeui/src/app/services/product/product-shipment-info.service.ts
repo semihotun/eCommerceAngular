@@ -18,16 +18,19 @@ export class ProductShipmentInfoService extends Destroyable {
   productShipmentInfoStore = inject(ProductShipmentInfoStore);
   toast = inject(ToastService);
 
-  getProductShipmentInfoByProductId(id: string): Promise<void> {
+  getProductShipmentInfoByProductId(
+    productId: string
+  ): Promise<ProductShipmentInfo> {
     return new Promise((resolve, reject) => {
-      this.http.get<Result<ProductShipmentInfo>>(
-        environment.baseUrl + 'productShipmentInfo/getbyproductId',
-        { id: id },
+      this.http.post<Result<ProductShipmentInfo>>(
+        environment.baseUrl +
+          'productShipmentInfo/getproductshipmentinfobyproductid',
+        { productId: productId },
         this.onDestroy,
         (response) => {
           console.log(response.data);
           this.productShipmentInfoStore.setProductShipmentInfo(response.data);
-          resolve();
+          resolve(response.data);
         },
         (err) => {
           reject();
@@ -43,6 +46,7 @@ export class ProductShipmentInfoService extends Destroyable {
         this.onDestroy,
         (response) => {
           this.toast.presentSuccessToast();
+          this.productShipmentInfoStore.setProductShipmentInfo(response.data);
           resolve();
         },
         (err) => {
@@ -60,6 +64,7 @@ export class ProductShipmentInfoService extends Destroyable {
         this.onDestroy,
         (response) => {
           this.toast.presentSuccessToast();
+          this.productShipmentInfoStore.setProductShipmentInfo(response.data);
           resolve();
         },
         (err) => {
