@@ -6,10 +6,10 @@
     display: block;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 300px;
+    // height: 300px;
     width: 100%;
     border: 1px solid black;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     border: none;
 }
 
@@ -150,12 +150,14 @@
         justify-content: flex-start;
         position: fixed;
         width: 45%;
-        height: 100%;
+        height: calc(100% - ($header-mobile-middle-height + $fix-tap-height));
         right: 0;
         font-size: 12px;
         font-weight: 200;
         background-color: $header-bottom-bg;
         z-index: 102;
+        bottom: $fix-tap-height ;
+        overflow-y: scroll;
 
         #home {
             background-color: $theme-color-orange;
@@ -213,8 +215,8 @@
                 .sub-category-list {
                     position: relative;
                     width: 100%;
-                    max-height: 300px;
-                    overflow-y: scroll;
+                    // max-height: 300px;
+                    // overflow-y: scroll;
 
                     .sub-category {
                         display: flex;

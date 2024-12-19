@@ -83,9 +83,11 @@ export class HeaderMobileComponent implements OnInit {
       this.removeSubCategoryOpenClass();
       this.changeHeaderRightClasses(false);
     }
-    const searchWrapper = document.querySelector('.search-input-wrapper');
-    if (searchWrapper && !searchWrapper.contains(event.target as Node)) {
-      this.searchClose();
+    if (this.glb.isMobilSearch.value) {
+      const searchWrapper = document.querySelector('.search-input-wrapper');
+      if (searchWrapper && !searchWrapper.contains(event.target as Node)) {
+        this.searchClose();
+      }
     }
   }
   removeSubCategoryOpenClass() {
