@@ -10,10 +10,12 @@ namespace eCommerceBase.Domain.AggregateModels
         {
             Name = name;
         }
+
         [SwaggerIgnore]
         public ICollection<SpecificationAttributeOption> SpecificationAttributeOption { get; private set; } = [];
+
         [SwaggerIgnore]
-        public ICollection<CategorySpecification> CategorySpeficationList { get; private set; } = [];
+        public ICollection<CategorySpecification> CategorySpecificationList { get; private set; } = [];
 
         public void AddSpecificationAttributeOption(SpecificationAttributeOption? specificationAttributeOption)
         {
@@ -23,11 +25,11 @@ namespace eCommerceBase.Domain.AggregateModels
             }
         }
 
-        public void AddCategorySpeficationList(CategorySpecification? categorySpecification)
+        public void AddCategorySpecificationList(CategorySpecification? categorySpecification)
         {
             if (categorySpecification != null)
             {
-                CategorySpeficationList.Add(categorySpecification);
+                CategorySpecificationList.Add(categorySpecification);
             }
         }
     }

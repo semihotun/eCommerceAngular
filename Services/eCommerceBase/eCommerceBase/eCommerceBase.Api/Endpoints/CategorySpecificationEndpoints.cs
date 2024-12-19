@@ -27,11 +27,11 @@ namespace eCommerceBase.Api.Endpoints
             group.MapGet("/getbyid", GetCategorySpecificationById)
                .Produces(StatusCodes.Status200OK, typeof(Result<CategorySpecification>))
                .AllowAnonymous();
-            group.MapGet("/getall", GetAllCategorySpecification)
-                .Produces(StatusCodes.Status200OK, typeof(Result<CategorySpecification>))
+            group.MapPost("/getallnotexistspecificationgrid", GetAllNotExistSpecificationGridDTOQuery)
+                .Produces(StatusCodes.Status200OK, typeof(Result<PagedList<AllNotExistSpecificationGridDTO>>))
                 .AllowAnonymous();
             group.MapPost("/getgrid", GetCategorySpecificationGrid)
-                .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<CategorySpecificationGridDTO>>))
+                .Produces(StatusCodes.Status200OK, typeof(Result<IPagedList<AllSpecificationGridDTO>>))
                 .AllowAnonymous();
         }
         public static async Task<IResult> CreateCategorySpecification([FromBody] CreateCategorySpecificationCommand data, ISender sender)
@@ -70,16 +70,16 @@ namespace eCommerceBase.Api.Endpoints
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetAllCategorySpecification(ISender sender)
+        public static async Task<IResult> GetAllNotExistSpecificationGridDTOQuery([FromBody] GetAllNotExistSpecificationGridDTOQuery data,ISender sender)
         {
-            var result = await sender.Send(new GetAllCategorySpecification());
+            var result = await sender.Send(data);
             if (result.Success)
             {
                 return Results.Ok(result);
             }
             return Results.BadRequest(result);
         }
-        public static async Task<IResult> GetCategorySpecificationGrid([FromBody] GetCategorySpecificationGridDTOQuery data, ISender sender)
+        public static async Task<IResult> GetCategorySpecificationGrid([FromBody] GetAllSpecificationGridDTOQuery data, ISender sender)
         {
             var result = await sender.Send(data);
             if (result.Success)

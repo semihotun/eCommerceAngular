@@ -12,6 +12,11 @@ namespace eCommerceBase.Persistence.EntityConfigurations
             builder.HasIndex(x => x.CategoryId);
             builder.HasIndex(x => x.SpecificationAttributeteId);
             builder.HasIndex(x => x.Deleted);
+
+            builder.HasOne(x => x.SpecificationAttribute) 
+                 .WithMany(x => x.CategorySpecificationList) 
+                 .HasForeignKey(x => x.SpecificationAttributeteId);
+
         }
     }
 }

@@ -38,7 +38,7 @@ app.UseMiddleware<ClaimMiddleware>();
 app.UseAntiforgery();
 app.MapCarter();
 var task = app.RunAsync();
-await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly());
 _ = app.GenerateDbRole();
 HangFireJobs.AddAllStartupJobs();
+await app.AddOutboxKafkaConsumerAsync(ApplicationAssemblyExtension.GetApplicationAssembly());
 await task;
