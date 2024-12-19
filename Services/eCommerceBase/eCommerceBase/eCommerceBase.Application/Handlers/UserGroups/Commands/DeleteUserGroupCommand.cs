@@ -23,7 +23,7 @@ public class DeleteUserGroupCommandHandler(IWriteDbRepository<UserGroup> userGro
     {
         return await _unitOfWork.BeginTransaction(async () =>
         {
-            var data = await _userGroupRepository.GetAsync(p => p.Id == request.Id);
+            var data = await _userGroupRepository.GetAsync(p => p.Id == request.Id && p.IsEditable);
             if (data is not null)
             {
                 data.Deleted = true;

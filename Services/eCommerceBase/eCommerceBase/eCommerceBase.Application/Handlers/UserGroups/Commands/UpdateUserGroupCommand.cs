@@ -23,7 +23,7 @@ public class UpdateUserGroupCommandHandler(IWriteDbRepository<UserGroup> userGro
     {
         return await _unitOfWork.BeginTransaction(async () =>
         {
-            var data = await _userGroupRepository.GetAsync(u => u.Id == request.Id);
+            var data = await _userGroupRepository.GetAsync(u => u.Id == request.Id && u.IsEditable);
             if (data is not null)
             {
                 data = UserGroupMapper.UpdateUserGroupCommandToUserGroup(request);

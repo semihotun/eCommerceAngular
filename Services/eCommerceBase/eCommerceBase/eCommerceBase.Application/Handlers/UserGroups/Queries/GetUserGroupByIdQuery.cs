@@ -18,7 +18,7 @@ public class GetUserGroupByIdQueryHandler(IReadDbRepository<UserGroup> userGroup
         return await _cacheService.GetAsync(request,
 		async () =>
         {
-            var query = await _userGroupRepository.GetByIdAsync(request.Id);
+            var query = await _userGroupRepository.GetAsync(x=>x.IsEditable && x.Id==request.Id);
             return Result.SuccessDataResult<UserGroup>(query!);
         },
 		cancellationToken);

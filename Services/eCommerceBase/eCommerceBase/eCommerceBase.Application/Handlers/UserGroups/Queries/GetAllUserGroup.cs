@@ -18,7 +18,7 @@ public class GetAllUserGroupHandler(IReadDbRepository<UserGroup> userGroupReposi
         return await _cacheService.GetAsync(request,
 		async () =>
         {
-            var data = await _userGroupRepository.ToListAsync();
+            var data = await _userGroupRepository.ToListAsync(x=>x.IsEditable);
             return Result.SuccessDataResult(data!);
         },
 		cancellationToken);

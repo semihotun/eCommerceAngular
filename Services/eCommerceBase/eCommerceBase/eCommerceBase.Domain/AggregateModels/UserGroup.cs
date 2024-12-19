@@ -5,10 +5,11 @@ namespace eCommerceBase.Domain.AggregateModels
     public class UserGroup : BaseEntity
     {
         public string Name { get; private set; }
-
-        public UserGroup(string name)
+        public bool IsEditable { get; set; }
+        public UserGroup(string name,bool isEditable = true)
         {
             Name = name;
+            IsEditable = isEditable;
         }
         [SwaggerIgnore]
         public ICollection<AdminUser> AdminUserList { get; private set; } = [];

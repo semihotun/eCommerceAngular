@@ -19,7 +19,8 @@ public class GetUserGroupGridDTOQueryHandler(IReadDbRepository<UserGroup> userGr
     {
         return await _cacheService.GetAsync(request, async () =>
         {
-            var query = await _userGroupRepository.Query().Select(x => new UserGroupGridDTO
+            var query = await _userGroupRepository.Query()
+            .Where(x=>x.IsEditable).Select(x => new UserGroupGridDTO
             {
                 Id = x.Id,
                 Name = x.Name

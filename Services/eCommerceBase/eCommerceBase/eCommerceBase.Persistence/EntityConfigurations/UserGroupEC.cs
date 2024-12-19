@@ -15,9 +15,9 @@ namespace eCommerceBase.Persistence.EntityConfigurations
         }
         public List<UserGroup> GetSeedData()
         {
-            var admin = new UserGroup("Admin");
+            var admin = new UserGroup("Admin",false);
             admin.SetId(Guid.Parse(InitConst.AdminGuid));
-            var user = new UserGroup("User");
+            var user = new UserGroup("User",false);
             user.SetId(Guid.Parse(InitConst.UserGuid));
             return [admin,user];
         }
