@@ -29,7 +29,7 @@ export class SegmentLanguageComponent implements ControlValueAccessor, OnInit {
   onChange: any = () => {};
   onTouched: any = () => {};
   translateService = inject(TranslateService);
-  @Input() disabled: boolean = false;
+  @Input() disabled: boolean = true;
   writeValue(obj: any): void {
     if (obj !== undefined && obj !== '') {
       this.value = obj;

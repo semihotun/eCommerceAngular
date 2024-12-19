@@ -81,3 +81,19 @@ a {
     --background: $theme-color-danger;
     color: white;
 }
+
+ion-modal {
+    @media screen and (max-width:$tablet-size) {
+        --border-radius: 0px;
+    }
+
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+    backdrop-filter: blur(2px);
+}
+
+ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    filter: brightness(0.5);
+}

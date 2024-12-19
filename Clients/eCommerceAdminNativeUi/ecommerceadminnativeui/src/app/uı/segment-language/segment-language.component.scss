@@ -4,6 +4,10 @@ ion-segment {
     margin-bottom: 20px;
 }
 
+.segment-button-disabled {
+    opacity: 1;
+}
+
 ion-segment-button {
     --indicator-color: #{$theme-color-blue};
     height: 28px;

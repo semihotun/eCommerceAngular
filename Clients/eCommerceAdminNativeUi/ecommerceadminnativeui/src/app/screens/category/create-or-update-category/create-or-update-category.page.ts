@@ -25,6 +25,7 @@ import { BtnSubmitComponent } from 'src/app/uı/btn-submit/btn-submit.component'
 import { TranslateModule } from '@ngx-translate/core';
 import { InputComponent } from 'src/app/uı/input/input.component';
 import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
+import { CreateCategorySpecificationComponent } from './components/create-category-specification/create-category-specification.component';
 
 @Component({
   selector: 'app-create-or-update-category',
@@ -48,6 +49,7 @@ import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-l
     IonButtons,
     IonIcon,
     SegmentLanguageComponent,
+    CreateCategorySpecificationComponent,
   ],
 })
 export class CreateOrUpdateCategoryPage implements OnInit {

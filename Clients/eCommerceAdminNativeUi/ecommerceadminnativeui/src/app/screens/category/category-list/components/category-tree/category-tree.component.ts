@@ -39,6 +39,7 @@ export class CategoryTreeComponent implements OnInit {
       componentProps: {
         Id: id,
       },
+      cssClass: 'createOrUpdateCategoryModal',
     });
     modal.present();
   }

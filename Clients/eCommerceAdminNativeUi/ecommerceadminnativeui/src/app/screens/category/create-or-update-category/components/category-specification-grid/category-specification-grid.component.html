@@ -1,0 +1,4 @@
+<h5 class="mt-4 text-center">{{'Category Specification List' | translate}}</h5>
+<app-grid [btnColumnOn]="true" (getAllDataVoid)="getAllData($event)" [datas]="data"
+  (deleteBtn)="deleteCategorySpec($event)" #categorySpecGrid>
+</app-grid>

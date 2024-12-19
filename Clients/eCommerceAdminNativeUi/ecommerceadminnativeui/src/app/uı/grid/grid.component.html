@@ -75,6 +75,11 @@
               <a (click)="deleteData(data['id'])" class="cursor-pointer"><i class="fas fa-trash-alt"></i></a>
             </td>
             }
+            @if(this.deleteBtn.observed){
+            <td style="width: 25px; ">
+              <a (click)="deleteBtn.emit(data)" class="cursor-pointer"><i class="fas fa-trash-alt"></i></a>
+            </td>
+            }
           </ng-container>
 
         </tr>

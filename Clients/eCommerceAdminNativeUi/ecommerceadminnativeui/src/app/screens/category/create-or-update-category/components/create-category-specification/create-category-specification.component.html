@@ -1,0 +1,6 @@
+<h5 class="mt-4 text-center">{{'Category Specification Create' | translate}}</h5>
+<app-grid [btnColumnOn]="true" (getAllDataVoid)="getAllData($event)" [datas]="data"
+    (addBtn)="addCategorySpecification($event)" #addCategorySpecificationGrid>
+</app-grid>
+<app-category-specification-grid [categoryId]="this.categoryId" (deletedCategorySpec)="deletedCategoySpec()"
+    #categorySpecGrid></app-category-specification-grid>

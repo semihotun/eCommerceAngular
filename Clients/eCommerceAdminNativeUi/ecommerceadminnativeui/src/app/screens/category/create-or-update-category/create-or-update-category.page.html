@@ -17,4 +17,7 @@
     <div class="label-error" *ngIf="hasError('categoryName','required')">{{'Required' |translate}}</div>
     <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
   </form>
+  @if(!this.isCreate){
+  <app-create-category-specification [categoryId]="this.Id"></app-create-category-specification>
+  }
 </ion-content>

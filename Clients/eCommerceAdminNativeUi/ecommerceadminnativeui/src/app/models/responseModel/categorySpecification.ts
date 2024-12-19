@@ -1,6 +1,6 @@
 import { BaseEntity } from '../core/baseEntity';
 
-export interface CategorySpecification extends BaseEntity {
-  categoryId: string;
-  specificationAttributeteId: string;
+export class CategorySpecification extends BaseEntity {
+  categoryId!: string;
+  specificationAttributeteId!: string;
 }
