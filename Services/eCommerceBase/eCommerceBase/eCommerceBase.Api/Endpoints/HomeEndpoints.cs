@@ -25,6 +25,30 @@ namespace eCommerceBase.Api.Endpoints
             group.MapPost("/gethomeproductsearchquery", GetHomeProductSearch)
                 .Produces(StatusCodes.Status200OK, typeof(Result<List<ProductSearch>>))
                 .AllowAnonymous();
+            group.MapPost("/getcatalogdtobyslug", GetCatalogDTOBySlug)
+              .Produces(StatusCodes.Status200OK, typeof(Result<GetCatalogDTO>))
+              .AllowAnonymous();
+            group.MapPost("/getcatalogProductbyslug", GetCatalogProductDTOBySlug)
+            .Produces(StatusCodes.Status200OK, typeof(Result<PagedList<GetCatalogProductDTO>>))
+            .AllowAnonymous();    
+        }
+        public static async Task<IResult> GetCatalogProductDTOBySlug([FromBody] GetCatalogProductDTOBySlugQuery data, ISender sender)
+        {
+            var result = await sender.Send(data);
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
+        }
+        public static async Task<IResult> GetCatalogDTOBySlug([FromBody] GetCatalogDTOBySlugQuery data, ISender sender)
+        {
+            var result = await sender.Send(data);
+            if (result.Success)
+            {
+                return Results.Ok(result);
+            }
+            return Results.BadRequest(result);
         }
         public static async Task<IResult> GetAllHome(ISender sender)
         {

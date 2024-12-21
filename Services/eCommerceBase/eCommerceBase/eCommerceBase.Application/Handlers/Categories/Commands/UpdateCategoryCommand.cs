@@ -10,7 +10,7 @@ using eCommerceBase.Application.Handlers.Mapper;
 namespace eCommerceBase.Application.Handlers.Categories.Commands;
 public record UpdateCategoryCommand(string CategoryName,
 		Guid? ParentCategoryId,
-		System.Guid Id) : IRequest<Result>;
+		System.Guid Id, string? CategoryDescription) : IRequest<Result>;
 public class UpdateCategoryCommandHandler(IWriteDbRepository<Category> categoryRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<UpdateCategoryCommand,

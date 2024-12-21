@@ -5,12 +5,13 @@ namespace eCommerceBase.Domain.AggregateModels
 {
     public class Category : BaseEntity
     {
-        public Category(string categoryName, Guid? parentCategoryId)
+        public Category(string categoryName, Guid? parentCategoryId,string categoryDescription)
         {
             CategoryName = categoryName;
             ParentCategoryId = parentCategoryId;
+            CategoryDescription = categoryDescription;
         }
-
+        public string CategoryDescription { get; private set; }
         public string CategoryName { get; private set; }
         public Guid? ParentCategoryId { get; private set; }
         public string? SlugBase { get; private set; }

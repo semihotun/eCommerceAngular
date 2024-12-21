@@ -9,7 +9,7 @@ using eCommerceBase.Application.Handlers.Mapper;
 
 namespace eCommerceBase.Application.Handlers.Categories.Commands;
 public record CreateCategoryCommand(string CategoryName,
-		Guid? ParentCategoryId) : IRequest<Result>;
+		Guid? ParentCategoryId,string? CategoryDescription) : IRequest<Result>;
 public class CreateCategoryCommandHandler(IWriteDbRepository<Category> categoryRepository,
 		IUnitOfWork unitOfWork,
 		ICacheService cacheService) : IRequestHandler<CreateCategoryCommand,

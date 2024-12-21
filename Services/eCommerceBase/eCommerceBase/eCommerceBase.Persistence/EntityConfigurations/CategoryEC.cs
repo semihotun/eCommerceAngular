@@ -21,8 +21,9 @@ namespace eCommerceBase.Persistence.EntityConfigurations
 
         public List<Category> GetSeedData()
         {
-            var category = new Category("ExemCategory",null);
+            var category = new Category("ExemCategory",null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse cursus magna a tincidunt pharetra.");
             category.SetId(Guid.Parse("d3c1b385-475e-457e-8df5-def8feef2af9"));
+            category.SetSlug("exem-category");
             return [category];
         }
     }

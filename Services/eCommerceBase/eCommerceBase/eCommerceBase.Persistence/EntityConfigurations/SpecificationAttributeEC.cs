@@ -26,7 +26,7 @@ namespace eCommerceBase.Persistence.EntityConfigurations
 
 
             var spec2Id = Guid.NewGuid();
-            var spec2 = new SpecificationAttribute("Kıyafet Boyutu");
+            var spec2 = new SpecificationAttribute("Beden");
             spec2.SetId(spec2Id);
             spec2.AddSpecificationAttributeOption(new(spec2Id, "L"));
             spec2.AddSpecificationAttributeOption(new(spec2Id, "XL"));
