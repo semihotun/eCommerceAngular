@@ -124,7 +124,12 @@ export class HeaderMobileComponent implements OnInit {
     }
   }
   backButtonClick() {
-    this.navController.navigateBack(this.isNavigationBackUrl!);
+    this.navController.back();
+    // if (this.isNavigationBackUrl) {
+    //   this.navController.navigateBack(this.isNavigationBackUrl!);
+    // } else {
+    //   this.navController.back();
+    // }
   }
   changeSearchInput(event: Event) {
     if (this.searchText.valid) {

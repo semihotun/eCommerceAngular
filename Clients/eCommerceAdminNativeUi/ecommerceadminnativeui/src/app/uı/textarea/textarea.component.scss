@@ -1,0 +1,47 @@
+@import '../../../theme/variables.scss';
+
+.textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    position: relative;
+    color: black;
+    min-height: 38px;
+    width: 100%;
+
+    .textarea {
+        color: black;
+        position: relative;
+        background-color: white;
+        border-radius: 4px;
+        border: 1px solid $theme-color-darkgray;
+        font-size: 12px;
+        padding-left: 8px;
+        padding-top: 15px;
+        resize: none;
+
+        &:disabled {
+            background-color: $theme-color-disabled-color;
+            color: $theme-color-darkgray;
+            cursor: not-allowed;
+        }
+
+        &::placeholder {
+            padding-left: 0px;
+        }
+    }
+
+    .label {
+        box-sizing: border-box;
+        margin: 2px;
+        width: 99%;
+        background-color: #fff;
+        font-weight: 700;
+        padding-top: 3px;
+        padding-left: 6px;
+        font-size: 9px;
+        z-index: 1;
+        color: #000;
+        position: absolute;
+    }
+}

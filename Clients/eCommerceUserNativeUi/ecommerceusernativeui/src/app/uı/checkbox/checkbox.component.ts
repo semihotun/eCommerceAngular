@@ -26,7 +26,9 @@ export class CheckboxComponent implements ControlValueAccessor {
   onChange: any = () => {};
   onTouched: any = () => {};
   @Input() text: string = '';
-  @Output() change: EventEmitter<any> = new EventEmitter<any>();
+  @Input() data: any;
+  // @Output() change: EventEmitter<{ data: any; checked: boolean }> =
+  //   new EventEmitter<{ data: any; checked: boolean }>();
   val: boolean = false;
   disabled: boolean = false;
   ngOnInit() {}
@@ -46,7 +48,12 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
   onCheckboxChange() {
     this.val = !this.val;
-    this.onChange(this.val);
     this.onTouched();
+    console.log(this.val);
+    this.onChange(this.val);
+    if (this.data) {
+      // this.change.emit({ data: this.data, checked: this.val });
+    } else {
+    }
   }
 }

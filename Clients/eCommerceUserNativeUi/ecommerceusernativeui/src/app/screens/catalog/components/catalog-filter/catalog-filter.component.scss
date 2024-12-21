@@ -1,0 +1,242 @@
+ @import '../../../../../theme/variables.scss';
+
+
+ .sub-header {
+     width: 100%;
+     z-index: 99;
+     position: relative;
+     padding: 0% 3%;
+     background-color: #fff;
+     height: 75px;
+     display: flex;
+     align-items: center;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     justify-content: center;
+
+     @media screen and (max-width:$tablet-size) {
+         width: 100%;
+         height: auto;
+         padding: 4% 5%;
+         border-bottom: 1px solid #ccc;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     }
+
+     .sub-header-wrapper {
+         height: 100%;
+         position: relative;
+         width: 98%;
+         margin: 0px auto;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+
+         .title {
+             text-align: center;
+             font-size: 22px;
+
+             @media screen and (max-width:$tablet-size) {
+                 margin-bottom: 0px;
+                 font-size: 18px;
+                 font-weight: 600;
+             }
+         }
+
+         .closeBtn {
+             font-weight: 600;
+             color: #fff;
+             border: none;
+             cursor: pointer;
+             background-color: transparent;
+             padding: 10px;
+             position: absolute;
+             height: 100%;
+             display: flex;
+             align-items: center;
+             right: 0px;
+
+             &::before {
+                 content: 'X';
+                 color: #333;
+                 font-size: 20px;
+                 font-weight: bold;
+
+                 @media screen and (max-width:$tablet-size) {
+                     font-size: 18px;
+                 }
+
+             }
+         }
+
+         .saveBtn {
+             font-weight: 600;
+             color: #fff;
+             border: none;
+             cursor: pointer;
+             background-color: transparent;
+             padding: 10px;
+             position: absolute;
+             height: 100%;
+             display: flex;
+             align-items: center;
+             left: 0px;
+
+             i {
+                 color: #333;
+                 font-size: 20px;
+                 font-weight: bold;
+
+                 @media screen and (max-width:$tablet-size) {
+                     font-size: 18px;
+                 }
+
+             }
+         }
+     }
+ }
+
+ ion-menu::part(backdrop) {
+     background: rgba(209, 213, 219);
+     filter: brightness(0.5);
+ }
+
+ ion-menu {
+     --width: 40%;
+     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+         0 4px 6px -4px rgb(0 0 0 / 0.1);
+     backdrop-filter: blur(2px);
+
+     @media screen and (max-width:$tablet-size) {
+         --width: 100%;
+     }
+
+     .ion-padding {
+         .spec-wrapper {
+             display: flex;
+             flex-direction: column;
+
+             .spec {
+                 margin-top: 5px;
+                 border: 1px solid #ccc;
+                 align-items: center;
+                 padding: 5px;
+
+                 .spec-name {
+                     align-items: center;
+                     display: flex;
+                     width: 100%;
+                     position: relative;
+                     padding: 5px;
+
+                     @media screen and (max-width:$tablet-size) {
+                         font-size: 14px;
+                     }
+
+                     i {
+                         position: absolute;
+                         right: 10px;
+                     }
+                 }
+
+                 .sub-category-open {
+                     max-height: 200px;
+                     color: white;
+                     box-sizing: border-box;
+                     padding: 0px 5px;
+                     position: relative;
+                     display: flex;
+                     flex-direction: column;
+                     height: auto;
+                     overflow: hidden;
+                     transition: all 1s ease-in-out;
+                     opacity: 1;
+                     margin-bottom: 10px;
+                     margin-top: 10px;
+                     max-height: 200px;
+                     overflow-y: scroll;
+                 }
+
+                 .sub-category-close {
+                     opacity: 0;
+                     max-height: 0;
+                 }
+
+                 .spec-option-list {
+                     font-size: 14px;
+                     color: white;
+
+                     .spec-option {
+                         padding: 8px 6px 6px 6px;
+
+                         @media screen and (max-width:$tablet-size) {
+                             font-size: 12px;
+                         }
+
+                         .min-max-price-wrapper {
+                             display: flex;
+                             flex-wrap: wrap;
+                             justify-content: center;
+
+                             .min-price {
+                                 width: 45%;
+                                 margin-right: 2%;
+
+                                 @media screen and (max-width:$tablet-size) {
+                                     font-size: 49%;
+                                 }
+                             }
+
+                             .max-price {
+                                 width: 45%;
+
+                                 @media screen and (max-width:$tablet-size) {
+                                     font-size: 49%;
+                                 }
+                             }
+
+                             .price-btn {
+                                 @media screen and (max-width:$tablet-size) {
+                                     font-size: 100%;
+                                 }
+
+                                 width: 92%;
+                                 border: 1px solid black;
+                                 padding: 7px;
+                                 margin-top: 12px;
+                                 text-align: center;
+                                 font-weight: 600;
+                                 color: white;
+                                 font-size: 12px;
+                                 background-color: #333;
+
+                                 &:hover {
+                                     cursor: pointer;
+                                 }
+                             }
+                         }
+
+                     }
+                 }
+             }
+         }
+     }
+ }
+
+
+
+ .sub-category-open::part(scroll)::-webkit-scrollbar {
+     width: 5px;
+ }
+
+ .sub-category-open::part(scroll)::-webkit-scrollbar-thumb {
+     background-color: #ccc;
+     border-radius: 10px;
+ }
+
+ .sub-category-open::part(scroll)::-webkit-scrollbar-thumb:hover {
+     background-color: #555;
+ }
+
+ .sub-category-open::-webkit-scrollbar {
+     display: none;
+     width: 0;
+ }

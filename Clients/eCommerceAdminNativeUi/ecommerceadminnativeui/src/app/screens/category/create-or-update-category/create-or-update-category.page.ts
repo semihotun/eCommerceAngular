@@ -26,6 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InputComponent } from 'src/app/uı/input/input.component';
 import { SegmentLanguageComponent } from 'src/app/uı/segment-language/segment-language.component';
 import { CreateCategorySpecificationComponent } from './components/create-category-specification/create-category-specification.component';
+import { TextareaComponent } from '../../../u\u0131/textarea/textarea.component';
 
 @Component({
   selector: 'app-create-or-update-category',
@@ -50,6 +51,7 @@ import { CreateCategorySpecificationComponent } from './components/create-catego
     IonIcon,
     SegmentLanguageComponent,
     CreateCategorySpecificationComponent,
+    TextareaComponent,
   ],
 })
 export class CreateOrUpdateCategoryPage implements OnInit {
@@ -70,6 +72,7 @@ export class CreateOrUpdateCategoryPage implements OnInit {
       id: [''],
       categoryName: ['', [Validators.required]],
       parentCategoryId: [null],
+      categoryDescription: ['', Validators.required],
       languageCode: [''],
     });
   }

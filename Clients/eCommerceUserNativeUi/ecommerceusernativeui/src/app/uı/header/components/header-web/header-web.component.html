@@ -45,7 +45,7 @@
           }}</a></li>
       <ng-container *ngFor="let category of homeStore.categoryTreeDto$()">
         @if (category.subCategories.length == 0){
-        <li><a (click)="this.navController.navigateForward(['/category', category.slug])">{{category.categoryName}}</a>
+        <li><a (click)="this.navController.navigateForward(['/catalog', category.slug])">{{category.categoryName}}</a>
           }
           @else {
         <li>
@@ -54,7 +54,7 @@
           </a>
           <div class="sub-category-list sub-category-close">
             <div class="sub-category" *ngFor="let subCategory of category.subCategories"><a
-                (click)="this.navController.navigateForward(['/category', subCategory.slug])">{{subCategory.categoryName}}</a>
+                (click)="this.navController.navigateForward(['/catalog', subCategory.slug])">{{subCategory.categoryName}}</a>
             </div>
           </div>
         </li>

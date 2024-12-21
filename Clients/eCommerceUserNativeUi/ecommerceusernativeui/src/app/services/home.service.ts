@@ -19,6 +19,38 @@ export class HomeService extends Destroyable {
   constructor() {
     super();
   }
+  getCatalogDTO(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post<Result<WebsiteInfo>>(
+        environment.baseUrl + 'websiteInfo/getcatalogdto',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.homeStore.setWebsiteInfo(response.data);
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
+  }
+  getCatalogProductDTO(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Result<WebsiteInfo>>(
+        environment.baseUrl + 'websiteInfo/getcatalogProduct',
+        {},
+        this.onDestroy,
+        (response) => {
+          this.homeStore.setWebsiteInfo(response.data);
+          resolve();
+        },
+        (err) => {
+          reject();
+        }
+      );
+    });
+  }
   getWebsiteInfo(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.http.get<Result<WebsiteInfo>>(

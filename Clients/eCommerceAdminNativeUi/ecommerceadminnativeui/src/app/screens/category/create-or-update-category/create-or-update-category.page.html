@@ -12,9 +12,16 @@
 <ion-content class="ion-padding">
   <form [formGroup]="form">
     <app-segment-language formControlName="languageCode"></app-segment-language>
-    <app-input [label]="'Category Name' |translate" [placeholder]="'Category Name' |translate"
-      formControlName="categoryName"></app-input>
-    <div class="label-error" *ngIf="hasError('categoryName','required')">{{'Required' |translate}}</div>
+    <div class="mt-2">
+      <app-input [label]="'Category Name' |translate" [placeholder]="'Category Name' |translate"
+        formControlName="categoryName"></app-input>
+      <div class="label-error" *ngIf="hasError('categoryName','required')">{{'Required' |translate}}</div>
+    </div>
+    <div class="mt-2">
+      <app-textarea [label]="'Category Description' | translate" [placeholder]="'Category Description' | translate"
+        formControlName="categoryDescription" [rows]="3"></app-textarea>
+      <div class="label-error" *ngIf="hasError('categoryDescription','required')">{{'Required' |translate}}</div>
+    </div>
     <app-btn-submit [text]="'Save' | translate" class="mt-3" (click)="submitForm()"></app-btn-submit>
   </form>
   @if(!this.isCreate){

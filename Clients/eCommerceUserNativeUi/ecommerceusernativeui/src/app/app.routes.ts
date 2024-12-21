@@ -21,7 +21,7 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'catalog',
+    path: 'catalog/:slug',
     loadComponent: () =>
       import('./screens/catalog/catalog.page').then((m) => m.CatalogPage),
     pathMatch: 'full',

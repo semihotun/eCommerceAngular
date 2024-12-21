@@ -212,7 +212,7 @@
                     height: 100%;
                     padding: 10px;
                     margin: 2px;
-                    color: black;
+                    color: white;
                     text-decoration: none;
 
                     i {
@@ -222,6 +222,7 @@
                 }
 
                 &:hover .sub-category-list {
+
                     z-index: 999;
                     box-sizing: border-box;
                     left: 5%;
@@ -232,6 +233,10 @@
                     height: 300px;
                     flex-wrap: wrap;
                     overflow: hidden;
+
+                    a {
+                        color: black;
+                    }
                 }
 
                 .sub-category-list {

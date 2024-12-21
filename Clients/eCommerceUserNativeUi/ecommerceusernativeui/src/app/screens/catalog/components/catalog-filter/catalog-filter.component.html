@@ -1,0 +1,47 @@
+<ion-menu side="end" contentId="filter-content" #filterMenu>
+  <div class="sub-header">
+    <div class="sub-header-wrapper">
+      <div class="title">{{'Filter' | translate}}</div>
+      <div class="saveBtn" (click)="saveFilter()"><i class="fa-regular fa-floppy-disk"></i></div>
+      <div class="closeBtn" (click)="closeFilter()"></div>
+    </div>
+  </div>
+
+  <ion-content class="ion-padding">
+    <div class="spec-wrapper">
+      <span class="spec">
+        <div class="spec-name" (click)="showSubNodeCategory($event.currentTarget!)">{{'Price' |translate}}
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <div class="spec-option-list sub-category-close">
+          <div class="spec-option">
+            <div class="min-max-price-wrapper">
+              <div class="min-price"><app-input [placeholder]="'Min Price' |translate" [label]="'Min Price' |translate"
+                  [(ngModel)]="minPrice"></app-input>
+              </div>
+              <div class="max-price"><app-input [placeholder]="'Max Price' |translate" [label]="'Max Price' |translate"
+                  [(ngModel)]="maxPrice"></app-input>
+              </div>
+              <div class="price-btn" (click)="addPriceFilter()">{{'Add Price Filter' |translate}}</div>
+            </div>
+
+          </div>
+        </div>
+      </span>
+
+
+      <span class="spec" *ngFor="let spec of this.catalogStore.catalogDto$().catalogSpecificationDTOList">
+        <div class="spec-name" (click)="showSubNodeCategory($event.currentTarget!)">{{spec.specificationAttributeName}}
+          <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <div class="spec-option-list sub-category-close">
+          <div class="spec-option" *ngFor="let specOption of spec.specificationAttributeOptionList">
+            <app-checkbox [text]="specOption.specificationAttributeOptionName"
+              (change)="onCheckboxChange(specOption.specificationAttributeOptionId ,spec.specificationAttributeId,specOption.specificationAttributeOptionName)"
+              [data]="specOption.specificationAttributeOptionId"></app-checkbox>
+          </div>
+        </div>
+      </span>
+    </div>
+  </ion-content>
+</ion-menu>

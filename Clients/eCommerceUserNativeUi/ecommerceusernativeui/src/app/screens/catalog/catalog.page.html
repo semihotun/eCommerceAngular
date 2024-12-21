@@ -1,1 +1,71 @@
-<div>catalog</div>
+<ion-content fullscreen="true" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+    <app-header *ngIf="!this.glb.isMobil.value"></app-header>
+    <div id="not-header-search-page">
+        <app-sub-header [previousUrl]="''" [title]="this.catalogStore.catalogDto$().categoryName!"></app-sub-header>
+        <div class="description" *ngIf="!this.glb.isMobil.value">
+            {{this.catalogStore.catalogDto$().categoryDescription}}
+        </div>
+        <div class="filter-wrapper" (click)="openFilterMenu()" #filterWrapper
+            [ngClass]="{'filter-relative-position': isFilterFixed, 'filter-static-position': !isFilterFixed}">
+            <div class="filterBtn"><i class="fa-solid fa-sliders"></i>{{'Filter' | translate}}</div>
+            <div class="filter-list">
+                <div class="filter" *ngIf="this.catalogStore.minPrice$() != 0" (click)="clearMinPrice($event)">
+                    <div class="filter-text">{{'>'+this.catalogStore.minPrice$()}}</div>
+                    <div class="filter-close"></div>
+                </div>
+                <div class="filter" *ngIf="this.catalogStore.maxPrice$()!= 0" (click)="clearMaxPrice($event)">
+                    <div class="filter-text">{{'&lt; ' + catalogStore.maxPrice$()}}</div>
+                    <div class="filter-close"></div>
+                </div>
+                <div class="filter" *ngFor="let item of this.catalogStore.filterList$()"
+                    (click)="removeFilter($event,item.specificationAttributeOptionId)">
+                    <div class="filter-text">{{item.specificationAttributeOptionName}}</div>
+                    <div class="filter-close"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-list">
+            @for (product of this.catalogStore.catalogProductDto$().data; track $index) {
+            <div class="card" (click)="glb.navigateProductDetail(product.slug)">
+                <div class="image">
+                    <img [src]="glb.getImagePath(product.imageUrl)" />
+                    <app-favorite-product-button class="favorite-button" [size]="15" [productId]="product.id"
+                        [favoriteId]="product.favoriteId"></app-favorite-product-button>
+                </div>
+                <div class="card-bottom">
+                    <div class="title"><span class="brandName">{{product.brandName}} </span>{{product.productName}}
+                    </div>
+                    <div class="comment-rate">
+                        <app-star-rating [value]="product.avgStarRate" [count]="product.commentCount"
+                            [starSize]="!this.glb.isMobil.value ? 15 : 12"></app-star-rating>
+                    </div>
+                    <div class="price">
+                        <div class="price-without-discount" *ngIf="product.priceWithoutDiscount != product.price">
+                            {{product.priceWithoutDiscount}}{{product.currencyCode}}</div>
+                        <div class="total-price">
+                            {{product.price ? product.price + ' ' + product.currencyCode : '&nbsp;'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)" loadingSpinner="bubbles"
+                [threshold]="!glb.isMobil.value ?'531px' : '8%'"
+                [disabled]="pageIndex >= catalogStore.catalogProductDto$().totalPages">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+            <div *ngIf="pageIndex >= catalogStore.catalogProductDto$().totalPages" class="no-more-products">
+                {{ 'No more products' | translate }}
+            </div>
+        </div>
+    </div>
+    @if (!glb.isMobil.value) {
+    <app-footer></app-footer>
+    }
+    @else {
+    <app-mobile-footer></app-mobile-footer>
+    }
+</ion-content>
+<app-catalog-filter (resetAndgetCatalogProductDtoBySlug)="resetAndgetCatalogProductDtoBySlug()"
+    #catalogFilterComponent></app-catalog-filter>
